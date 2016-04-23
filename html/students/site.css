@@ -1,0 +1,30 @@
+div.listview {
+	margin: auto;
+	width: 40%;
+}
+
+div.buttons {
+	margin: auto;
+	width: 20%;
+}
+
+table {
+	width: 100%;
+}
+
+ul {
+	list-style-type: none;
+}
+
+ul.listActions {
+	float: right;
+}
+
+footer {
+	margin: auto;
+	width: 20%;
+}
+
+form.search {
+	float: left;
+}
