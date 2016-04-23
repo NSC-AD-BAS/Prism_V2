@@ -3,7 +3,7 @@
 <head>
     <title>PRISM - Students</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="site.css">
+    <!-- <link rel="stylesheet" type="text/css" href="site.css"> -->
 </head>
 <body>
     <header><h1>Student List</h1></header>
@@ -15,6 +15,10 @@
     </nav>
     <main>
         <div class="listview">
+            <form method="post" action="asdf();" name="search">
+                <input type="text">
+                <input type="submit" value="Search Students">
+            </form>
             <form method="post" action="postsomething();" name="details">
                 <ul class="listActions">
                     <li><a href="#" class="myButton">Add Record</a></li>
@@ -27,9 +31,9 @@
                         <th>Name</th>
                         <th>SID</th>
                         <th>Cohort</th>
-                        <th>Is Active</th>
-                        <th>Has Internship</th>
-                        <th>Notes</th>
+                        <th>Active Status</th>
+                        <th>Internship/Capstone Status</th>
+                        <th>Application Status</th>
                     </tr>
                     
                     <tr>
@@ -37,9 +41,9 @@
                         <td>Garry Kasparov</td>
                         <td>40522751</td>
                         <td>2015</td>
-                        <td><input type="checkbox" name="1" value="isActive" checed></td>
-                        <td><input type="checkbox" name="1" value="hasInternship"></td>
-                        <td>This guy never makes it to class on time.</td>
+                        <td>Inactive</td>
+                        <td>Incomplete</td>
+                        <td>Applied</td>
                     </tr>
                     
                     <tr>
@@ -47,36 +51,36 @@
                         <td>Bobby Fischer</td>
                         <td>6277751</td>
                         <td>2015</td>
-                        <td><input type="checkbox" name="2" value="isActive" checked></td>
-                        <td><input type="checkbox" name="2" value="hasInternship"></td>
-                        <td>Has a really good example resume.</td>
+                        <td>Graduated</td>
+                        <td>Completed</td>
+                        <td>Provisionally Accepted</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="selected:3" value="selected"></td>
                         <td>Deep Blue</td>
                         <td>6268221</td>
                         <td>2015</td>
-                        <td><input type="checkbox" name="" value="isActive"></td>
-                        <td><input type="checkbox" name="" value="hasInternship"></td>
-                        <td>Leads the weekly study group.</td>
+                        <td>Active</td>
+                        <td>Incomplete</td>
+                        <td>Fully Accepted</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="selected:4" value="selected"></td>
                         <td>Jose Capablanca</td>
                         <td>883563</td>
                         <td>2014</td>
-                        <td><input type="checkbox" name="" value="isActive" checked></td>
-                        <td><input type="checkbox" name="" value="hasInternship" checked></td>
-                        <td>Specializes in SQL and databases.</td>
+                        <td>Active</td>
+                        <td>In Progress</td>
+                        <td>Withdrawn</td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="selected:5" value="unchecked"></td>
                         <td>Wilhelm Steinitz</td>
                         <td>2643677</td>
                         <td>2014</td>
-                        <td><input type="checkbox" name="" value="checked" checked></td>
-                        <td><input type="checkbox" name="" value="checked" checked></td>
-                        <td>Builds computers in his spare time.</td>
+                        <td>Graduated</td>
+                        <td>Completed</td>
+                        <td>Denied</td>
                     </tr>
                 </table>
             </form>
