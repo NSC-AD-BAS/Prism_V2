@@ -3,7 +3,7 @@
 <head>
     <title>PRISM - Students</title>
     <meta charset="utf-8">
-    <!--<link rel="style/site.css">-->
+    <link rel="stylesheet" type="text/css" href="site.css">
 </head>
 <body>
     <header><h1>Student List</h1></header>
@@ -15,14 +15,71 @@
     </nav>
     <main>
         <div class="listview">
-            <table>
-                <tr><th>[ ]</th><th>Name</th><th>SID</th><th>Cohort</th><th>Is Active</th><th>Has Internship</th><th>Notes</th></tr>
-                <tr><td>[ ]</td><td>Garry Kasparov</td><td>40522751</td><td>2015</td><td>[x]</td><td>[ ]</td><td>This guy never makes it to class on time.</td></tr>
-                <tr><td>[ ]</td><td>Bobby Fischer</td><td>6277751</td><td>2015</td><td>[x]</td><td>[ ]</td><td>Has a really good example resume.</td></tr>
-                <tr><td>[ ]</td><td>Deep Blue</td><td>6268221</td><td>2015</td><td>[ ]</td><td>[ ]</td><td>Leads the weekly study group.</td></tr>
-                <tr><td>[ ]</td><td>Jose Capablanca</td><td>883563</td><td>2014</td><td>[x]</td><td>[x]</td><td>Specializes in SQL and databases.</td></tr>
-                <tr><td>[ ]</td><td>Wilhelm Steinitz</td><td>2643677</td><td>2014</td><td>[x]</td><td>[x]</td><td>Builds computers in his spare time.</td></tr>
-            </table>
+            <form method="post" action="postsomething();" name="details">
+                <ul class="listActions">
+                    <li><a href="#" class="myButton">Add Record</a></li>
+                    <li><a href="#" class="myButton">Edit</a></li>
+                    <li><a href="#" class="myButton">Delete Selected</a></li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>SID</th>
+                        <th>Cohort</th>
+                        <th>Is Active</th>
+                        <th>Has Internship</th>
+                        <th>Notes</th>
+                    </tr>
+                    
+                    <tr>
+                        <td><input type="checkbox" name="1" value="selected"></td>
+                        <td>Garry Kasparov</td>
+                        <td>40522751</td>
+                        <td>2015</td>
+                        <td><input type="checkbox" name="1" value="isActive" checed></td>
+                        <td><input type="checkbox" name="1" value="hasInternship"></td>
+                        <td>This guy never makes it to class on time.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><input type="checkbox" name="2" value="selected"></td>
+                        <td>Bobby Fischer</td>
+                        <td>6277751</td>
+                        <td>2015</td>
+                        <td><input type="checkbox" name="2" value="isActive" checked></td>
+                        <td><input type="checkbox" name="2" value="hasInternship"></td>
+                        <td>Has a really good example resume.</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="selected:3" value="selected"></td>
+                        <td>Deep Blue</td>
+                        <td>6268221</td>
+                        <td>2015</td>
+                        <td><input type="checkbox" name="" value="isActive"></td>
+                        <td><input type="checkbox" name="" value="hasInternship"></td>
+                        <td>Leads the weekly study group.</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="selected:4" value="selected"></td>
+                        <td>Jose Capablanca</td>
+                        <td>883563</td>
+                        <td>2014</td>
+                        <td><input type="checkbox" name="" value="isActive" checked></td>
+                        <td><input type="checkbox" name="" value="hasInternship" checked></td>
+                        <td>Specializes in SQL and databases.</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="selected:5" value="unchecked"></td>
+                        <td>Wilhelm Steinitz</td>
+                        <td>2643677</td>
+                        <td>2014</td>
+                        <td><input type="checkbox" name="" value="checked" checked></td>
+                        <td><input type="checkbox" name="" value="checked" checked></td>
+                        <td>Builds computers in his spare time.</td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </main>
 
