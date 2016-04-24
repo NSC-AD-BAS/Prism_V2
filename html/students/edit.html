@@ -14,17 +14,17 @@
         <a href="../admin/list.html">(Admin)</a> &nbsp;
     </nav>
     
-    <form action="list.html" method="get">
+    <form action="detail.html" method="get">
         
         <fieldset>
-            <legend><h2>Create Student</h2></legend>
-            Student Name: <input type="text"><br>
-            Preferred Name: <input type="text"><br>
-            SSID: <input type="text"><br>
-            Cohort/Year: <input type="text"><br>
+            <legend><h2>Edit Student</h2></legend>
+            Student Name: <input type="text" value="Fred Bob"><br>
+            Preferred Name: <input type="text" value="Fred Bob"><br>
+            SSID: <input type="text" value="Fred Bob"><br>
+            Cohort/Year: <input type="text" value="Fred Bob"><br>
             Active Status: <select>
                                 <option value="noneSelected">(None Selected)</option>
-                                <option value="active">Active</option>
+                                <option value="active" selected="selected">Active</option>
                                 <option value="inactive">Inactive</option>
                                 <option value="graduated">Graduated</option>
                             </select><br>
@@ -32,27 +32,27 @@
                                 <option value="noneSelection">(None Selected)</option>
                                 <option value="incomplete">Incomplete</option>
                                 <option value="completed">Completed</option>
-                                <option value="inProgress">In Progress</option>
+                                <option value="inProgress" selected="selected">In Progress</option>
                             </select><br>
-            Internship URL: <input type="text"><br> 
+            Internship URL: <input type="text" value="Fred Bob"><br> 
             Application Status: <select>
                                 <option value="noneSelection">(None Selected)</option>
-                                <option value="applied">Applied</option>
+                                <option value="applied" selected="selected">Applied</option>
                                 <option value="provisionallyAccepted">Provisionally Accepted</option>
                                 <option value="fullyAccepted">Fully Accepted</option>
                                 <option value="withdrawn">Withdrawn</option>
                                 <option value="denied">Denied</option>
                             </select><br> 
-            Resume URL: <input type="text"><br>
-            LinkedIn URL: <input type="text"><br>
-            Contact Info: <textarea name="notes"></textarea><br>
-            Address Line1: <input type="text"><br>
-            Address Line2: <input type="text"><br>
-            City: <input type="text"><br>
-            State: <input type="text"><br>
-            Zipcode: <input type="text"><br>
-            Notes: <textarea name="notes"></textarea><br>
-            <input type="submit" value="Create Student">
+            Resume URL: <input type="text" value="Fred Bob"><br>
+            LinkedIn URL: <input type="text" value="Fred Bob"><br>
+            Contact Info: <textarea name="notes">Fred Bob</textarea><br>
+            Address Line1: <input type="text" value="Fred Bob"><br>
+            Address Line2: <input type="text" value="Fred Bob"><br>
+            City: <input type="text" value="Fred Bob"><br>
+            State: <input type="text" value="Fred Bob"><br>
+            Zipcode: <input type="text" value="Fred Bob"><br>
+            Notes: <textarea name="notes">Fred Bob</textarea><br>
+            <input type="submit" value="Update Student">
 
         </fieldset>
     </form>
