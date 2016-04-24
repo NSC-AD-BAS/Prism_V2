@@ -6,14 +6,17 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    font-family: segoe UI light, verdana, sans-seriff;
+    background-color: #2b78e4;
 }
 
 main {
-    width: 65%;
+    width: 75%;
     margin: 70px auto 10px auto; /* top right bottom left */
     padding-bottom: 21px;
+    border-radius: 3px;
 
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     background: #fff;
     background: linear-gradient(#f6f6f6 0, #fff 50px);
     background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
@@ -44,11 +47,15 @@ nav ul {
     background-color: #333;
 }
 
-nav li {
+nav .left {
     float: left;
 }
 
-nav li a {
+nav .right {
+    float: right;
+}
+
+nav li a, #welcome {
     padding: 15px 15px;
     display: block;
     color: white;
@@ -59,30 +66,26 @@ nav li a:hover {
     background-color: #111;
 }
 
+h1 {
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#searchbox {
+    float: right;
+    margin-top: 20px;
+    margin-right: 30px;
+    font-size: 12pt;
+    border-radius: 3px;
+}
+
 
 /* TABLE STYLING */
 #tableHead {
     font-weight: bold;
+    background-color: gray;
 }
-
-/*
-main .outer {
-    padding-top: 15px;
-    padding-bottom: 15px;
-
-    border: 1px solid #ddd;
-    background: #fff;
-    background: linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}*/
 
 main ul, main li {
     margin: 0;
@@ -102,5 +105,19 @@ main a ul:hover {
 main .inner li {
     width: 32%;
     height: 20px;
+    margin-top: 10px;
+    padding-bottom: 10px;
     display: inline-block; /* inline list items */
+}
+
+/* DETAIL PAGE STYLING */
+#internship_detail th {
+    font-weight: bold;
+    background-color: gray;
+    padding: 5px;
+}
+
+#internship_detail {
+    margin-left: auto;
+    margin-right: auto;
 }
