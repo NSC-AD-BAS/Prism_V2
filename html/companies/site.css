@@ -1,0 +1,43 @@
+/*
+    Author: Jeremy Duke
+*/
+
+header {
+    background-color: #000033;
+    color: #f6f6f6;
+    font-family: Arial, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, Verdana, sans-serif;
+    color: #000033;
+}
+
+footer {
+    font-size: small;
+    font-style: italic;
+}
+
+nav {
+    background-color: #CCC;
+    color: white;
+    text-decoration: none;
+}
+
+h1 { line-height: 150%; }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+th, td {
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+#wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
