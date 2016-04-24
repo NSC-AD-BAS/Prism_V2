@@ -42,3 +42,5 @@ form.search {
 	float: right;
 	margin-left: 20px;
 }
+
+div.boxed { border: 2px solid grey;}
