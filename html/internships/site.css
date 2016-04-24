@@ -117,7 +117,30 @@ main .inner li {
     padding: 5px;
 }
 
+#internship_detail td {
+    text-align: right;
+}
+
 #internship_detail {
     margin-left: auto;
     margin-right: auto;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+a#button {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+}
+
+a#button:hover {
+    background-color: #cccccc;
+    color: black;
+    transition-duration: .5s;
 }
