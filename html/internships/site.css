@@ -1,0 +1,106 @@
+/*
+Author: Tim Davis
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+main {
+    width: 65%;
+    margin: 70px auto 10px auto; /* top right bottom left */
+    padding-bottom: 21px;
+
+    border: 1px solid #ddd;
+    background: #fff;
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+footer {}
+
+/* NAV STYLING */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* remove bullets */
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    padding: 15px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+
+/* TABLE STYLING */
+#tableHead {
+    font-weight: bold;
+}
+
+/*
+main .outer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    border: 1px solid #ddd;
+    background: #fff;
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}*/
+
+main ul, main li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* remove bullets */
+}
+
+main .outer li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main a ul:hover {
+    background-color: #f6f6f6;
+}
+
+main .inner li {
+    width: 32%;
+    height: 20px;
+    display: inline-block; /* inline list items */
+}
