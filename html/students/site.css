@@ -8,6 +8,11 @@ div.buttons {
 	width: 20%;
 }
 
+div.dialog {
+	margin: auto;
+	width: 15%;
+}
+
 table {
 	width: 100%;
 }
@@ -27,4 +32,13 @@ footer {
 
 form.search {
 	float: left;
+}
+
+#leftbutton {
+	float: left;
+}
+
+#rightbutton {
+	float: right;
+	margin-left: 20px;
 }
