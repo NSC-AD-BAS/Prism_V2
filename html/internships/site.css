@@ -76,7 +76,7 @@ nav li a:hover {
 /* SEARCH STYLING */
 
 #searchbox {
-    margin: 13px 30px 0 0; /* top right bottom left */
+    margin: 12px 30px 0 0; /* top right bottom left */
     float: right;
     font-size: 12pt;
     border-radius: 3px;
