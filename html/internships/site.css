@@ -17,17 +17,17 @@ main {
     padding: 10px 0 10px 0; /* top right bottom left */
     border-radius: 3px;
     background: #fff;
-    background: linear-gradient(#f6f6f6 0, #fff 50px);
-    box-shadow: 0 0 20px 5px rgba(0,0,0,0.15);
 
     /* Cross browser support */
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.15);
     background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
-    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
     -o-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
     -ms-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
     -moz-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
     -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
 }
 
@@ -35,7 +35,11 @@ h1 {
     margin: 0 0 15px 0; /* top right bottom left */
 }
 
-footer {}
+.left { float: left; }
+
+.right { float: right; }
+
+footer { font-style: italic; }
 
 
 /* NAV STYLING */
@@ -51,14 +55,6 @@ nav ul {
     list-style-type: none; /* remove bullets */
     overflow: hidden;
     background-color: #333;
-}
-
-nav .left {
-    float: left;
-}
-
-nav .right {
-    float: right;
 }
 
 nav li a, #welcome {
@@ -84,7 +80,7 @@ nav li a:hover {
 
 
 /* TABLE STYLING */
-#tableHead {
+.tableHead {
     font-weight: bold;
     background-color: gray;
 }
