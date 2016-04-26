@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,30 +7,32 @@
     <link rel="stylesheet" href="../style/site.css">
 </head>
 <body>
-<div id="wrapper">
-    <header>
-        <h1>PRISM - North Seattle College Internship System</h1>
-    </header>
     <nav>
-        &nbsp;
-        <a href="../internships/list.html">Internships</a> &nbsp;
-        <a href="list.html">Companies</a> &nbsp;
-        <a href="../students/list.html">Students</a> &nbsp;
-        <a href="../admin/admin.html">(Admin)</a> &nbsp;
+        <ul>
+            <li class="left"><a href="../internships/list.html">Internships</a></li>
+            <li class="left"><a href="list.html">Companies</a></li>
+            <li class="left"><a href="../students/list.html">Students</a></li>
+            <li class="left"><a href="../admin/admin.html">(Admin)</a></li>
+
+
+            <li class="right"><a href="list.html">Logout</a></li>
+            <li class="right"><a href="list.html">Profile</a></li>
+        </ul>
     </nav>
-    <header><h1>Companies List</h1></header>
-    <br>
+
     <main>
+        <input id="searchbox" type="text" placeholder=" Search" />
+        <h1>Companies List</h1>
         <div class="listview">
             <table>
                 <!--TABLE HEADER-->
-                <tr><td>[ ]</td><td><strong>Company Name</strong></td><td><strong>Location (City, State)</strong></td>
+                <tr><td><strong>Company Name</strong></td><td><strong>Location (City, State)</strong></td>
                     <td><strong>Num Employees</strong></td><td><strong>Positions Available</strong></td></tr>
                 <!--TABLE DATA-->
-                <tr><td>[ ]</td><td><a href="detail.html#id1">ABC Corp</a></td><td>Seattle, WA</td><td>37</td><td>1</td></tr>
-                <tr><td>[ ]</td><td><a href="detail.html#id2">ACME Enterprises</a></td><td>Lynnwood, WA</td><td>209</td><td>3</td></tr>
-                <tr><td>[ ]</td><td><a href="detail.html#id3">Dave's Data</a></td><td>Kirkland, WA</td><td>~500</td><td>7</td></tr>
-                <tr><td>[ ]</td><td><a href="detail.html#id4">Bluebox Software</a></td><td>Redmond, WA</td><td>~3,500</td><td>17</td></tr>
+                <tr><td><a href="detail.html#id1">ABC Corp</a></td><td>Seattle, WA</td><td>37</td><td>1</td></tr>
+                <tr><td><a href="detail.html#id2">ACME Enterprises</a></td><td>Lynnwood, WA</td><td>209</td><td>3</td></tr>
+                <tr><td><a href="detail.html#id3">Dave's Data</a></td><td>Kirkland, WA</td><td>~500</td><td>7</td></tr>
+                <tr><td><a href="detail.html#id4">Bluebox Software</a></td><td>Redmond, WA</td><td>~3,500</td><td>17</td></tr>
             </table>
         </div>
         <br>
@@ -43,6 +46,5 @@
     <footer>
         <p>North Seattle College - PRISM &copy; 2016</p>
     </footer>
-</div>
 </body>
 </html>
