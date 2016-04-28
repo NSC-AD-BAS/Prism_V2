@@ -176,4 +176,4 @@ INSERT INTO user_types
 VALUES
 (1, 'Student'),
 (2, 'Admin'),
-(3, 'Staff');
+(3, 'Faculty');

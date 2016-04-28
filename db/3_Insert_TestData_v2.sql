@@ -139,12 +139,14 @@ INSERT INTO user_notes(User_NoteId, UserId, Note_Type, Note_Text) VALUES
 (4, 5, 'Security', 'Regardless of the fact that an basic component of the structure of the final ...')
 ;
 
+-- INSERT INTO student_contact_log()VALUES();
+
 
 --
 -- Fixing student TypeId to 1
 --
-SET SQL_SAFE_UPDATES = 0;
-UPDATE students AS s
-INNER JOIN users as u ON u.UserId = s.UserId
-SET TypeId=1 WHERE TypeId != 1;
-SET SQL_SAFE_UPDATES = 1;
+-- SET SQL_SAFE_UPDATES = 0;
+-- UPDATE students AS s
+-- INNER JOIN users as u ON u.UserId = s.UserId
+-- SET TypeId=1 WHERE TypeId != 1;
+-- SET SQL_SAFE_UPDATES = 1;

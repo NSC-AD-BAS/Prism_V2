@@ -36,6 +36,7 @@ CREATE OR REPLACE VIEW internship_detail AS
 -- Updated Bob M. 4/25/2016
 CREATE OR REPLACE VIEW org_list AS
     (SELECT 
+		o.OrganizationId,
         o.OrganizationName AS `Organization Name`,
         CONCAT(o.City, ", ", o.State) AS `Location`,
         i.SlotsAvailable AS `Number of Positions`
@@ -130,15 +131,13 @@ CREATE OR REPLACE VIEW user_list AS
 		CONCAT(u.FirstName, ", ", u.LastName) AS `Name`,
         u.PhoneNumber AS `Phone`,
         u.EmailAddress AS `Email Address`,
-        t.TypeName AS `User Type`,
-        n.Note_Text AS `Notes`
+        t.TypeName AS `User Type`
     FROM
         users u
-            JOIN
+			JOIN
         user_types t ON t.TypeId = u.TypeId
-            AND t.TypeName != 'Student'
-            JOIN
-        user_notes n ON n.UserId = u.UserId);
+	WHERE u.TypeId != 1
+	);
 
 CREATE OR REPLACE VIEW user_detail AS
     (SELECT 
