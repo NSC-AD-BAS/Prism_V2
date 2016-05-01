@@ -84,9 +84,11 @@ function get_company_contacts($id) {
 function show_buttons($id, $edit) {
     echo "<div class=\"lower_nav\">";
         echo "<a class=\"button\" href=\"list.php\"><div>Back to List</div></a>";
-        echo "<a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>";
-        echo "<a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
-        echo "<a class=\"button\" href=\"delete.php\"><div>Delete</div></a>";
+        if (isAdmin()) {
+            echo "<a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>";
+            echo "<a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
+            echo "<a class=\"button\" href=\"delete.php\"><div>Delete</div></a>";
+        }
     echo "</div>";
 }
 

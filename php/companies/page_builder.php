@@ -24,7 +24,10 @@ function render_detail_header($detail_name) {
 
 function render_nav() {
     //Pages may be added or re-ordered by adjusting this array
-    $nav_pages = ["Internships", "Companies", "Students", "Admin"];
+    $nav_pages = ["Internships", "Companies", "Students"];
+    if (isAdmin()) {
+        array_push($nav_pages, "Admin");
+    }
     echo "<nav>";
     echo "<ul>";
     foreach ($nav_pages as $page) {
@@ -41,6 +44,5 @@ function render_footer() {
     echo "</body>";
     echo "</html>";
 }
-
 
 ?>
