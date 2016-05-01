@@ -24,13 +24,7 @@ function render_body($info, $edit) {
         //Open Company Detail Table
         echo "<table>";
         echo "<tr><td>Company Name</td><td>";
-        if ($edit == true) {
-            echo "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . "\" >";
-        } else {
-            echo $i['Company'] . "</td></tr>";
-        }
-//            ($edit) ? echo "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . \"" >"
-//            : echo "<td>". $i['Company'] . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . "\" >" : $i['Company'] . "</td></tr>";
         echo "<tr><td>Company URL</td><td><a href=\"" . $i['URL'] . "\">" . $i['URL'] . "</a></td></tr>";
         echo "<tr><td>Company Address</td><td>" . $i['Address 1'] . "<br>" . $i['City'] . ", " . $i['State'] . "</td></tr>";
         echo "<tr><td>Number of Employees</td><td>" . number_format($i['Number of Employees']) . "</td></tr>";
