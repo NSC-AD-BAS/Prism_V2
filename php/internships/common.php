@@ -1,5 +1,5 @@
 <?php
-#Common php file: holds common code used between all files
+#common php file: holds common code used between all files
 #Author: Tim Davis
 #Author: Kellan Nealy
 
@@ -18,13 +18,13 @@ function print_top() { ?>
         <!-- Navigation bar -->
         <nav>
             <ul>
-                <li class="left"><a href="../internships/list.html">Internships</a></li>
-                <li class="left"><a href="../companies/list.html">Companies</a></li>
-                <li class="left"><a href="../students/list.html">Students</a></li>
-                <li class="left"><a href="../admin/admin.html">(Admin)</a></li>
+                <li class="left"><a href="../internships/list.php">Internships</a></li>
+                <li class="left"><a href="../companies/list.php">Companies</a></li>
+                <li class="left"><a href="../students/list.php">Students</a></li>
+                <li class="left"><a href="../admin/admin.php">(Admin)</a></li>
 
-                <li class="right"><a href="list.html">Logout</a></li>
-                <li class="right"><a href="list.html">Profile</a></li>
+                <li class="right"><a href="list.php">Logout</a></li>
+                <li class="right"><a href="list.php">Profile</a></li>
 
                 <li id="welcome" class="right">Welcome, Tim!</li>
             </ul>
