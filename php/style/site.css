@@ -145,6 +145,7 @@ main .inner li {
 td {
     text-align: left;
     padding-right: 15px;
+    vertical-align: top;
 }
 
 a {
@@ -169,12 +170,16 @@ a {
 
 /* BUTTON STYLING */
 
+.lower_nav {
+    text-align: center;
+}
+
 .button {
     text-decoration: none;
 }
 
 .button div {
-    margin: 3px auto 3px auto; /* top right bottom left */
+    margin: 3px 3px 3px 3px; /* top right bottom left */
     padding: 8px;
     border-radius: 3px;
     text-align: center;

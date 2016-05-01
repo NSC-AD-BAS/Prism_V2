@@ -48,4 +48,17 @@ function get_internships_by_company($id) {
     return $output;
 }
 
+function get_contacts_by_company($id) {
+    $conn = db_connect();
+    $sql  = "SELECT * from organization_contacts where OrganizationId = $id";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
 ?>
