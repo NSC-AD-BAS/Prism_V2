@@ -88,6 +88,15 @@ nav li a:hover {
     background-color: gray;
 }
 
+.detail_table {
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+.wrapper {
+    padding: 5px;
+}
+
 main ul, main li {
     margin: 0;
     padding: 0;
