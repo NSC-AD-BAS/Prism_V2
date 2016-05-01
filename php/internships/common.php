@@ -1,9 +1,9 @@
 <?php
-#common php file: holds common code used between all files
-#Author: Tim Davis
-#Author: Kellan Nealy
+# common php file: holds common code used between all files
+# Author: Tim Davis
+# Author: Kellan Nealy
 
-#Prints common top html, including nav
+# Prints common top html, including nav
 function print_top() { ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -31,7 +31,7 @@ function print_top() { ?>
         </nav>
 <?php }
 
-#Prints common bottom html, including footer
+# Prints common bottom html, including footer
 function print_bottom() { ?>
         <footer>
             <p><small>North Seattle College - PRISM &copy; 2016</small></p>
