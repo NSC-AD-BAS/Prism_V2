@@ -1,0 +1,182 @@
+/*
+Author: Tim Davis
+Author: Kellan Nealy
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    /*text-align: center; */
+    font-family: segoe UI light, verdana, sans-serif;
+    background-color: #2b78e4;
+}
+
+main {
+    width: 75%;
+    margin: 70px auto 10px auto; /* top right bottom left */
+    padding: 10px 0 10px 0; /* top right bottom left */
+    border-radius: 3px;
+    background: #fff;
+
+    /* Cross browser support */
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.15);
+    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+    -o-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+    /* IntelliJ says no-such-css-property.  Review? */
+    -ms-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+    -moz-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+    -webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,0.1);
+}
+
+h1 {
+    margin: 0 0 15px 0; /* top right bottom left */
+    text-align: center;
+}
+
+.left { float: left; }
+
+.right { float: right; }
+
+footer {
+    font-style: italic;
+    text-align: center;
+}
+
+
+/* NAV STYLING */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0 10px 0 10px; /* top right bottom left */
+    list-style-type: none; /* remove bullets */
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li a, #welcome {
+    padding: 15px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+/* SEARCH STYLING */
+
+#searchbox {
+    margin: 12px 30px 0 0; /* top right bottom left */
+    float: right;
+    font-size: 12pt;
+    border-radius: 3px;
+}
+
+/* TABLE STYLING */
+.tableHead {
+    font-weight: bold;
+    background-color: gray;
+}
+
+main ul, main li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* remove bullets */
+}
+
+main .outer li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main a ul:hover {
+    background-color: #f6f6f6;
+}
+
+/* works for 3 item header */
+main .inner li {
+    width: 32%;
+    height: 20px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    display: inline-block; /* inline list items */
+}
+
+/* works for 4 item header */
+.inner4 li {
+    width: 23%;
+    height: 20px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block; /* inline list items */
+}
+
+/* DETAIL PAGE STYLING */
+#internship_detail th {
+    font-weight: bold;
+    background-color: gray;
+    padding: 5px;
+}
+
+#internship_detail td {
+    text-align: right;
+}
+
+td {
+    text-align: left;
+    padding-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#internship_detail {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#internship_description {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* BUTTON STYLING */
+
+.button {
+    text-decoration: none;
+}
+
+.button div {
+    margin: 3px auto 3px auto; /* top right bottom left */
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: gray;
+    color: #111;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.button div:hover {
+    background-color: #cccccc;
+    color: black;
+    transition-duration: .4s;
+}
