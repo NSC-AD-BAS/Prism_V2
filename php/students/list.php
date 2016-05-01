@@ -14,8 +14,8 @@
     <header><h1>Student List</h1></header>
     <nav>
         <a href="../internships/list.html">Internships</a> &nbsp;
-        <a href="../companies/list.html">Companies</a> &nbsp;
-        <a href="../students/list.html">Students</a> &nbsp;
+        <a href="../companies/list.php">Companies</a> &nbsp;
+        <a href="../students/list.php">Students</a> &nbsp;
         <a href="../admin/list.html">(Admin)</a> &nbsp;
     </nav>
     <main>
@@ -26,9 +26,9 @@
             </form>
             <form method="post" action="postsomething();" name="details">
                 <ul class="listActions">
-                    <li><a href="create.html" class="myButton">Add Record</a></li>
-                    <li><a href="edit.html" class="myButton">Edit</a></li>
-                    <li><a href="delete.html?id=1" class="myButton">Delete Selected</a></li>
+                    <li><a href="create.php" class="myButton">Add Record</a></li>
+                    <li><a href="edit.php" class="myButton">Edit</a></li>
+                    <li><a href="delete.php" class="myButton">Delete Selected</a></li>
                 </ul>
                <?php 
                     echo $studentTable;
@@ -38,7 +38,7 @@
     </main>
 
     <footer>
-        <p><small>North Seattle College - PRISM &copy; 2016</small></p>
+        <p><small>&copy; 2016 North Seattle College</small></p>
     </footer>
 
 </body>
