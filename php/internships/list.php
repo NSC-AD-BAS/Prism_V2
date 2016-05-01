@@ -1,5 +1,5 @@
 <?php
-# List php file:
+# list php file:
 # Author: Tim Davis
 # Author: Kellan Nealy
 
@@ -7,7 +7,7 @@ include("common.php");
 include("query_db.php");
 
 # Prints main html for this list
-function print_list_main($list_title, $data) { ?>
+function print_list_main($data, $list_title) { ?>
     <!-- Main view -->
     <main>
         <input id="searchbox" type="text" placeholder=" Search" />
@@ -56,7 +56,7 @@ function print_list_main($list_title, $data) { ?>
 # Build list page
 $list = get_internship_list();
 print_top();
-print_list_main("Internships", $list);
+print_list_main($list, "Internships");
 print_bottom();
 
 ?>
