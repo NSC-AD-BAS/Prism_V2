@@ -1,125 +1,62 @@
 <?php
-#List php file:
-#Author: Tim Davis
-#Author: Kellan Nealy
+# List php file:
+# Author: Tim Davis
+# Author: Kellan Nealy
 
 include("common.php");
+include("query_db.php");
 
-print_top();
-?>
+# Prints main html for this list
+function print_list_main($list_title, $data) { ?>
+    <!-- Main view -->
+    <main>
+        <input id="searchbox" type="text" placeholder=" Search" />
+        <h1><?= $list_title ?></h1>
+        <?php
+        if (count($data) > 0) {
+            # output table header ?>
+            <!-- Table -->
+            <ul class="outer">
+                <li class="tableHead">
+                    <ul class="inner">
+                        <li>Position</li>
+                        <li>Company</li>
+                        <li>Location</li>
+                    </ul>
+                </li>
+            <?php
+            # output data of each row
+            foreach($data as $row) {
+                $intId = $row["InternshipId"];
+                $intPosition = $row["Position Title"];
+                $intCompany = $row["Organization"];
+                $intLocation = $row["Location"]; ?>
 
-<!-- Main view -->
-<main>
-    <input id="searchbox" type="text" placeholder=" Search" />
-    <h1>Internships</h1>
-
-    <!-- Table -->
-    <ul class="outer">
-        <li class="tableHead">
-            <ul class="inner">
-                <li>Position</li>
-                <li>Company</li>
-                <li>Location</li>
+                <li>
+                    <a href="detail.php?id=<?= $intId ?>">
+                        <ul class="inner">
+                            <li><?= $intPosition ?></li>
+                            <li><?= $intCompany ?></li>
+                            <li><?= $intLocation ?></li>
+                        </ul>
+                    </a>
+                </li>
             </ul>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Software Engineer</li>
-                    <li>Facebook</li>
-                    <li>Delaware</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Web Developer</li>
-                    <li>Microsoft</li>
-                    <li>Seattle, WA</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Software Engineer</li>
-                    <li>Google</li>
-                    <li>North Carolina</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Quality Assurance</li>
-                    <li>Facebook</li>
-                    <li>Ohio</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Pizza Delivery</li>
-                    <li>Bookface</li>
-                    <li>Rhode Island</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Software Engineer</li>
-                    <li>Facebook</li>
-                    <li>Delaware</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Web Developer</li>
-                    <li>Microsoft</li>
-                    <li>Seattle, WA</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Software Engineer</li>
-                    <li>Google</li>
-                    <li>North Carolina</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Quality Assurance</li>
-                    <li>Facebook</li>
-                    <li>Ohio</li>
-                </ul>
-            </a>
-        </li>
-        <li>
-            <a href="detail.html">
-                <ul class="inner">
-                    <li>Pizza Delivery</li>
-                    <li>Bookface</li>
-                    <li>Rhode Island</li>
-                </ul>
-            </a>
-        </li>
-    </ul>
-    <hr />
+            <?php }
+        } else { ?>
+            <p>0 results.</p>
+        <?php } ?>
 
-    <!-- Buttons -->
-    <a class="button" href="create.html"><div>Create new Internship</div></a>
-</main>
+        <hr />
+        <!-- Buttons -->
+        <a class="button" href="create.php"><div>Create new Internship</div></a>
+    </main>
+<?php }
 
-<?php
+# Build list page
+$list = get_internship_list();
+print_top();
+print_list_main("Internships", $list);
 print_bottom();
 
 ?>
