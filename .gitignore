@@ -1,4 +1,4 @@
 .idea
 *.iml
-lib/
+php/lib/db_connect.php
 .DS_Store
