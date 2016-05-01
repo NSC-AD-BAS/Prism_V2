@@ -22,7 +22,7 @@ function render_body($list_name, $data) {
             echo "</ul>";
         foreach ($data as $d) {
             echo "<li>";
-                echo "<a href=\"#\">";
+                echo "<a href=\"detail.php?id=" . $d['OrganizationId'] . "\">";
                 echo "<ul class=\"inner\">";
                     echo "<li>" . $d['Organization Name'] . "</li>";
                     echo "<li>" . $d['Location'] . "</li>";
@@ -38,7 +38,7 @@ function render_body($list_name, $data) {
 
 
 //Build the page
-render_header('Companies');
+render_list_header('Companies');
 render_nav();
 render_body('Companies', get_companies_list());
 render_footer();

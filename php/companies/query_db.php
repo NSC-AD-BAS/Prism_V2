@@ -24,4 +24,17 @@ function get_companies_list() {
     return $output;
 }
 
+function get_company_detail($id) {
+    $conn = db_connect();
+    $sql  = "SELECT * from org_detail where OrganizationId = $id limit 1";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
 ?>

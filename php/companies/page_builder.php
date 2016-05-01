@@ -1,10 +1,21 @@
 <?php
 //TODO: Utility functions, move to util folder
-function render_header($list_name) {
+function render_list_header($list_name) {
     echo "<!DOCTYPE html>";
     echo "<html lang=\"en\">";
     echo "<head>";
-    echo "<title>PRISM - " . $list_name . "List</title>";
+    echo "<title>PRISM - " . $list_name . " List</title>";
+    echo "<meta charset=\"utf-8\">";
+    echo "<link rel=\"stylesheet\" href=\"../style/site.css\">";
+    echo "</head>";
+    echo "<body>";
+}
+
+function render_detail_header($detail_name) {
+    echo "<!DOCTYPE html>";
+    echo "<html lang=\"en\">";
+    echo "<head>";
+    echo "<title>PRISM - " . $detail_name . " Detail</title>";
     echo "<meta charset=\"utf-8\">";
     echo "<link rel=\"stylesheet\" href=\"../style/site.css\">";
     echo "</head>";
