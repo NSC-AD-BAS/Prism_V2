@@ -6,7 +6,7 @@ Author: Kellan Nealy
 body {
     margin: 0;
     padding: 0;
-    /*text-align: center; */
+    text-align: center;
     font-family: segoe UI light, verdana, sans-serif;
     background-color: #2b78e4;
 }
@@ -114,12 +114,13 @@ main a ul:hover {
 
 /* works for 3 item header */
 main .inner li {
-    width: 32%;
+    width: 30%;
     height: 20px;
-    margin-top: 10px;
+    margin: 10px auto 0 auto; /* top right bottom left */
     padding-bottom: 10px;
     padding-left: 10px;
     display: inline-block; /* inline list items */
+    text-align: left;
 }
 
 /* works for 4 item header */
@@ -129,6 +130,7 @@ main .inner li {
     margin-top: 10px;
     padding-bottom: 10px;
     display: inline-block; /* inline list items */
+    text-align: left;
 }
 
 /* DETAIL PAGE STYLING */
