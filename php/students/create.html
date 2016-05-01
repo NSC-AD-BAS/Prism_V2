@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PRISM - Students</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../style/site.css">
+</head>
+<body>
+    <header><h1>Student List</h1></header>
+    <nav>
+        <a href="../internships/list.html">Internships</a> &nbsp;
+        <a href="../companies/list.html">Companies</a> &nbsp;
+        <a href="../students/list.html">Students</a> &nbsp;
+        <a href="../admin/list.html">(Admin)</a> &nbsp;
+    </nav>
+    
+    <form action="create.php" method="post">
+        
+        <fieldset>
+            <legend><h2>Create Student</h2></legend>
+            Student Name: <input name="student[name]" type="text"><br>
+            Preferred Name: <input name="student[preferred_name]"type="text"><br>
+            SSID: <input name="student[ssid]" type="text"><br>
+            Cohort/Year: <input name="student[cohort]" type="text"><br>
+            Active Status: <select name="student[active_status]">
+                                <option value="none_selected">(None Selected)</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="graduated">Graduated</option>
+                            </select><br>
+            Internship/Capstone Status: <select name="student[internship_capstone_status]">
+                                <option value="none_selected">(None Selected)</option>
+                                <option value="incomplete">Incomplete</option>
+                                <option value="completed">Completed</option>
+                                <option value="in_progress">In Progress</option>
+                            </select><br>
+            Internship URL: <input name="student[internship_url]" type="text"><br> 
+            Application Status: <select name="student[application_status]">
+                                <option value="noneSelection">(None Selected)</option>
+                                <option value="applied">Applied</option>
+                                <option value="provisionallyAccepted">Provisionally Accepted</option>
+                                <option value="fullyAccepted">Fully Accepted</option>
+                                <option value="withdrawn">Withdrawn</option>
+                                <option value="denied">Denied</option>
+                            </select><br> 
+            Resume URL: <input name="student[resume_url]" type="text"><br>
+            LinkedIn URL: <input name="student[linked_in_url]" type="text"><br>
+            Contact Info: <textarea name="student[contact_info]"></textarea><br>
+            Address Line1: <input name="student[address_line1]" type="text"><br>
+            Address Line2: <input name="student[address_line2]" type="text"><br>
+            City: <input name="student[city]" type="text"><br>
+            State: <input name="student[state]" type="text"><br>
+            Zipcode: <input name="student[zipcode]" type="text"><br>
+            Notes: <textarea name="student[notes]"></textarea><br>
+            <input type="submit" value="Create Student">
+        </fieldset>
+    </form>
+
+    <footer>
+        <p><small>North Seattle College - PRISM &copy; 2016</small></p>
+    </footer>
+
+</body>
+</html>
