@@ -196,3 +196,13 @@ a {
     color: black;
     transition-duration: .4s;
 }
+
+/* EDIT Mode textboxes */
+
+.textbox {
+    border: 1px solid #999;
+    outline: 0;
+    height: 25px;
+    width: 275px;
+}
+

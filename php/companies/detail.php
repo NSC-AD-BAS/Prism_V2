@@ -23,7 +23,14 @@ function render_body($info, $edit) {
         echo "<div class=\"detail_table\">";
         //Open Company Detail Table
         echo "<table>";
-        echo "<tr><td>Company Name</td><td>" . $i['Company'] . "</td></tr>";
+        echo "<tr><td>Company Name</td><td>";
+        if ($edit == true) {
+            echo "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . "\" >";
+        } else {
+            echo $i['Company'] . "</td></tr>";
+        }
+//            ($edit) ? echo "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . \"" >"
+//            : echo "<td>". $i['Company'] . "</td></tr>";
         echo "<tr><td>Company URL</td><td><a href=\"" . $i['URL'] . "\">" . $i['URL'] . "</a></td></tr>";
         echo "<tr><td>Company Address</td><td>" . $i['Address 1'] . "<br>" . $i['City'] . ", " . $i['State'] . "</td></tr>";
         echo "<tr><td>Number of Employees</td><td>" . number_format($i['Number of Employees']) . "</td></tr>";
@@ -38,7 +45,7 @@ function render_body($info, $edit) {
         echo $pos['PositionTitle'] . " (" . $pos['SlotsAvailable'] . ") <br>";
     }
     echo "</td></tr>";
-    echo "<tr><td>Company Contact</td><td>";
+    echo "<tr><td>Company Contact(s)</td><td>";
     //Open Company Contact inner table
     echo "<table>";
     foreach ($company_contacts as $contact) {
@@ -56,6 +63,7 @@ function render_body($info, $edit) {
         echo "<tr><td>Hiring (Full Time Positions)</td><td>" . $contact['Hiring'] . "</td></tr>";
         echo "<tr><td>Advisory Committee</td><td>" . $contact['OnADAdvisoryCommittee'] . "</td></tr>";
         echo "<tr><td>Linked In</td><td><a href=\"" . $contact['LinkedInURL'] . "\">" . $contact['LinkedInURL'] . "</td></tr>";
+        echo "<hr>";
     }
     echo "</table>"; //Close Company Contact inner table
     echo "</table>"; //Close Company Detail Table
@@ -83,12 +91,18 @@ function get_company_contacts($id) {
 
 function show_buttons($id, $edit) {
     echo "<div class=\"lower_nav\">";
+    if ($edit) {
+        //TODO: Implement Save (obvi)
+        echo "<a class=\"button\" href=\"save.php\"><div>Save</div></a>";
+        echo "<a class=\"button\" href=\"detail.php?id=$id\"><div>Cancel</div></a>";
+    } else {
         echo "<a class=\"button\" href=\"list.php\"><div>Back to List</div></a>";
         if (isAdmin()) {
             echo "<a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>";
             echo "<a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
             echo "<a class=\"button\" href=\"delete.php\"><div>Delete</div></a>";
         }
+    }
     echo "</div>";
 }
 
@@ -96,8 +110,8 @@ function show_buttons($id, $edit) {
 $id = $_GET['id'];
 
 //Is Edit Mode?
-if (isset($_GET['edit'])) {
-    $edit = $_GET['edit'];
+if (isset($_GET['edit']) && $_GET['edit'] == "true") {
+    $edit = true;
 } else {
     $edit = false;
 }
