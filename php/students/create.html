@@ -8,11 +8,18 @@
 <body>
     <header><h1>Student List</h1></header>
     <nav>
-        <a href="../internships/list.html">Internships</a> &nbsp;
-        <a href="../companies/list.html">Companies</a> &nbsp;
-        <a href="../students/list.html">Students</a> &nbsp;
-        <a href="../admin/list.html">(Admin)</a> &nbsp;
-    </nav>
+            <ul>
+                <li class="left"><a href="../internships/list.php">Internships</a></li>
+                <li class="left"><a href="../companies/list.php">Companies</a></li>
+                <li class="left"><a href="../students/list.php">Students</a></li>
+                <li class="left"><a href="../admin/admin.php">(Admin)</a></li>
+
+                <li class="right"><a href="list.php">Logout</a></li>
+                <li class="right"><a href="list.php">Profile</a></li>
+
+                <li id="welcome" class="right">Welcome, You!</li>
+            </ul>
+        </nav>
     
     <form action="create.php" method="post">
         
