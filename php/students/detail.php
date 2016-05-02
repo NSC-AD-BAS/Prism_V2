@@ -1,15 +1,17 @@
 <?php
 require "query_db.php";
 	$student_query = get_single_student($_GET["id"]);
+	$current = $_GET["id"];
+	$next = $_GET["id"] + 1;
+	$prev = $_GET["id"] - 1;
 	echo '<!DOCTYPE html>
 			<html lang="en">
 			<head>
-			    <title>PRISM - ';
-			    echo $student_query["Student First Name"] . ' ' . $student_query["Student Last Name"];
+			    <title>PRISM - ' . $student_query["Student First Name"] . ' ' . $student_query["Student Last Name"]
 
-	echo ' - Detail</title>
+	. ' - Detail</title>
 			    <meta charset="utf-8">
-			    <link rel="stylesheet" type="text/css" href="../../html/style/site.css">
+			    <link rel="stylesheet" type="text/css" href="../style/site.css">
 			</head>
 			<body>
 			    <header><h1>[Student Name] - Detail</h1></header>
@@ -24,9 +26,9 @@ require "query_db.php";
 			    <br>
 			    <main>
 			        <ul>
-			            <li><a href="#">Previous</a></li>
-			            <li><a href="#">Next</a></li>
-			            <li><a href="edit.html">Edit</a></li>
+			            <li><a href="detail.php?id=' . $prev . '">Previous</a></li>
+			            <li><a href="detail.php?id=' . $next . '">Next</a></li>
+			            <li><a href="edit.php?id=' . $current . '">Edit</a></li>
 			        </ul>
 			        <fieldset>
 			            <legend><strong>Student Detail</strong></legend>
@@ -45,6 +47,7 @@ require "query_db.php";
 		<tr><td>Address 2</td><td>' . $student_query["Address 2"] . '</td></tr>
 		<tr><td>City</td><td>' . $student_query["City"] . '</td></tr>
 		<tr><td>State</td><td>' . $student_query["State"] . '</td></tr>
+		<tr><td>Zip</td><td>' . $student_query["Zipcode"] . '</td></tr>
 		<tr><td>Notes</td><td><div class="boxed">' . $student_query["Notes"] . '</div></td></tr>';
 
 	echo '</table>
@@ -53,8 +56,8 @@ require "query_db.php";
         <div class="buttons">
             <table>
                 <tr>
-                    <td><a href="list.html">Back to List</a></td>
-                    <td><a href="list.html">Cancel</a></td>
+                    <td><a href="list.php">Back to List</a></td>
+                    <td><a href="list.php">Cancel</a></td>
                 </tr>
             </table>
         </div>
