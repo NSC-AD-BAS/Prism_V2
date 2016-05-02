@@ -118,6 +118,7 @@ CREATE OR REPLACE VIEW student_detail AS
         s.StreetAddressLineTwo AS `Address 2`,
         s.City,
         s.State,
+        s.Zipcode,
         un.Note_Text AS `Notes`
     FROM
         students s

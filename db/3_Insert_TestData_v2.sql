@@ -119,9 +119,10 @@ INSERT INTO students(
     StreetAddressLineOne, 
     StreetAddressLineTwo, 
     City, 
-    State
+    State,
+    Zipcode
 ) VALUES 
-(111111111, "Jimbo", "Active", "Internship Company Name", "201501", 2, "Fully Accepted", NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA")
+(111111111, "Jimbo", "Active", "Internship Company Name", "201501", 2, "Fully Accepted", NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA", "98123")
 ;
 
 INSERT INTO change_log(Change_LogId, LogTime, UserId, Message) VALUES

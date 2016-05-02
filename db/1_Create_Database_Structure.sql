@@ -109,6 +109,7 @@ CREATE TABLE students
     StreetAddressLineTwo	VARCHAR(250)	NULL,
     City					VARCHAR(250)	NULL,
     State					VARCHAR(250)	NULL,
+    Zipcode					VARCHAR(250)	NULL,
 	CONSTRAINT Student_fk_UserId
 		FOREIGN KEY (UserId)
         REFERENCES users(UserId)
