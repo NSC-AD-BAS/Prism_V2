@@ -33,7 +33,7 @@
             <h1>Students</h1>
             <form method="post" action="postsomething();" name="details">
                 <ul class="listActions">
-                    <li><a href="create.php" class="myButton">Add Record</a></li>
+                    <li><a href="create.html" class="myButton">Add Record</a></li>
                     <li><a href="edit.php" class="myButton">Edit</a></li>
                     <li><a href="delete.php" class="myButton">Delete Selected</a></li>
                 </ul>
