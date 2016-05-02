@@ -7,7 +7,12 @@
 # uses INSERT INTO to add to the DB
 function add_internship($internship_data) {
 	$conn = db_connect();
-	# TODO: get the date from PHP to formulate Date Added
+
+	# get the max column value for InternshipID so we can correctly add to the table
+	$cur_max_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(InternshipId) FROM internships;"));
+	$new_id = $cur_max_id['InternshipId'] + 1;
+	$internship_data['InternshipId'] = $new_id;
+
 	# column names in first line of query are unnecessary if we want to take those away
 	$sql = "INSERT INTO `internships`
 		(`InternshipId`, `PositionTitle`, `Description`, `OrganizationId`, `DatePosted`,
