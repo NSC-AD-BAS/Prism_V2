@@ -20,51 +20,118 @@
                 <li id="welcome" class="right">Welcome, You!</li>
             </ul>
         </nav>
-    
-    <form action="create.php" method="post">
-        
-        <fieldset>
-            <legend><h2>Create Student</h2></legend>
-            First: <input name="student[first]" type="text"><br>
-            Middle: <input name="student[middle]" type="text"><br>
-            Last: <input name="student[last]" type="text"><br>
-            Preferred Name: <input name="student[preferred]"type="text"><br>
-            SSID: <input name="student[ssid]" type="text"><br>
-            Cohort/Year: <input name="student[cohort]" type="text"><br>
-            Program Status: <select name="student[program_status]">
+
+        <main>
+            <h1>Student Create</h1>
+            <form action="create.php" method="post">
+                <table id="internship_detail">
+                    <tr>
+                        <th>First</th>
+                        <td><input name="student[first]" type="text"></td>
+                    </tr>
+                    <tr>
+                        <th>Middle</th>
+                        <td><input name="student[middle]" type="text"></td>
+                    </tr>
+                    <tr>
+                        <th>Last</th>
+                        <td><input name="student[last]" type="text"></td>
+                    </tr>
+                    <tr>
+                        <th>Preferred Name</th>
+                        <td><input name="student[preferred]"type="text"></td>
+                    </tr>
+                    <tr>
+                        <th>SSID</th>
+                        <td><input name="student[ssid]" type="text"></td>
+                    </tr>
+                        <th>Cohort/Year</th>
+                        <td><input name="student[cohort]" type="text"></td>
+                    </tr>
+                    <tr>
+                        <th>Program Status</th>
+                        <td>
+                            <select name="student[program_status]">
                                 <option value="none_selected">(None Selected)</option>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                                 <option value="graduated">Graduated</option>
-                            </select><br>
-            Internship/Capstone Status: <select name="student[internship_capstone_status]">
+                            </select>
+                        </td>
+                    </tr>
+                    </tr>
+                        <th>Internship/Capstone Status</th>
+                        <td>
+                            <select name="student[internship_capstone_status]">
                                 <option value="none_selected">(None Selected)</option>
                                 <option value="incomplete">Incomplete</option>
                                 <option value="completed">Completed</option>
                                 <option value="in_progress">In Progress</option>
-                            </select><br>
-            Internship URL: <input name="student[internship_url]" type="text"><br> 
-            Application Status: <select name="student[application_status]">
-                                    <option value="none_selected">(None Selected)</option>
-                                    <option value="applied">Applied</option>
-                                    <option value="provisionallyAccepted">Provisionally Accepted</option>
-                                    <option value="fullyAccepted">Fully Accepted</option>
-                                    <option value="withdrawn">Withdrawn</option>
-                                    <option value="denied">Denied</option>
-                                </select><br> 
-            Resume URL: <input name="student[resume_url]" type="text"><br>
-            LinkedIn URL: <input name="student[linked_in_url]" type="text"><br>
-            Email: <input name="student[email]"></textarea><br>
-            Phone: <input name="student[phone]"></textarea><br>
-            Address Line1: <input name="student[address1]" type="text"><br>
-            Address Line2: <input name="student[address2]" type="text"><br>
-            City: <input name="student[city]" type="text"><br>
-            State: <input name="student[state]" type="text"><br>
-            Zipcode: <input name="student[zipcode]" type="text"><br>
-            Notes: <textarea name="student[notes]"></textarea><br>
-            <input type="submit" value="Create Student">
-        </fieldset>
-    </form>
+                            </select>
+                        </td>
+                    </tr>
+                    </tr>
+                        <th>Internship URL</th>
+                        <td><input name="student[internship_url]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Application Status</th>
+                        <td>
+                            <select name="student[application_status]">
+                                <option value="none_selected">(None Selected)</option>
+                                <option value="applied">Applied</option>
+                                <option value="provisionallyAccepted">Provisionally Accepted</option>
+                                <option value="fullyAccepted">Fully Accepted</option>
+                                <option value="withdrawn">Withdrawn</option>
+                                <option value="denied">Denied</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tr>
+                        <th>Resume URL</th>
+                        <td><input name="student[resume_url]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Linked-In URL</th>
+                        <td><input name="student[linked_in_url]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Email</th>
+                        <td><input name="student[email]"></td>
+                    </tr>
+                    </tr>
+                        <th>Phone</th>
+                        <td><input name="student[phone]"></td>
+                    </tr>
+                    </tr>
+                        <th>Address Line1</th>
+                        <td><input name="student[address1]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Address Line2</th>
+                        <td><input name="student[address2]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>City</th>
+                        <td><input name="student[city]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Status</th>
+                        <td><input name="student[state]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Zipcode</th>
+                        <td><input name="student[zipcode]" type="text"></td>
+                    </tr>
+                    </tr>
+                        <th>Notes</th>
+                        <td><textarea name="student[notes]"></textarea></td>
+                    </tr>
+                    <tr><td><input type="submit" value="Create Student"></td></tr>
+                </table>
+            </form>
+            <a class="button" href="list.php"><div>Back to List</div></a>
+        </main>
 
     <footer>
         <p><small>North Seattle College - PRISM &copy; 2016</small></p>
