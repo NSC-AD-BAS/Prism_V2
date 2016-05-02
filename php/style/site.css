@@ -133,6 +133,17 @@ main .inner li {
     text-align: left;
 }
 
+/* works for 6 item header
+    seen on the list page for students */
+.inner6 li {
+    width: 23%;
+    height: 20px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block; /* inline list items */
+    text-align: left;
+}
+
 /* DETAIL PAGE STYLING */
 #internship_detail th {
     font-weight: bold;

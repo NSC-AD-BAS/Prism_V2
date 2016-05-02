@@ -1,19 +1,25 @@
 <?php
 require "query_db.php";
+	$student_query = get_single_student($_GET["id"]);
 	echo '<!DOCTYPE html>
 			<html lang="en">
 			<head>
-			    <title>PRISM - [Student Name] - Detail</title>
+			    <title>PRISM - ';
+			    echo $student_query["Student First Name"] . ' ' . $student_query["Student Last Name"];
+
+	echo ' - Detail</title>
 			    <meta charset="utf-8">
 			    <link rel="stylesheet" type="text/css" href="../../html/style/site.css">
 			</head>
 			<body>
 			    <header><h1>[Student Name] - Detail</h1></header>
 			    <nav>
-			        <a href="../internships/list.html">Internships</a> &nbsp;
-			        <a href="../companies/list.html">Companies</a> &nbsp;
-			        <a href="list.html">Students</a> &nbsp;
-			        <a href="../admin/admin.html">(Admin)</a> &nbsp;
+			        <ul>
+			            <li class="left"><a href="../internships/list.php">Internships</a></li> &nbsp;
+			            <li class="left"><a href="../companies/list.php">Companies</a></li> &nbsp;
+			            <li class="left"><a href="../students/list.php">Students</a></li> &nbsp;
+			            <li class="left"><a href="../admin/list.php">(Admin)</a></li> &nbsp;
+			        </ul>
 			    </nav>
 			    <br>
 			    <main>
@@ -25,9 +31,7 @@ require "query_db.php";
 			        <fieldset>
 			            <legend><strong>Student Detail</strong></legend>
 			            <table>';
-
-    //function call for query goes here
-	$student_query = get_single_student($_GET["id"]);
+	
 	echo '<tr><td>First</td><td>' . $student_query["Student First Name"] . '</td></tr>
 		<tr><td>Middle</td><td>' . $student_query["Student Middle Name"] . '</td></tr>
 		<tr><td>Last</td><td>' . $student_query["Student Last Name"] . '</td></tr>
