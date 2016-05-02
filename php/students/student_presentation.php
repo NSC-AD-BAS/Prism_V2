@@ -1,32 +1,5 @@
 <?php
 
-function createStudentTable($students) {
-	$html = "<table>
-                    <tr>
-                        <th>Select</th>
-                        <th>Name</th>
-                        <th>Cohort</th>
-                        <th>Active Status</th>
-                        <th>Internship/Capstone Status</th>
-                        <th>Application Status</th>
-                    </tr>";
-	
-	foreach ($students as $student) {
-
-		$studentRow = "<tr><td><input type='checkbox' name='1' value='selected'></td>"
-			. "<td><a href='detail.php?id=" . $student["StudentKeyId"] . "'>" . $student["Student Name"] . "</a></td>"
-			. "<td>" . $student["Cohort"] . "</td>"
-			. "<td>" . $student["Program Status"] . "</td>"
-			. "<td>" . $student["Internship/Capstone Status"] . "</td>"
-			. "<td>" . $student["Application Status"] . "</td></tr>";
-
-		$html = $html . $studentRow;
-	}
-
-	$html = $html . "</table>";
-	return $html;
-}
-
 function createStudentList($students) {
 	$html = "<ul class='outer'>
                 <li class='tableHead'>
@@ -61,6 +34,21 @@ function createStudentList($students) {
 
 	$html = $html . "</table>";
 	return $html;
+}
+
+function createStudentDetailTable($student) {
+	$html = "<table id='internship_detail'>";
+	$formattedTableRow = "
+	<tr>
+		<th>%s</th>
+		<td>%s</td>
+	</tr>";
+	
+	foreach($student as $field => $value) {
+		$html = $html . sprintf($formattedTableRow, $field, $value);
+	}                    
+                    
+    return $html . "</table>";
 }
 
 ?>

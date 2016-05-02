@@ -2,7 +2,6 @@
     require "query_db.php";
     require "student_presentation.php";
     $students = get_all_students();
-    $studentTable = createStudentTable($students);
     $studentList = createStudentList($students);
 ?>
 <html lang="en">
@@ -38,7 +37,6 @@
                     <li><a href="delete.php" class="myButton">Delete Selected</a></li>
                 </ul>
                <?php 
-                    //echo $studentTable;
                     echo $studentList;
                ?>    
             </form>
