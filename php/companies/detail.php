@@ -40,7 +40,7 @@ function render_body($info, $edit) {
     }
     echo "<tr><td>Total Internships Available</td><td>" . $num_available_positions . "</td></tr>";
     echo "<tr><td>Available Position(s)</td><td>";
-    //TODO: Link each of these to respective Internships view
+    //TODO: Link each of these to respective Internships detail view
     foreach ($available_positions as $pos) {
         echo $pos['PositionTitle'] . " (" . $pos['SlotsAvailable'] . ") <br>";
     }
@@ -52,7 +52,6 @@ function render_body($info, $edit) {
         echo "<tr><td>Name</td><td>" . $contact['ContactFirstName'] . " " . $contact['ContactLastName'] . "</td></tr>";
         echo "<tr><td>Title</td><td>" . $contact['Title'] . "</td></tr>";
         echo "<tr><td>Email</td><td><a href=\"mailto:" . $contact['EmailAddress'] . "\">" . $contact['EmailAddress'] . "</a></td></tr>";
-        //TODO: only add (ext. ) if OfficeExtension isn't null
         if (!empty($contact['OfficeExtension'])) {
             echo "<tr><td>Office Number</td><td>" . $contact['OfficeNumber'] . " (ext. " . $contact['OfficeExtension'] . ")</td></tr>";
         } else {
@@ -93,14 +92,16 @@ function show_buttons($id, $edit) {
     echo "<div class=\"lower_nav\">";
     if ($edit) {
         //TODO: Implement Save (obvi)
-        echo "<a class=\"button\" href=\"save.php\"><div>Save</div></a>";
+        echo "<a class=\"button\" href=\"detail.php?id=$id\"><div>Save</div></a>";
         echo "<a class=\"button\" href=\"detail.php?id=$id\"><div>Cancel</div></a>";
     } else {
         echo "<a class=\"button\" href=\"list.php\"><div>Back to List</div></a>";
         if (isAdmin()) {
             echo "<a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>";
-            echo "<a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
-            echo "<a class=\"button\" href=\"delete.php\"><div>Delete</div></a>";
+            //TODO: similar logic to edit w/o pre-populated fields in textboxes
+            echo "<a class=\"button\" href=\"detail.php?id=$id&create=true\"><div>Create new Company</div></a>";
+            //TODO: link to delete confirmation modal, hook up to archive / delete
+            echo "<a class=\"button\" href=\"delete.php?type=company&id=$id\"><div>Delete</div></a>";
         }
     }
     echo "</div>";
