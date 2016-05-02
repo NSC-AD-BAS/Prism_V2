@@ -134,11 +134,11 @@ main .inner li {
 }
 
 /* styling for 6 items (used for the student list) */
-.inner6 li {
+/*.inner6 li {
     padding-right: 10px;
     height: 20px;
     display: inline;
-}
+}*/
 
 /* DETAIL PAGE STYLING */
 #internship_detail th {

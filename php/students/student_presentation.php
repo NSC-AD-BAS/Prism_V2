@@ -30,7 +30,7 @@ function createStudentTable($students) {
 function createStudentList($students) {
 	$html = "<ul class='outer'>
                 <li class='tableHead'>
-                	<ul class='inner6'>
+                	<ul class='inner'>
                         <li>Select</li>
                         <li>Name</li>
                         <li>Cohort</li>
@@ -41,9 +41,9 @@ function createStudentList($students) {
 	
 	foreach ($students as $student) {
 
-		$studentRow = "<li><input type='checkbox' name='1' value='selected'>"
+		$studentRow = "<li><li><input type='checkbox' name='1' value='selected'></li>"
 			. "<a href='detail.php?id=" . $student["StudentKeyId"] . "'>" 
-			. "<ul class='inner6'>" 
+			. "<ul class='inner'>" 
 			. "<li>" . $student["Student Name"] . "</li>"
 			. "<li>" . $student["Cohort"] . "</li>"
 			. "<li>" . $student["Program Status"] . "</li>"
