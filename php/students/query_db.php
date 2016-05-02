@@ -35,7 +35,7 @@
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$query = "SELECT * FROM student_detail LIMIT 1;";
+		$query = "SELECT * FROM student_detail WHERE StudentKeyId = " . $id . ";";
 		if ($result = mysqli_query($conn, $query)) {
 			$row = mysqli_fetch_assoc($result);
 			mysqli_free_result($result);

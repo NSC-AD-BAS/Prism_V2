@@ -133,15 +133,11 @@ main .inner li {
     text-align: left;
 }
 
-/* works for 6 item header
-    seen on the list page for students */
+/* styling for 6 items (used for the student list) */
 .inner6 li {
-    width: 23%;
+    padding-right: 10px;
     height: 20px;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    display: inline-block; /* inline list items */
-    text-align: left;
+    display: inline;
 }
 
 /* DETAIL PAGE STYLING */
