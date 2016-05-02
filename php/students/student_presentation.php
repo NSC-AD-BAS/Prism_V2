@@ -41,9 +41,10 @@ function createStudentList($students) {
 	
 	foreach ($students as $student) {
 
-		$studentRow = "<li><li><input type='checkbox' name='1' value='selected'></li>"
+		$studentRow = "<li>"
 			. "<a href='detail.php?id=" . $student["StudentKeyId"] . "'>" 
 			. "<ul class='inner6'>" 
+			. "<li><input type='checkbox' name='1' value='selected'></li>"
 			. "<li>" . $student["Student Name"] . "</li>"
 			. "<li>" . $student["Cohort"] . "</li>"
 			. "<li>" . $student["Program Status"] . "</li>"
