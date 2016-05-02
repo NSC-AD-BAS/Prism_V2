@@ -104,6 +104,7 @@ CREATE OR REPLACE VIEW student_list AS
 
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
+        s.StudentKeyId,
 		u.FirstName AS `Student First Name`,
         u.MiddleName AS `Student Middle Name`,
 		u.LastName AS `Student Last Name`,
