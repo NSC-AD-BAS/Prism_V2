@@ -58,19 +58,30 @@ function render_body($info, $edit) {
     //Open Company Contact inner table
     echo "<table>";
     foreach ($company_contacts as $contact) {
-        echo "<tr><td>Name</td><td>" . $contact['ContactFirstName'] . " " . $contact['ContactLastName'] . "</td></tr>";
-        echo "<tr><td>Title</td><td>" . $contact['Title'] . "</td></tr>";
-        echo "<tr><td>Email</td><td><a href=\"mailto:" . $contact['EmailAddress'] . "\">" . $contact['EmailAddress'] . "</a></td></tr>";
-        if (!empty($contact['OfficeExtension'])) {
-            echo "<tr><td>Office Number</td><td>" . $contact['OfficeNumber'] . " (ext. " . $contact['OfficeExtension'] . ")</td></tr>";
+        $first = $contact['ContactFirstName'];
+        $last = $contact['ContactLastName'];
+        $title = $contact['Title'];
+        $email = $contact['EmailAddress'];
+        $office = $contact['OfficeNumber'];
+        $ext = $contact['OfficeExtension'];
+        $cell = $contact['CellNumber'];
+        $ref = $contact['Referral'];
+        $hiring = $contact['Hiring'];
+        $advise = $contact['OnADAdvisoryCommittee'];
+        $linkedIn = $contact['LinkedInURL'];
+        echo "<tr><td>Name</td><td>" . $first . " " . $last . "</td></tr>";
+        echo "<tr><td>Title</td><td>" . $title . "</td></tr>";
+        echo "<tr><td>Email</td><td><a href=\"mailto:" . $email . "\">" . $email . "</a></td></tr>";
+        if (!empty($ext)) {
+            echo "<tr><td>Office Number</td><td>" . $office . " (ext. " . $ext . ")</td></tr>";
         } else {
-            echo "<tr><td>Office Number</td><td>" . $contact['OfficeNumber'] . "</td></tr>";
+            echo "<tr><td>Office Number</td><td>" . $office . "</td></tr>";
         }
-        echo "<tr><td>Cell Number</td><td>" . $contact['CellNumber'] . "</td></tr>";
-        echo "<tr><td>Referral</td><td>" . $contact['Referral'] . "</td></tr>";
-        echo "<tr><td>Hiring (Full Time Positions)</td><td>" . $contact['Hiring'] . "</td></tr>";
-        echo "<tr><td>Advisory Committee</td><td>" . $contact['OnADAdvisoryCommittee'] . "</td></tr>";
-        echo "<tr><td>Linked In</td><td><a href=\"" . $contact['LinkedInURL'] . "\">" . $contact['LinkedInURL'] . "</td></tr>";
+        echo "<tr><td>Cell Number</td><td>" . $cell . "</td></tr>";
+        echo "<tr><td>Referral</td><td>" . $ref . "</td></tr>";
+        echo "<tr><td>Hiring (Full Time Positions)</td><td>" . $hiring . "</td></tr>";
+        echo "<tr><td>Advisory Committee</td><td>" . $advise . "</td></tr>";
+        echo "<tr><td>Linked In</td><td><a href=\"" . $linkedIn . "\">" . $linkedIn . "</td></tr>";
         echo "<hr>";
     }
     echo "</table>"; //Close Company Contact inner table
