@@ -36,9 +36,7 @@
                     <li><a href="edit.php" class="myButton">Edit</a></li>
                     <li><a href="delete.php" class="myButton">Delete Selected</a></li>
                 </ul>
-               <?php 
-                    echo $studentList;
-               ?>    
+               <?=$studentList?>    
             </form>
         </div>
     </main>

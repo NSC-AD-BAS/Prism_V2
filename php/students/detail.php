@@ -14,7 +14,7 @@
 
 <html lang="en">
 	<head>
-		<title>PRISM - <?php echo $studentFullName; ?> - Detail</title>
+		<title>PRISM - <?=$studentFullName?> - Detail</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../style/site.css">
 	</head>
@@ -30,13 +30,13 @@
 	    </nav>
 
 	    <main>
-	    	<h1><?php echo $studentFullName; ?> - Detail</h1>
+	    	<h1><?=$studentFullName?> - Detail</h1>
 	        <ul>
-	            <li><a href="detail.php?id=' . $prev . '">Previous</a></li>
-	            <li><a href="detail.php?id=' . $next . '">Next</a></li>
-	            <li><a href="edit.php?id=' . $current . '">Edit</a></li>
+	            <li><a href="detail.php?id=<?=$prev?>">Previous</a></li>
+	            <li><a href="detail.php?id=<?=$next?>">Next</a></li>
+	            <li><a href="edit.php?id=<?=$studentId?>">Edit</a></li>
 	        </ul>
-	        <?php echo $detailTable; ?> 
+	        <?=$detailTable?> 
         <div class="buttons">
             <table>
                 <tr>
