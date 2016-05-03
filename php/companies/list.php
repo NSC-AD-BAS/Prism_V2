@@ -33,6 +33,10 @@ function render_body($list_name, $data) {
         }
         echo "</li>";
     echo "</ul>";
+    if (isAdmin()) {
+        echo "<hr>";
+        echo "<a class=\"button\" href=\"detail.php?create=true\"><div>Create new Company</div></a>";
+    }
     echo "</main>";
 }
 
