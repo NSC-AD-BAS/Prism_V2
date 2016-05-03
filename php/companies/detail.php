@@ -19,24 +19,33 @@ function render_body($info, $edit) {
     echo "<div class=\"wrapper\">";
     //Basic Company Info
     foreach ($info as $i) {
+        //Short var names are much nicer to work with...
+        $name = $i['Company'];
+        $url = $i['URL'];
+        $street = $i['Address 1'];
+        $city_state = $i['City'] . ", " . $i['State'];
+        $num_employees = $i['Number of Employees'];
+        $revenue = $i['Yearly Revenue'];
+        $statement = $i['Statement'];
+        $desc = $i['Description'];
         echo "<h1>" . $i['Company'] . " - Company Detail</h1>";
         echo "<div class=\"detail_table\">";
         //Open Company Detail Table
         echo "<table>";
         echo "<tr><td>Company Name</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Company'] . "\" >" : $i['Company'] . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $name . "\" >" : $name . "</td></tr>";
         echo "<tr><td>Company URL</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['URL'] . "\" >" : "<a href=\"" . $i['URL'] . "\">" . $i['URL'] . "</a></td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $url . "\" >" : "<a href=\"" . $url . "\">" . $url . "</a></td></tr>";
         echo "<tr><td>Company Address</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Address 1'] . "<br>" . $i['City'] . ", " . $i['State'] . "\" >" : $i['Address 1'] . "<br>" . $i['City'] . ", " . $i['State'] . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $street . "\" ><br><input class=\"textbox\" type=\"text\" placeholder=\"" . $city_state . "\" >" : $street . "<br>" . $city_state . "</td></tr>";
         echo "<tr><td>Number of Employees</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . number_format($i['Number of Employees']) . "\" >" : number_format($i['Number of Employees']) . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . number_format($num_employees) . "\" >" : number_format($num_employees) . "</td></tr>";
         echo "<tr><td>(Approx.) Annual Revenue</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . money_format("%n", $i['Yearly Revenue']) . "\" >" : money_format("%n", $i['Yearly Revenue']) . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . money_format("%n", $revenue) . "\" >" : money_format("%n", $revenue) . "</td></tr>";
         echo "<tr><td>Company Statement</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Statement'] . "\" >" : $i['Statement'] . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $statement . "\" >" : $statement . "</td></tr>";
         echo "<tr><td>Description</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $i['Description'] . "\" >" : $i['Description'] . "</td></tr>";
+        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $desc . "\" >" : $desc . "</td></tr>";
     }
     echo "<tr><td>Total Internships Available</td><td>" . $num_available_positions . "</td></tr>";
     echo "<tr><td>Available Position(s)</td><td>";
