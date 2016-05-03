@@ -32,10 +32,11 @@
 	    <main>
 	    	<h1><?=$studentFullName?> - Detail</h1>
 
-	        <?=$detailTable?> 
-	        
-	       	<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
+			<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
 	        <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
+
+	        <?=$detailTable?> 
+
 	        <a href="list.php" class="button"><div>Back to List</div></a>
 	        <a href="edit.php" class="button"><div>Edit</div></a>
 	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
@@ -48,5 +49,4 @@
     </footer>
 
 </body>
-</html>';
-?>
+</html>
