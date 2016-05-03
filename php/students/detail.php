@@ -25,7 +25,7 @@
 	            <li class="left"><a href="../internships/list.php">Internships</a></li> &nbsp;
 	            <li class="left"><a href="../companies/list.php">Companies</a></li> &nbsp;
 	            <li class="left"><a href="../students/list.php">Students</a></li> &nbsp;
-	            <li class="left"><a href="../admin/list.php">(Admin)</a></li> &nbsp;
+	            <li class="left"><a href="../admin/list.php">Admin</a></li> &nbsp;
 	        </ul>
 	    </nav>
 

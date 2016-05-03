@@ -11,13 +11,12 @@
     <link rel="stylesheet" type="text/css" href="../style/site.css">
 </head>
 <body>
-    <header><h1>Student List</h1></header>
     <nav>
         <ul>
             <li class="left"><a href="../internships/list.php">Internships</a></li> &nbsp;
             <li class="left"><a href="../companies/list.php">Companies</a></li> &nbsp;
             <li class="left"><a href="../students/list.php">Students</a></li> &nbsp;
-            <li class="left"><a href="../admin/list.html">(Admin)</a></li> &nbsp;
+            <li class="left"><a href="../admin/list.html">Admin</a></li> &nbsp;
         </ul>
     </nav>
     <main>
