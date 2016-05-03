@@ -34,7 +34,6 @@
         </div>
         
         <a href="create.html" class="button"><div>Create Student</div></a>
-        <a href="delete.php" class="button"><div>Delete Selected</div></a>
         
     </main>
 
