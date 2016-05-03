@@ -151,6 +151,7 @@ main .inner li {
 }
 
 #internship_detail td {
+    vertical-align: middle;
     text-align: right;
 }
 
@@ -215,4 +216,3 @@ a {
     height: 25px;
     width: 275px;
 }
-

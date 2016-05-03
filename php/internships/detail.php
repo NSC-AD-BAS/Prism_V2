@@ -21,7 +21,9 @@ function print_detail_main($data) { ?>
             $intStartDate = $data["Start Date"];
             $intEndDate = $data["End Date"];
             $intLocation = $data["Location"];
-            $intDescription = $data["Job Description"]; ?>
+            $intDescription = $data["Job Description"];
+            $intLastUpdated = $data["Last Update"];
+            $intExpiration = $data["Expiration Date"]; ?>
 
             <h1><?= $intPosition ?></h1>
 
@@ -44,6 +46,14 @@ function print_detail_main($data) { ?>
                 </tr>
                     <th>Location:</th>
                     <td><?= $intLocation ?></td>
+                </tr>
+                </tr>
+                    <th>Last Updated:</th>
+                    <td><?= $intLastUpdated ?></td>
+                </tr>
+                </tr>
+                    <th>Expiration Date:</th>
+                    <td><?= $intExpiration ?></td>
                 </tr>
             </table>
             <h2>Description</h2>
