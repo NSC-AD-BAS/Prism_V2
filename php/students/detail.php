@@ -36,14 +36,13 @@
 	            <li><a href="detail.php?id=<?=$next?>">Next</a></li>
 	            <li><a href="edit.php?id=<?=$studentId?>">Edit</a></li>
 	        </ul>
+
 	        <?=$detailTable?> 
-        <div class="buttons">
-            <table>
-                <tr>
-                    <td><a href="list.php">Back to List</a></td>
-                    <td><a href="list.php">Cancel</a></td>
-                </tr>
-            </table>
+	        
+	        <a href="list.php" class="button"><div>Back to List</div></a>
+	        <a href="edit.php" class="button"><div>Edit</div></a>
+	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
+            
         </div>
     </main>
     <br>

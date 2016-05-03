@@ -3,12 +3,11 @@
 function createStudentList($students) {
 	$html = "<ul class='outer'>
                 <li class='tableHead'>
-                	<ul class='inner6'>
-                        <li>Select</li>
+                	<ul class='inner5'>
                         <li>Name</li>
                         <li>Cohort</li>
                         <li>Active Status</li>
-                        <li>Internship/Capstone Status</li>
+                        <li>Internship / Capstone Status</li>
                         <li>Application Status</li>
                     </ul>";
 	
@@ -16,8 +15,7 @@ function createStudentList($students) {
 
 		$studentRow = "<li>"
 			. "<a href='detail.php?id=" . $student["StudentKeyId"] . "'>" 
-			. "<ul class='inner6'>" 
-			. "<li><input type='checkbox' name='1' value='selected'></li>"
+			. "<ul class='inner5'>" 
 			. "<li>" . $student["Student Name"] . "</li>"
 			. "<li>" . $student["Cohort"] . "</li>"
 			. "<li>" . $student["Program Status"] . "</li>"

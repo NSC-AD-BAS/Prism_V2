@@ -14,7 +14,7 @@
     <header><h1>Student List</h1></header>
     <nav>
         <ul>
-            <li class="left"><a href="../internships/list.html">Internships</a></li> &nbsp;
+            <li class="left"><a href="../internships/list.php">Internships</a></li> &nbsp;
             <li class="left"><a href="../companies/list.php">Companies</a></li> &nbsp;
             <li class="left"><a href="../students/list.php">Students</a></li> &nbsp;
             <li class="left"><a href="../admin/list.html">(Admin)</a></li> &nbsp;
@@ -30,15 +30,12 @@
             </form>-->
             <input id="searchbox" type="text" placeholder=" Search" />
             <h1>Students</h1>
-            <form method="post" action="postsomething();" name="details">
-                <ul class="listActions">
-                    <li><a href="create.html" class="myButton">Add Record</a></li>
-                    <li><a href="edit.php" class="myButton">Edit</a></li>
-                    <li><a href="delete.php" class="myButton">Delete Selected</a></li>
-                </ul>
-               <?=$studentList?>    
-            </form>
+           <?=$studentList?>    
         </div>
+        
+        <a href="create.html" class="button"><div>Create Student</div></a>
+        <a href="delete.php" class="button"><div>Delete Selected</div></a>
+        
     </main>
 
     <footer>
