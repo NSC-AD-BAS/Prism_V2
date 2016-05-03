@@ -31,14 +31,11 @@
 
 	    <main>
 	    	<h1><?=$studentFullName?> - Detail</h1>
-	        <ul>
-	            <li><a href="detail.php?id=<?=$prev?>">Previous</a></li>
-	            <li><a href="detail.php?id=<?=$next?>">Next</a></li>
-	            <li><a href="edit.php?id=<?=$studentId?>">Edit</a></li>
-	        </ul>
 
 	        <?=$detailTable?> 
 	        
+	       	<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
+	        <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
 	        <a href="list.php" class="button"><div>Back to List</div></a>
 	        <a href="edit.php" class="button"><div>Edit</div></a>
 	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
