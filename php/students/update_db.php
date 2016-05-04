@@ -98,4 +98,13 @@
 				'Unknown',
 				$notes);
 	}
+
+	function edit_student($id) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+		
+	}
 ?>

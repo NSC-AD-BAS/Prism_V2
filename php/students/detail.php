@@ -38,7 +38,9 @@
 	        <?=$detailTable?> 
 
 	        <a href="list.php" class="button"><div>Back to List</div></a>
-	        <a href="edit.php" class="button"><div>Edit</div></a>
+	        <?php
+	        	echo '<a href="edit.php?id=' . $studentId . '" class="button"><div>Edit</div></a>';
+	        ?>
 	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
             
         </div>
