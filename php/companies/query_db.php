@@ -37,7 +37,7 @@ function get_company_detail($id) {
 
 function get_internships_by_company($id) {
     $conn = db_connect();
-    $sql  = "SELECT SlotsAvailable, PositionTitle from internships where OrganizationId = $id";
+    $sql  = "SELECT * from internships where OrganizationId = $id";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;

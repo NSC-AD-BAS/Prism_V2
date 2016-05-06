@@ -1,48 +1,48 @@
 <?php
-//TODO: Utility functions, move to util folder
-function render_list_header($list_name) {
-    echo "<!DOCTYPE html>";
-    echo "<html lang=\"en\">";
-    echo "<head>";
-    echo "<title>PRISM - " . $list_name . " List</title>";
-    echo "<meta charset=\"utf-8\">";
-    echo "<link rel=\"stylesheet\" href=\"../style/site.css\">";
-    echo "</head>";
-    echo "<body>";
+function render_header($header, $isDetail) {
+    $out = "
+        <!DOCTYPE html>
+        <html lang=\"en\">
+        <head>
+        <title>PRISM - " . $header . ($isDetail == 'true' ? ' Detail' : ' List') . "</title>
+        <meta charset=\"utf-8\">
+        <link rel=\"stylesheet\" href=\"../style/site.css\">
+        </head>
+        <body>
+    ";
+    echo $out;
 }
 
-function render_detail_header($detail_name) {
-    echo "<!DOCTYPE html>";
-    echo "<html lang=\"en\">";
-    echo "<head>";
-    echo "<title>PRISM - " . $detail_name . " Detail</title>";
-    echo "<meta charset=\"utf-8\">";
-    echo "<link rel=\"stylesheet\" href=\"../style/site.css\">";
-    echo "</head>";
-    echo "<body>";
-}
-
-function render_nav() {
+function render_nav($page_name) {
     //Pages may be added or re-ordered by adjusting this array
     $nav_pages = ["Internships", "Companies", "Students"];
     if (isAdmin()) {
+        //Only Admins should see link to Admin page.
         array_push($nav_pages, "Admin");
     }
-    echo "<nav>";
-    echo "<ul>";
+    $out = "<nav><ul>";
     foreach ($nav_pages as $page) {
-        echo "<li class=\"left\"><a href=\"../" . strtolower($page) . "/list.php\">" . $page . "</a></li>";
+        $out .= "<li class=\"left\"><a href=\"../" . strtolower($page) . "/list.php\">" . $page . "</a></li>";
     }
-    echo "</ul>";
-    echo "</nav>";
+    $out .= "</ul></nav>
+        <main>
+        <input id=\"searchbox\" type=\"text\" placeholder=\" Search\" />
+        <h1>" . $page_name . "</h1>
+    ";
+    echo $out;
 }
 
 function render_footer() {
-    echo "<br>";
-    echo "<footer>";
-    echo "<p>North Seattle College - PRISM &copy; 2016</p>";
-    echo "</body>";
-    echo "</html>";
+    //Close the main opened in render_nav()
+    $out = "
+        </main>
+        </br>
+        <footer>
+        <p>North Seattle College - PRISM &copy; 2016</p>
+        </body>
+        </html>
+    ";
+    echo $out;
 }
 
 ?>

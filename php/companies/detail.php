@@ -4,59 +4,156 @@
 include "page_builder.php";
 include "query_db.php";
 
-//Stuff specific to rendering *this* page
-function render_body($info, $edit) {
-    //We don't know the company name until we have the $data back from the db.  Specifically for page/tab title...
-    $id = $info[0]['OrganizationId'];
-    render_detail_header($info[0]['Company']);
-    $available_positions = get_available_positions($id);
-    $num_available_positions = get_num_available_positions($available_positions);
-    $company_contacts = get_company_contacts($id);
+//Check URL params to set globals
+//Company ID
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    //TODO: If $id isn't set, redirect user to the list view
+    $id = 1;
+}
+//Is Edit Mode?
+if (isset($_GET['edit']) && $_GET['edit'] == "true") {
+    $edit = true;
+} else {
+    $edit = false;
+}
+//Locale for currency
+setlocale(LC_MONETARY,"en_US");
 
-    //Render company detail
-    echo "<main>";
-    echo "<input id=\"searchbox\" type=\"text\" placeholder=\" Search\" />";
-    echo "<div class=\"wrapper\">";
-    //Basic Company Info
-    foreach ($info as $i) {
-        //Short var names are much nicer to work with...
-        $name = $i['Company'];
-        $url = $i['URL'];
-        $street = $i['Address 1'];
-        $city_state = $i['City'] . ", " . $i['State'];
-        $num_employees = $i['Number of Employees'];
-        $revenue = $i['Yearly Revenue'];
-        $statement = $i['Statement'];
-        $desc = $i['Description'];
-        echo "<h1>" . $i['Company'] . " - Company Detail</h1>";
-        echo "<div class=\"detail_table\">";
-        //Open Company Detail Table
-        echo "<table>";
-        echo "<tr><td>Company Name</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $name . "\" >" : $name . "</td></tr>";
-        echo "<tr><td>Company URL</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $url . "\" >" : "<a href=\"" . $url . "\">" . $url . "</a></td></tr>";
-        echo "<tr><td>Company Address</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $street . "\" ><br><input class=\"textbox\" type=\"text\" placeholder=\"" . $city_state . "\" >" : $street . "<br>" . $city_state . "</td></tr>";
-        echo "<tr><td>Number of Employees</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . number_format($num_employees) . "\" >" : number_format($num_employees) . "</td></tr>";
-        echo "<tr><td>(Approx.) Annual Revenue</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . money_format("%n", $revenue) . "\" >" : money_format("%n", $revenue) . "</td></tr>";
-        echo "<tr><td>Company Statement</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $statement . "\" >" : $statement . "</td></tr>";
-        echo "<tr><td>Description</td><td>";
-        echo ($edit == true) ?  "<input class=\"textbox\" type=\"text\" placeholder=\"" . $desc . "\" >" : $desc . "</td></tr>";
+
+//Hit the DB, get data necessary to render the page
+$data = get_company_detail($id);
+$company_name = $data[0]['Company'];
+$positions = get_available_positions($id);
+$num_available_positions = get_num_available_positions($positions);
+$company_contacts = get_company_contacts($id);
+
+//Actually Build the page!
+render_header('Companies', true);
+render_nav($company_name);
+renderCompanyDetail($data, $edit);
+//show_buttons($id, $edit);
+//Only show Contacts and Internships if we're not in edit mode.
+if (!$edit) {
+    renderCompanyInternships($positions);
+    renderCompanyContacts($company_contacts);
+}
+
+render_footer();
+
+
+/* Rendering Functions */
+//Company Data
+function renderCompanyDetail($data, $edit) {
+    //set nicer globals
+    foreach ($data as $d) {
+        $id = $d['OrganizationId'];
+        $name = $d['Company'];
+        $url = $d['URL'];
+        $street = $d['Address 1'];
+        $city = $d['City'];
+        $state = $d['State'];
+        $num_employees = $d['Number of Employees'];
+        $revenue = $d['Yearly Revenue'];
+        $statement = $d['Statement'];
+        $desc = $d['Description'];
     }
-    echo "<tr><td>Total Internships Available</td><td>" . $num_available_positions . "</td></tr>";
-    echo "<tr><td>Available Position(s)</td><td>";
-    //TODO: Link each of these to respective Internships detail view
-    foreach ($available_positions as $pos) {
-        echo $pos['PositionTitle'] . " (" . $pos['SlotsAvailable'] . ") <br>";
-    }
-    echo "</td></tr>";
-    echo "<tr><td>Company Contact(s)</td><td>";
-    //Open Company Contact inner table
-    echo "<table>";
+
+    //Company Detail Table
+    //TODO: check $edit to determine <form>
+    $out = "
+        <div class=\"wrapper\">
+        <div class=\"detail_table\">
+        <table>
+            <tr><td>Company Name</td><td><strong>" . displayValue($name, $edit, false) . "</strong></td></tr>
+            <tr><td>Company URL </td><td>   " . displayValue($url,  $edit, true)  . "</td></tr>
+            <tr><td>Company Address</td><td>
+                <table>
+                    <td><tr>" . displayValue($street,  $edit, false) . "&nbsp;</td></tr>
+                    <br>
+                    <td><tr>" . displayValue($city,  $edit, false) . ", " . displayValue($state, $edit, false) . "</td></tr>
+                </table></td></tr>
+            <tr><td>Number of Employees</td><td> " . displayValue(number_format($num_employees), $edit, false) . "</td></tr>
+            <tr><td>Annual Revenue</td><td>      " . displayValue(money_format("%n", $revenue) , $edit, false) . "</td></tr>
+            <tr><td>Company Statement</td><td>   " . displayValue($statement, $edit, false) . "                   </td></tr>
+            <tr><td>Description</td><td>         " . displayValue($desc, $edit, false) . "                        </td></tr>
+        </table>
+        <hr>
+        ";
+        //Sew Buttons...
+        $out .= "<div class=\"lower_nav\">";
+            if ($edit) {
+                $out .= "
+                    <a class=\"button\" href=\"detail.php?id=$id\"><div>Save</div></a>
+                    <a class=\"button\" href=\"detail.php?id=$id\"><div>Cancel</div></a>
+                ";
+            } else {
+                $out .= "
+                    <a class=\"button\" href=\"list.php\"><div>Company List</div></a>
+                ";
+                if (isAdmin()) {
+                    $out .= "
+                        <a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>
+                        <a class=\"button\" href=\"create.php\"><div>Create Company</div></a>
+                        <a class=\"button\" href=\"delete.php?type=company&id=$id\"><div>Delete</div></a>
+                    ";
+                }
+            }
+            $out .= "
+        </div> <!--lower_nav-->
+        </div> <!--detail_table-->
+        </div> <!--wrapper-->
+        ";
+    echo $out;
+}
+
+function renderCompanyInternships($positions) {
+    $out = "
+        <div class=\"wrapper\">
+        <div class=\"detail_table\">
+        <h3>Available Internships</h3>
+        <ul class=\"outer\">
+            <li class=\"tableHead\">
+            <ul class=\"inner\">
+                <li>Title</li>
+                <li>Description</li>
+                <li># Available</li>
+            </ul>
+        ";
+        foreach ($positions as $pos) {
+            $internshipId = $pos['InternshipId'];
+            $title = $pos['PositionTitle'];
+            $desc = $pos['Description'];
+            $slots = $pos['SlotsAvailable'];
+            $out .= "
+                <li><a href=\"../internships/detail.php?id=" . $internshipId . "\">
+                <ul class=\"inner\">
+                    <li>" . $title . "</li>
+                    <li> " . $desc . " </li>
+                    <li> ( " . $slots . " ) </li>
+                </ul>
+            </a></li>
+            ";
+        }
+        //Sew Buttons...
+        $out .= "
+            <a class=\"button\" href=\"../internships/list.php\"><div>Internship List</div></a>
+        ";
+        if (isAdmin()) {
+            $out .= "
+                <a class=\"button\" href=\"../internships/create.php\"><div>Create Internship</div></a>
+            ";
+        }
+    $out .= "
+        </div> <!--lower_nav-->
+        </div> <!--detail_table-->
+        </div> <!--wrapper-->
+    ";
+    echo $out;
+}
+
+function renderCompanyContacts($company_contacts) {
     foreach ($company_contacts as $contact) {
         $first = $contact['ContactFirstName'];
         $last = $contact['ContactLastName'];
@@ -69,29 +166,43 @@ function render_body($info, $edit) {
         $hiring = $contact['Hiring'];
         $advise = $contact['OnADAdvisoryCommittee'];
         $linkedIn = $contact['LinkedInURL'];
-        echo "<tr><td>Name</td><td>" . $first . " " . $last . "</td></tr>";
-        echo "<tr><td>Title</td><td>" . $title . "</td></tr>";
-        echo "<tr><td>Email</td><td><a href=\"mailto:" . $email . "\">" . $email . "</a></td></tr>";
-        if (!empty($ext)) {
-            echo "<tr><td>Office Number</td><td>" . $office . " (ext. " . $ext . ")</td></tr>";
-        } else {
-            echo "<tr><td>Office Number</td><td>" . $office . "</td></tr>";
-        }
-        echo "<tr><td>Cell Number</td><td>" . $cell . "</td></tr>";
-        echo "<tr><td>Referral</td><td>" . $ref . "</td></tr>";
-        echo "<tr><td>Hiring (Full Time Positions)</td><td>" . $hiring . "</td></tr>";
-        echo "<tr><td>Advisory Committee</td><td>" . $advise . "</td></tr>";
-        echo "<tr><td>Linked In</td><td><a href=\"" . $linkedIn . "\">" . $linkedIn . "</td></tr>";
-        echo "<hr>";
     }
-    echo "</table>"; //Close Company Contact inner table
-    echo "</table>"; //Close Company Detail Table
-    echo "</div>";   //Close detail_table div
-    show_buttons($id, $edit);  //Sew Buttons!
-    echo "</div>";   //Close wrapper div
-    echo "</main>";
+    $out = "
+        <div class=\"wrapper\">
+        <div class=\"detail_table\">
+        <table>
+        <h3>Company Contacts</h3>
+        <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
+        <tr><td>Title</td><td>" . $title ."</td></tr>
+        <tr><td>Email Address</td><td>" . displayValue($email, false, true) ."</td></tr>
+        <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
+        <tr><td>Office Phone</td><td>" . $cell . "</td></tr>
+        <tr><td>Referral</td><td>" . $ref . "</td></tr>
+        <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
+        <tr><td>Advisory Committee</td><td>" . $advise . "</td></tr>
+        <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, false, true) ."</td></tr>
+        </table>
+        </div>
+        </div>
+    ";
+    echo $out;
 }
 
+//Display a static value or a text box
+function displayValue($value, $edit, $isURL) {
+    $out = "";
+    $textbox = "<input class=\"textbox\" type=\"text\" placeholder=\"" . $value . "\" >";
+    if (!$isURL) {
+        //Standard type (value => value)
+        $out = $edit ? $textbox : $value;
+    } else {
+        //Otherwise, build a URL
+        $out = $edit ? $textbox : "<a href=\"" . $value . "\">" . $value . "</a>";
+    }
+    return $out;
+}
+
+//Query and Data Functions
 function get_available_positions($id) {
     return get_internships_by_company($id);
 }
@@ -107,43 +218,5 @@ function get_num_available_positions($roles) {
 function get_company_contacts($id) {
     return get_contacts_by_company($id);
 }
-
-function show_buttons($id, $edit) {
-    echo "<div class=\"lower_nav\">";
-    if ($edit) {
-        //TODO: Implement Save (obvi)
-        echo "<a class=\"button\" href=\"detail.php?id=$id\"><div>Save</div></a>";
-        echo "<a class=\"button\" href=\"detail.php?id=$id\"><div>Cancel</div></a>";
-    } else {
-        echo "<a class=\"button\" href=\"list.php\"><div>Back to List</div></a>";
-        if (isAdmin()) {
-            echo "<a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>";
-            //TODO: similar logic to edit w/o pre-populated fields in textboxes
-            echo "<a class=\"button\" href=\"detail.php?id=$id&create=true\"><div>Create new Company</div></a>";
-            //TODO: link to delete confirmation modal, hook up to archive / delete
-            echo "<a class=\"button\" href=\"delete.php?type=company&id=$id\"><div>Delete</div></a>";
-        }
-    }
-    echo "</div>";
-}
-
-//Company ID
-$id = $_GET['id'];
-
-//Is Edit Mode?
-if (isset($_GET['edit']) && $_GET['edit'] == "true") {
-    $edit = true;
-} else {
-    $edit = false;
-}
-
-//Locale for currency
-setlocale(LC_MONETARY,"en_US");
-
-//Build the page
-render_nav();
-render_body(get_company_detail($id), $edit);
-
-render_footer();
 
 ?>

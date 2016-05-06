@@ -4,47 +4,42 @@
 include "page_builder.php";
 include "query_db.php";
 
-//Stuff specific to rendering *this* page
-function render_body($list_name, $data) {
-    //Table header
-    $table_header = ["Company Name", "Location", "Positions Available"];
-    echo "<main>";
-    echo "<input id=\"searchbox\" type=\"text\" placeholder=\" Search\" />";
-    echo "<h1>" . $list_name . "</h1>";
+function renderCompanyList($data) {
 
-    //Build the table
-    echo "<ul class=\"outer\">";
-        echo "<li class=\"tableHead\">";
-            echo "<ul class=\"inner\">";
-            foreach ($table_header as $header) {
-                echo "<li>" . $header . "</li>";
-            }
-            echo "</ul>";
+    $out = "
+        <ul class=\"outer\">
+            <li class=\"tableHead\">
+            <ul class=\"inner\">
+                <li>Company Name</li>
+                <li>Location</li>
+                <li>Positions Available</li>
+            </ul>
+        ";
         foreach ($data as $d) {
-            echo "<li>";
-                echo "<a href=\"detail.php?id=" . $d['OrganizationId'] . "\">";
-                echo "<ul class=\"inner\">";
-                    echo "<li>" . $d['Organization Name'] . "</li>";
-                    echo "<li>" . $d['Location'] . "</li>";
-                    echo "<li>" . $d['Number of Positions'] . "</li>";
-                echo "</ul>";
-                echo "</a>";
-            echo "</li>";
+            $out .= "
+            <li><a href=\"detail.php?id=" . $d['OrganizationId'] . "\">
+                <ul class=\"inner\">
+                    <li>" . $d['Organization Name'] . "</li>
+                    <li>" . $d['Location'] . "</li>
+                    <li>" . $d['Number of Positions'] . "</li>
+                </ul>
+            </a></li>
+            ";
         }
-        echo "</li>";
-    echo "</ul>";
+    $out .= "</ul>";
     if (isAdmin()) {
-        echo "<hr>";
-        echo "<a class=\"button\" href=\"detail.php?create=true\"><div>Create new Company</div></a>";
+        $out .= "
+        <hr>
+        <a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
     }
-    echo "</main>";
+
+    //This could just as easily be a return
+    echo $out;
 }
 
-
-//Build the page
-render_list_header('Companies');
-render_nav();
-render_body('Companies', get_companies_list());
+render_header('Companies', false);
+render_nav('Company List');
+renderCompanyList(get_companies_list());
 render_footer();
 
 ?>
