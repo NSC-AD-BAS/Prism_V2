@@ -122,6 +122,7 @@ function renderCompanyInternships($positions) {
         <div class=\"wrapper\">
         <div class=\"detail_table\">
         <h3>Available Internships</h3>
+        <hr>
         <ul class=\"outer\">
             <li class=\"tableHead\">
             <ul class=\"inner\">
@@ -147,6 +148,7 @@ function renderCompanyInternships($positions) {
         }
         //Sew Buttons...
         $out .= "
+            <hr>
             <a class=\"button\" href=\"../internships/list.php\"><div>Internship List</div></a>
         ";
         if (isAdmin()) {
@@ -183,6 +185,7 @@ function renderCompanyContacts($company_contacts) {
         <div class=\"detail_table\">
         <table>
         <h3>Company Contacts</h3>
+        <hr>
         <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
         <tr><td>Title</td><td>" . $title ."</td></tr>
         <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
@@ -193,6 +196,19 @@ function renderCompanyContacts($company_contacts) {
         <tr><td>AD Advisory Committee</td><td>" . $advise . "</td></tr>
         <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
         </table>
+        <hr>
+    ";
+
+    //Buttons...
+    if (isAdmin()) {
+        //TODO: Figure out where these should go.
+        $out .= "
+            <a class=\"button\" href=\"../internships/create.php\"><div>Edit Contacts</div></a>
+            <a class=\"button\" href=\"../internships/create.php\"><div>Add Contact</div></a>
+        ";
+    }
+
+    $out .= "
         </div>
         </div>
     ";
