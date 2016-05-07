@@ -82,8 +82,8 @@ CREATE TABLE users
 --    ContactInfo				TEXT			NULL, //Replaced with Phone and Email Bob M. 4/25/2016
 	PhoneNumber				VARCHAR(12),  -- Added to replace ContactInfo field
     EmailAddress			VARCHAR(100), -- Added to replace ContactInfo field
-    UserName				VARCHAR(250)	NOT NULL			UNIQUE,
-    UserPassword			VARCHAR(500)	NOT NULL,
+    -- UserName				VARCHAR(250)	NOT NULL			UNIQUE, -- Struck for now. Bob M. 
+    -- UserPassword			VARCHAR(500)	NOT NULL,
     TypeId					INT				NOT NULL,
 	CONSTRAINT User_fk_TypeId
 		FOREIGN KEY (TypeId)
@@ -101,7 +101,7 @@ CREATE TABLE students
 -- 	InternshipId 			INT				NULL, //Removed Bob M. 4/27/2016
 	Internship				VARCHAR(250),
     InternCapstoneStatus    VARCHAR(50)     NULL,
-	Cohort					INT				NOT NULL,
+	Cohort					VARCHAR(50)		NOT NULL, -- Changed from Int to VarChar Bob M. 5/7
     ApplicationStatus		VARCHAR(50)		NULL,
     ResumeURL				VARCHAR(250)	NULL,
     LinkedInURL				VARCHAR(250)	NULL,

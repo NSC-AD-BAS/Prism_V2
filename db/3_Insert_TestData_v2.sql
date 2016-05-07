@@ -85,25 +85,23 @@ INSERT INTO users(
     LastName, 
     PhoneNumber, 
     EmailAddress, 
-    UserName, 
-    UserPassword, 
     TypeId
 ) VALUES
-(1, "Steven", "", "Balo", "206-111-1111", "steven@balo.com", "steba", "steba", 2),
-(2, "Alfred", "", "Sterling", "206-111-1111", "casey@casey.com", "casri", "casri", 1 ),
-(3, "Alexis", "", "Vonnegut", "206-111-1111", "aiman@aiman.com", "aimma", "aimma", 1 ),
-(4, "Brian", "", "Asimov", "206-111-1111", "chris@chris.com", "chrme", "chrme", 1 ),
-(5, "Bridgette", "W", "Bradbury", "206-111-1111", "bob@bob.com", "robmc", "robmc", 1 ),
-(6, "Carl", "", "Lovelace", "206-111-1111", "jeremy@jeremy.com", "jerdu", "jerdu", 1 ),
-(7, "Chloe", "", "Gibson", "206-111-1111", "nathan@nathan.com", "natfl", "natfl", 1 ),
-(8, "Dave", "", "Turing", "206-111-1111", "sai@sai.com", "saich", "siach", 1 ),
-(9, "Donna", "", "Kennedy", "206-111-1111", "mario@mario.com", "marro", "marro", 1 ),
-(10, "Eric", "", "Lincoln", "206-111-1111", "kellan@kellan.com", "kelne", "kelne", 1 ),
-(11, "Ethel", "", "Washington", "206-111-1111", "tim@tim.com", "timda", "timda", 1 ),
-(12, "Frank", "", "Franklin", "206-111-1111", "joe@joe.com", "joemc", "joems", 1 ),
-(13, "Flo", "", "Van Buren", "206-111-1111", "austin@austin.com", "ausam", "ausam", 1 ),
-(14, "John", "", "Stager", "206-111-1111", "john@stager.com", "johst", "johst", 2),
-(15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com", "facul", "facul", 3)
+(1, "Steven", "", "Balo", "206-111-1111", "steven@balo.com",  2),
+(2, "Alfred", "", "Sterling", "206-111-1111", "casey@casey.com",  1 ),
+(3, "Alexis", "", "Vonnegut", "206-111-1111", "aiman@aiman.com", 1 ),
+(4, "Brian", "", "Asimov", "206-111-1111", "chris@chris.com",  1 ),
+(5, "Bridgette", "W", "Bradbury", "206-111-1111", "bob@bob.com", 1 ),
+(6, "Carl", "", "Lovelace", "206-111-1111", "jeremy@jeremy.com",  1 ),
+(7, "Chloe", "", "Gibson", "206-111-1111", "nathan@nathan.com",  1 ),
+(8, "Dave", "", "Turing", "206-111-1111", "sai@sai.com",  1 ),
+(9, "Donna", "", "Kennedy", "206-111-1111", "mario@mario.com",  1 ),
+(10, "Eric", "", "Lincoln", "206-111-1111", "kellan@kellan.com",  1 ),
+(11, "Ethel", "", "Washington", "206-111-1111", "tim@tim.com",  1 ),
+(12, "Frank", "", "Franklin", "206-111-1111", "joe@joe.com", 1 ),
+(13, "Flo", "", "Van Buren", "206-111-1111", "austin@austin.com", 1 ),
+(14, "John", "", "Stager", "206-111-1111", "john@stager.com",  2),
+(15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com",  3)
 ;
 
 INSERT INTO students(
