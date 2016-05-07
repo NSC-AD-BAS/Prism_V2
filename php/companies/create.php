@@ -24,6 +24,8 @@ $out = "
     </div>
     </div>
 ";
+$now = date('Y-m-d H:i:s');
+//echo $now;
 echo $out;
 
 render_footer();

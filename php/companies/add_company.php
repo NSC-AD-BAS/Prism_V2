@@ -5,27 +5,25 @@ include "page_builder.php";
 include "query_db.php";
 include "update_db.php";
 
+
+render_header($company_name);
+render_nav();
+
+//This validation is likely redundant.  Safety measure?
 if (isset($_POST["name"]) && isset($_POST["desc"])) {
     $company_name = $_POST["name"];
     $company_desc = $_POST["desc"];
 } else {
-//TODO: This should be an error page eventually
+//TODO: This should redirect to an error page eventually
     echo "Something went wrong adding your record.";
     die;
 }
 
-render_list_header($company_name);
-echo "<main>";
+//Add the records
+echo add_company_toDB($company_name, $company_desc);
 
 //body
-if (add_company_toDB($company_name, $company_desc)) {
-    echo "LOOKS GOOD";
-} else {
-    echo "Something bad happened.";
-}
 
 
-echo "</main>";
-render_nav();
 render_footer();
 ?>
