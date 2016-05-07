@@ -9,9 +9,9 @@ include "query_db.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    //TODO: If $id isn't set, redirect user to the list view
-    $id = 1;
+    header("Location: /companies/list.php");
 }
+
 //Is Edit Mode?
 if (isset($_GET['edit']) && $_GET['edit'] == "true") {
     $edit = true;
