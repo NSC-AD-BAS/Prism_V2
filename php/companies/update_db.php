@@ -47,6 +47,7 @@ function build_company_query($name, $desc) {
 }
 
 //Populate internship with fake data so we can render the company on the list.
+//TODO: Set Expiration date to $now + 12weeks
 function build_internship_query($orgId, $now) {
     $query = "
         INSERT INTO internships SET

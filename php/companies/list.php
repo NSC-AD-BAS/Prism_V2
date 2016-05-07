@@ -12,7 +12,7 @@ function renderCompanyList($data) {
             <ul class=\"inner\">
                 <li>Company Name</li>
                 <li>Location</li>
-                <li>Positions Available</li>
+                <li>Internships Available</li>
             </ul>
         ";
         foreach ($data as $d) {

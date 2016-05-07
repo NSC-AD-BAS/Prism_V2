@@ -82,7 +82,6 @@ function renderCompanyDetail($data, $edit) {
                 </table></td></tr>
             <tr><td>Number of Employees</td><td> " . displayValue(number_format($num_employees), 'num_employees', $edit, false) . "</td></tr>
             <tr><td>Annual Revenue</td><td>      " . displayValue(money_format("%n", $revenue), 'revenue', $edit, false) . "</td></tr>
-            <tr><td>Company Statement</td><td>   " . displayValue($statement, 'statement', $edit, false) . "                   </td></tr>
             <tr><td>Description</td><td>         " . displayValue($desc, 'desc', $edit, false) . "                        </td></tr>
         </table>
         <hr>
@@ -165,6 +164,7 @@ function renderCompanyInternships($positions) {
 
 function renderCompanyContacts($company_contacts) {
     //TODO: check for empty before iterating through null set (CodeCleanup)
+    //TODO: $advise should be a boolean that displays Yes/No per meeting notes.
     foreach ($company_contacts as $contact) {
         $first = $contact['ContactFirstName'];
         $last = $contact['ContactLastName'];
@@ -190,7 +190,7 @@ function renderCompanyContacts($company_contacts) {
         <tr><td>Office Phone</td><td>" . $cell . "</td></tr>
         <tr><td>Referral</td><td>" . $ref . "</td></tr>
         <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
-        <tr><td>Advisory Committee</td><td>" . $advise . "</td></tr>
+        <tr><td>AD Advisory Committee</td><td>" . $advise . "</td></tr>
         <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
         </table>
         </div>
