@@ -24,7 +24,7 @@ function add_company_toDB($name, $desc) {
         echo "<p>We could not add the company.  Please make sure you fill out all fields</p>";
     }
     mysqli_close($conn);
-    return $result;
+    return $orgId;
 }
 
 function build_company_query($name, $desc) {
