@@ -58,6 +58,7 @@ function get_contacts_by_company($id) {
     //clean-up result set and connection
     mysqli_free_result($result);
     mysqli_close($conn);
+    //TODO: Check for null before trying to return here (CodeCleanup)
     return $output;
 }
 

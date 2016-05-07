@@ -27,6 +27,14 @@ function add_company_toDB($name, $desc) {
     return $orgId;
 }
 
+function update_company($query) {
+    $conn = db_connect();
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    return $result;
+}
+
+//Query Builders.  TODO: Maybe move these somewhere else (CodeCleanup)
 function build_company_query($name, $desc) {
     $query = "
         INSERT INTO organizations SET
@@ -52,5 +60,6 @@ function build_internship_query($orgId, $now) {
     ";
     return $query;
 }
+
 
 ?>

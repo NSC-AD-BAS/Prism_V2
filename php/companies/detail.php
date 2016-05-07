@@ -25,9 +25,13 @@ setlocale(LC_MONETARY,"en_US");
 //Hit the DB, get data necessary to render the page
 $data = get_company_detail($id);
 $company_name = $data[0]['Company'];
-$positions = get_available_positions($id);
-$num_available_positions = get_num_available_positions($positions);
-$company_contacts = get_company_contacts($id);
+
+//Don't hit the DB if we're not rendering these bits
+if (!$edit) {
+    $positions = get_available_positions($id);
+    $num_available_positions = get_num_available_positions($positions);
+    $company_contacts = get_company_contacts($id);
+}
 
 //Actually Build the page!
 render_header('Companies', true);
@@ -61,32 +65,37 @@ function renderCompanyDetail($data, $edit) {
     }
 
     //Company Detail Table
-    //TODO: check $edit to determine <form>
     $out = "
         <div class=\"wrapper\">
         <div class=\"detail_table\">
+        <form action=\"edit_company.php?id=$id\" method=\"post\">
         <table>
-            <tr><td>Company Name</td><td><strong>" . displayValue($name, $edit, false) . "</strong></td></tr>
-            <tr><td>Company URL </td><td>   " . displayValue($url,  $edit, true)  . "</td></tr>
+            <!-- pass along the orgId -->
+            <input type=\"hidden\" name=\"orgId\" value=\"" . $id . "\">
+            <tr><td>Company Name</td><td><strong>" . displayValue($name, 'name', $edit, false) . "</strong></td></tr>
+            <tr><td>Company URL </td><td>   " . displayValue($url, 'url', $edit, true)  . "</td></tr>
             <tr><td>Company Address</td><td>
                 <table>
-                    <td><tr>" . displayValue($street,  $edit, false) . "&nbsp;</td></tr>
+                    <td><tr>" . displayValue($street, 'street', $edit, false) . "&nbsp;</td></tr>
                     <br>
-                    <td><tr>" . displayValue($city,  $edit, false) . ", " . displayValue($state, $edit, false) . "</td></tr>
+                    <td><tr>" . displayValue($city, 'city', $edit, false) . ", " . displayValue($state, 'state', $edit, false) . "</td></tr>
                 </table></td></tr>
-            <tr><td>Number of Employees</td><td> " . displayValue(number_format($num_employees), $edit, false) . "</td></tr>
-            <tr><td>Annual Revenue</td><td>      " . displayValue(money_format("%n", $revenue) , $edit, false) . "</td></tr>
-            <tr><td>Company Statement</td><td>   " . displayValue($statement, $edit, false) . "                   </td></tr>
-            <tr><td>Description</td><td>         " . displayValue($desc, $edit, false) . "                        </td></tr>
+            <tr><td>Number of Employees</td><td> " . displayValue(number_format($num_employees), 'num_employees', $edit, false) . "</td></tr>
+            <tr><td>Annual Revenue</td><td>      " . displayValue(money_format("%n", $revenue), 'revenue', $edit, false) . "</td></tr>
+            <tr><td>Company Statement</td><td>   " . displayValue($statement, 'statement', $edit, false) . "                   </td></tr>
+            <tr><td>Description</td><td>         " . displayValue($desc, 'desc', $edit, false) . "                        </td></tr>
         </table>
         <hr>
+
         ";
         //Sew Buttons...
         $out .= "<div class=\"lower_nav\">";
             if ($edit) {
                 $out .= "
-                    <a class=\"button\" href=\"detail.php?id=$id\"><div>Save</div></a>
-                    <a class=\"button\" href=\"detail.php?id=$id\"><div>Cancel</div></a>
+                <div class=\"lower_nav\">
+                    <input type=\"submit\" class=\"button\" value=\"Save\"></td></tr>
+                    <input type=\"submit\" class=\"button\" value=\"Cancel\"></td></tr>
+                </div>
                 ";
             } else {
                 $out .= "
@@ -101,6 +110,7 @@ function renderCompanyDetail($data, $edit) {
                 }
             }
             $out .= "
+        </form><!--close form-->
         </div> <!--lower_nav-->
         </div> <!--detail_table-->
         </div> <!--wrapper-->
@@ -154,6 +164,7 @@ function renderCompanyInternships($positions) {
 }
 
 function renderCompanyContacts($company_contacts) {
+    //TODO: check for empty before iterating through null set (CodeCleanup)
     foreach ($company_contacts as $contact) {
         $first = $contact['ContactFirstName'];
         $last = $contact['ContactLastName'];
@@ -174,13 +185,13 @@ function renderCompanyContacts($company_contacts) {
         <h3>Company Contacts</h3>
         <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
         <tr><td>Title</td><td>" . $title ."</td></tr>
-        <tr><td>Email Address</td><td>" . displayValue($email, false, true) ."</td></tr>
+        <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
         <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
         <tr><td>Office Phone</td><td>" . $cell . "</td></tr>
         <tr><td>Referral</td><td>" . $ref . "</td></tr>
         <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
         <tr><td>Advisory Committee</td><td>" . $advise . "</td></tr>
-        <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, false, true) ."</td></tr>
+        <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
         </table>
         </div>
         </div>
@@ -188,10 +199,10 @@ function renderCompanyContacts($company_contacts) {
     echo $out;
 }
 
-//Display a static value or a text box
-function displayValue($value, $edit, $isURL) {
+//Display a static value or a text box.  $post is the variable passed if we're working with a form.
+function displayValue($value, $post, $edit, $isURL) {
     $out = "";
-    $textbox = "<input class=\"textbox\" type=\"text\" placeholder=\"" . $value . "\" >";
+    $textbox = "<input class=\"textbox\" type=\"text\" placeholder=\"" . $value . "\" name=\"" . $post . "\" >";
     if (!$isURL) {
         //Standard type (value => value)
         $out = $edit ? $textbox : $value;
