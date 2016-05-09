@@ -77,7 +77,7 @@ if (isset($_POST['PositionTitle']) && isset($_POST['organization']) && isset($_P
     	</form>
 
         <!-- Buttons -->
-        <a class="button" href="list.html"><div>Back to List</div></a>
+        <a class="button" href="list.php"><div>Back to List</div></a>
 
     </main>
 
