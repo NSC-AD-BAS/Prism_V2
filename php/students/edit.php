@@ -72,6 +72,7 @@
                             <select name="student[program_status]">
                                 <?php
                                 // Get current value and place it as the selected value in the menu
+                                // The existing value is loaded in as currently selected
                                 switch($student['Program Status']) {
                                     case 'active':
                                         echo '<option value="active">Active</option>

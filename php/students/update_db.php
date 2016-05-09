@@ -139,6 +139,8 @@
 		}
 
 		mysqli_close($conn);
+		// The return statement was added for debugging purposes, but it seems to be the required element in making this function work.
+		return $sql;
 		
 	}
 ?>
