@@ -1,35 +1,34 @@
 <?php
-# update_db php file: db write-access layer
+# create php file: inserts a internship into the database
 # Author: Tim Davis
 # Author: Kellan Nealy
 
+include("common.php");
+include("update_db.php");
+
 # this page calls itself with non-empty POST data
 # if the POST data contains everything the table in the database needs
-# it will be added to the database
-include "update_db.php";
-include "common.php";
-
-print_top();
+# the entry will be added to the database
 
 # process the POST params for create new internship
-if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
-	&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
-	&& isset($_POST['SlotsAvailable']) && isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
+function try_post_process() {
+	if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
+		&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
+		&& isset($_POST['SlotsAvailable']) && isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
 
-	echo "POST variables set!";
+		# need to follow up with DB people about how to setup link between org and internship
+		$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
+			"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
+			"Location"=>$_POST['Location'], "SlotsAvailable"=>$_POST['SlotsAvailable'],
+			"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
 
-	# need to follow up with DB people about how to setup link between org and internship
-	$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
-		"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
-		"Location"=>$_POST['Location'], "SlotsAvailable"=>$_POST['SlotsAvailable'],
-		"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
-
-	add_internship($internship_data);
+		add_internship($internship_data);
+		header("Location: list.php");
+	}
 }
-# call add_internship from update_db.php with the correct assoc array
 
-?>
-
+# Prints the main html for this internship create
+function print_create_main() { ?>
     <!-- Main view -->
     <main>
         <h1>Internship Create</h1>
@@ -42,9 +41,9 @@ if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($
 	            <tr>
 	                <th>Company</th>
 	                <td><select name="OrganizationId">
-	                	<?php 
+	                	<?php
 	                		$company_array = get_companies_list();
-	                		print_company_options($company_array);
+	                		print_company_options($company_array, "");
 	                	?>
 	                </select>
 	                </td>
@@ -86,29 +85,14 @@ if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($
         <a class="button" href="list.php"><div>Back to List</div></a>
 
     </main>
+<?php }
 
-<?php
-	print_bottom();
+# See if we're being passed post parameters
+try_post_process();
 
-# use output array from get_companies_list to print options
-function print_company_options ($company_array) {
-	foreach ($company_array as $company) {
-		echo "<option value=\"" . $company['OrganizationId'] . "\">" . 
-		$company['Organization Name'] . "</option>";
-	}
-}
+# Build the page (only done if post parameters aren't set)
+print_top();
+print_create_main();
+print_bottom();
 
-# function had to be added, including companies query_db caused a conflict with db_connect
-function get_companies_list() {
-    $conn = db_connect();
-    $sql  = "SELECT * from org_list";
-    $result = mysqli_query($conn, $sql);
-    while ($row = $result->fetch_assoc()) {
-        $output[] = $row;
-    }
-    //clean-up result set and connection
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return $output;
-}
 ?>

@@ -6,8 +6,6 @@
 include("common.php");
 include("query_db.php");
 
-$id = $_GET["id"];
-
 # Prints main html for this internship detail
 function print_detail_main($data) { ?>
     <!-- Main view -->
@@ -15,6 +13,7 @@ function print_detail_main($data) { ?>
         <?php
         if (count($data) > 0) {
             $data = $data[0];
+            $intId = $data["InternshipId"];
             $intPosition = $data["Position Title"];
             $intCompany = $data["Organization"];
             $intDatePosted = $data["Date Posted"];
@@ -68,15 +67,16 @@ function print_detail_main($data) { ?>
         <!-- Buttons -->
         <a class="button" href="list.php"><div>Back to List</div></a>
         <a class="button" href="create.php"><div>Create new Internship</div></a>
-        <a class="button" href="edit.php"><div>Edit</div></a>
-        <a class="button" href="delete.php"><div>Delete</div></a>
+        <a class="button" href="edit.php?id=<?= $intId ?>"><div>Edit</div></a>
+        <a class="button" href="delete.php?id=<?= $intId ?>"><div>Delete</div></a>
     </main>
 <?php }
 
 # Build detail page
-$detail = get_internship_detail($id);
+$id = $_GET["id"];
+$data = get_internship_detail($id);
 print_top();
-print_detail_main($detail);
+print_detail_main($data);
 print_bottom();
 
 ?>
