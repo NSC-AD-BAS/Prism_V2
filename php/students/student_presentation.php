@@ -14,7 +14,7 @@ function createStudentList($students) {
 	foreach ($students as $student) {
 
 		$studentRow = "<li>"
-			. "<a href='detail.php?id=" . $student["StudentKeyId"] . "'>" 
+			. "<a href='detail.php?id=" . $student["UserId"] . "'>" 
 			. "<ul class='inner5'>" 
 			. "<li>" . $student["Student Name"] . "</li>"
 			. "<li>" . $student["Cohort"] . "</li>"

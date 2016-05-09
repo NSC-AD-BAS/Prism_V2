@@ -99,12 +99,46 @@
 				$notes);
 	}
 
-	function edit_student($id) {
+	function edit_student($student) {
 		require "../lib/db_connect.php";
+		// Create connection
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
+		// Check connection
+		if (!$conn) {
+		    die("Connection failed: " . mysqli_connect_error());
 		}
+
+		$sql = "UPDATE students s
+					JOIN users u ON u.userId = s.userId
+					JOIN user_notes un ON un.userId = s.userId
+				SET FirstName = '$student[first]',
+				MiddleName = '$student[middle]',
+				LastName = '$student[last]',
+				PreferredName = '$student[preferred]',
+				StudentId = '$student[ssid]',
+				Cohort = '$student[cohort]',
+				ProgramStatus = '$student[program_status]',
+				InternCapstoneStatus = '$student[internship_capstone_status]',
+				ApplicationStatus = '$student[application_status]',
+				ResumeURL = '$student[resume_url]',
+				LinkedInURL = '$student[linked_in_url]',
+				EmailAddress = '$student[email]',
+				PhoneNumber = '$student[phone]',
+				StreetAddressLineOne = '$student[address1]',
+				StreetAddressLineTwo = '$student[address2]',
+				City = '$student[city]',
+				State = '$student[state]',
+				Zipcode = '$student[zipcode]',
+				Note_Text = '$student[notes]'
+				WHERE s.userId = '$student[id]'";
+
+		if (mysqli_query($conn, $sql)) {
+		    echo "Record updated successfully";
+		} else {
+		    echo "Error updating record: " . mysqli_error($conn);
+		}
+
+		mysqli_close($conn);
 		
 	}
 ?>
