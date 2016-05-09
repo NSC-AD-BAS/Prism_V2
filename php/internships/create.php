@@ -12,14 +12,14 @@ include "common.php";
 print_top();
 
 # process the POST params for create new internship
-if (isset($_POST['PositionTitle']) && isset($_POST['organization']) && isset($_POST['DatePosted'])
+if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
 	&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
 	&& isset($_POST['SlotsAvailable']) && isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
 
 	echo "POST variables set!";
 
 	# need to follow up with DB people about how to setup link between org and internship
-	$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>"55",
+	$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
 		"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
 		"Location"=>$_POST['Location'], "SlotsAvailable"=>$_POST['SlotsAvailable'],
 		"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
@@ -41,7 +41,13 @@ if (isset($_POST['PositionTitle']) && isset($_POST['organization']) && isset($_P
 	            </tr>
 	            <tr>
 	                <th>Company</th>
-	                <td><input name="organization" type="text" /></td>
+	                <td><select name="OrganizationId">
+	                	<?php 
+	                		$company_array = get_companies_list();
+	                		print_company_options($company_array);
+	                	?>
+	                </select>
+	                </td>
 	            </tr>
 	            <tr>
 	                <th>Date Posted</th>
@@ -83,4 +89,26 @@ if (isset($_POST['PositionTitle']) && isset($_POST['organization']) && isset($_P
 
 <?php
 	print_bottom();
+
+# use output array from get_companies_list to print options
+function print_company_options ($company_array) {
+	foreach ($company_array as $company) {
+		echo "<option value=\"" . $company['OrganizationId'] . "\">" . 
+		$company['Organization Name'] . "</option>";
+	}
+}
+
+# function had to be added, including companies query_db caused a conflict with db_connect
+function get_companies_list() {
+    $conn = db_connect();
+    $sql  = "SELECT * from org_list";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
 ?>

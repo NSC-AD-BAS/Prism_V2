@@ -10,7 +10,7 @@ function add_internship($internship_data) {
 	$conn = db_connect();
 
 	# get the max column value for InternshipID so we can correctly add to the table
-	$new_id = 11; //mysqli_insert_id($conn);
+	$new_id = mysqli_insert_id($conn);
 
 	# generate last updated datetime
 	$lastUpdated = date('Y-m-d H:i:s');
