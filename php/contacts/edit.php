@@ -94,7 +94,7 @@
 
 
 
-    <?php if ($renderThis == "unknown") : ?>
+    <?php if ($renderThis == "savingerror") : ?>
         <h1>Sorry! Looking like something wen wrong when we tried to save that... You can see the detail below.</h1>
         <p><?php ECHO htmlspecialchars($saveResult) ?></p>
     <?php endif; ?>
