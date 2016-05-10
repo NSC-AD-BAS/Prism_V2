@@ -51,12 +51,6 @@
                         ?>
                     </tr>
                     <tr>
-                        <th>Preferred Name</th>
-                        <?php
-                            echo '<td><input name="student[preferred]"type="text" value="' . $student['Preferred Name'] . '"></td>';
-                        ?>
-                    </tr>
-                    <tr>
                         <th>SSID</th>
                         <?php
                             echo '<td><input name="student[ssid]" type="text" value="' . $student['SID'] . '"></td>';
@@ -133,18 +127,10 @@
                         </td>
                     </tr>
                     </tr>
-                        <th>Resume URL</th>
-                        <?php
-                            echo '<td><input name="student[resume_url]" type="text" value="></td>';
-                        ?>
-                    </tr>
-                    </tr>
-                        <th>Linked-In URL</th>
-                        <td><input name="student[linked_in_url]" type="text"></td>
-                    </tr>
-                    </tr>
                         <th>Email</th>
-                        <td><input name="student[email]"></td>
+                        <?php
+                        	echo '<td><input name="student[email]" value="' . $student['Email'] . '""></td>';
+                        ?>
                     </tr>
                     </tr>
                         <th>Phone</th>

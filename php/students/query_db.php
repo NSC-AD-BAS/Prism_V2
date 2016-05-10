@@ -23,10 +23,6 @@
 		return $students;
 	}
 
-	/*Function to return a single student from the database as an associative array.
-	This student is supposed to be selected by the id from the students_list view from the
-	database but fails to do so because the students_detail view does not contain the proper
-	id so I can't query on that. -- Austin*/
 	function get_single_student($id) {
 		
 		require "../lib/db_connect.php";

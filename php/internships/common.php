@@ -40,5 +40,31 @@ function print_bottom() { ?>
     </html>
 <?php }
 
+# use output array from get_companies_list to print options
+function print_company_options ($company_array, $company_name) {
+	foreach ($company_array as $company) {
+		$text = "<option value=\"" . $company['OrganizationId'] . "\"";
+        if ($company_name == $company["Organization Name"]) {
+            $text = $text . " selected=\"selected\" ";
+        }
+        $text = $text . ">" . $company['Organization Name'] . "</option>";
+        echo $text;
+	}
+}
+
+# function had to be added, including companies query_db caused a conflict with db_connect
+function get_companies_list() {
+    $conn = db_connect();
+    $sql  = "SELECT DISTINCT * FROM org_list";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
 
 ?>
