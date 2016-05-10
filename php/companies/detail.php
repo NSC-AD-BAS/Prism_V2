@@ -1,5 +1,8 @@
 <?php
 
+//TODO: Get column headers and td names from column names in DB, not hard-coded.
+
+
 //Includes
 include "page_builder.php";
 include "query_db.php";
@@ -9,7 +12,7 @@ include "query_db.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    header("Location: /companies/list.php");
+    header("Location: list.php");
 }
 
 //Is Edit Mode?
@@ -37,7 +40,7 @@ if (!$edit) {
 render_header('Companies', true);
 render_nav($company_name);
 renderCompanyDetail($data, $edit);
-//show_buttons($id, $edit);
+
 //Only show Contacts and Internships if we're not in edit mode.
 if (!$edit) {
     renderCompanyInternships($positions);
@@ -168,6 +171,7 @@ function renderCompanyContacts($company_contacts) {
     //TODO: check for empty before iterating through null set (CodeCleanup)
     //TODO: $advise should be a boolean that displays Yes/No per meeting notes.
     foreach ($company_contacts as $contact) {
+        $orgId = $contact['OrganizationId'];
         $first = $contact['ContactFirstName'];
         $last = $contact['ContactLastName'];
         $title = $contact['Title'];
@@ -203,7 +207,7 @@ function renderCompanyContacts($company_contacts) {
     if (isAdmin()) {
         //TODO: Figure out where these should go.
         $out .= "
-            <a class=\"button\" href=\"../internships/create.php\"><div>Edit Contacts</div></a>
+            <a class=\"button\" href=\"../contacts/edit.php&orgid=" . $orgId . "\"><div>Edit Contacts</div></a>
             <a class=\"button\" href=\"../internships/create.php\"><div>Add Contact</div></a>
         ";
     }

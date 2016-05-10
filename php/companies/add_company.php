@@ -19,6 +19,6 @@ if (isset($_POST["name"]) && isset($_POST["desc"])) {
 
 //Add the records and send em to the edit screen!
 $orgId = add_company_toDB($company_name, $company_desc);
-header("Location: /companies/detail.php?id=$orgId&edit=true");
+header("Location: detail.php?id=$orgId&edit=true");
 
 ?>
