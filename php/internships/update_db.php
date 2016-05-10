@@ -47,7 +47,7 @@ function add_internship($internship_data) {
 	}
 }
 
-function update_internship($internship_data) {
+function update_internship($internship_data, $intId) {
 	$conn = db_connect();
 
 	# generate last updated datetime
@@ -67,7 +67,7 @@ function update_internship($internship_data) {
 		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s');";
 
 	$sql = sprintf($queryFormat,
-		$new_id,
+		$intId,
 		$internship_data['PositionTitle'],
 		$internship_data['Description'],
 		$internship_data['OrganizationId'],

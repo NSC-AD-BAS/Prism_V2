@@ -11,7 +11,7 @@ include("update_db.php");
 # the entry will be replaced in the database
 
 # process the POST params for create new internship
-function try_post_process() {
+function try_post_process($intId) {
 	if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
 		&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
 		&& isset($_POST['SlotsAvailable']) && isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
@@ -22,7 +22,7 @@ function try_post_process() {
 			"Location"=>$_POST['Location'], "SlotsAvailable"=>$_POST['SlotsAvailable'],
 			"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
 
-		update_internship($internship_data);
+		update_internship($internship_data, $intId);
 		header("Location: list.php");
 	}
 }
@@ -106,10 +106,10 @@ function print_edit_main($data) { ?>
 <?php }
 
 # See if we're being passed post parameters
-try_post_process();
+$intId = $_GET["id"];
+try_post_process($intId);
 
 # Build the page (only done if post parameters aren't set)
-$intId = $_GET["id"];
 $data = get_internship_detail($intId);
 print_top();
 print_edit_main($data);
