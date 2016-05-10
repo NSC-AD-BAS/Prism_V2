@@ -90,7 +90,7 @@ CREATE OR REPLACE VIEW org_detail AS
 -- Updated Bob M. 4/27/2016
 CREATE OR REPLACE VIEW student_list AS
     (SELECT 
-        s.StudentKeyId,
+        u.UserId,
         CONCAT(u.FirstName,", ", u.LastName) AS `Student Name`,
         s.Cohort,
         s.ProgramStatus AS `Program Status`,
@@ -104,7 +104,7 @@ CREATE OR REPLACE VIEW student_list AS
 
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
-        s.StudentKeyId,
+        u.UserId,
 		u.FirstName AS `Student First Name`,
         u.MiddleName AS `Student Middle Name`,
 		u.LastName AS `Student Last Name`,
@@ -112,6 +112,37 @@ CREATE OR REPLACE VIEW student_detail AS
         s.Cohort,
         s.ProgramStatus AS `Program Status`,
         s.Internship AS `Internship`,
+        u.PhoneNumber AS `Phone`,
+        u.EmailAddress  AS `Email`,
+        s.StreetAddressLineOne AS `Address 1`,
+        s.StreetAddressLineTwo AS `Address 2`,
+        s.City,
+        s.State,
+        s.Zipcode,
+        un.Note_Text AS `Notes`
+    FROM
+        students s
+            JOIN
+        users u ON u.userId = s.userId
+            JOIN
+        user_notes un ON un.userId = s.userId);
+        
+-- Added by Austin, used in conjunction with the edit student page
+CREATE OR REPLACE VIEW student_all_data AS 
+	(SELECT 
+        u.UserId,
+		u.FirstName AS `Student First Name`,
+        u.MiddleName AS `Student Middle Name`,
+		u.LastName AS `Student Last Name`,
+        s.PreferredName AS `Preferred Name`,
+        s.StudentId AS `SID`,
+        s.Cohort,
+        s.ProgramStatus AS `Program Status`,
+        s.Internship AS `Internship`,
+        s.InternCapstoneStatus AS `Internship Status`,
+        s.ApplicationStatus AS `Application Status`,
+        s.ResumeURL AS `Resume`,
+        s.LinkedInURL AS `LinkedIn Profile`,
         u.PhoneNumber AS `Phone`,
         u.EmailAddress  AS `Email`,
         s.StreetAddressLineOne AS `Address 1`,
