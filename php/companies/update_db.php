@@ -41,6 +41,8 @@ function build_company_query($name, $desc) {
         OrganizationName=\"$name\",
         Description=\"$desc\",
         City=\"Seattle\",
+        YearlyRevenue=0,
+        NumOfEmployees=0,
         State=\"WA\"
     ";
     return $query;
