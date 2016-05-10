@@ -31,9 +31,8 @@ $company_name = $data[0]['Company'];
 
 //Don't hit the DB if we're not rendering these bits
 if (!$edit) {
-    $positions = get_available_positions($id);
-    $num_available_positions = get_num_available_positions($positions);
-    $company_contacts = get_company_contacts($id);
+    $positions = get_internships_by_company($id);
+    $company_contacts = get_contacts_by_company($id);
 }
 
 //Actually Build the page!
@@ -126,39 +125,31 @@ function renderCompanyInternships($positions) {
         <div class=\"detail_table\">
         <h3>Available Internships</h3>
         <hr>
-        <ul class=\"outer\">
-            <li class=\"tableHead\">
-            <ul class=\"inner\">
-                <li>Title</li>
-                <li>Description</li>
-                <li># Available</li>
-            </ul>
-        ";
-        foreach ($positions as $pos) {
-            $internshipId = $pos['InternshipId'];
-            $title = $pos['PositionTitle'];
-            $desc = $pos['Description'];
-            $slots = $pos['SlotsAvailable'];
-            $out .= "
-                <li><a href=\"../internships/detail.php?id=" . $internshipId . "\">
-                <ul class=\"inner\">
-                    <li>" . $title . "</li>
-                    <li> " . $desc . " </li>
-                    <li> ( " . $slots . " ) </li>
-                </ul>
-            </a></li>
-            ";
-        }
-        //Sew Buttons...
+        <table>
+        <tr><td><strong>Title</strong></td><td><strong>Description</strong></td></tr>
+    ";
+    foreach ($positions as $pos) {
+        $internshipId = $pos['InternshipId'];
+        $title = $pos['PositionTitle'];
+        $desc = $pos['Description'];
         $out .= "
-            <hr>
-            <a class=\"button\" href=\"../internships/list.php\"><div>Internship List</div></a>
+            <tr>
+                <td><a href=\"../internships/detail.php?id=" . $internshipId . "\">" . $title . "</a></td>
+                <td><a href=\"../internships/detail.php?id=" . $internshipId . "\">" . $desc .  " </a></td>
+            </tr>
         ";
-        if (isAdmin()) {
-            $out .= "
-                <a class=\"button\" href=\"../internships/create.php\"><div>Create Internship</div></a>
-            ";
-        }
+    }
+    //Buttons
+    $out .= "
+        </table>
+        <hr>
+        <a class=\"button\" href=\"../internships/list.php\"><div>Internship List</div></a>
+    ";
+    if (isAdmin()) {
+        $out .= "
+            <a class=\"button\" href=\"../internships/create.php\"><div>Create Internship</div></a>
+        ";
+    }
     $out .= "
         </div> <!--lower_nav-->
         </div> <!--detail_table-->
@@ -237,23 +228,6 @@ function displayValue($value, $post, $edit, $isURL) {
         }
     }
     return $out;
-}
-
-//Query and Data Functions
-function get_available_positions($id) {
-    return get_internships_by_company($id);
-}
-
-function get_num_available_positions($roles) {
-    $num_positions = 0;
-    foreach ($roles as $role) {
-        $num_positions += $role['SlotsAvailable'];
-    }
-    return $num_positions;
-}
-
-function get_company_contacts($id) {
-    return get_contacts_by_company($id);
 }
 
 ?>
