@@ -21,7 +21,7 @@ function renderCompanyList($data) {
                 <ul class=\"inner\">
                     <li>" . $d['Organization Name'] . "</li>
                     <li>" . $d['Location'] . "</li>
-                    <li>" . $d['Number of Positions'] . "</li>
+                    <li>" . $d['Available Internships'] . "</li>
                 </ul>
             </a></li>
             ";
