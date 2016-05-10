@@ -15,9 +15,6 @@
     require 'update_db.php';
 
 
-
-
-
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Mapped the passed back variables to something we can play with.
@@ -45,10 +42,14 @@
         $OrganizationName = $_POST['orgname'];
 
         //Push Changes to database
-        updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
+        $saveResult = updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
             $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL);
+        if ($saveResult) {
+            $renderThis = 'saved';
+        } else {
+            $renderThis = 'savingerror';
+        }
 
-        $renderThis = 'saved';
     } else {
         $contactId = $_REQUEST['id'];
         $data = get_contact_detail($contactId);
@@ -90,6 +91,13 @@
 </nav>
 
 <main>
+
+
+
+    <?php if ($renderThis == "unknown") : ?>
+        <h1>Sorry! Looking like something wen wrong when we tried to save that... You can see the detail below.</h1>
+        <p><?php ECHO htmlspecialchars($saveResult) ?></p>
+    <?php endif; ?>
     <?php if ($renderThis == "unknown") : ?>
         <h1>Sorry! We can't find the id you are looking for. :( </h1>
     <?php endif; ?>
@@ -98,9 +106,9 @@
         <!-- http://php.net/manual/en/function.http-build-query.php -->
         <h2><a href="<?php ECHO '../companies/detail.php?' . http_build_query(array('id' => $OrganizationId)) ?>">Click
                 here to go back
-                to <?php ECHO htmlspecialchars($OrganizationName) ?> page....</h2>
+                to <?php ECHO htmlspecialchars($OrganizationName) ?> page....</a></h2>
     <?php endif; ?>
-    <?php if ($renderThis == "standard") : ?>
+    <?php if ($renderThis == "standard" || $renderThis == "saved") : ?>
         <h1>Edit Existing Contact</h1>
         <form action="edit.php" method="post">
             <input type="hidden" name="id" value="<?php ECHO htmlspecialchars($contactId) ?>"/>
@@ -108,25 +116,25 @@
             <input type="hidden" name="orgid" value="<?php ECHO htmlspecialchars($OrganizationId) ?>"/>
             <table id="internship_detail">
                 <tr>
-                    <th><label for="firstname">First Name</label></th>
+                    <th><label for="firstname">First Name**</label></th>
                     <td><input id="firstname" name="firstname" type="text" maxlength="50" required
                                value="<?php ECHO htmlspecialchars($ContactFirstName) ?>" autofocus>
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="lastname">Last Name</label></th>
+                    <th><label for="lastname">Last Name**</label></th>
                     <td><input id="lastname" name="lastname" type="text" maxlength="50" required
                                value="<?php ECHO htmlspecialchars($ContactLastName) ?>">
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="title">Title</label></th>
+                    <th><label for="title">Title**</label></th>
                     <td><input id="title" name="title" type="text" maxlength="100" required
                                value="<?php ECHO htmlspecialchars($Title) ?>">
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="officenumber">Office Number</label></th>
+                    <th><label for="officenumber">Office Number**</label></th>
                     <td><input id="officenumber" name="officenumber" type="tel" required
                                maxlength="12"
                                value="<?php ECHO htmlspecialchars($OfficeNumber) ?>">
@@ -145,7 +153,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="email">Email</label></th>
+                    <th><label for="email">Email**</label></th>
                     <td><input name="email" name="email" type="email" maxlength="100" required
                                value="<?php ECHO htmlspecialchars($EmailAddress) ?>">
                     </td>
@@ -158,15 +166,19 @@
                 </tr>
                 <tr>
                     <th><label for="hiring">Hiring</label></th>
-                    <td><input id="hiring" name="hiring" type="checkbox"
-                               value="<?php ECHO htmlspecialchars($Hiring) ?>">
+                    <td><input id="hiring" name="hiring" type="checkbox" <?php if ($Hiring) {
+                            echo " checked ";
+                        } ?>">
                     </td>
                 </tr>
                 <tr>
                     <th><label for="onadcommittee">On AD Advisory Committee</label></th>
-                    <td><input id="onadcommittee" name="onadcommittee" type="checkbox"
-                               value="<?php ECHO htmlspecialchars($OnADAdvisoryCommittee) ?>">
+                    <td><input id="onadcommittee" name="onadcommittee"
+                               type="checkbox" <?php if ($OnADAdvisoryCommittee) {
+                            echo " checked ";
+                        } ?>>
                     </td>
+
                 </tr>
                 <tr>
                     <th><label for="linkedinurl">LinkedIn URL</label></th>
