@@ -184,6 +184,7 @@ function renderCompanyContacts($company_contacts) {
         $advise = $contact['OnADAdvisoryCommittee'];
         $linkedIn = $contact['LinkedInURL'];
     }
+    //TODO: translate bools to true/false
     $out = "
         <div class=\"wrapper\">
         <div class=\"detail_table\">
@@ -194,7 +195,7 @@ function renderCompanyContacts($company_contacts) {
         <tr><td>Title</td><td>" . $title ."</td></tr>
         <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
         <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
-        <tr><td>Office Phone</td><td>" . $cell . "</td></tr>
+        <tr><td>Cell Phone</td><td>" . $cell . "</td></tr>
         <tr><td>Referral</td><td>" . $ref . "</td></tr>
         <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
         <tr><td>AD Advisory Committee</td><td>" . $advise . "</td></tr>
