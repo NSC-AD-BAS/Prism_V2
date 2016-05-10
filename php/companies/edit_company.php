@@ -40,6 +40,8 @@ function build_update_query($orgId) {
 }
 
 //Run the update and take the user back to detail screen for org.
+//DEBUG FOR QUERY BUILDER
+//build_update_query($orgId);
 update_company(build_update_query($orgId));
-header("Location: /companies/detail.php?id=$orgId");
+header("Location: detail.php?id=$orgId");
 ?>
