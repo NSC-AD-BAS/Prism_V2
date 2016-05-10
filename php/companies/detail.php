@@ -224,7 +224,12 @@ function displayValue($value, $post, $edit, $isURL) {
         $out = $edit ? $textbox : $value;
     } else {
         //Otherwise, build a URL
-        $out = $edit ? $textbox : "<a href=\"" . $value . "\">" . $value . "</a>";
+        if (strpos($value, "@") === false) {
+            //Not an email address
+            $out = $edit ? $textbox : "<a href=\"" . $value . "\">" . $value . "</a>";
+        } else {
+            $out = $edit ? $textbox : "<a href=\"mailto:" . $value . "\">" . $value . "</a>";
+        }
     }
     return $out;
 }
