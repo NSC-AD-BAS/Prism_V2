@@ -53,7 +53,7 @@
                     <tr>
                     	<th>Preferred Name</th>
                     	<?php
-                    		echo '<td><input name="student[preferred]" type="text"' . $student['Preferred Name'] . '"></td>';
+                    		echo '<td><input name="student[preferred]" type="text" value="' . $student['Preferred Name'] . '"></td>';
                     	?>
                     <tr>
                         <th>SSID</th>
