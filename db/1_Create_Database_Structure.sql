@@ -10,16 +10,17 @@ CREATE TABLE organizations
 (
 	OrganizationId			INT				PRIMARY KEY 		AUTO_INCREMENT,
     OrganizationName		VARCHAR(100)	UNIQUE				NOT NULL,
-    YearlyRevenue			INT				NULL,
-    NumOfEmployees			INT				NULL,
+    YearlyRevenue			INT				NULL                DEFAULT 0,
+    NumOfEmployees			INT				NULL                DEFAULT 0,
 	URL						VARCHAR(250)	NULL,
     StreetAddressLineOne	VARCHAR(250)	NULL,
     StreetAddressLineTwo	VARCHAR(250)	NULL,
     City					VARCHAR(250)	NULL,
     State					VARCHAR(250)	NULL,
-    Statement				VARCHAR(250)	NULL,
+--    Statement				VARCHAR(250)	NULL,
 	Description 			TEXT			NOT NULL,
-    GlassdoorURL            VARCHAR(250)    NULL
+    GlassdoorURL            VARCHAR(250)    NULL, 
+    isArchived              boolean         NOT NULL    DEFAULT 0
 );
 
 -- Updated Bob M, 4/25/2016
@@ -57,9 +58,10 @@ CREATE TABLE internships
 --  AppEndDate				DATE, 					  //Removed Bob M. 4/25/2016
 	StartDate				DATE,
     EndDate					DATE,			
-    SlotsAvailable			INT				NOT NULL,
+--    SlotsAvailable			INT				NOT NULL,
     LastUpdated				DATETIME		NOT NULL,
     ExpirationDate          DATE        	NOT NULL,
+    isDeleted               boolean         NOT NULL    DEFAULT 0,
 	CONSTRAINT Internship_fk_OrganizationId
 		FOREIGN KEY (OrganizationId)
         REFERENCES organizations(OrganizationId)
@@ -72,6 +74,8 @@ CREATE TABLE user_types
 );
 
 
+
+
 CREATE TABLE users
 (
 	UserId					INT				PRIMARY KEY			AUTO_INCREMENT,
@@ -80,7 +84,7 @@ CREATE TABLE users
     MiddleName				VARCHAR(50)		NULL, 
     LastName				VARCHAR(50)		NOT NULL,
 --    ContactInfo				TEXT			NULL, //Replaced with Phone and Email Bob M. 4/25/2016
-	PhoneNumber				VARCHAR(12),  -- Added to replace ContactInfo field
+	PhoneNumber				VARCHAR(20),  -- Added to replace ContactInfo field
     EmailAddress			VARCHAR(100), -- Added to replace ContactInfo field
     UserName				VARCHAR(250)	NOT NULL			UNIQUE,
     UserPassword			VARCHAR(500)	NOT NULL,
@@ -96,13 +100,17 @@ CREATE TABLE students
 	StudentKeyId			INT 			PRIMARY KEY      AUTO_INCREMENT, 
     UserId                  INT             UNIQUE              NOT NULL,
 	StudentId				INT             NOT NULL, 	
-    PreferredName			VARCHAR(50)		NULL, 
-    ProgramStatus			VARCHAR(12)		NOT NULL,
+    PreferredName			VARCHAR(50)		NULL, -- Not in view. Fix it. 
 -- 	InternshipId 			INT				NULL, //Removed Bob M. 4/27/2016
 	Internship				VARCHAR(250),
-    InternCapstoneStatus    VARCHAR(50)     NULL,
-	Cohort					INT				NOT NULL,
+	Cohort					VARCHAR(20)		NOT NULL,
+
+-- Add our student App Status, Program Status, Intern/Capstone Status type tables
+-- Set these up as type tables. 
     ApplicationStatus		VARCHAR(50)		NULL,
+    ProgramStatus          VARCHAR(12)     NOT NULL,
+    InternCapstoneStatus    VARCHAR(50)     NULL,
+
     ResumeURL				VARCHAR(250)	NULL,
     LinkedInURL				VARCHAR(250)	NULL,
 	StreetAddressLineOne	VARCHAR(250)	NULL,

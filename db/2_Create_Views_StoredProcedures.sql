@@ -35,22 +35,25 @@ CREATE OR REPLACE VIEW internship_detail AS
 
 -- Updated Bob M. 4/25/2016
 CREATE OR REPLACE VIEW org_list AS
-    (SELECT 
-		o.OrganizationId,
+    (SELECT
+		o.OrganizationId ,
         o.OrganizationName AS `Organization Name`,
         CONCAT(o.City, ", ", o.State) AS `Location`,
-        i.SlotsAvailable AS `Number of Positions`
+        COUNT( i.InternshipId ) AS `Available Internships`
     FROM
         organizations o
-            JOIN
-        internships i ON o.OrganizationId = i.OrganizationId);
+             JOIN
+        internships i ON i.organizationId = o.organizationId
+    GROUP BY
+        i.organizationId
+        );
 
 -- ADDED Bob M. 4/27/2015
 CREATE OR REPLACE VIEW org_contact_list AS 
     (SELECT 
         oc.ContactID,
         o.OrganizationId,
-        CONCAT(oc.ContactFirstName, ", ", oc.ContactLastName) AS `Contact Name`,
+        CONCAT(oc.ContactFirstName, " ", oc.ContactLastName) AS `Contact Name`,
         oc.Title,
         oc.EmailAddress AS `Email Address`,
         oc.OfficeNumber AS `Office Phone`, 
@@ -58,7 +61,7 @@ CREATE OR REPLACE VIEW org_contact_list AS
         oc.CellNumber AS `Mobile Number`,
         oc.Referral,
         oc.Hiring,
-        oc.OnADAdvisoryCommittee AS `AD Advisory Committe Member`,
+        oc.OnADAdvisoryCommittee AS `AD Advisory Committee Member`,
         oc.LinkedInURL AS `LinkedIn` 
     FROM
         organization_contacts oc
@@ -78,7 +81,6 @@ CREATE OR REPLACE VIEW org_detail AS
         o.State,
         o.NumOfEmployees AS `Number of Employees`,
         o.YearlyRevenue AS `Yearly Revenue`,
-        o.Statement,
         o.Description,
         o.GlassdoorURL AS `Glassdoor Link`
     FROM
@@ -91,7 +93,7 @@ CREATE OR REPLACE VIEW org_detail AS
 CREATE OR REPLACE VIEW student_list AS
     (SELECT 
         u.UserId,
-        CONCAT(u.FirstName,", ", u.LastName) AS `Student Name`,
+        CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
         s.Cohort,
         s.ProgramStatus AS `Program Status`,
         s.InternCapstoneStatus AS `Internship/Capstone Status`,
@@ -105,12 +107,16 @@ CREATE OR REPLACE VIEW student_list AS
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
         u.UserId,
+        s.StudentKeyId,
 		u.FirstName AS `Student First Name`,
         u.MiddleName AS `Student Middle Name`,
 		u.LastName AS `Student Last Name`,
+        s.PreferredName AS `Preferred Name`, 
         s.StudentId AS `SID`,
         s.Cohort,
         s.ProgramStatus AS `Program Status`,
+        s.InternCapstoneStatus AS `Internship/Capstone Status`,
+        s.ApplicationStatus AS `Application Status`,
         s.Internship AS `Internship`,
         u.PhoneNumber AS `Phone`,
         u.EmailAddress  AS `Email`,
@@ -118,50 +124,50 @@ CREATE OR REPLACE VIEW student_detail AS
         s.StreetAddressLineTwo AS `Address 2`,
         s.City,
         s.State,
-        s.Zipcode,
-        un.Note_Text AS `Notes`
+        s.Zipcode
+        -- un.Note_Text AS `Notes`
     FROM
         students s
             JOIN
-        users u ON u.userId = s.userId
-            JOIN
-        user_notes un ON un.userId = s.userId);
+        users u ON u.userId = s.userId);
+        --     JOIN
+        -- user_notes un ON un.userId = s.userId);
         
 -- Added by Austin, used in conjunction with the edit student page
-CREATE OR REPLACE VIEW student_all_data AS 
-	(SELECT 
-        u.UserId,
-		u.FirstName AS `Student First Name`,
-        u.MiddleName AS `Student Middle Name`,
-		u.LastName AS `Student Last Name`,
-        s.PreferredName AS `Preferred Name`,
-        s.StudentId AS `SID`,
-        s.Cohort,
-        s.ProgramStatus AS `Program Status`,
-        s.Internship AS `Internship`,
-        s.InternCapstoneStatus AS `Internship Status`,
-        s.ApplicationStatus AS `Application Status`,
-        s.ResumeURL AS `Resume`,
-        s.LinkedInURL AS `LinkedIn Profile`,
-        u.PhoneNumber AS `Phone`,
-        u.EmailAddress  AS `Email`,
-        s.StreetAddressLineOne AS `Address 1`,
-        s.StreetAddressLineTwo AS `Address 2`,
-        s.City,
-        s.State,
-        s.Zipcode,
-        un.Note_Text AS `Notes`
-    FROM
-        students s
-            JOIN
-        users u ON u.userId = s.userId
-            JOIN
-        user_notes un ON un.userId = s.userId);
+-- CREATE OR REPLACE VIEW student_all_data AS 
+-- 	(SELECT 
+--         u.UserId,
+-- 		u.FirstName AS `Student First Name`,
+--         u.MiddleName AS `Student Middle Name`,
+-- 		u.LastName AS `Student Last Name`,
+--         s.PreferredName AS `Preferred Name`,
+--         s.StudentId AS `SID`,
+--         s.Cohort,
+--         s.ProgramStatus AS `Program Status`,
+--         s.Internship AS `Internship`,
+--         s.InternCapstoneStatus AS `Internship Status`,
+--         s.ApplicationStatus AS `Application Status`,
+--         s.ResumeURL AS `Resume`,
+--         s.LinkedInURL AS `LinkedIn Profile`,
+--         u.PhoneNumber AS `Phone`,
+--         u.EmailAddress  AS `Email`,
+--         s.StreetAddressLineOne AS `Address 1`,
+--         s.StreetAddressLineTwo AS `Address 2`,
+--         s.City,
+--         s.State,
+--         s.Zipcode,
+--         un.Note_Text AS `Notes`
+--     FROM
+--         students s
+--             JOIN
+--         users u ON u.userId = s.userId
+--             JOIN
+--         user_notes un ON un.userId = s.userId);
 
 CREATE OR REPLACE VIEW user_list AS
     (SELECT 
         u.UserId AS `User ID`,
-		CONCAT(u.FirstName, ", ", u.LastName) AS `Name`,
+		CONCAT(u.FirstName, " ", u.LastName) AS `Name`,
         u.PhoneNumber AS `Phone`,
         u.EmailAddress AS `Email Address`,
         t.TypeName AS `User Type`
@@ -172,31 +178,31 @@ CREATE OR REPLACE VIEW user_list AS
 	WHERE u.TypeId != 1
 	);
 
-CREATE OR REPLACE VIEW user_detail AS
-    (SELECT 
-        *
-    FROM
-        user_list);
+-- CREATE OR REPLACE VIEW user_detail AS
+--     (SELECT 
+--         *
+--     FROM
+--         user_list);
 
 CREATE OR REPLACE VIEW change_list AS
     (SELECT 
         c.Change_LogId,
         c.LogTime,
         c.UserId,
-       	u.FirstName AS `Student First Name`,
-        u.MiddleName AS `Student Middle Name`,
-		u.LastName AS `Student Last Name`,
+  --      	u.FirstName AS `Student First Name`,
+  --       u.MiddleName AS `Student Middle Name`,
+		-- u.LastName AS `Student Last Name`,
         c.Message
     FROM
         change_log c
             JOIN
         users u ON u.UserId = c.UserId);
 
-CREATE OR REPLACE VIEW change_detail AS
-    (SELECT 
-        *
-    FROM
-        change_list);
+-- CREATE OR REPLACE VIEW change_detail AS
+--     (SELECT 
+--         *
+--     FROM
+--         change_list);
 
 DROP PROCEDURE IF EXISTS `internship_detail_single`;
 DROP PROCEDURE IF EXISTS `org_detail_single`;
