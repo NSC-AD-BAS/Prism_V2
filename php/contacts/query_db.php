@@ -50,19 +50,4 @@ function get_contact_detail($id)
     return $output;
 }
 
-//This should be moved to a separate file, but lets just leave it here for now...
-function update_contact_detail($ContactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
-                               $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL)
-{
-    $conn = db_connect();
-    $stmt = $conn->prepare("");
-    $stmt->bind_param("i", $id);
-    /* execute query */
-    $stmt->execute();
-
-    //clean-up result set and connection
-    mysqli_close($conn);
-    return true;
-}
-
 ?>

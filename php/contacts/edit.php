@@ -6,7 +6,18 @@
     <link rel="stylesheet" type="text/css" href="../style/site.css">
 
     <?php
-    require 'query_db.php';
+    ECHO "<br />";
+    ECHO "<br />";
+    ECHO "<br />";
+    ECHO "<br />";
+
+    //require 'query_db.php';
+    require 'update_db.php';
+
+
+
+
+
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Mapped the passed back variables to something we can play with.
@@ -33,14 +44,11 @@
         $LinkedInURL = $_POST['linkedinurl'];
         $OrganizationName = $_POST['orgname'];
 
-
-        //TODO: Database logic...
+        //Push Changes to database
+        updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
+            $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL);
 
         $renderThis = 'saved';
-
-        //TODO: Message to user saying everything is groovy.
-
-
     } else {
         $contactId = $_REQUEST['id'];
         $data = get_contact_detail($contactId);
@@ -87,8 +95,10 @@
     <?php endif; ?>
     <?php if ($renderThis == "saved") : ?>
         <h1>You changes have been saved! </h1>
-        <!-- TODO: Update to use the real company id -->
-        <h2><a href="../companies/detail.php?id=1">Click here to go back to <?php ECHO htmlspecialchars($OrganizationName)?> page....</h2>
+        <!-- http://php.net/manual/en/function.http-build-query.php -->
+        <h2><a href="<?php ECHO '../companies/detail.php?' . http_build_query(array('id' => $OrganizationId)) ?>">Click
+                here to go back
+                to <?php ECHO htmlspecialchars($OrganizationName) ?> page....</h2>
     <?php endif; ?>
     <?php if ($renderThis == "standard") : ?>
         <h1>Edit Existing Contact</h1>
@@ -178,8 +188,8 @@
                 </tr>
             </table>
         </form>
-        <!-- TODO: Make this go back to the real company -->
-        <a class="button" href="list.php">
+        <a class="button"
+           href="<?php ECHO '../companies/detail.php?' . http_build_query(array('id' => $OrganizationId)) ?>">
             <div>Back to Company</div>
         </a>
 
