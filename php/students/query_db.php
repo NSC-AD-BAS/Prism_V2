@@ -49,7 +49,7 @@
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$query = "SELECT * FROM student_all_data WHERE UserId = " . $id . ";";
+		$query = "SELECT * FROM students WHERE UserId = " . $id . ";";
 		if ($result = mysqli_query($conn, $query)) {
 			$row = mysqli_fetch_assoc($result);
 			mysqli_free_result($result);

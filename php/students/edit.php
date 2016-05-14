@@ -7,10 +7,9 @@
 
     <?php
         require 'query_db.php';
-        require 'student_presentation.php';
 
         $studentId = $_GET['id'];
-        $student = get_all_fields($studentId);
+        $student = get_single_student($studentId);
     ?>
 </head>
 <body>
@@ -104,7 +103,7 @@
                     	<td>
                     		<select name="student[internship_capstone_status]">
                     			<?php
-                    			switch($student['Internship Status']) {
+                    			switch($student['Internship/Capstone Status']) {
                     				case 'incomplete':
                     					echo '<option value="incomplete">Incomplete</option>
                     						<option value="completed">Completed</option>
@@ -245,12 +244,12 @@
                             echo '<td><input name="student[zipcode]" type="text" value="' . $student['Zipcode'] . '"></td>';
                         ?>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th>Notes</th>
                         <?php
-                            echo '<td><textarea name="student[notes]">' . $student['Notes'] . '</textarea></td>';
+                            // echo '<td><textarea name="student[notes]">' . $student['Notes'] . '</textarea></td>';
                         ?>
-                    </tr>
+                    </tr> -->
                     <tr><td><input type="submit" value="Edit Student"></td></tr>
                     <?php
                     	echo '<input type="hidden" name="student[id]" value="' . $student['UserId'] . '">';

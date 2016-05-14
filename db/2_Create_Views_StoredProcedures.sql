@@ -107,7 +107,8 @@ CREATE OR REPLACE VIEW student_list AS
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
         u.UserId,
-        s.StudentKeyId,
+        -- Removed by Austin, not needed in DB view
+        -- s.StudentKeyId,
 		u.FirstName AS `Student First Name`,
         u.MiddleName AS `Student Middle Name`,
 		u.LastName AS `Student Last Name`,
@@ -117,6 +118,8 @@ CREATE OR REPLACE VIEW student_detail AS
         s.ProgramStatus AS `Program Status`,
         s.InternCapstoneStatus AS `Internship/Capstone Status`,
         s.ApplicationStatus AS `Application Status`,
+        s.ResumeURL AS `Resume`,
+        s.LinkedInURL AS `LinkedIn Profile`,
         s.Internship AS `Internship`,
         u.PhoneNumber AS `Phone`,
         u.EmailAddress  AS `Email`,
