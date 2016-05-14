@@ -41,7 +41,7 @@
 	        <?php
 	        	echo '<a href="edit.php?id=' . $studentId . '" class="button"><div>Edit</div></a>';
 	        ?>
-	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
+	        <a href="delete.php" class="button"><div>Delete</div></a>
             
         </div>
     </main>

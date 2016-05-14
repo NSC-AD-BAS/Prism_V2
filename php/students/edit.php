@@ -131,7 +131,7 @@
                     	</td>
                     </tr>
                     <tr>
-                        <th>Internship URL</th>
+                        <th>Internship</th>
                         <?php
                             echo '<td><input name="student[internship_url]" type="text" value="' . $student['Internship'] . '"></td>';
                         ?>
@@ -199,7 +199,7 @@
                     <tr>
                     	<th>Linked-In URL</th>
                     	<?php
-                    		echo '<td><input name="student[linked_in_url]" value="' . $student['LinkedIn Profile'] . '"></td>;'
+                    		echo '<td><input name="student[linked_in_url]" value="' . $student['LinkedIn Profile'] . '"></td>';
                     	?>
                     </tr>
                     <tr>
