@@ -58,4 +58,10 @@
 
 		return $row;
 	}
+
+	function isAdmin() {
+    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
+    //Change to false to see nav and detail buttons auto-magically disappear.
+    return true;
+}
 ?>
