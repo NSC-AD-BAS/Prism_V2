@@ -23,7 +23,6 @@ if (isset($_GET['edit']) && $_GET['edit'] == "true") {
 //Locale for currency
 setlocale(LC_MONETARY,"en_US");
 
-
 //Hit the DB, get data necessary to render the page
 $data = get_company_detail($id);
 $company_name = $data[0]['Company'];

@@ -19,7 +19,6 @@ function build_update_query($orgId) {
         $state = !empty($_POST["state"]) ? $_POST["state"] : $d['State'];
         $num_employees = !empty($_POST["num_employees"]) ? $_POST["num_employees"] : $d['Number of Employees'];
         $revenue = !empty($_POST["revenue"]) ? $_POST["revenue"] : $d['Yearly Revenue'];
-        $statement = !empty($_POST["statement"]) ? $_POST["statement"] : $d['Statement'];
         $desc = !empty($_POST["desc"]) ? $_POST["desc"] : $d['Description'];
     }
 
@@ -32,7 +31,6 @@ function build_update_query($orgId) {
             State=\"$state\",
             NumOfEmployees=$num_employees,
             YearlyRevenue=$revenue,
-            Statement=\"$statement\",
             Description=\"$desc\"
         WHERE OrganizationId = $orgId;
     ";
@@ -40,7 +38,7 @@ function build_update_query($orgId) {
 }
 
 //Run the update and take the user back to detail screen for org.
-//DEBUG FOR QUERY BUILDER
+//DEBUG: Uncomment to print the built query to the page for sanity checking, texting in Sequel
 //echo build_update_query($orgId);
 update_company(build_update_query($orgId));
 header("Location: detail.php?id=$orgId");
