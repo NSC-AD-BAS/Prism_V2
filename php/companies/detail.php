@@ -2,7 +2,6 @@
 
 //TODO: Get column headers and td names from column names in DB, not hard-coded.
 
-
 //Includes
 include "page_builder.php";
 include "query_db.php";
@@ -23,7 +22,6 @@ if (isset($_GET['edit']) && $_GET['edit'] == "true") {
 }
 //Locale for currency
 setlocale(LC_MONETARY,"en_US");
-
 
 //Hit the DB, get data necessary to render the page
 $data = get_company_detail($id);
@@ -160,8 +158,14 @@ function renderCompanyInternships($positions) {
 
 function renderCompanyContacts($company_contacts) {
     //TODO: check for empty before iterating through null set (CodeCleanup)
-    //TODO: $advise should be a boolean that displays Yes/No per meeting notes.
+    $out = "
+        <div class=\"wrapper\">
+        <div class=\"detail_table\">
+        <table>
+        <h3>Company Contacts</h3>
+    ";
     foreach ($company_contacts as $contact) {
+        $contactId = $contact['ContactId'];
         $orgId = $contact['OrganizationId'];
         $first = $contact['ContactFirstName'];
         $last = $contact['ContactLastName'];
@@ -171,37 +175,33 @@ function renderCompanyContacts($company_contacts) {
         $ext = $contact['OfficeExtension'];
         $cell = $contact['CellNumber'];
         $ref = $contact['Referral'];
-        $hiring = $contact['Hiring'];
-        $advise = $contact['OnADAdvisoryCommittee'];
+        $hiring = $contact['Hiring'] ? "Yes" : "No";
+        $advise = $contact['OnADAdvisoryCommittee'] ? "Yes" : "No";
         $linkedIn = $contact['LinkedInURL'];
-    }
-    //TODO: translate bools to true/false
-    $out = "
-        <div class=\"wrapper\">
-        <div class=\"detail_table\">
-        <table>
-        <h3>Company Contacts</h3>
-        <hr>
-        <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
-        <tr><td>Title</td><td>" . $title ."</td></tr>
-        <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
-        <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
-        <tr><td>Cell Phone</td><td>" . $cell . "</td></tr>
-        <tr><td>Referral</td><td>" . $ref . "</td></tr>
-        <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
-        <tr><td>AD Advisory Committee</td><td>" . $advise . "</td></tr>
-        <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
-        </table>
-        <hr>
-    ";
 
-    //Buttons...
-    if (isAdmin()) {
-        //TODO: Figure out where these should go.
         $out .= "
-            <a class=\"button\" href=\"../contacts/edit.php&orgid=" . $orgId . "\"><div>Edit Contacts</div></a>
-            <a class=\"button\" href=\"../internships/create.php\"><div>Add Contact</div></a>
+            <hr>
+            <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
+            <tr><td>Title</td><td>" . $title ."</td></tr>
+            <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
+            <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
+            <tr><td>Cell Phone</td><td>" . $cell . "</td></tr>
+            <tr><td>Referral</td><td>" . $ref . "</td></tr>
+            <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
+            <tr><td>On AD Advisory Committee</td><td>" . $advise . "</td></tr>
+            <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
+            </table>
+            <hr>
         ";
+
+        //Buttons...
+        if (isAdmin()) {
+            //FIXME: contacts/create.php not yet implemented
+            $out .= "
+                <a class=\"button\" href=\"../contacts/edit.php?id=" . $contactId . "\"><div>Edit Contact</div></a>
+                <a class=\"button\" href=\"../contacts/create.php?orgId=" . $orgId . "\"><div>Add Contact</div></a>
+            ";
+        }
     }
 
     $out .= "
