@@ -50,10 +50,9 @@ function build_company_query($name, $desc) {
     return $query;
 }
 
-//Populate internship with fake data so we can render the company on the list.
-//TODO: Set Expiration date to $now + 12weeks
+//Populate internship with temporary data so we can render the company on the list.
 function build_internship_query($orgId, $now) {
-    $exp = date($now, strtotime("+12 weeks"));
+    $exp = date('Y-m-d  H:i:s', strtotime("+12 weeks"));
     $query = "
         INSERT INTO internships SET
         OrganizationId=$orgId,
