@@ -105,14 +105,36 @@ INSERT INTO users(
 (15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com", "facul", "facul", 3)
 ;
 
+INSERT INTO intern_capstone_status(Id, Description)
+VALUES
+(1, "Incomplete"),
+(2, "Completed"),
+(3, "In Progress");
+
+INSERT INTO program_status(Id, Description)
+VALUES
+(1, "Active"),
+(2, "Inactive"),
+(3, "Graduated");
+
+INSERT INTO application_status(Id, Description)
+VALUES
+(1, "Applied"),
+(2, "Provisionally Accepted"),
+(3, "Fully Accepted"),
+(4, "Wihtdrawn"),
+(5, "Denied");
+
+
 INSERT INTO students(
 	StudentId, 
     PreferredName, 
-    ProgramStatus, 
     Internship, 
     Cohort, 
     UserId, 
-    ApplicationStatus, 
+    ApplicationStatusID,
+    ProgramStatusId,
+    InternCapstoneStatusId,
     ResumeURL, 
     LinkedInURL,
     StreetAddressLineOne, 
@@ -121,7 +143,7 @@ INSERT INTO students(
     State,
     Zipcode
 ) VALUES 
-(111111111, "Jimbo", "Active", "Internship Company Name", "201501", 2, "Fully Accepted", NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA", "98123")
+(111111111, "Jimbo", "Internship Company Name", "201501", 2, 1, 1, 1, NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA", "98123")
 ;
 
 INSERT INTO change_log(Change_LogId, LogTime, UserId, Message) VALUES

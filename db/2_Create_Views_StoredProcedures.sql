@@ -95,9 +95,9 @@ CREATE OR REPLACE VIEW student_list AS
         u.UserId,
         CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
         s.Cohort,
-        s.ProgramStatus AS `Program Status`,
-        s.InternCapstoneStatus AS `Internship/Capstone Status`,
-        s.ApplicationStatus AS `Application Status`
+        s.ProgramStatusId AS `Program Status`,
+        s.InternCapstoneStatusId AS `Internship/Capstone Status Id`,
+        s.ApplicationStatusId AS `Application Status Id`
     FROM
         students s
             JOIN
@@ -115,9 +115,9 @@ CREATE OR REPLACE VIEW student_detail AS
         s.PreferredName AS `Preferred Name`, 
         s.StudentId AS `SID`,
         s.Cohort,
-        s.ProgramStatus AS `Program Status`,
-        s.InternCapstoneStatus AS `Internship/Capstone Status`,
-        s.ApplicationStatus AS `Application Status`,
+        s.ProgramStatusId AS `Program Status Id`,
+        s.InternCapstoneStatusId AS `Internship/Capstone Status Id`,
+        s.ApplicationStatusId AS `Application Status Id`,
         s.ResumeURL AS `Resume`,
         s.LinkedInURL AS `LinkedIn Profile`,
         s.Internship AS `Internship`,
@@ -128,45 +128,11 @@ CREATE OR REPLACE VIEW student_detail AS
         s.City,
         s.State,
         s.Zipcode
-        -- un.Note_Text AS `Notes`
     FROM
         students s
             JOIN
         users u ON u.userId = s.userId);
-        --     JOIN
-        -- user_notes un ON un.userId = s.userId);
-        
--- Added by Austin, used in conjunction with the edit student page
--- CREATE OR REPLACE VIEW student_all_data AS 
--- 	(SELECT 
---         u.UserId,
--- 		u.FirstName AS `Student First Name`,
---         u.MiddleName AS `Student Middle Name`,
--- 		u.LastName AS `Student Last Name`,
---         s.PreferredName AS `Preferred Name`,
---         s.StudentId AS `SID`,
---         s.Cohort,
---         s.ProgramStatus AS `Program Status`,
---         s.Internship AS `Internship`,
---         s.InternCapstoneStatus AS `Internship Status`,
---         s.ApplicationStatus AS `Application Status`,
---         s.ResumeURL AS `Resume`,
---         s.LinkedInURL AS `LinkedIn Profile`,
---         u.PhoneNumber AS `Phone`,
---         u.EmailAddress  AS `Email`,
---         s.StreetAddressLineOne AS `Address 1`,
---         s.StreetAddressLineTwo AS `Address 2`,
---         s.City,
---         s.State,
---         s.Zipcode,
---         un.Note_Text AS `Notes`
---     FROM
---         students s
---             JOIN
---         users u ON u.userId = s.userId
---             JOIN
---         user_notes un ON un.userId = s.userId);
-
+       
 CREATE OR REPLACE VIEW user_list AS
     (SELECT 
         u.UserId AS `User ID`,

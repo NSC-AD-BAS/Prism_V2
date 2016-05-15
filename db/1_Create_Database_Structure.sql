@@ -95,22 +95,36 @@ CREATE TABLE users
 );
 
 
+CREATE TABLE intern_capstone_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
+);
+
+CREATE TABLE program_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
+);
+
+CREATE TABLE application_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
+);
+
+
 CREATE TABLE students
 (
 	StudentKeyId			INT 			PRIMARY KEY      AUTO_INCREMENT, 
     UserId                  INT             UNIQUE              NOT NULL,
 	StudentId				INT             NOT NULL, 	
-    PreferredName			VARCHAR(50)		NULL, -- Not in view. Fix it. 
--- 	InternshipId 			INT				NULL, //Removed Bob M. 4/27/2016
+    PreferredName			VARCHAR(50)		NULL,
 	Internship				VARCHAR(250),
 	Cohort					VARCHAR(20)		NOT NULL,
-
--- Add our student App Status, Program Status, Intern/Capstone Status type tables
--- Set these up as type tables. 
-    ApplicationStatus		VARCHAR(50)		NULL,
-    ProgramStatus          VARCHAR(12)     NOT NULL,
-    InternCapstoneStatus    VARCHAR(50)     NULL,
-
+    ApplicationStatusId		INT		NOT NULL,
+    ProgramStatusId     	INT		NOT NULL,
+    InternCapstoneStatusId  INT		NOT NULL,
     ResumeURL				VARCHAR(250)	NULL,
     LinkedInURL				VARCHAR(250)	NULL,
 	StreetAddressLineOne	VARCHAR(250)	NULL,
@@ -120,8 +134,19 @@ CREATE TABLE students
     Zipcode					VARCHAR(250)	NULL,
 	CONSTRAINT Student_fk_UserId
 		FOREIGN KEY (UserId)
-        REFERENCES users(UserId)
+        REFERENCES users(UserId),
+	CONSTRAINT Student_fk_ApplicationStatusId
+		FOREIGN KEY (ApplicationStatusId)
+        REFERENCES application_status(Id),
+	CONSTRAINT Student_fk_ProgramStatusId
+		FOREIGN KEY (ProgramStatusId)
+        REFERENCES program_status(Id),
+	CONSTRAINT Student_fk_InternCapstoneStatusId
+		FOREIGN KEY (InternCapstoneStatusId)
+        REFERENCES intern_capstone_status(Id)
 );
+
+
 
 -- CREATE TABLE student_internships
 -- (
