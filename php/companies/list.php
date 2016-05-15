@@ -33,7 +33,6 @@ function renderCompanyList($data) {
         <a class=\"button\" href=\"create.php\"><div>Create new Company</div></a>";
     }
 
-    //This could just as easily be a return
     echo $out;
 }
 

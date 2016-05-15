@@ -41,25 +41,26 @@ function build_company_query($name, $desc) {
         OrganizationName=\"$name\",
         Description=\"$desc\",
         City=\"Seattle\",
+        State=\"WA\",
         YearlyRevenue=0,
         NumOfEmployees=0,
-        State=\"WA\"
+        isArchived=0
+
     ";
     return $query;
 }
 
-//Populate internship with fake data so we can render the company on the list.
-//TODO: Set Expiration date to $now + 12weeks
+//Populate internship with temporary data so we can render the company on the list.
 function build_internship_query($orgId, $now) {
+    $exp = date('Y-m-d  H:i:s', strtotime("+12 weeks"));
     $query = "
         INSERT INTO internships SET
         OrganizationId=$orgId,
         PositionTitle=\"EDIT_ME\",
         Description=\"EDIT_ME_TOO\",
         DatePosted=\"$now\",
-        SlotsAvailable=0,
         LastUpdated=\"$now\",
-        ExpirationDate=\"$now\"
+        ExpirationDate=\"$exp\"
     ";
     return $query;
 }

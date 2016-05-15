@@ -1,4 +1,9 @@
 <?php
+
+/*
+    Generic page building functions - header, nav and footer
+*/
+//Render the page header.  $header and $isDetail are used to title the window/tab
 function render_header($header, $isDetail) {
     $out = "
         <!DOCTYPE html>
@@ -13,6 +18,7 @@ function render_header($header, $isDetail) {
     echo $out;
 }
 
+//Render the nav bar, the search box and the $page_name in an h1 element
 function render_nav($page_name) {
     //Pages may be added or re-ordered by adjusting this array
     $nav_pages = ["Internships", "Companies", "Students"];
@@ -32,6 +38,7 @@ function render_nav($page_name) {
     echo $out;
 }
 
+//Render the page footer.  This function closes the main element opened by render_nav();
 function render_footer() {
     //Close the main opened in render_nav()
     $out = "
@@ -39,6 +46,7 @@ function render_footer() {
         </br>
         <footer>
         <p>North Seattle College - PRISM &copy; 2016</p>
+        </footer>
         </body>
         </html>
     ";
