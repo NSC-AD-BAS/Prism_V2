@@ -111,13 +111,13 @@
             ?>
         </tr>
         <tr>
-            <th>Address Line1</th>
+            <th>Address Line 1</th>
             <?php
                 echo '<td><input name="student[address1]" type="text" value="' . $student['Address 1'] . '"></td>';
             ?>
         </tr>
         <tr>
-            <th>Address Line2</th>
+            <th>Address Line 2</th>
             <?php
                 echo '<td><input name="student[address2]" type="text" value="' . $student['Address 2'] . '"></td>';
             ?>

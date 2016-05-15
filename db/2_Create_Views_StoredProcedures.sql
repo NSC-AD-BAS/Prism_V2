@@ -108,7 +108,6 @@ CREATE OR REPLACE VIEW student_list AS
         intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
             JOIN
         application_status aps ON aps.Id = s.ApplicationStatusId);
-    );
 
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
