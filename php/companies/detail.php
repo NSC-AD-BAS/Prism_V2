@@ -41,7 +41,7 @@ renderCompanyDetail($data, $edit);
 //Only show Contacts and Internships if we're not in edit mode.
 if (!$edit) {
     renderCompanyInternships($positions);
-    renderCompanyContacts($company_contacts);
+    renderCompanyContacts($company_contacts, $id);
 }
 
 render_footer();
@@ -85,85 +85,84 @@ function renderCompanyDetail($data, $edit) {
             <tr><td>Description</td><td>' . displayValue($desc, "desc", $edit, false) . '</td></tr>
         </table>
         <hr>
-
         ';
-        //Sew Buttons...
-        $out .= "<div class=\"lower_nav\">";
+        //Buttons...
+        $out .= '<div class="lower_nav">';
             if ($edit) {
-                $out .= "
-                <div class=\"lower_nav\">
-                    <input type=\"submit\" class=\"button\" value=\"Save\"></td></tr>
-                    <input type=\"submit\" class=\"button\" value=\"Cancel\"></td></tr>
+                $out .= '
+                <div class="lower_nav">
+                    <input type="submit" class="button" value="Save"></td></tr>
+                    <input type="submit" class="button" value="Cancel"></td></tr>
                 </div>
-                ";
+                ';
             } else {
-                $out .= "
-                    <a class=\"button\" href=\"list.php\"><div>Company List</div></a>
-                ";
+                $out .= '
+                    <a class="button" href="list.php"><div>Company List</div></a>
+                ';
                 if (isAdmin()) {
-                    $out .= "
-                        <a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>
-                        <a class=\"button\" href=\"create.php\"><div>Create Company</div></a>
-                        <a class=\"button\" href=\"delete.php?id=$id\"><div>Delete</div></a>
-                    ";
+                    $out .= '
+                        <a class="button" href="detail.php?id=' . $id . '&edit=true"><div>Edit</div></a>
+                        <a class="button" href="create.php"><div>Create Company</div></a>
+                        <a class="button" href="delete.php?id=' . $id . '"><div>Delete</div></a>
+                    ';
                 }
             }
-            $out .= "
+            $out .= '
         </form><!--close form-->
         </div> <!--lower_nav-->
         </div> <!--detail_table-->
         </div> <!--wrapper-->
-        ";
+        ';
     echo $out;
 }
 
 function renderCompanyInternships($positions) {
-    $out = "
-        <div class=\"wrapper\">
-        <div class=\"detail_table\">
+    $out = '
+        <div class="wrapper">
+        <div class="detail_table">
         <h3>Available Internships</h3>
         <hr>
         <table>
         <tr><td><strong>Title</strong></td><td><strong>Description</strong></td></tr>
-    ";
+    ';
     foreach ($positions as $pos) {
         $internshipId = $pos['InternshipId'];
         $title = $pos['PositionTitle'];
         $desc = $pos['Description'];
-        $out .= "
+        $out .= '
             <tr>
-                <td><a href=\"../internships/detail.php?id=" . $internshipId . "\">" . $title . "</a></td>
-                <td><a href=\"../internships/detail.php?id=" . $internshipId . "\">" . $desc .  " </a></td>
+                <td><a href="../internships/detail.php?id=' . $internshipId . '">' . $title . '</a></td>
+                <td><a href="../internships/detail.php?id=' . $internshipId . '">' . $desc .  '</a></td>
             </tr>
-        ";
+        ';
     }
     //Buttons
-    $out .= "
+    $out .= '
         </table>
         <hr>
-        <a class=\"button\" href=\"../internships/list.php\"><div>Internship List</div></a>
-    ";
+        <a class="button" href="../internships/list.php"><div>Internship List</div></a>
+    ';
     if (isAdmin()) {
-        $out .= "
-            <a class=\"button\" href=\"../internships/create.php\"><div>Create Internship</div></a>
-        ";
+        $out .= '
+            <a class="button" href="../internships/create.php"><div>Create Internship</div></a>
+        ';
     }
-    $out .= "
+    $out .= '
         </div> <!--lower_nav-->
         </div> <!--detail_table-->
         </div> <!--wrapper-->
-    ";
+    ';
     echo $out;
 }
 
-function renderCompanyContacts($company_contacts) {
+function renderCompanyContacts($company_contacts, $id) {
     //TODO: check for empty before iterating through null set (CodeCleanup)
-    $out = "
-        <div class=\"wrapper\">
-        <div class=\"detail_table\">
+    $out = '
+        <div class="wrapper">
+        <div class="detail_table">
         <h3>Company Contacts</h3>
         <hr>
-    ";
+    ';
     foreach ($company_contacts as $contact) {
         $contactId = $contact['ContactId'];
         $orgId = $contact['OrganizationId'];
@@ -179,45 +178,39 @@ function renderCompanyContacts($company_contacts) {
         $advise = $contact['OnADAdvisoryCommittee'] ? "Yes" : "No";
         $linkedIn = $contact['LinkedInURL'];
 
-        $out .= "
+        $out .= '
             <table>
-            <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
-            <tr><td>Title</td><td>" . $title ."</td></tr>
-            <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
-            <tr><td>Office Phone</td><td>" . $office . "</td><td>ext. </td><td>" . $ext . "</td></tr>
-            <tr><td>Cell Phone</td><td>" . $cell . "</td></tr>
-            <tr><td>Referral</td><td>" . $ref . "</td></tr>
-            <tr><td>Hiring Full Time Positions</td><td>" . $hiring . "</td></tr>
-            <tr><td>On AD Advisory Committee</td><td>" . $advise . "</td></tr>
-            <tr><td>LinkedIn</td><td>" . displayValue($linkedIn, 'linkedIn', false, true) ."</td></tr>
+            <tr><td>Name</td><td>' . $first . ' ' . $last .'</td></tr>
+            <tr><td>Title</td><td>' . $title . '</td></tr>
+            <tr><td>Email Address</td><td>' . displayValue($email, "email", false, true) . '</td></tr>
+            <tr><td>Office Phone</td><td>' . $office . '</td><td>ext. </td><td>' . $ext . '</td></tr>
+            <tr><td>Cell Phone</td><td>' . $cell . '</td></tr>
+            <tr><td>Referral</td><td>' . $ref . '</td></tr>
+            <tr><td>Hiring Full Time Positions</td><td>' . $hiring . '</td></tr>
+            <tr><td>On AD Advisory Committee</td><td>' . $advise . '</td></tr>
+            <tr><td>LinkedIn</td><td>' . displayValue($linkedIn, "linkedIn", false, true) . '</td></tr>
             </table>
             <hr>
-        ";
+        ';
 
         //Buttons...
         if (isAdmin()) {
             //FIXME: contacts/create.php not yet implemented
-            $out .= "
-                <a class=\"button\" href=\"../contacts/edit.php?id=" . $contactId . "\"><div>Edit Contact</div></a>
-
-            ";
+            $out .= '<a class="button" href="../contacts/edit.php?id=' . $contactId . '"><div>Edit Contact</div></a>';
         }
     }
+    //Show Add Contact button even if no contacts are defined
     if (isAdmin()) {
-        $out .= "<a class=\"button\" href=\"../contacts/create.php?orgId=" . $id . "\"><div>Add Contact</div></a>";
+        $out .= '<a class="button" href="../contacts/create.php?orgId=' . $id . '"><div>Add Contact</div></a>';
     }
-
-    $out .= "
-        </div>
-        </div>
-    ";
+    $out .= '</div></div>';
     echo $out;
 }
 
 //Display a static value or a text box.  $post is the variable passed if we're working with a form.
 function displayValue($value, $post, $edit, $isURL) {
-    $out = "";
-    $textbox = "<input class=\"textbox\" type=\"text\" placeholder=\"" . $value . "\" name=\"" . $post . "\" >";
+    $out = '';
+    $textbox = '<input class="textbox" type="text" placeholder="' . $value . '" name="' . $post . '" >';
     if (!$isURL) {
         //Standard type (value => value)
         $out = $edit ? $textbox : $value;
