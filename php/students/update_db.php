@@ -13,10 +13,6 @@
 
 		$insertStudentQuery = build_insert_student_query($student, $newUserId);
 		mysqli_query($conn, $insertStudentQuery);
-
-		$notes = $student['notes'];
-		$insertNoteQuery = build_insert_note_query($newUserId, $notes);
-		mysqli_query($conn, $insertNoteQuery);
 		
     	mysqli_close($conn);
 	}
@@ -54,11 +50,11 @@
 				UserId,
 				StudentId,
 				PreferredName,
-				ProgramStatus,
 				Internship,
-				InternCapstoneStatus,
+				ProgramStatusId,
+				InternCapstoneStatusId,
+				ApplicationStatusId,
 				Cohort,
-				ApplicationStatus,
 				ResumeURL,
 				LinkedInURL,
 				StreetAddressLineOne,
@@ -66,17 +62,17 @@
 				City,
 				State,
 				Zipcode)
-			values (%d, %d, '%s', '%s', '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+			values (%d, %d, '%s', '%s', %d, %d, %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 
 			return sprintf($queryFormat,
 				$userId,
 				$student['ssid'],
 				$student['preferred'],
-				$student['program_status'],
 				$student['internship_url'],
-				$student['internship_capstone_status'],
+				$student['program_status_id'],
+				$student['internship_capstone_status_id'],
+				$student['application_status_id'],
 				$student['cohort'],
-				$student['application_status'],
 				$student['resume_url'],
 				$student['linked_in_url'],
 				$student['address1'],
@@ -84,19 +80,6 @@
 				$student['city'],
 				$student['state'],
 				$student['zipcode']);
-	}
-
-	function build_insert_note_query($userId, $notes) {
-		$queryFormat = "insert user_notes(
-				UserId,
-				Note_Type,
-				Note_Text)
-			values (%d, '%s', '%s');";
-
-			return sprintf($queryFormat,
-				$userId,
-				'Unknown',
-				$notes);
 	}
 
 	function edit_student($student) {

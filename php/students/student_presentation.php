@@ -35,18 +35,41 @@ function createStudentList($students) {
 }
 
 function createStudentDetailTable($student) {
-	$html = "<table id='internship_detail'>";
 	$formattedTableRow = "
 	<tr>
 		<th>%s</th>
 		<td>%s</td>
 	</tr>";
 	
+	$tableHtml = "";
 	foreach($student as $field => $value) {
-		$html = $html . sprintf($formattedTableRow, $field, $value);
+		$tableHtml = $tableHtml . sprintf($formattedTableRow, $field, $value);
 	}                    
                     
-    return $html . "</table>";
+    return "<table id='internship_detail'>" . $tableHtml . "</table>";
+}
+
+function GetOptionSelectedStatus($optionIndex, $selectedIndex) {
+	if ($selectedIndex == $optionIndex)
+		return 'selected="selected"';
+	return "";	
+}
+
+function CreateOptionsFrom($statuses, $selectedIndex) {
+	$formattedOption = '<option value="%s" %s>%s</option>\n';
+
+	$noneSelectedStatus = GetOptionSelectedStatus(0, $selectedIndex);
+	$optionsHtml = sprintf($formattedOption, 0, $noneSelectedStatus, "(None Selected)");
+
+	foreach($statuses as $status) {
+		$index = $status["Id"];
+		$description = $status["Description"];
+		$selectedStatus = GetOptionSelectedStatus($index, $selectedIndex);
+
+		$optionsHtml = $optionsHtml . sprintf($formattedOption, $index, $selectedStatus, $description);		
+	}
+
+	return $optionsHtml;
 }
 
 ?>
