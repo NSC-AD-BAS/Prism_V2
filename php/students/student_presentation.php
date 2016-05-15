@@ -34,6 +34,13 @@ function createStudentList($students) {
 	return $html;
 }
 
+
+
+function detailFieldIsVisible($field) {
+	$invisibleFields = array("UserId", "Program Status Id", "Internship/Capstone Status Id", "Application Status Id");
+	return !in_array($field, $invisibleFields);
+}
+
 function createStudentDetailTable($student) {
 	$formattedTableRow = "
 	<tr>
@@ -43,6 +50,8 @@ function createStudentDetailTable($student) {
 	
 	$tableHtml = "";
 	foreach($student as $field => $value) {
+		if (!detailFieldIsVisible($field))
+			continue; 
 		$tableHtml = $tableHtml . sprintf($formattedTableRow, $field, $value);
 	}                    
                     

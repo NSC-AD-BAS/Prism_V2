@@ -107,22 +107,23 @@ CREATE OR REPLACE VIEW student_list AS
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
         u.UserId,
-        -- Removed by Austin, not needed in DB view
-        -- s.StudentKeyId,
-		u.FirstName AS `Student First Name`,
+        u.FirstName AS `Student First Name`,
         u.MiddleName AS `Student Middle Name`,
-		u.LastName AS `Student Last Name`,
-        s.PreferredName AS `Preferred Name`, 
+        u.LastName AS `Student Last Name`,
+        s.PreferredName AS `Preferred Name`,
         s.StudentId AS `SID`,
         s.Cohort,
         s.ProgramStatusId AS `Program Status Id`,
+        ps.Description AS `Program Status`,
         s.InternCapstoneStatusId AS `Internship/Capstone Status Id`,
+        ics.Description AS `Internship/Capstone Status`,
         s.ApplicationStatusId AS `Application Status Id`,
+        aps.Description AS `Application Status`,
         s.ResumeURL AS `Resume`,
         s.LinkedInURL AS `LinkedIn Profile`,
         s.Internship AS `Internship`,
         u.PhoneNumber AS `Phone`,
-        u.EmailAddress  AS `Email`,
+        u.EmailAddress AS `Email`,
         s.StreetAddressLineOne AS `Address 1`,
         s.StreetAddressLineTwo AS `Address 2`,
         s.City,
@@ -131,7 +132,14 @@ CREATE OR REPLACE VIEW student_detail AS
     FROM
         students s
             JOIN
-        users u ON u.userId = s.userId);
+        users u ON u.userId = s.userId
+            JOIN
+        program_status ps ON ps.Id = s.ProgramStatusId
+            JOIN
+        intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
+            JOIN
+        application_status aps ON aps.Id = s.ApplicationStatusId);
+            
        
 CREATE OR REPLACE VIEW user_list AS
     (SELECT 
