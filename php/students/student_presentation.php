@@ -65,7 +65,7 @@ function GetOptionSelectedStatus($optionIndex, $selectedIndex) {
 }
 
 function CreateOptionsFrom($statuses, $selectedIndex) {
-	$formattedOption = '<option value="%s" %s>%s</option>\n';
+	$formattedOption = '<option value="%s" %s>%s</option>';
 
 	$noneSelectedStatus = GetOptionSelectedStatus(0, $selectedIndex);
 	$optionsHtml = sprintf($formattedOption, 0, $noneSelectedStatus, "(None Selected)");

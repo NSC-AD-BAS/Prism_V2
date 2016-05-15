@@ -78,19 +78,16 @@
 
 	function get_all_intern_capstone_statuses() {
 		$query = "SELECT * FROM intern_capstone_status;";
-		echo "Query= " . $query;
 		return get_many_rows($query);	
 	}
 
 	function get_all_application_statuses() {
 		$query = "SELECT * FROM application_status;";
-		echo "Query= " . $query;
 		return get_many_rows($query);	
 	}
 
 	function get_all_program_statuses() {
 		$query = "SELECT * FROM program_status;";
-		echo "Query= " . $query;
 		return get_many_rows($query);	
 	}
 	function isAdmin() {
