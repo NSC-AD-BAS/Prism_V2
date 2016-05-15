@@ -65,28 +65,28 @@ function renderCompanyDetail($data, $edit) {
     }
 
     //Company Detail Table
-    $out = "
-        <div class=\"wrapper\">
-        <div class=\"detail_table\">
-        <form action=\"edit_company.php?id=$id\" method=\"post\">
+    $out = '
+        <div class="wrapper">
+        <div class="detail_table">
+        <form action="edit_company.php?id=$id" method="post">
         <table>
             <!-- pass along the orgId -->
-            <input type=\"hidden\" name=\"orgId\" value=\"" . $id . "\">
-            <tr><td>Company Name</td><td><strong>" . displayValue($name, 'name', $edit, false) . "</strong></td></tr>
-            <tr><td>Company URL </td><td>   " . displayValue($url, 'url', $edit, true)  . "</td></tr>
+            <input type="hidden" name="orgId" value="' . $id . '">
+            <tr><td>Company Name</td><td><strong>' . displayValue($name, "name", $edit, false) . '</strong></td></tr>
+            <tr><td>Company URL </td><td>' . displayValue($url, "url", $edit, true)  . '</td></tr>
             <tr><td>Company Address</td><td>
                 <table>
-                    <td><tr>" . displayValue($street, 'street', $edit, false) . "&nbsp;</td></tr>
+                    <td><tr>' . displayValue($street, "street", $edit, false) . '&nbsp;</td></tr>
                     <br>
-                    <td><tr>" . displayValue($city, 'city', $edit, false) . ", " . displayValue($state, 'state', $edit, false) . "</td></tr>
+                    <td><tr>' . displayValue($city, "city", $edit, false) . ', ' . displayValue($state, "state", $edit, false) . '</td></tr>
                 </table></td></tr>
-            <tr><td>Number of Employees</td><td> " . displayValue(number_format($num_employees), 'num_employees', $edit, false) . "</td></tr>
-            <tr><td>Annual Revenue</td><td>      " . displayValue(money_format("%n", $revenue), 'revenue', $edit, false) . "</td></tr>
-            <tr><td>Description</td><td>         " . displayValue($desc, 'desc', $edit, false) . "                        </td></tr>
+            <tr><td>Number of Employees</td><td>' . displayValue(number_format($num_employees), "num_employees", $edit, false) . '</td></tr>
+            <tr><td>Annual Revenue</td><td>' . displayValue(money_format("%n", $revenue), "revenue", $edit, false) . '</td></tr>
+            <tr><td>Description</td><td>' . displayValue($desc, "desc", $edit, false) . '</td></tr>
         </table>
         <hr>
 
-        ";
+        ';
         //Sew Buttons...
         $out .= "<div class=\"lower_nav\">";
             if ($edit) {
@@ -161,8 +161,8 @@ function renderCompanyContacts($company_contacts) {
     $out = "
         <div class=\"wrapper\">
         <div class=\"detail_table\">
-        <table>
         <h3>Company Contacts</h3>
+        <hr>
     ";
     foreach ($company_contacts as $contact) {
         $contactId = $contact['ContactId'];
@@ -180,7 +180,7 @@ function renderCompanyContacts($company_contacts) {
         $linkedIn = $contact['LinkedInURL'];
 
         $out .= "
-            <hr>
+            <table>
             <tr><td>Name</td><td>" . $first . " " . $last ."</td></tr>
             <tr><td>Title</td><td>" . $title ."</td></tr>
             <tr><td>Email Address</td><td>" . displayValue($email, 'email', false, true) ."</td></tr>
@@ -199,9 +199,12 @@ function renderCompanyContacts($company_contacts) {
             //FIXME: contacts/create.php not yet implemented
             $out .= "
                 <a class=\"button\" href=\"../contacts/edit.php?id=" . $contactId . "\"><div>Edit Contact</div></a>
-                <a class=\"button\" href=\"../contacts/create.php?orgId=" . $orgId . "\"><div>Add Contact</div></a>
+
             ";
         }
+    }
+    if (isAdmin()) {
+        $out .= "<a class=\"button\" href=\"../contacts/create.php?orgId=" . $id . "\"><div>Add Contact</div></a>";
     }
 
     $out .= "
