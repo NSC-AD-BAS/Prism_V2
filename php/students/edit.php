@@ -170,13 +170,13 @@
         	</td>
         </tr>
         <tr>
-        	<th>Resume URL</th>
+        	<th>Resume</th>
         	<?php
         		echo '<td><input name="student[resume_url]" value="' . $student['Resume'] . '"></td>';
         	?>
         </tr>
         <tr>
-        	<th>Linked-In URL</th>
+        	<th>LinkedIn Profile</th>
         	<?php
         		echo '<td><input name="student[linked_in_url]" value="' . $student['LinkedIn Profile'] . '"></td>';
         	?>
