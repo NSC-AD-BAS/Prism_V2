@@ -91,8 +91,42 @@
 		return get_many_rows($query);	
 	}
 	function isAdmin() {
-    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
-    //Change to false to see nav and detail buttons auto-magically disappear.
-    return true;
-}
+	    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
+	    //Change to false to see nav and detail buttons auto-magically disappear.
+	    return true;
+	}
+
+	function get_prev_student($id) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " ORDER BY UserId DESC LIMIT 1;";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row[UserId];
+	}
+
+	function get_next_student($id) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " ORDER BY UserId LIMIT 1;";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row[UserId];
+	}
 ?>

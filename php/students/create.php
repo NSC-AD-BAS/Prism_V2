@@ -61,7 +61,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Internship URL</th>
+                <th>Internship</th>
                 <td><input name="student[internship_url]" type="text"></td>
             </tr>
             <tr>

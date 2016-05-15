@@ -6,8 +6,8 @@
 	$studentId = $_GET["id"];
 	$student = get_single_student($studentId);
 	
-	$next = $studentId + 1;
-	$prev = $studentId - 1;
+	$next = get_next_student($studentId);
+	$prev = get_prev_student($studentId);
 
 	$studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
 	$detailTable = createStudentDetailTable($student);
