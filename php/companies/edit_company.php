@@ -9,16 +9,16 @@ include "update_db.php";
 include "query_builder.php";
 
 //Disallow direct access
-if (!isset($_POST["orgId"])) {
+if (!isset($_POST["id"])) {
   header("Location: list.php");
 }
 
 //Passed along as a hidden input
-$orgId = $_POST["orgId"];
+$id = $_POST["id"];
 
-$query = build_update_query($orgId);
+$query = build_update_query($id);
 //DEBUG: Uncomment to print the built query to the page for sanity checking, testing in Sequel
 //echo $query;
-update_company($query);
-header("Location: detail.php?id=$orgId");
+update_company($query); //TODO: Verify success / fail and redirect accordingly
+header("Location: detail.php?id=$id");
 ?>

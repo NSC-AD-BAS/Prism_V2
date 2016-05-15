@@ -70,7 +70,7 @@ function renderCompanyDetail($data, $edit) {
         <form action="edit_company.php?id=" . $id . " method="post">
         <table>
             <!-- pass along the orgId -->
-            <input type="hidden" name="orgId" value="' . $id . '">
+            <input type="hidden" name="id" value="' . $id . '">
             <tr><td>Company Name</td><td><strong>' . displayValue($name, "name", $edit, false) . '</strong></td></tr>
             <tr><td>Company URL </td><td>' . displayValue($url, "url", $edit, true)  . '</td></tr>
             <tr><td>Company Address</td><td>
@@ -166,23 +166,22 @@ function renderCompanyContacts($company_contacts, $id) {
     ';
     if (!empty($company_contacts)) {
         foreach ($company_contacts as $contact) {
-            $contactId = $contact['ContactId'];
+            $contactId = $contact['ContactID'];
             $orgId = $contact['OrganizationId'];
-            $first = $contact['ContactFirstName'];
-            $last = $contact['ContactLastName'];
+            $name = $contact['Contact Name'];
             $title = $contact['Title'];
-            $email = $contact['EmailAddress'];
-            $office = $contact['OfficeNumber'];
-            $ext = $contact['OfficeExtension'];
-            $cell = $contact['CellNumber'];
+            $email = $contact['Email Address'];
+            $office = $contact['Office Phone'];
+            $ext = $contact['Extension'];
+            $cell = $contact['Mobile Number'];
             $ref = $contact['Referral'];
             $hiring = $contact['Hiring'] ? "Yes" : "No";
-            $advise = $contact['OnADAdvisoryCommittee'] ? "Yes" : "No";
-            $linkedIn = $contact['LinkedInURL'];
+            $advise = $contact['AD Advisory Committee Member'] ? "Yes" : "No";
+            $linkedIn = $contact['LinkedIn'];
 
             $out .= '
                 <table>
-                <tr><td>Name</td><td>' . $first . ' ' . $last .'</td></tr>
+                <tr><td>Name</td><td>' . $name .'</td></tr>
                 <tr><td>Title</td><td>' . $title . '</td></tr>
                 <tr><td>Email Address</td><td>' . displayValue($email, "email", false, true) . '</td></tr>
                 <tr><td>Office Phone</td><td>' . $office . '</td><td>ext. </td><td>' . $ext . '</td></tr>
