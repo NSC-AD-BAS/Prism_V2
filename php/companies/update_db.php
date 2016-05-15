@@ -18,7 +18,12 @@ function create_company($query) {
 //TODO: Handle return statements properly in calling code
 function update_db($query) {
     $conn = db_connect();
-    $result = mysqli_query($conn, $query);
+    $result;
+    if (!mysqli_query($conn, $query)) {
+        $result = get_last_error($conn);
+    } else {
+        $result = mysqli_query($conn, $query);
+    }
     mysqli_close($conn);
     return $result;
 }
