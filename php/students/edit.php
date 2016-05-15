@@ -1,12 +1,24 @@
 <?php
     require 'query_db.php';
     require "../companies/page_builder.php";
+    require "student_presentation.php";
 
     $studentId = $_GET['id'];
     $student = get_single_student($studentId);
     $studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
+
+    $internCapstoneStatuses = get_all_intern_capstone_statuses();
+    $internCapstoneStatusesOptions = CreateOptionsFrom($internCapstoneStatuses, $student["Internship/Capstone Status Id"]);
+
+    $applicationStatuses = get_all_application_statuses();
+    $applicationStatusesOptions = CreateOptionsFrom($applicationStatuses, $student["Application Status Id"]);
+
+    $programStatuses = get_all_program_statuses();
+    $programStatusesOptions = CreateOptionsFrom($programStatuses, $student["Program Status Id"]);
+
     render_header("Students", false);
     render_nav($studentFullName);
+
 ?>
 <form action="submit_edit.php" method="post">
     <table id="internship_detail">
@@ -47,65 +59,16 @@
         <tr>
             <th>Program Status</th>
             <td>
-                <select name="student[program_status]">
-                    <?php
-                    // Get current value and place it as the selected value in the menu
-                    // The existing value is loaded in as currently selected
-                    switch($student['Program Status']) {
-                        case 'active':
-                            echo '<option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                                <option value="graduated">Graduated</option>';
-                            break;
-                        case 'inactive':
-                            echo '<option value="inactive">Inactive</option>
-                                <option value="active">Active</option>
-                                <option value="graduated">Graduated</option>';
-                            break;
-                        case 'graduated':
-                            echo '<option value="graduated">Graduated</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>';
-                        default:
-                            echo '<option value="none">(None Selected)</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                                <option value="graduated">Graduated</option>';
-                            break;
-                    }
-                    ?>    
+                <select name="student[program_status_id]">
+                    <?=$programStatusesOptions?>
                 </select>
             </td>
         </tr>
         <tr>
         	<th>Internship/Capstone Status</th>
         	<td>
-        		<select name="student[internship_capstone_status]">
-        			<?php
-        			switch($student['Internship/Capstone Status']) {
-        				case 'incomplete':
-        					echo '<option value="incomplete">Incomplete</option>
-        						<option value="completed">Completed</option>
-        						<option value="in_progress">In Progress</option>';
-        					break;
-        				case 'completed':
-        					echo '<option value="completed">Completed</option>
-        						<option value="incomplete">Incomplete</option>
-        						<option value="in_progress">In Progress</option>';
-        					break;
-        				case 'in_progress':
-        					echo '<option value="in_progress">In Progress</option>
-        						<option value="incomplete">Incomplete</option>
-        						<option value="completed">Completed</option>';
-        					break;
-        				default:
-        					echo '<option value="none">(None Selected)</option>
-        						<option value="incomplete">Incomplete</option>
-        						<option value="completed">Completed</option>
-        						<option value="in_progress">In Progress</option>';
-        					break;
-        			}
-        			?>
+        		<select name="student[internship_capstone_status_id]">
+        			<?=$internCapstoneStatusesOptions?>
         		</select>
         	</td>
         </tr>
@@ -118,54 +81,8 @@
         <tr>
         	<th>Application Status</th>
         	<td>
-        		<select name="student[application_status]">
-        			<?php
-        			switch($student['Application Status']) {
-        				case 'applied':
-        					echo '<option value="applied">Applied</option>
-        						<option value="provisionallyAccepted">Provisionally Accepted</option>
-        						<option value="fullyAccepted">Fully Accepted</option>
-        						<option value="withdrawn">Withdrawn</option>
-        						<option value="denied">Denied</option>';
-        					break;
-        				case 'provisionallyAccepted':
-        					echo '<option value="provisionallyAccepted">Provisionally Accepted</option>
-        						<option value="applied">Applied</option>
-        						<option value="fullyAccepted">Fully Accepted</option>
-        						<option value="withdrawn">Withdrawn</option>
-        						<option value="denied">Denied</option>';
-        					break;
-        				case 'fullyAccepted':
-        					echo '<option value="fullyAccepted">Fully Accepted</option>
-        						<option value="applied">Applied</option>
-        						<option value="provisionallyAccepted">Provisionally Accepted</option>
-        						<option value="withdrawn">Withdrawn</option>
-        						<option value="denied">Denied</option>';
-        					break;
-        				case 'withdrawn':
-        					echo '<option value="withdrawn">Withdrawn</option>
-        						<option value="applied">Applied</option>
-        						<option value="provisionallyAccepted">Provisionally Accepted</option>
-        						<option value="fullyAccepted">Fully Accepted</option>
-        						<option value="denied">Denied</option>';
-        					break;
-        				case 'denied':
-        					echo '<option value="denied">Denied</option>
-        						<option value="applied">Applied</option>
-        						<option value="provisionallyAccepted>Provisionally Accepted</option>
-        						<option value="fullyAccepted">Fully Accepted</option>
-        						<option value="withdrawn">Withdrawn</option>';
-        					break;
-        				default:
-        					echo '<option value="none">(None Selected)</option>
-                                <option value="applied">Applied</option>
-                                <option value="provisionallyAccepted">Provisionally Accepted</option>
-                                <option value="fullyAccepted">Fully Accepted</option>
-                                <option value="withdrawn">Withdrawn</option>
-                                <option value="denied">Denied</option>';
-                            break;
-        			}
-        			?>
+        		<select name="student[application_status_id]">
+        			<?=$applicationStatusesOptions?>
         		</select>
         	</td>
         </tr>

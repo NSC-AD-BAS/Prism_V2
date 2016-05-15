@@ -93,16 +93,15 @@
 
 		$sql = "UPDATE students s
 					JOIN users u ON u.userId = s.userId
-					JOIN user_notes un ON un.userId = s.userId
 				SET FirstName = '$student[first]',
 				MiddleName = '$student[middle]',
 				LastName = '$student[last]',
 				PreferredName = '$student[preferred]',
 				StudentId = '$student[ssid]',
 				Cohort = '$student[cohort]',
-				ProgramStatus = '$student[program_status]',
-				InternCapstoneStatus = '$student[internship_capstone_status]',
-				ApplicationStatus = '$student[application_status]',
+				ProgramStatusId = $student[program_status_id],
+				InternCapstoneStatusId = $student[internship_capstone_status_id],
+				ApplicationStatusId = $student[application_status_id],
 				ResumeURL = '$student[resume_url]',
 				LinkedInURL = '$student[linked_in_url]',
 				EmailAddress = '$student[email]',
@@ -111,9 +110,8 @@
 				StreetAddressLineTwo = '$student[address2]',
 				City = '$student[city]',
 				State = '$student[state]',
-				Zipcode = '$student[zipcode]',
-				Note_Text = '$student[notes]'
-				WHERE s.userId = '$student[id]'";
+				Zipcode = '$student[zipcode]'
+				WHERE s.UserId = $student[id];";
 
 		if (mysqli_query($conn, $sql)) {
 		    echo "Record updated successfully";
@@ -122,8 +120,5 @@
 		}
 
 		mysqli_close($conn);
-		// The return statement was added for debugging purposes, but it seems to be the required element in making this function work.
-		return $sql;
-		
 	}
 ?>

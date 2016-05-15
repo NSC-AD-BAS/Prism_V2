@@ -11,5 +11,5 @@
    <?=$studentList?>    
 </div>
 
-<a href="create.html" class="button"><div>Create Student</div></a>
+<a href="create.php" class="button"><div>Create Student</div></a>
 <?php render_footer(); ?>
