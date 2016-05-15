@@ -66,7 +66,7 @@ function GetOptionSelectedStatus($optionIndex, $selectedIndex) {
 
 function CreateOptionsFrom($statuses, $selectedIndex) {
 	$formattedOption = '<option value="%s" %s>%s</option>';
-
+	$optionsHtml = "";
 	foreach($statuses as $status) {
 		$index = $status["Id"];
 		$description = $status["Description"];

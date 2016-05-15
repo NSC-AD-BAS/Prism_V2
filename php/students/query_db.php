@@ -110,7 +110,7 @@
 		}
     	mysqli_close($conn);
 
-		return $row[UserId];
+		return $row["UserId"];
 	}
 
 	function get_next_student($id) {
@@ -127,6 +127,6 @@
 		}
     	mysqli_close($conn);
 
-		return $row[UserId];
+		return $row["UserId"];
 	}
 ?>
