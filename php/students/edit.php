@@ -75,7 +75,7 @@
         <tr>
             <th>Internship</th>
             <?php
-                echo '<td><input name="student[internship_url]" type="text" value="' . $student['Internship'] . '"></td>';
+                echo '<td><input name="student[internship]" type="text" value="' . $student['Internship'] . '"></td>';
             ?>
         </tr>
         <tr>
