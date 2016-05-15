@@ -3,8 +3,10 @@
 /*
     query_db.php - Stands up database connection and runs read-only queries against it.
     includes: db_connect.php
-    required by: update_db and query_builder
+    included by: update_db and query_builder
+    TODO: SECURITY - Move all DB function files outside of webroot to prevent direct access
 */
+
 function db_connect() {
     include '../lib/db_connect.php';
     //create and verify connection

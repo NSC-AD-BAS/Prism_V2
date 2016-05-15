@@ -1,8 +1,16 @@
 <?php
 
+/*
+    update_db.php - Runs update queries against database.
+    includes: query_db.php
+    included by: Any page that creates, edits or deletes records in the DB
+    TODO: SECURITY - Move all DB function files outside of webroot to prevent direct access
+*/
+
 //Includes
 include "query_db.php";
 
+//Populate update query with any posted data, fall-back to existing data from DB.  Returns a query string.
 function build_update_query($orgId) {
     $data = get_company_detail($orgId);
     foreach ($data as $d) {
@@ -31,9 +39,8 @@ function build_update_query($orgId) {
     return $query;
 }
 
-//Query Builders.  TODO: COMMENT EACH QUERY
-//TODO: Rename to build_company_create_query
-function build_company_query($name, $desc) {
+//Create the necessary query to add a new company.  Name and description are required, other values are guessed.  Returns a query string.
+function build_create_company_query($name, $desc) {
     $query = "
         INSERT INTO organizations SET
         OrganizationName=\"$name\",
@@ -47,9 +54,10 @@ function build_company_query($name, $desc) {
     return $query;
 }
 
-//Populate internship with temporary data so we can render the company on the list.
-//TODO: Rename to build_internship_create_query
-function build_internship_query($orgId, $now) {
+//FIXME: This is a hack.  The org_list view shouldn't rely on internships being defined to include a company in the result set.
+//Create the necessary query to add a placeholder internship for a new company.
+//orgId is an auto-increment value returned from the create_company method and passed in by create.php.
+function build_create_internship_for_company_query($orgId, $now) {
     $exp = date('Y-m-d  H:i:s', strtotime("+12 weeks"));
     $query = "
         INSERT INTO internships SET

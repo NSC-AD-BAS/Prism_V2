@@ -18,12 +18,12 @@ if (isset($_POST["name"]) && isset($_POST["desc"])) {
 }
 
 //Add the company to the DB and get the orgId returned
-$query = build_company_query($company_name, $company_desc);
+$query = build_create_company_query($company_name, $company_desc);
 $orgId = create_company($query); //TODO: Check for result before proceeding
 
 //Add the internship to the DB
 $now = date('Y-m-d H:i:s');
-$query = build_internship_query($orgId, $now);
+$query = build_create_internship_for_company_query($orgId, $now);
 create_internship_for_company($query); //TODO: Check for result before redirecting to edit screen
 
 //Drop user on the edit detail page. #workflow.
