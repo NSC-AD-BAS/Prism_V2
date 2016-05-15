@@ -107,18 +107,21 @@ INSERT INTO users(
 
 INSERT INTO intern_capstone_status(Id, Description)
 VALUES
+(0, "(None Selected)"),
 (1, "Incomplete"),
 (2, "Completed"),
 (3, "In Progress");
 
 INSERT INTO program_status(Id, Description)
 VALUES
+(0, "(None Selected)"),
 (1, "Active"),
 (2, "Inactive"),
 (3, "Graduated");
 
 INSERT INTO application_status(Id, Description)
 VALUES
+(0, "(None Selected)"),
 (1, "Applied"),
 (2, "Provisionally Accepted"),
 (3, "Fully Accepted"),

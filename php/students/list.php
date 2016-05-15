@@ -5,11 +5,13 @@
 
     $students = get_all_students();
     $studentList = createStudentList($students);
+    
+
     render_header("Students", false);
     render_nav("Student List");
 ?>
-   <?=$studentList?>    
-</div>
+   
+   <?=$studentList?>
 
 <a href="create.php" class="button"><div>Create Student</div></a>
 <?php render_footer(); ?>
