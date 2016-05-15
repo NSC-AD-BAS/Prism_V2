@@ -13,10 +13,6 @@
 
 		$insertStudentQuery = build_insert_student_query($student, $newUserId);
 		mysqli_query($conn, $insertStudentQuery);
-
-		$notes = $student['notes'];
-		$insertNoteQuery = build_insert_note_query($newUserId, $notes);
-		mysqli_query($conn, $insertNoteQuery);
 		
     	mysqli_close($conn);
 	}
@@ -54,11 +50,11 @@
 				UserId,
 				StudentId,
 				PreferredName,
-				ProgramStatus,
 				Internship,
-				InternCapstoneStatus,
+				ProgramStatusId,
+				InternCapstoneStatusId,
+				ApplicationStatusId,
 				Cohort,
-				ApplicationStatus,
 				ResumeURL,
 				LinkedInURL,
 				StreetAddressLineOne,
@@ -66,17 +62,17 @@
 				City,
 				State,
 				Zipcode)
-			values (%d, %d, '%s', '%s', '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+			values (%d, %d, '%s', '%s', %d, %d, %d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 
 			return sprintf($queryFormat,
 				$userId,
 				$student['ssid'],
 				$student['preferred'],
-				$student['program_status'],
 				$student['internship_url'],
-				$student['internship_capstone_status'],
+				$student['program_status_id'],
+				$student['internship_capstone_status_id'],
+				$student['application_status_id'],
 				$student['cohort'],
-				$student['application_status'],
 				$student['resume_url'],
 				$student['linked_in_url'],
 				$student['address1'],
@@ -84,19 +80,6 @@
 				$student['city'],
 				$student['state'],
 				$student['zipcode']);
-	}
-
-	function build_insert_note_query($userId, $notes) {
-		$queryFormat = "insert user_notes(
-				UserId,
-				Note_Type,
-				Note_Text)
-			values (%d, '%s', '%s');";
-
-			return sprintf($queryFormat,
-				$userId,
-				'Unknown',
-				$notes);
 	}
 
 	function edit_student($student) {
@@ -110,16 +93,15 @@
 
 		$sql = "UPDATE students s
 					JOIN users u ON u.userId = s.userId
-					JOIN user_notes un ON un.userId = s.userId
 				SET FirstName = '$student[first]',
 				MiddleName = '$student[middle]',
 				LastName = '$student[last]',
 				PreferredName = '$student[preferred]',
 				StudentId = '$student[ssid]',
 				Cohort = '$student[cohort]',
-				ProgramStatus = '$student[program_status]',
-				InternCapstoneStatus = '$student[internship_capstone_status]',
-				ApplicationStatus = '$student[application_status]',
+				ProgramStatusId = $student[program_status_id],
+				InternCapstoneStatusId = $student[internship_capstone_status_id],
+				ApplicationStatusId = $student[application_status_id],
 				ResumeURL = '$student[resume_url]',
 				LinkedInURL = '$student[linked_in_url]',
 				EmailAddress = '$student[email]',
@@ -128,9 +110,8 @@
 				StreetAddressLineTwo = '$student[address2]',
 				City = '$student[city]',
 				State = '$student[state]',
-				Zipcode = '$student[zipcode]',
-				Note_Text = '$student[notes]'
-				WHERE s.userId = '$student[id]'";
+				Zipcode = '$student[zipcode]'
+				WHERE s.UserId = $student[id];";
 
 		if (mysqli_query($conn, $sql)) {
 		    echo "Record updated successfully";
@@ -139,8 +120,5 @@
 		}
 
 		mysqli_close($conn);
-		// The return statement was added for debugging purposes, but it seems to be the required element in making this function work.
-		return $sql;
-		
 	}
 ?>
