@@ -11,7 +11,25 @@ function db_connect() {
 
 function get_companies_list() {
     $conn = db_connect();
-    $sql  = "SELECT * from org_list";
+    $sql  = "SELECT * FROM org_list";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
+function get_deleted_companies() {
+    $conn = db_connect();
+    $sql  = "SELECT
+        OrganizationId,
+        OrganizationName AS `Organization Name`,
+        concat(`City`,', ',`State`) AS `Location`
+        FROM organizations
+        WHERE isArchived=1";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -24,7 +42,7 @@ function get_companies_list() {
 
 function get_company_detail($id) {
     $conn = db_connect();
-    $sql  = "SELECT * from org_detail where OrganizationId = $id limit 1";
+    $sql  = "SELECT * FROM org_detail WHERE OrganizationId = $id limit 1";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -37,7 +55,7 @@ function get_company_detail($id) {
 
 function get_internships_by_company($id) {
     $conn = db_connect();
-    $sql  = "SELECT * from internships where OrganizationId = $id";
+    $sql  = "SELECT * FROM internships WHERE OrganizationId = $id";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -50,7 +68,7 @@ function get_internships_by_company($id) {
 
 function get_contacts_by_company($id) {
     $conn = db_connect();
-    $sql  = "SELECT * from organization_contacts where OrganizationId = $id";
+    $sql  = "SELECT * FROM organization_contacts WHERE OrganizationId = $id";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;

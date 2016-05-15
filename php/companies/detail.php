@@ -104,7 +104,7 @@ function renderCompanyDetail($data, $edit) {
                     $out .= "
                         <a class=\"button\" href=\"detail.php?id=$id&edit=true\"><div>Edit</div></a>
                         <a class=\"button\" href=\"create.php\"><div>Create Company</div></a>
-                        <a class=\"button\" href=\"delete.php?type=company&id=$id\"><div>Delete</div></a>
+                        <a class=\"button\" href=\"delete.php?id=$id\"><div>Delete</div></a>
                     ";
                 }
             }
