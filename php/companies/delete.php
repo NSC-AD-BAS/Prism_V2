@@ -17,12 +17,12 @@ $company_name = $data[0]['Company'];
 render_header($company_name, false);
 render_nav($company_name);
 
-$out = "
-    <p class='alert'>Are you sure you want to delete $company_name?</p>
+$out = '
+    <p class="alert">Are you sure you want to delete $company_name?</p>
     <hr>
-    <a class=\"button\" href=\"delete_company.php?id=$id\"><div>Yes, Delete</div></a>
-    <a class=\"button\" href=\"detail.php?id=$id\"><div>No</div></a>
-";
+    <a class="button" href="delete_company.php?id=' . $id . '"><div>Yes, Delete</div></a>
+    <a class="button" href="detail.php?id=' . $id . '"><div>No</div></a>
+';
 
 echo $out;
 

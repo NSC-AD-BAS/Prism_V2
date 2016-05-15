@@ -60,7 +60,6 @@ function renderCompanyDetail($data, $edit) {
         $state = $d['State'];
         $num_employees = $d['Number of Employees'];
         $revenue = $d['Yearly Revenue'];
-        $statement = $d['Statement'];
         $desc = $d['Description'];
     }
 
@@ -218,9 +217,9 @@ function displayValue($value, $post, $edit, $isURL) {
         //Otherwise, build a URL
         if (strpos($value, "@") === false) {
             //Not an email address
-            $out = $edit ? $textbox : "<a href=\"" . $value . "\">" . $value . "</a>";
+            $out = $edit ? $textbox : '<a href="' . $value . '">' . $value . '</a>';
         } else {
-            $out = $edit ? $textbox : "<a href=\"mailto:" . $value . "\">" . $value . "</a>";
+            $out = $edit ? $textbox : '<a href="mailto:' . $value . '">' . $value . '</a>';
         }
     }
     return $out;

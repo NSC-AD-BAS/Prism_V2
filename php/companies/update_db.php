@@ -45,7 +45,6 @@ function build_company_query($name, $desc) {
         YearlyRevenue=0,
         NumOfEmployees=0,
         isArchived=0
-
     ";
     return $query;
 }

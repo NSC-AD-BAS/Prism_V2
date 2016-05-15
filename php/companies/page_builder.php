@@ -5,16 +5,16 @@
 */
 //Render the page header.  $header and $isDetail are used to title the window/tab
 function render_header($header, $isDetail) {
-    $out = "
+    $out = '
         <!DOCTYPE html>
-        <html lang=\"en\">
+        <html lang="en">
         <head>
-        <title>PRISM - " . $header . ($isDetail == 'true' ? ' Detail' : ' List') . "</title>
-        <meta charset=\"utf-8\">
-        <link rel=\"stylesheet\" href=\"../style/site.css\">
+        <title>PRISM - ' . $header . ($isDetail == "true" ? " Detail" : " List") . '</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style/site.css">
         </head>
         <body>
-    ";
+    ';
     echo $out;
 }
 
@@ -26,22 +26,22 @@ function render_nav($page_name) {
         //Only Admins should see link to Admin page.
         array_push($nav_pages, "Admin");
     }
-    $out = "<nav><ul>";
+    $out = '<nav><ul>';
     foreach ($nav_pages as $page) {
-        $out .= "<li class=\"left\"><a href=\"../" . strtolower($page) . "/list.php\">" . $page . "</a></li>";
+        $out .= '<li class="left"><a href="../' . strtolower($page) . '/list.php">' . $page . '</a></li>';
     }
-    $out .= "</ul></nav>
+    $out .= '</ul></nav>
         <main>
-        <input id=\"searchbox\" type=\"text\" placeholder=\" Search\" />
-        <h1>" . $page_name . "</h1>
-    ";
+        <input id="searchbox" type="text" placeholder=" Search" />
+        <h1>' . $page_name . '</h1>
+    ';
     echo $out;
 }
 
 //Render the page footer.  This function closes the main element opened by render_nav();
 function render_footer() {
     //Close the main opened in render_nav()
-    $out = "
+    $out = '
         </main>
         </br>
         <footer>
@@ -49,7 +49,7 @@ function render_footer() {
         </footer>
         </body>
         </html>
-    ";
+    ';
     echo $out;
 }
 
