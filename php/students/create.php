@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <th>Internship</th>
-                <td><input name="student[internship_url]" type="text"></td>
+                <td><input name="student[internship]" type="text"></td>
             </tr>
             <tr>
                 <th>Application Status</th>
