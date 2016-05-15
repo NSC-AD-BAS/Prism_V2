@@ -210,8 +210,18 @@ a {
     text-align: center;
 }
 
-.button {
+/* Since the input form buttons weren't inheriting the div button styles */
+.form_button {
     text-decoration: none;
+    border: none;
+    outline: none;
+    display: inline-block;
+}
+
+.form_button:hover {
+    background-color: #cccccc;
+    color: black;
+    transition-duration: .4s;
 }
 
 .button div {

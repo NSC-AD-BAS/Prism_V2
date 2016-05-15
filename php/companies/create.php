@@ -17,8 +17,8 @@ $out = '
     <td><input class="textbox" type="text" placeholder="Company Description" name="desc"></td></tr>
     </table>
     <div class="lower_nav">
-        <input type="submit" class="button" value="Add"></td></tr>
-        <input type="submit" class="button" value="Cancel"></td></tr>
+        <input type="submit" class="form_button" value="Add"></td></tr>
+        <a class="button" href="list.php"><div>Cancel</div></a></td></tr>
     </div>
     </form>
     </div>

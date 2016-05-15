@@ -1,4 +1,10 @@
 <?php
+
+/*
+    query_db.php - Stands up database connection and runs read-only queries against it.
+    includes: db_connect.php
+    required by: update_db and query_builder
+*/
 function db_connect() {
     include '../lib/db_connect.php';
     //create and verify connection
@@ -77,11 +83,14 @@ function get_contacts_by_company($id) {
     mysqli_free_result($result);
     mysqli_close($conn);
     //TODO: Check for null before trying to return here (CodeCleanup)
+    if (is_null($output)) {
+        return "";
+    }
     return $output;
 }
 
 function isAdmin() {
-    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
+    //FIXME: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
     //Change to false to see nav and detail buttons auto-magically disappear.
     return true;
 }
