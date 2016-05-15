@@ -95,13 +95,19 @@ CREATE OR REPLACE VIEW student_list AS
         u.UserId,
         CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
         s.Cohort,
-        s.ProgramStatusId AS `Program Status`,
-        s.InternCapstoneStatusId AS `Internship/Capstone Status Id`,
-        s.ApplicationStatusId AS `Application Status Id`
+        ps.Description AS `Program Status`,
+        ics.Description AS `Internship/Capstone Status`,
+        aps.Description AS `Application Status`
     FROM
         students s
             JOIN
         users u ON u.userId = s.userId
+			JOIN
+        program_status ps ON ps.Id = s.ProgramStatusId
+            JOIN
+        intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
+            JOIN
+        application_status aps ON aps.Id = s.ApplicationStatusId);
     );
 
 CREATE OR REPLACE VIEW student_detail AS
