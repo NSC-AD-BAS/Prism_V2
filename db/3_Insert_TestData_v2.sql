@@ -10,20 +10,19 @@ INSERT INTO organizations(
     StreetAddressLineOne, 
     StreetAddressLineTwo, 
     City, 
-    State, 
-    Statement, 
+    State,  
     Description
 )VALUES
-(1, "Microsoft", 10000000, 10000, "http://www.microsoft.com", "1 Microsoft Way", NULL, "Redmond", "WA", "Microsoft statement goes here." , "Microsoft description goes here. Are Statement and Description fields necessary?"),
-(2, "Facebook", 10000000, 15000, "http://www.facebook.com", "1 Facebook Way", NULL, "Seattle", "WA", "Facebook statement goes here." , "Facebook description goes here. Are Statement and Description fields necessary?"),
-(3, "Twitter", 10000000, 2000, "http://www.twitter.com", "1 Twitter Way", NULL, "Bellevue", "WA", "Twitter statement goes here." , "Twitter description goes here. Are Statement and Description fields necessary?"),
-(4, "Adobe", 10000000, 500, "http://www.adobe.com", "1 Adobe Way", NULL, "Seattle", "WA", "Adobe statement goes here." , "Adobe description goes here. Are Statement and Description fields necessary?"),
-(5, "Consulto Services", 10000000, 200, "http://www.consulto.com", "1 Consulto Way", NULL, "Bothell", "WA", "Consulto statement goes here." , "Consulto description goes here. Are Statement and Description fields necessary?"),
-(6, "Google", 10000000, 10000, "http://www.google.com", "1 Google Way", NULL, "Seattle", "WA", "Google statement goes here." , "Google description goes here. Are Statement and Description fields necessary?"),
-(7, "Contoso", 10000000, 90, "http://www.contosocorp.com", "1 Contoso Way", NULL, "Auburn", "WA", "Contoso statement goes here." , "Contoso description goes here. Are Statement and Description fields necessary?"),
-(8, "Expeditors", 10000000, 800, "http://www.expeditors.com", "1 Exeditors Way", NULL, "Seattle", "WA", "Exeditors statement goes here." , "Exeditors description goes here. Are Statement and Description fields necessary?"),
-(9, "Oculus VR", 10000000, 500, "http://www.oculusvr.com", "1 Oculus Way", NULL, "Redmond", "WA", "Oculus statement goes here." , "Oculus description goes here. Are Statement and Description fields necessary?"),
-(10, "AT&T", 10000000, 10000, "http://www.att.com", "1 AT&T Way", NULL, "Seattle", "WA", "AT&T statement goes here." , "AT&T description goes here. Are Statement and Description fields necessary?")
+(1, "Microsoft", 10000000, 10000, "http://www.microsoft.com", "1 Microsoft Way", NULL, "Redmond", "WA" , "Microsoft description goes here. Are Statement and Description fields necessary?"),
+(2, "Facebook", 10000000, 15000, "http://www.facebook.com", "1 Facebook Way", NULL, "Seattle", "WA", "Facebook description goes here. Are Statement and Description fields necessary?"),
+(3, "Twitter", 10000000, 2000, "http://www.twitter.com", "1 Twitter Way", NULL, "Bellevue", "WA","Twitter description goes here. Are Statement and Description fields necessary?"),
+(4, "Adobe", 10000000, 500, "http://www.adobe.com", "1 Adobe Way", NULL, "Seattle", "WA","Adobe description goes here. Are Statement and Description fields necessary?"),
+(5, "Consulto Services", 10000000, 200, "http://www.consulto.com", "1 Consulto Way", NULL, "Bothell", "WA", "Consulto description goes here. Are Statement and Description fields necessary?"),
+(6, "Google", 10000000, 10000, "http://www.google.com", "1 Google Way", NULL, "Seattle", "WA",  "Google description goes here. Are Statement and Description fields necessary?"),
+(7, "Contoso", 10000000, 90, "http://www.contosocorp.com", "1 Contoso Way", NULL, "Auburn", "WA",  "Contoso description goes here. Are Statement and Description fields necessary?"),
+(8, "Expeditors", 10000000, 800, "http://www.expeditors.com", "1 Exeditors Way", NULL, "Seattle", "WA",  "Exeditors description goes here. Are Statement and Description fields necessary?"),
+(9, "Oculus VR", 10000000, 500, "http://www.oculusvr.com", "1 Oculus Way", NULL, "Redmond", "WA",  "Oculus description goes here. Are Statement and Description fields necessary?"),
+(10, "AT&T", 10000000, 10000, "http://www.att.com", "1 AT&T Way", NULL, "Seattle", "WA",  "AT&T description goes here. Are Statement and Description fields necessary?")
 
 ;
 
@@ -35,20 +34,20 @@ INSERT INTO internships(
     DatePosted, 
     StartDate, 
     EndDate, 
-    SlotsAvailable, 
+ 
     LastUpdated,
     ExpirationDate
 ) VALUES
-(1, "SDET Intern", "Exciting opportunity for students interested in QA", 1, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(2, "Web Developer Intern", "Exciting opportunity for students interested in LAMP", 2, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(3, "App Developer Intern", "Exciting opportunity for students interested in Android/iOS", 3, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(4, "Embedded Systems Intern", "Exciting opportunity for students interested in C", 4, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(5, "PHP Intern", "Exciting opportunity for students interested in PHP", 1, CURDATE(), NULL, NULL, 5, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(6, "Java Developer Intern", "Exciting opportunity for students interested in Java", 6, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(7, "C++ Intern", "Exciting opportunity for students interested in C++", 7, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(8, "C#/.NET Intern", "Exciting opportunity for students interested in .NET", 8, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(9, "Ruby Intern", "Exciting opportunity for students interested in Ruby", 9, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(10, "Python Intern", "Exciting opportunity for students interested in Python/Django", 10, CURDATE(), NULL, NULL, 2, CURDATE(), CURDATE() + INTERVAL 84 DAY)
+(1, "SDET Intern", "Exciting opportunity for students interested in QA", 1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(2, "Web Developer Intern", "Exciting opportunity for students interested in LAMP", 2,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(3, "App Developer Intern", "Exciting opportunity for students interested in Android/iOS", 3,   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(4, "Embedded Systems Intern", "Exciting opportunity for students interested in C", 4,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(5, "PHP Intern", "Exciting opportunity for students interested in PHP", 1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(6, "Java Developer Intern", "Exciting opportunity for students interested in Java", 6,         CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(7, "C++ Intern", "Exciting opportunity for students interested in C++", 7,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(8, "C#/.NET Intern", "Exciting opportunity for students interested in .NET", 8,                CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(9, "Ruby Intern", "Exciting opportunity for students interested in Ruby", 9,                   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(10, "Python Intern", "Exciting opportunity for students interested in Python/Django", 10,      CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY)
 ;
 
 INSERT INTO organization_contacts(
@@ -85,33 +84,60 @@ INSERT INTO users(
     LastName, 
     PhoneNumber, 
     EmailAddress, 
+    UserName, 
+    UserPassword, 
     TypeId
 ) VALUES
-(1, "Steven", "", "Balo", "206-111-1111", "steven@balo.com",  2),
-(2, "Alfred", "", "Sterling", "206-111-1111", "casey@casey.com",  1 ),
-(3, "Alexis", "", "Vonnegut", "206-111-1111", "aiman@aiman.com", 1 ),
-(4, "Brian", "", "Asimov", "206-111-1111", "chris@chris.com",  1 ),
-(5, "Bridgette", "W", "Bradbury", "206-111-1111", "bob@bob.com", 1 ),
-(6, "Carl", "", "Lovelace", "206-111-1111", "jeremy@jeremy.com",  1 ),
-(7, "Chloe", "", "Gibson", "206-111-1111", "nathan@nathan.com",  1 ),
-(8, "Dave", "", "Turing", "206-111-1111", "sai@sai.com",  1 ),
-(9, "Donna", "", "Kennedy", "206-111-1111", "mario@mario.com",  1 ),
-(10, "Eric", "", "Lincoln", "206-111-1111", "kellan@kellan.com",  1 ),
-(11, "Ethel", "", "Washington", "206-111-1111", "tim@tim.com",  1 ),
-(12, "Frank", "", "Franklin", "206-111-1111", "joe@joe.com", 1 ),
-(13, "Flo", "", "Van Buren", "206-111-1111", "austin@austin.com", 1 ),
-(14, "John", "", "Stager", "206-111-1111", "john@stager.com",  2),
-(15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com",  3)
+(1, "Steven", "", "Balo", "206-111-1111", "steven@balo.com", "steba", "steba", 2),
+(2, "Alfred", "", "Sterling", "206-111-1111", "casey@casey.com", "casri", "casri", 1 ),
+(3, "Alexis", "", "Vonnegut", "206-111-1111", "aiman@aiman.com", "aimma", "aimma", 1 ),
+(4, "Brian", "", "Asimov", "206-111-1111", "chris@chris.com", "chrme", "chrme", 1 ),
+(5, "Bridgette", "W", "Bradbury", "206-111-1111", "bob@bob.com", "robmc", "robmc", 1 ),
+(6, "Carl", "", "Lovelace", "206-111-1111", "jeremy@jeremy.com", "jerdu", "jerdu", 1 ),
+(7, "Chloe", "", "Gibson", "206-111-1111", "nathan@nathan.com", "natfl", "natfl", 1 ),
+(8, "Dave", "", "Turing", "206-111-1111", "sai@sai.com", "saich", "siach", 1 ),
+(9, "Donna", "", "Kennedy", "206-111-1111", "mario@mario.com", "marro", "marro", 1 ),
+(10, "Eric", "", "Lincoln", "206-111-1111", "kellan@kellan.com", "kelne", "kelne", 1 ),
+(11, "Ethel", "", "Washington", "206-111-1111", "tim@tim.com", "timda", "timda", 1 ),
+(12, "Frank", "", "Franklin", "206-111-1111", "joe@joe.com", "joemc", "joems", 1 ),
+(13, "Flo", "", "Van Buren", "206-111-1111", "austin@austin.com", "ausam", "ausam", 1 ),
+(14, "John", "", "Stager", "206-111-1111", "john@stager.com", "johst", "johst", 2),
+(15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com", "facul", "facul", 3)
 ;
+
+INSERT INTO intern_capstone_status(Id, Description)
+VALUES
+(0, "(None Selected)"),
+(1, "Incomplete"),
+(2, "Completed"),
+(3, "In Progress");
+
+INSERT INTO program_status(Id, Description)
+VALUES
+(0, "(None Selected)"),
+(1, "Active"),
+(2, "Inactive"),
+(3, "Graduated");
+
+INSERT INTO application_status(Id, Description)
+VALUES
+(0, "(None Selected)"),
+(1, "Applied"),
+(2, "Provisionally Accepted"),
+(3, "Fully Accepted"),
+(4, "Wihtdrawn"),
+(5, "Denied");
+
 
 INSERT INTO students(
 	StudentId, 
     PreferredName, 
-    ProgramStatus, 
     Internship, 
     Cohort, 
     UserId, 
-    ApplicationStatus, 
+    ApplicationStatusID,
+    ProgramStatusId,
+    InternCapstoneStatusId,
     ResumeURL, 
     LinkedInURL,
     StreetAddressLineOne, 
@@ -120,7 +146,7 @@ INSERT INTO students(
     State,
     Zipcode
 ) VALUES 
-(111111111, "Jimbo", "Active", "Internship Company Name", "201501", 2, "Fully Accepted", NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA", "98123")
+(111111111, "Jimbo", "Internship Company Name", "201501", 2, 1, 1, 1, NULL, "LinkedinURL", NULL, NULL, "Seattle", "WA", "98123")
 ;
 
 INSERT INTO change_log(Change_LogId, LogTime, UserId, Message) VALUES

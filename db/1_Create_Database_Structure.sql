@@ -10,16 +10,17 @@ CREATE TABLE organizations
 (
 	OrganizationId			INT				PRIMARY KEY 		AUTO_INCREMENT,
     OrganizationName		VARCHAR(100)	UNIQUE				NOT NULL,
-    YearlyRevenue			INT				NULL,
-    NumOfEmployees			INT				NULL,
+    YearlyRevenue			INT				NULL                DEFAULT 0,
+    NumOfEmployees			INT				NULL                DEFAULT 0,
 	URL						VARCHAR(250)	NULL,
     StreetAddressLineOne	VARCHAR(250)	NULL,
     StreetAddressLineTwo	VARCHAR(250)	NULL,
     City					VARCHAR(250)	NULL,
     State					VARCHAR(250)	NULL,
-    Statement				VARCHAR(250)	NULL,
+--    Statement				VARCHAR(250)	NULL,
 	Description 			TEXT			NOT NULL,
-    GlassdoorURL            VARCHAR(250)    NULL
+    GlassdoorURL            VARCHAR(250)    NULL, 
+    isArchived              boolean         NOT NULL    DEFAULT 0
 );
 
 -- Updated Bob M, 4/25/2016
@@ -57,9 +58,10 @@ CREATE TABLE internships
 --  AppEndDate				DATE, 					  //Removed Bob M. 4/25/2016
 	StartDate				DATE,
     EndDate					DATE,			
-    SlotsAvailable			INT				NOT NULL,
+--    SlotsAvailable			INT				NOT NULL,
     LastUpdated				DATETIME		NOT NULL,
     ExpirationDate          DATE        	NOT NULL,
+    isDeleted               boolean         NOT NULL    DEFAULT 0,
 	CONSTRAINT Internship_fk_OrganizationId
 		FOREIGN KEY (OrganizationId)
         REFERENCES organizations(OrganizationId)
@@ -72,6 +74,8 @@ CREATE TABLE user_types
 );
 
 
+
+
 CREATE TABLE users
 (
 	UserId					INT				PRIMARY KEY			AUTO_INCREMENT,
@@ -80,14 +84,33 @@ CREATE TABLE users
     MiddleName				VARCHAR(50)		NULL, 
     LastName				VARCHAR(50)		NOT NULL,
 --    ContactInfo				TEXT			NULL, //Replaced with Phone and Email Bob M. 4/25/2016
-	PhoneNumber				VARCHAR(12),  -- Added to replace ContactInfo field
+	PhoneNumber				VARCHAR(20),  -- Added to replace ContactInfo field
     EmailAddress			VARCHAR(100), -- Added to replace ContactInfo field
-    -- UserName				VARCHAR(250)	NOT NULL			UNIQUE, -- Struck for now. Bob M. 
-    -- UserPassword			VARCHAR(500)	NOT NULL,
+    UserName				VARCHAR(250)	NOT NULL			UNIQUE,
+    UserPassword			VARCHAR(500)	NOT NULL,
     TypeId					INT				NOT NULL,
 	CONSTRAINT User_fk_TypeId
 		FOREIGN KEY (TypeId)
         REFERENCES user_types(TypeId)
+);
+
+
+CREATE TABLE intern_capstone_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
+);
+
+CREATE TABLE program_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
+);
+
+CREATE TABLE application_status
+(
+	Id				INT 			PRIMARY KEY, 
+    Description		VARCHAR(50)		NOT NULL
 );
 
 
@@ -96,13 +119,12 @@ CREATE TABLE students
 	StudentKeyId			INT 			PRIMARY KEY      AUTO_INCREMENT, 
     UserId                  INT             UNIQUE              NOT NULL,
 	StudentId				INT             NOT NULL, 	
-    PreferredName			VARCHAR(50)		NULL, 
-    ProgramStatus			VARCHAR(12)		NOT NULL,
--- 	InternshipId 			INT				NULL, //Removed Bob M. 4/27/2016
+    PreferredName			VARCHAR(50)		NULL,
 	Internship				VARCHAR(250),
-    InternCapstoneStatus    VARCHAR(50)     NULL,
-	Cohort					VARCHAR(50)		NOT NULL, -- Changed from Int to VarChar Bob M. 5/7
-    ApplicationStatus		VARCHAR(50)		NULL,
+	Cohort					VARCHAR(20)		NOT NULL,
+    ApplicationStatusId		INT		NOT NULL,
+    ProgramStatusId     	INT		NOT NULL,
+    InternCapstoneStatusId  INT		NOT NULL,
     ResumeURL				VARCHAR(250)	NULL,
     LinkedInURL				VARCHAR(250)	NULL,
 	StreetAddressLineOne	VARCHAR(250)	NULL,
@@ -110,10 +132,22 @@ CREATE TABLE students
     City					VARCHAR(250)	NULL,
     State					VARCHAR(250)	NULL,
     Zipcode					VARCHAR(250)	NULL,
+    isDeleted			BOOLEAN 	NOT NULL 	DEFAULT 0,
 	CONSTRAINT Student_fk_UserId
 		FOREIGN KEY (UserId)
-        REFERENCES users(UserId)
+        REFERENCES users(UserId),
+	CONSTRAINT Student_fk_ApplicationStatusId
+		FOREIGN KEY (ApplicationStatusId)
+        REFERENCES application_status(Id),
+	CONSTRAINT Student_fk_ProgramStatusId
+		FOREIGN KEY (ProgramStatusId)
+        REFERENCES program_status(Id),
+	CONSTRAINT Student_fk_InternCapstoneStatusId
+		FOREIGN KEY (InternCapstoneStatusId)
+        REFERENCES intern_capstone_status(Id)
 );
+
+
 
 -- CREATE TABLE student_internships
 -- (
