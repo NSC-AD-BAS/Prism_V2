@@ -5,6 +5,8 @@
 
 include("query_db.php");
 
+# TODO: do not show internships that are past their expiration date
+
 # takes in an associative array of all the column values for an internship
 # uses INSERT INTO to add to the DB
 function add_internship($internship_data) {
@@ -24,10 +26,9 @@ function add_internship($internship_data) {
 		DatePosted,
 		StartDate,
 		EndDate,
-		SlotsAvailable,
 		LastUpdated,
 		ExpirationDate)
-		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s');";
+		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');";
 
 	$sql = sprintf($queryFormat,
 		$new_id,
@@ -37,7 +38,6 @@ function add_internship($internship_data) {
 		$internship_data['DatePosted'],
 		$internship_data['StartDate'],
 		$internship_data['EndDate'],
-		$internship_data['SlotsAvailable'],
 		$lastUpdated,
 		$internship_data['ExpirationDate']);
 
@@ -61,10 +61,9 @@ function update_internship($internship_data, $intId) {
 		DatePosted,
 		StartDate,
 		EndDate,
-		SlotsAvailable,
 		LastUpdated,
 		ExpirationDate)
-		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s');";
+		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');";
 
 	$sql = sprintf($queryFormat,
 		$intId,
@@ -74,7 +73,6 @@ function update_internship($internship_data, $intId) {
 		$internship_data['DatePosted'],
 		$internship_data['StartDate'],
 		$internship_data['EndDate'],
-		$internship_data['SlotsAvailable'],
 		$lastUpdated,
 		$internship_data['ExpirationDate']);
 
@@ -82,6 +80,10 @@ function update_internship($internship_data, $intId) {
 	if (!$result) {
 		echo "INSERT INTO internships table failed";
 	}
+}
+
+function delete_internship() {
+	
 }
 
 ?>

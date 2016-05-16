@@ -21,7 +21,7 @@ function print_top() { ?>
                 <li class="left"><a href="../internships/list.php">Internships</a></li>
                 <li class="left"><a href="../companies/list.php">Companies</a></li>
                 <li class="left"><a href="../students/list.php">Students</a></li>
-                <li class="left"><a href="../admin/admin.php">(Admin)</a></li>
+                <li class="left"><a href="../admin/admin.php">Admin</a></li>
 
                 <li class="right"><a href="list.php">Logout</a></li>
                 <li class="right"><a href="list.php">Profile</a></li>

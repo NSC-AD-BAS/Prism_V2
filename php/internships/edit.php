@@ -14,13 +14,13 @@ include("update_db.php");
 function try_post_process($intId) {
 	if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
 		&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
-		&& isset($_POST['SlotsAvailable']) && isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
+		&& isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
 
 		# need to follow up with DB people about how to setup link between org and internship
 		$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
 			"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
-			"Location"=>$_POST['Location'], "SlotsAvailable"=>$_POST['SlotsAvailable'],
-			"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
+			"Location"=>$_POST['Location'], "ExpirationDate"=>$_POST['ExpirationDate'],
+			"Description"=>$_POST['Description']);
 
 		update_internship($internship_data, $intId);
 		header("Location: list.php");
@@ -74,14 +74,11 @@ function print_edit_main($data) { ?>
     	                <th>End Date</th>
     	                <td><input name="EndDate" type="text" value="<?= $intEndDate ?>" /></td>
     	            </tr>
+					<tr>
     	                <th>Location</th>
     	                <td><input name="Location" type="text" value="<?= $intLocation ?>" /></td>
     	            </tr>
-    	            </tr>
-    	                <th>Slots Available</th>
-    	                <td><input name="SlotsAvailable" type="text" value="" /></td>
-    	            </tr>
-    	            </tr>
+    	            <tr>
     	                <th>Expiration Date</th>
     	                <td><input name="ExpirationDate" type="text" value="<?= $intExpiration ?>" /></td>
     	            </tr>
