@@ -2,7 +2,10 @@
 # update_db php file: db write-access layer
 # Author: Tim Davis
 # Author: Kellan Nealy
-include "query_db.php";
+
+include("query_db.php");
+
+# TODO: do not show internships that are past their expiration date
 
 # takes in an associative array of all the column values for an internship
 # uses INSERT INTO to add to the DB
@@ -15,7 +18,7 @@ function add_internship($internship_data) {
 	# generate last updated datetime
 	$lastUpdated = date('Y-m-d H:i:s');
 
-	$queryFormat = "insert internships(
+	$queryFormat = "INSERT internships(
 		InternshipId,
 		PositionTitle,
 		Description,
@@ -23,10 +26,9 @@ function add_internship($internship_data) {
 		DatePosted,
 		StartDate,
 		EndDate,
-		SlotsAvailable,
 		LastUpdated,
 		ExpirationDate)
-		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s');";
+		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');";
 
 	$sql = sprintf($queryFormat,
 		$new_id,
@@ -36,20 +38,8 @@ function add_internship($internship_data) {
 		$internship_data['DatePosted'],
 		$internship_data['StartDate'],
 		$internship_data['EndDate'],
-		$internship_data['SlotsAvailable'],
 		$lastUpdated,
 		$internship_data['ExpirationDate']);
-
-	/*
-	# column names in first line of query are unnecessary if we want to take those away
-	$sql = "INSERT INTO `internships`
-		(`InternshipId`, `PositionTitle`, `Description`, `OrganizationId`, `DatePosted`,
-			`StartDate`, `EndDate`, `SlotsAvailable`, `LastUpdated`, `ExpirationDate`)
-		VALUES ($internship_data['InternshipId'],$internship_data['PositionTitle'],$internship_data['Description'],
-			$internship_data['OrganizationId'],[$internship_data['DatePosted'],$internship_data['StartDate'],
-			$internship_data['EndDate'],$internship_data['SlotsAvailable'],$internship_data['LastUpdated'],
-			$internship_data['ExpirationDate']);"
-	*/
 
 	$result = mysqli_query($conn, $sql);
 	if (!$result) {
@@ -57,8 +47,43 @@ function add_internship($internship_data) {
 	}
 }
 
-function update_internship($internship_data) {
-	# virtually the same code as above but with different query command
+function update_internship($internship_data, $intId) {
+	$conn = db_connect();
+
+	# generate last updated datetime
+	$lastUpdated = date('Y-m-d H:i:s');
+
+	$queryFormat = "REPLACE internships(
+		InternshipId,
+		PositionTitle,
+		Description,
+		OrganizationId,
+		DatePosted,
+		StartDate,
+		EndDate,
+		LastUpdated,
+		ExpirationDate)
+		values ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');";
+
+	$sql = sprintf($queryFormat,
+		$intId,
+		$internship_data['PositionTitle'],
+		$internship_data['Description'],
+		$internship_data['OrganizationId'],
+		$internship_data['DatePosted'],
+		$internship_data['StartDate'],
+		$internship_data['EndDate'],
+		$lastUpdated,
+		$internship_data['ExpirationDate']);
+
+	$result = mysqli_query($conn, $sql);
+	if (!$result) {
+		echo "INSERT INTO internships table failed";
+	}
+}
+
+function delete_internship() {
+	
 }
 
 ?>

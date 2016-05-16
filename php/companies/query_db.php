@@ -1,4 +1,13 @@
 <?php
+
+/*
+    query_db.php - Stands up database connection and runs read-only queries against it.
+    includes: db_connect.php
+    included by: update_db and query_builder
+    TODO: SECURITY - Move all DB function files outside of webroot to prevent direct access
+*/
+
+//Stand-up and return a connect object
 function db_connect() {
     include '../lib/db_connect.php';
     //create and verify connection
@@ -9,9 +18,9 @@ function db_connect() {
     return $conn;
 }
 
-function get_companies_list() {
+function get_view_data($view) {
     $conn = db_connect();
-    $sql  = "SELECT * from org_list";
+    $sql  = "SELECT * FROM $view";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -20,37 +29,46 @@ function get_companies_list() {
     mysqli_free_result($result);
     mysqli_close($conn);
     return $output;
+}
+
+function get_view_data_where($view, $orgId) {
+    $conn = db_connect();
+    $sql  = "SELECT * FROM $view WHERE OrganizationId = $orgId";
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
+function get_companies_list() {
+    return get_view_data('org_list');
 }
 
 function get_company_detail($id) {
-    $conn = db_connect();
-    $sql  = "SELECT * from org_detail where OrganizationId = $id limit 1";
-    $result = mysqli_query($conn, $sql);
-    while ($row = $result->fetch_assoc()) {
-        $output[] = $row;
-    }
-    //clean-up result set and connection
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return $output;
+    return get_view_data_where('org_detail', $id);
 }
 
 function get_internships_by_company($id) {
-    $conn = db_connect();
-    $sql  = "SELECT * from internships where OrganizationId = $id";
-    $result = mysqli_query($conn, $sql);
-    while ($row = $result->fetch_assoc()) {
-        $output[] = $row;
-    }
-    //clean-up result set and connection
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return $output;
+    return get_view_data_where('internships', $id);
 }
 
 function get_contacts_by_company($id) {
+    return get_view_data_where('org_contact_list', $id);
+}
+
+//FIXME: Not a view
+function get_deleted_companies() {
     $conn = db_connect();
-    $sql  = "SELECT * from organization_contacts where OrganizationId = $id";
+    $sql  = "SELECT
+        OrganizationId,
+        OrganizationName AS `Organization Name`,
+        concat(`City`,', ',`State`) AS `Location`
+        FROM organizations
+        WHERE isArchived=1";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -58,12 +76,15 @@ function get_contacts_by_company($id) {
     //clean-up result set and connection
     mysqli_free_result($result);
     mysqli_close($conn);
-    //TODO: Check for null before trying to return here (CodeCleanup)
     return $output;
 }
 
+function get_last_error($conn) {
+    return mysqli_error($conn);
+}
+
 function isAdmin() {
-    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
+    //FIXME: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
     //Change to false to see nav and detail buttons auto-magically disappear.
     return true;
 }

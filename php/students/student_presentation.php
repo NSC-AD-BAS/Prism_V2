@@ -14,7 +14,7 @@ function createStudentList($students) {
 	foreach ($students as $student) {
 
 		$studentRow = "<li>"
-			. "<a href='detail.php?id=" . $student["StudentKeyId"] . "'>" 
+			. "<a href='detail.php?id=" . $student["UserId"] . "'>" 
 			. "<ul class='inner5'>" 
 			. "<li>" . $student["Student Name"] . "</li>"
 			. "<li>" . $student["Cohort"] . "</li>"
@@ -34,19 +34,48 @@ function createStudentList($students) {
 	return $html;
 }
 
+
+
+function detailFieldIsVisible($field) {
+	$invisibleFields = array("UserId", "Program Status Id", "Internship/Capstone Status Id", "Application Status Id");
+	return !in_array($field, $invisibleFields);
+}
+
 function createStudentDetailTable($student) {
-	$html = "<table id='internship_detail'>";
 	$formattedTableRow = "
 	<tr>
 		<th>%s</th>
 		<td>%s</td>
 	</tr>";
 	
+	$tableHtml = "";
 	foreach($student as $field => $value) {
-		$html = $html . sprintf($formattedTableRow, $field, $value);
+		if (!detailFieldIsVisible($field))
+			continue; 
+		$tableHtml = $tableHtml . sprintf($formattedTableRow, $field, $value);
 	}                    
                     
-    return $html . "</table>";
+    return "<table id='internship_detail'>" . $tableHtml . "</table>";
+}
+
+function GetOptionSelectedStatus($optionIndex, $selectedIndex) {
+	if ($selectedIndex == $optionIndex)
+		return 'selected="selected"';
+	return "";	
+}
+
+function CreateOptionsFrom($statuses, $selectedIndex) {
+	$formattedOption = '<option value="%s" %s>%s</option>';
+	$optionsHtml = "";
+	foreach($statuses as $status) {
+		$index = $status["Id"];
+		$description = $status["Description"];
+		$selectedStatus = GetOptionSelectedStatus($index, $selectedIndex);
+
+		$optionsHtml = $optionsHtml . sprintf($formattedOption, $index, $selectedStatus, $description);		
+	}
+
+	return $optionsHtml;
 }
 
 ?>

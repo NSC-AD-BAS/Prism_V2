@@ -1,54 +1,30 @@
 <?php
 	require "query_db.php";
 	require "student_presentation.php";
+	require "../companies/page_builder.php";
 	
 	$studentId = $_GET["id"];
 	$student = get_single_student($studentId);
 	
-	$next = $studentId + 1;
-	$prev = $studentId - 1;
+	$next = get_next_student($studentId);
+	$prev = get_prev_student($studentId);
 
 	$studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
 	$detailTable = createStudentDetailTable($student);
+	render_header("Students", true);
+	render_nav($studentFullName);
 ?>
 
-<html lang="en">
-	<head>
-		<title>PRISM - <?=$studentFullName?> - Detail</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../style/site.css">
-	</head>
-	
-	<body>
-	    <nav>
-	        <ul>
-	            <li class="left"><a href="../internships/list.php">Internships</a></li> &nbsp;
-	            <li class="left"><a href="../companies/list.php">Companies</a></li> &nbsp;
-	            <li class="left"><a href="../students/list.php">Students</a></li> &nbsp;
-	            <li class="left"><a href="../admin/list.php">Admin</a></li> &nbsp;
-	        </ul>
-	    </nav>
+	<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
+    <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
 
-	    <main>
-	    	<h1><?=$studentFullName?> - Detail</h1>
+    <?=$detailTable?> 
 
-			<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
-	        <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
-
-	        <?=$detailTable?> 
-
-	        <a href="list.php" class="button"><div>Back to List</div></a>
-	        <?php
-	        	echo '<a href="edit.php?id=' . $studentId . '" class="button"><div>Edit</div></a>';
-	        ?>
-	        <a href="delete.php" class="button"><div>Delete Selected</div></a>
-            
-        </div>
-    </main>
-    <br>
-    <footer>
-        <p><small>North Seattle College - PRISM &copy; 2016</small></p>
-    </footer>
-
-</body>
-</html>
+    <a href="list.php" class="button"><div>Back to List</div></a>
+    <?php
+    	echo '<a href="edit.php?id=' . $studentId . '" class="button"><div>Edit</div></a>';
+    ?>
+    <a href="delete.php" class="button"><div>Delete</div></a>
+    
+</div>
+<?php render_footer(); ?>

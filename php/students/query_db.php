@@ -1,8 +1,25 @@
 <?php
-	/*Function to return all of the students in the database as an array of associative arrays
-	containing all of the attributes of the students.*/
+	function get_many_rows($query) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$rows = array();
+		if ($result = mysqli_query($conn, $query)) {
+		    while ($row = mysqli_fetch_assoc($result)) {
+		        array_push($rows, $row);
+		    }
+		    mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $rows;
+	}
+
 	function get_all_students() {
-		
 		require "../lib/db_connect.php";
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if(!$conn) {
@@ -23,10 +40,6 @@
 		return $students;
 	}
 
-	/*Function to return a single student from the database as an associative array.
-	This student is supposed to be selected by the id from the students_list view from the
-	database but fails to do so because the students_detail view does not contain the proper
-	id so I can't query on that. -- Austin*/
 	function get_single_student($id) {
 		
 		require "../lib/db_connect.php";
@@ -35,7 +48,7 @@
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$query = "SELECT * FROM student_detail WHERE StudentKeyId = " . $id . ";";
+		$query = "SELECT * FROM student_detail WHERE UserId = " . $id . ";";
 		if ($result = mysqli_query($conn, $query)) {
 			$row = mysqli_fetch_assoc($result);
 			mysqli_free_result($result);
@@ -43,5 +56,77 @@
     	mysqli_close($conn);
 
 		return $row;
+	}
+
+	function get_all_fields($id) {
+		
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$query = "SELECT * FROM students WHERE UserId = " . $id . ";";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row;
+	}
+
+	function get_all_intern_capstone_statuses() {
+		$query = "SELECT * FROM intern_capstone_status;";
+		return get_many_rows($query);	
+	}
+
+	function get_all_application_statuses() {
+		$query = "SELECT * FROM application_status;";
+		return get_many_rows($query);	
+	}
+
+	function get_all_program_statuses() {
+		$query = "SELECT * FROM program_status;";
+		return get_many_rows($query);	
+	}
+	function isAdmin() {
+	    //TODO: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
+	    //Change to false to see nav and detail buttons auto-magically disappear.
+	    return true;
+	}
+
+	function get_prev_student($id) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " ORDER BY UserId DESC LIMIT 1;";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row["UserId"];
+	}
+
+	function get_next_student($id) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " ORDER BY UserId LIMIT 1;";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row["UserId"];
 	}
 ?>

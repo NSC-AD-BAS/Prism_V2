@@ -1,65 +1,39 @@
 <?php
 
-function add_company_toDB($name, $desc) {
-    $now = date('Y-m-d H:i:s');
-    if (!empty($name) && !empty($desc)) {
-        $conn = db_connect();
-        mysqli_autocommit($conn, FALSE);
+/*
+    update_db.php - Runs update queries against database.
+    includes: none
+    included by: Any page that creates, edits or deletes records in the DB
+    TODO: SECURITY - Move all DB function files outside of webroot to prevent direct access
+*/
 
-        //Create Org and get orgId from auto-increment
-        $createOrg = build_company_query($name, $desc);
-        mysqli_query($conn, $createOrg);
-        $orgId = mysqli_insert_id($conn);
-
-        //Create Internship for org with a few initial values
-        $addInternship = build_internship_query($orgId, $now);
-        mysqli_query($conn, $addInternship);
-
-        //Try to commit all the queries as a transaction
-        if (!mysqli_commit($conn)) {
-            print("Transaction commit failed\n");
-            exit();
-        }
-    } else {
-        echo "<p>We could not add the company.  Please make sure you fill out all fields</p>";
-    }
-    mysqli_close($conn);
+//TODO: Input validation at calling function
+function create_company($query) {
+    $conn = db_connect();
+    mysqli_query($conn, $query);
+    $orgId = mysqli_insert_id($conn);
     return $orgId;
 }
 
-function update_company($query) {
+//TODO: Handle return statements properly in calling code
+function update_db($query) {
     $conn = db_connect();
-    $result = mysqli_query($conn, $query);
+    $result;
+    if (!mysqli_query($conn, $query)) {
+        $result = get_last_error($conn);
+    } else {
+        $result = mysqli_query($conn, $query);
+    }
     mysqli_close($conn);
     return $result;
 }
 
-//Query Builders.  TODO: Maybe move these somewhere else (CodeCleanup)
-function build_company_query($name, $desc) {
-    $query = "
-        INSERT INTO organizations SET
-        OrganizationName=\"$name\",
-        Description=\"$desc\",
-        City=\"Seattle\",
-        State=\"WA\"
-    ";
-    return $query;
+function create_internship_for_company($query) {
+    return update_db($query);
 }
 
-//Populate internship with fake data so we can render the company on the list.
-function build_internship_query($orgId, $now) {
-    $query = "
-        INSERT INTO internships SET
-        OrganizationId=$orgId,
-        PositionTitle=\"EDIT_ME\",
-        Description=\"EDIT_ME_TOO\",
-        DatePosted=\"$now\",
-        SlotsAvailable=0,
-        LastUpdated=\"$now\",
-        ExpirationDate=\"$now\"
-    ";
-    return $query;
+function update_company($query) {
+    return update_db($query);
 }
-
 
 ?>
