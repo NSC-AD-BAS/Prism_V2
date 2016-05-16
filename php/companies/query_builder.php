@@ -36,6 +36,7 @@ function build_update_query($orgId) {
             Description=\"$desc\"
         WHERE OrganizationId = $orgId;
     ";
+    log_query("build_create_company_query", $query);
     return $query;
 }
 
@@ -51,14 +52,16 @@ function build_create_company_query($name, $desc) {
         NumOfEmployees=0,
         isArchived=0
     ";
+    log_query("build_create_company_query", $query);
     return $query;
 }
 
 //FIXME: This is a hack.  The org_list view shouldn't rely on internships being defined to include a company in the result set.
 //Create the necessary query to add a placeholder internship for a new company.
 //orgId is an auto-increment value returned from the create_company method and passed in by create.php.
-function build_create_internship_for_company_query($orgId, $now) {
-    $exp = date('Y-m-d  H:i:s', strtotime("+12 weeks"));
+function build_create_internship_for_company_query($orgId) {
+    $now = date('Y-m-d H:i:s');
+    $exp = date('Y-m-d H:i:s', strtotime("+12 weeks"));
     $query = "
         INSERT INTO internships SET
         OrganizationId=$orgId,
@@ -68,7 +71,12 @@ function build_create_internship_for_company_query($orgId, $now) {
         LastUpdated=\"$now\",
         ExpirationDate=\"$exp\"
     ";
+    log_query("build_create_company_query", $query);
     return $query;
+}
+
+function log_query($function_name, $query) {
+    file_put_contents("/tmp/query.log", $function_name + ": " + $query, FILE_APPEND);
 }
 
 ?>

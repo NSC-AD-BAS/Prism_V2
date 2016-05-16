@@ -224,6 +224,7 @@ function displayValue($value, $post, $edit, $isURL) {
         //Otherwise, build a URL
         if (strpos($value, "@") === false) {
             //Not an email address
+            //TODO: Fix to ensure the http:// is appended if the admin accidentally leaves it out
             $out = $edit ? $textbox : '<a href="' . $value . '">' . $value . '</a>';
         } else {
             $out = $edit ? $textbox : '<a href="mailto:' . $value . '">' . $value . '</a>';
