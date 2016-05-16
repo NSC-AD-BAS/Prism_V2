@@ -20,7 +20,7 @@ CREATE TABLE organizations
 --    Statement				VARCHAR(250)	NULL,
 	Description 			TEXT			NOT NULL,
     GlassdoorURL            VARCHAR(250)    NULL, 
-    isArchived              boolean         NOT NULL    DEFAULT 0
+    isDeleted              boolean         NOT NULL    DEFAULT 0
 );
 
 -- Updated Bob M, 4/25/2016
@@ -50,15 +50,11 @@ CREATE TABLE internships
 	InternshipId 			INT				PRIMARY KEY			AUTO_INCREMENT,
     PositionTitle			VARCHAR(100)	NOT NULL,
 	Description				TEXT			NOT NULL,
+    InternshipUrl           VARCHAR(100),
     OrganizationId			INT				NOT NULL,
---  LocationState			VARCHAR(250)	NOT NULL, //Removed Bob M. 4/25/2016
---  LocationZip				VARCHAR(10)		NOT NULL, //Removed Bob M. 4/25/2016
     DatePosted				DATE			NOT NULL,
---  AppStartDate			DATE, 					  //Removed Bob M. 4/25/2016
---  AppEndDate				DATE, 					  //Removed Bob M. 4/25/2016
 	StartDate				DATE,
     EndDate					DATE,			
---    SlotsAvailable			INT				NOT NULL,
     LastUpdated				DATETIME		NOT NULL,
     ExpirationDate          DATE        	NOT NULL,
     isDeleted               boolean         NOT NULL    DEFAULT 0,

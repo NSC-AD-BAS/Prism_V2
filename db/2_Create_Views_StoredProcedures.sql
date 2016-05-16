@@ -42,6 +42,7 @@ CREATE OR REPLACE VIEW internship_detail AS
         i.EndDate AS `End Date`,
         CONCAT(o.City, ", ",o.State) AS `Location`,
         i.description AS `Job Description`,
+        i.InternshipUrl AS `Internship URL`,
         i.LastUpdated AS `Last Update`,
         i.ExpirationDate AS `Expiration Date`
     FROM
@@ -60,7 +61,7 @@ CREATE OR REPLACE VIEW org_list AS
         organizations o
              JOIN
         internships i ON i.organizationId = o.organizationId
-    WHERE NOT o.isArchived
+    WHERE NOT o.isDeleted
     GROUP BY
         i.organizationId
         );
@@ -76,7 +77,7 @@ CREATE OR REPLACE VIEW org_list_archived AS
         organizations o
              JOIN
         internships i ON i.organizationId = o.organizationId
-    WHERE o.isArchived
+    WHERE o.isDeleted
     GROUP BY
         i.organizationId
         );

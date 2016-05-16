@@ -29,25 +29,25 @@ INSERT INTO organizations(
 INSERT INTO internships(
 	InternshipId,
     PositionTitle, 
-    Description, 
+    Description,
+    InternshipUrl, 
     OrganizationId, 
     DatePosted, 
     StartDate, 
     EndDate, 
- 
     LastUpdated,
     ExpirationDate
 ) VALUES
-(1, "SDET Intern", "Exciting opportunity for students interested in QA", 1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(2, "Web Developer Intern", "Exciting opportunity for students interested in LAMP", 2,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(3, "App Developer Intern", "Exciting opportunity for students interested in Android/iOS", 3,   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(4, "Embedded Systems Intern", "Exciting opportunity for students interested in C", 4,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(5, "PHP Intern", "Exciting opportunity for students interested in PHP", 1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(6, "Java Developer Intern", "Exciting opportunity for students interested in Java", 6,         CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(7, "C++ Intern", "Exciting opportunity for students interested in C++", 7,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(8, "C#/.NET Intern", "Exciting opportunity for students interested in .NET", 8,                CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(9, "Ruby Intern", "Exciting opportunity for students interested in Ruby", 9,                   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
-(10, "Python Intern", "Exciting opportunity for students interested in Python/Django", 10,      CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY)
+(1, "SDET Intern", "Exciting opportunity for students interested in QA", "microsoft.com", 1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(2, "Web Developer Intern", "Exciting opportunity for students interested in LAMP", "Facebook.com", 2,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(3, "App Developer Intern", "Exciting opportunity for students interested in Android/iOS","Twitter.com", 3,   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(4, "Embedded Systems Intern", "Exciting opportunity for students interested in C","adobe.com", 4,          CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(5, "PHP Intern", "Exciting opportunity for students interested in PHP", "consulto.com/careers",1,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(6, "Java Developer Intern", "Exciting opportunity for students interested in Java","google.com", 6,         CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(7, "C++ Intern", "Exciting opportunity for students interested in C++","contoso.com", 7,                     CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(8, "C#/.NET Intern", "Exciting opportunity for students interested in .NET", "expeditors.com",8,                CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(9, "Ruby Intern", "Exciting opportunity for students interested in Ruby", "oculus.com",9,                   CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY),
+(10, "Python Intern", "Exciting opportunity for students interested in Python/Django", "att.com",10,      CURDATE(), NULL, NULL,  CURDATE(), CURDATE() + INTERVAL 84 DAY)
 ;
 
 INSERT INTO organization_contacts(
