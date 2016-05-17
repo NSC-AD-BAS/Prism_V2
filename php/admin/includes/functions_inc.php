@@ -12,6 +12,7 @@
  * @todo evolve...
  */
 
+
 /**
  * Used to create a list of rows from the users table
  * Good to use with a while loop if you want to populate a
@@ -241,4 +242,5 @@ function dbOut($str)
 	if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
 	return $str;
 } #End dbOut()
+
 ?>
