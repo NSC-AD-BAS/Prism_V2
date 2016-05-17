@@ -60,23 +60,8 @@ function get_contacts_by_company($id) {
     return get_view_data_where('org_contact_list', $id);
 }
 
-//FIXME: Not a view
 function get_deleted_companies() {
-    $conn = db_connect();
-    $sql  = "SELECT
-        OrganizationId,
-        OrganizationName AS `Organization Name`,
-        concat(`City`,', ',`State`) AS `Location`
-        FROM organizations
-        WHERE isArchived=1";
-    $result = mysqli_query($conn, $sql);
-    while ($row = $result->fetch_assoc()) {
-        $output[] = $row;
-    }
-    //clean-up result set and connection
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return $output;
+    return get_view_data('org_list_archived');
 }
 
 function get_last_error($conn) {

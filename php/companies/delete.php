@@ -13,14 +13,22 @@ if (isset($_GET['id'])) {
 
 $data = get_company_detail($id);
 $company_name = $data[0]['Company'];
+$isDeleted = $data[0]['isDeleted'];
+if ($isDeleted) {
+    $text = "UN-Delete";
+    $delete = 0;
+} else {
+    $text = "Delete";
+    $delete = 1;
+}
 
 render_header($company_name, false);
 render_nav($company_name);
 
 $out = '
-    <p class="alert">Are you sure you want to delete ' . $company_name . '?</p>
+    <p class="alert">Are you sure you want to ' . $text . ' ' . $company_name . '?</p>
     <hr>
-    <a class="button" href="delete_company.php?id=' . $id . '"><div>Yes, Delete</div></a>
+    <a class="button" href="delete_company.php?id=' . $id . '&delete=' . $delete . '"><div>Yes, ' . $text . '</div></a>
     <a class="button" href="detail.php?id=' . $id . '"><div>No</div></a>
 ';
 
