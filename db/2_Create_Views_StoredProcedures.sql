@@ -13,7 +13,23 @@ CREATE OR REPLACE VIEW internship_list AS
     FROM
         internships i
             JOIN
-        organizations o ON o.OrganizationId = i.OrganizationId);
+        organizations o ON o.OrganizationId = i.OrganizationId
+    WHERE NOT i.isDeleted
+);
+
+-- Updated Bob M. 5/15/2016
+CREATE OR REPLACE VIEW internship_list_deleted AS
+    (SELECT 
+        i.InternshipId,
+        i.PositionTitle AS `Position Title`,
+        o.OrganizationName AS `Organization`,
+        CONCAT(o.City, ", ", o.State) AS `Location`
+    FROM
+        internships i
+            JOIN
+        organizations o ON o.OrganizationId = i.OrganizationId
+    WHERE i.isDeleted
+);
 
 -- Updated Bob M. 4/27/2016
 CREATE OR REPLACE VIEW internship_detail AS
@@ -26,6 +42,7 @@ CREATE OR REPLACE VIEW internship_detail AS
         i.EndDate AS `End Date`,
         CONCAT(o.City, ", ",o.State) AS `Location`,
         i.description AS `Job Description`,
+        i.InternshipUrl AS `Internship URL`,
         i.LastUpdated AS `Last Update`,
         i.ExpirationDate AS `Expiration Date`
     FROM
@@ -44,6 +61,23 @@ CREATE OR REPLACE VIEW org_list AS
         organizations o
              JOIN
         internships i ON i.organizationId = o.organizationId
+    WHERE NOT o.isDeleted
+    GROUP BY
+        i.organizationId
+        );
+
+-- Updated Bob M. 5/15/2016
+CREATE OR REPLACE VIEW org_list_archived AS
+    (SELECT
+		o.OrganizationId ,
+        o.OrganizationName AS `Organization Name`,
+        CONCAT(o.City, ", ", o.State) AS `Location`,
+        COUNT( i.InternshipId ) AS `Available Internships`
+    FROM
+        organizations o
+             JOIN
+        internships i ON i.organizationId = o.organizationId
+    WHERE o.isDeleted
     GROUP BY
         i.organizationId
         );
@@ -107,7 +141,30 @@ CREATE OR REPLACE VIEW student_list AS
             JOIN
         intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
             JOIN
-        application_status aps ON aps.Id = s.ApplicationStatusId);
+        application_status aps ON aps.Id = s.ApplicationStatusId
+    WHERE NOT s.isDeleted
+);
+
+CREATE OR REPLACE VIEW student_list_deleted AS
+    (SELECT 
+        u.UserId,
+        CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
+        s.Cohort,
+        ps.Description AS `Program Status`,
+        ics.Description AS `Internship/Capstone Status`,
+        aps.Description AS `Application Status`
+    FROM
+        students s
+            JOIN
+        users u ON u.userId = s.userId
+			JOIN
+        program_status ps ON ps.Id = s.ProgramStatusId
+            JOIN
+        intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
+            JOIN
+        application_status aps ON aps.Id = s.ApplicationStatusId
+    WHERE s.isDeleted
+);
 
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
