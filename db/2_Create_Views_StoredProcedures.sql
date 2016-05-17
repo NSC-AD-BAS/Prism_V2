@@ -116,7 +116,8 @@ CREATE OR REPLACE VIEW org_detail AS
         o.NumOfEmployees AS `Number of Employees`,
         o.YearlyRevenue AS `Yearly Revenue`,
         o.Description,
-        o.GlassdoorURL AS `Glassdoor Link`
+        o.GlassdoorURL AS `Glassdoor Link`,
+        o.isDeleted
     FROM
         organizations o
             JOIN
