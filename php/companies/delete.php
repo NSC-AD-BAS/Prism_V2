@@ -11,17 +11,21 @@ if (isset($_GET['id'])) {
     header("Location: list.php");
 }
 
+//Get the data
 $data = get_company_detail($id);
 $company_name = $data[0]['Company'];
 $isDeleted = $data[0]['isDeleted'];
+
+//Toggle Delete button text
 if ($isDeleted) {
-    $text = "UN-Delete";
+    $text = "Restore";
     $delete = 0;
 } else {
     $text = "Delete";
     $delete = 1;
 }
 
+//Render the page
 render_header($company_name, false);
 render_nav($company_name);
 

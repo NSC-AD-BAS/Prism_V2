@@ -63,7 +63,7 @@ function renderCompanyDetail($data, $edit) {
         $desc = $d['Description'];
         $deleted = $d['isDeleted'];
     }
-    $delete_text = $deleted ? "Undelete" : "Delete";
+    $delete_text = $deleted ? "Restore" : "Delete";
 
     //Company Detail Table
     $out = '

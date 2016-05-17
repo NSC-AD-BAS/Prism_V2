@@ -75,7 +75,7 @@ function build_create_internship_for_company_query($orgId) {
     return $query;
 }
 
-//Toggle delete status of the passed in orgId.  Set $delete to true to delete company, false to un-delete
+//Toggle delete status of the passed in orgId.  Set $delete to true to delete company, false to restore
 function build_delete_company_query($orgId, $delete) {
     $query = "
         UPDATE organizations SET
