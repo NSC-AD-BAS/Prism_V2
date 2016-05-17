@@ -44,7 +44,8 @@ CREATE OR REPLACE VIEW internship_detail AS
         i.description AS `Job Description`,
         i.InternshipUrl AS `Internship URL`,
         i.LastUpdated AS `Last Update`,
-        i.ExpirationDate AS `Expiration Date`
+        i.ExpirationDate AS `Expiration Date`,
+        i.isDeleted
     FROM
         internships i
             JOIN
@@ -191,7 +192,8 @@ CREATE OR REPLACE VIEW student_detail AS
         s.StreetAddressLineTwo AS `Address 2`,
         s.City,
         s.State,
-        s.Zipcode
+        s.Zipcode,
+        s.isDeleted
     FROM
         students s
             JOIN
