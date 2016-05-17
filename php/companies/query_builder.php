@@ -50,7 +50,7 @@ function build_create_company_query($name, $desc) {
         State=\"WA\",
         YearlyRevenue=0,
         NumOfEmployees=0,
-        isArchived=0
+        isDeleted=0
     ";
     log_query("build_create_company_query", $query);
     return $query;
