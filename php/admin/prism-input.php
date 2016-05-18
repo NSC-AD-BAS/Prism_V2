@@ -1,5 +1,5 @@
 <?php 
-	require '../../../includes/creds.php';
+	require '../../../../../includes/creds.php';
 	define('SITE_URL', "http://prism.tekbot.net/admin/");
 	# Read the value of 'action' whether it is passed via $_POST or $_GET with $_REQUEST
 	if(isset($_REQUEST['act'])){$myAction = (trim($_REQUEST['act']));}else{$myAction = "";}
