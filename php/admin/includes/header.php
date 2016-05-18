@@ -11,7 +11,7 @@
 
     //Current page name, stripped of folder pathing
     define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); 
-
+    //define('SITE_URL', "http://www.joesarchive.com/sandbox/prism/");
     //Below are page specific variables/settings.    
     switch(THIS_PAGE)
     {

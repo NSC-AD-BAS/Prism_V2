@@ -1,5 +1,6 @@
 <?php 
 	require '../../../includes/creds.php';
+	define('SITE_URL', "http://prism.tekbot.net/admin/");
 	# Read the value of 'action' whether it is passed via $_POST or $_GET with $_REQUEST
 	if(isset($_REQUEST['act'])){$myAction = (trim($_REQUEST['act']));}else{$myAction = "";}
 
@@ -13,7 +14,7 @@
 			addUser();
 			break;		
 		default:
-			$newURL = 'http://www.joesarchive.com/sandbox/prism/list.php';
+			$newURL = SITE_URL . 'list.php';
 			header('Location: '.$newURL);
 	}
 
@@ -44,9 +45,9 @@ function updateUser(){
 	$result = mysqli_query($conn,$sql); 
 	if ($result)
 	{//successful update!
-		$newURL = 'http://www.joesarchive.com/sandbox/prism/user_view.php?id=' . $myID;
+		$newURL = SITE_URL . 'user_view.php?id=' . $myID;
 	}else{
-		$newURL = 'http://www.joesarchive.com/sandbox/prism/edit.php?id=' . $myID;
+		$newURL = SITE_URL . 'edit.php?id=' . $myID;
 	}
 	header('Location: '.$newURL);
 	die();
@@ -79,9 +80,9 @@ function addUser(){
 	$result = mysqli_query($conn,$sql); 
 	if ($result)
 	{//successful update!
-		$newURL = 'http://www.joesarchive.com/sandbox/prism/list.php';
+		$newURL = SITE_URL . 'list.php';
 	}else{
-		$newURL = 'http://www.joesarchive.com/sandbox/prism/add.php';
+		$newURL = SITE_URL . 'add.php';
 	}
 	header('Location: '.$newURL);
 	die();
