@@ -10,22 +10,6 @@ function db_connect()
     return $conn;
 }
 
-function get_contacts_list()
-{
-    $conn = db_connect();
-    //Note to self, make this line more readable by breaking it up
-    $sql = "SELECT cts.ContactId, CONCAT(cts.ContactLastName, ', ', cts.ContactFirstName) as 'Name', cts.title, cts.CellNumber, cts.EmailAddress, orgs.OrganizationName FROM organization_contacts cts INNER JOIN organizations orgs ON cts.OrganizationId = orgs.OrganizationId ORDER BY cts.ContactLastName, cts.ContactFirstName";
-
-    $result = mysqli_query($conn, $sql);
-    while ($row = $result->fetch_assoc()) {
-        $output[] = $row;
-    }
-    //clean-up result set and connection
-    mysqli_free_result($result);
-    mysqli_close($conn);
-    return $output;
-}
-
 function get_contact_detail($id)
 {
     $conn = db_connect();
