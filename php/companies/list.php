@@ -3,6 +3,13 @@
 //Includes
 include "page_builder.php";
 include "query_db.php";
+include_once("../login/login_utils.php");
+
+# Session management
+session_start();
+if (!is_logged_in()) {
+    to_login();
+}
 
 //Toggle showing deleted / archived companies
 if (isset($_GET['archived']) && $_GET['archived'] == "true") {

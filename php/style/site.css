@@ -261,3 +261,14 @@ input[type=submit] {
     height: 25px;
     width: 275px;
 }
+
+/* User details in nav */
+
+#userinfo {
+    color: gray;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+}

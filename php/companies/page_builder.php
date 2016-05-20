@@ -1,4 +1,5 @@
 <?php
+include_once("../login/login_utils.php");
 
 /*
     Generic page building functions - header, nav and footer
@@ -30,7 +31,9 @@ function render_nav($page_name) {
     foreach ($nav_pages as $page) {
         $out .= '<li class="left"><a href="../' . strtolower($page) . '/list.php">' . $page . '</a></li>';
     }
-    $out .= '</ul></nav>
+    $user_details = get_user_details();
+    $out .= $user_details;
+    $out .= '<li class="right"><a href="../login/logout.php">Logout</a></li></ul></nav>
         <main>
         <input id="searchbox" type="text" placeholder=" Search" />
         <h1>' . $page_name . '</h1>

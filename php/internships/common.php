@@ -1,4 +1,5 @@
 <?php
+include("../login/login_utils.php");
 # common php file: holds common code used between all files
 # Author: Tim Davis
 # Author: Kellan Nealy
@@ -23,10 +24,13 @@ function print_top() { ?>
                 <li class="left"><a href="../students/list.php">Students</a></li>
                 <li class="left"><a href="../admin/admin.php">Admin</a></li>
 
-                <li class="right"><a href="list.php">Logout</a></li>
-                <li class="right"><a href="list.php">Profile</a></li>
+                <?php
+                    $user_details = get_user_details();
+                    echo $user_details;
+                ?>
 
-                <li id="welcome" class="right">Welcome, Tim!</li>
+                <li class="right"><a href="../login/logout.php">Logout</a></li>
+                <li class="right"><a href="list.php">Profile</a></li>
             </ul>
         </nav>
 <?php }
@@ -65,6 +69,4 @@ function get_companies_list() {
     mysqli_close($conn);
     return $output;
 }
-
-
 ?>
