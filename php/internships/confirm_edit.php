@@ -3,9 +3,16 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
-# TODO: clean-up
-
 include("update_db.php");
+include_once("../login/login_utils.php");
+
+# Session management
+session_start();
+if (!is_logged_in()) {
+    to_login();
+}
+
+# TODO: clean-up
 
 # Make sure POST parameters have been passed
 if (isset($_POST["intId"])) {

@@ -5,6 +5,13 @@
 
 include("common.php");
 include("update_db.php");
+include_once("../login/login_utils.php");
+
+# Session management
+session_start();
+if (!is_logged_in()) {
+    to_login();
+}
 
 # Prints the main html for this internship edit
 function print_edit_main($data, $intId) { ?>

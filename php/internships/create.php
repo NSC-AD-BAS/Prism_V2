@@ -5,6 +5,15 @@
 
 include("common.php");
 include("update_db.php");
+include_once("../login/login_utils.php");
+
+# Session management
+session_start();
+if (!is_logged_in()) {
+    to_login();
+}
+
+# TODO: clean-up like edit
 
 # this page calls itself with non-empty POST data
 # if the POST data contains everything the table in the database needs
