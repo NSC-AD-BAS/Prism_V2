@@ -3,6 +3,8 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
+include("../login/login_utils.php");
+
 # Prints common top html, including nav
 function print_top() { ?>
     <!DOCTYPE html>
@@ -21,12 +23,15 @@ function print_top() { ?>
                 <li class="left"><a href="../internships/list.php">Internships</a></li>
                 <li class="left"><a href="../companies/list.php">Companies</a></li>
                 <li class="left"><a href="../students/list.php">Students</a></li>
-                <li class="left"><a href="../admin/admin.php">Admin</a></li>
+                <li class="left"><a href="../admin/list.php">Admin</a></li>
 
-                <li class="right"><a href="list.php">Logout</a></li>
+                <?php
+                $user_details = get_user_details();
+                echo $user_details;
+                ?>
+
+                <li class="right"><a href="../login/logout.php">Logout</a></li>
                 <li class="right"><a href="list.php">Profile</a></li>
-
-                <li id="welcome" class="right">Welcome, Tim!</li>
             </ul>
         </nav>
 <?php }
@@ -39,6 +44,18 @@ function print_bottom() { ?>
     </body>
     </html>
 <?php }
+
+# Prints common error message
+function print_error_main() { ?>
+    <main>
+        <h1>An id was not recieved, please try again with an id.</h1>
+
+        <!-- Buttons -->
+        <a class="button" href="list.php"><div>Back to List</div></a>
+    </main>
+<?php }
+
+
 
 # use output array from get_companies_list to print options
 function print_company_options ($company_array, $company_name) {
@@ -65,6 +82,5 @@ function get_companies_list() {
     mysqli_close($conn);
     return $output;
 }
-
 
 ?>

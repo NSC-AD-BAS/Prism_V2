@@ -6,35 +6,14 @@
 include("common.php");
 include("update_db.php");
 
-# this page calls itself with non-empty POST data
-# if the POST data contains everything the table in the database needs
-# the entry will be replaced in the database
-
-# process the POST params for create new internship
-function try_post_process($intId) {
-	if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId']) && isset($_POST['DatePosted'])
-		&& isset($_POST['StartDate']) && isset($_POST['EndDate']) && isset($_POST['Location'])
-		&& isset($_POST['ExpirationDate']) && isset($_POST['Description'])) {
-
-		# need to follow up with DB people about how to setup link between org and internship
-		$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
-			"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
-			"Location"=>$_POST['Location'], "ExpirationDate"=>$_POST['ExpirationDate'],
-			"Description"=>$_POST['Description']);
-
-		update_internship($internship_data, $intId);
-		header("Location: list.php");
-	}
-}
-
 # Prints the main html for this internship edit
-function print_edit_main($data) { ?>
+function print_edit_main($data, $intId) { ?>
     <!-- Main view -->
     <main>
         <?php
+		# Make sure we have data
         if (count($data) > 0) {
             $data = $data[0];
-            $intId = $data["InternshipId"];
             $intPosition = $data["Position Title"];
             $intCompany = $data["Organization"];
             $intDatePosted = $data["Date Posted"];
@@ -45,8 +24,10 @@ function print_edit_main($data) { ?>
             $intLastUpdated = $data["Last Update"];
             $intExpiration = $data["Expiration Date"]; ?>
 
+			<!-- HTML content -->
             <h1>Internship Edit</h1>
-            <form action="edit.php?id=<?= $intId ?>" method="POST">
+            <form action="confirm_edit.php" method="POST">
+				<input type="hidden" name="intId" value="<?php echo htmlspecialchars($intId) ?>" />
     	        <table id="internship_detail">
     	            <tr>
     	                <th>Position</th>
@@ -89,7 +70,7 @@ function print_edit_main($data) { ?>
     	            </tr>
     	        </table>
 
-    	        <input type="submit" name="submit" value="Submit!" />
+    	        <input type="submit" name="submit" value="Make changes" />
         	</form>
 
         <?php } else { ?>
@@ -102,14 +83,18 @@ function print_edit_main($data) { ?>
     </main>
 <?php }
 
-# See if we're being passed post parameters
-$intId = $_GET["id"];
-try_post_process($intId);
-
-# Build the page (only done if post parameters aren't set)
-$data = get_internship_detail($intId);
+# Build edit page
 print_top();
-print_edit_main($data);
+
+# Make sure GET id parameter is set
+if (isset($_GET["id"])) {
+    $intId = $_GET["id"];
+    $data = get_internship_detail($intId);
+    print_edit_main($data, $intId);
+} else {
+    print_error_main();
+}
+
 print_bottom();
 
 ?>

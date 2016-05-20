@@ -7,8 +7,7 @@ include("query_db.php");
 
 # TODO: do not show internships that are past their expiration date
 
-# takes in an associative array of all the column values for an internship
-# uses INSERT INTO to add to the DB
+# Creates an internship give the data
 function add_internship($internship_data) {
 	$conn = db_connect();
 
@@ -47,6 +46,7 @@ function add_internship($internship_data) {
 	}
 }
 
+# Updates an internship given the id and replacement data
 function update_internship($internship_data, $intId) {
 	$conn = db_connect();
 
@@ -82,8 +82,31 @@ function update_internship($internship_data, $intId) {
 	}
 }
 
-function delete_internship() {
-	
+# Deletes an internship given the id
+function delete_internship($intId) {
+	$delete = 1; // 1 = deleted
+	delete_undelete_internship($intId, $delete);
+}
+
+# Undeletes an internship given the id
+function undelete_internship($intId) {
+	$delete = 0; // 0 = not deleted
+	delete_undelete_internship($intId, $delete);
+}
+
+# Helper function for deleting and undeleting an internship
+# Deletes or undeletes an internship given the id and delete value
+function delete_undelete_internship($intId, $delete_undelete) {
+	$conn = db_connect();
+
+	$sql = "UPDATE internships
+				SET isDeleted = " . $delete_undelete . "
+				WHERE InternshipId = " . $intId;
+
+	$result = mysqli_query($conn, $sql);
+	if (!$result) {
+		echo "UPDATE internships table failed";
+	}
 }
 
 ?>
