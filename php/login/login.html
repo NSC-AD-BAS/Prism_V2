@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>PRISM login</title>
+        <link href="../style/login_style.css" type="text/css" rel="stylesheet" />
+        <!--
+        DO FAVICON LATER!  16X16PX ECPECTED
+        <link href="prismfavicon.png" type="image/ico" rel="shortcut icon" />
+        -->
+    </head>
+
+    <body>
+        <h1> P R I S M </h1>
+        <div id="box">
+            <h2 id="logintext">
+                The best way to find internships at NSC.
+                <br />
+                You cannot create an account.
+            </h2>
+
+            <!--
+            STUDENTS:     
+                username: jerdu
+                pass: jerdu
+            
+            FACULTY:
+                username: facul
+                pass: facul
+            
+            ADMIN:
+                username: steba
+                pass: steba
+            -->
+            <form id="loginform" action="login_system.php" method="post">
+                <table>
+                    <tr>
+                        <td align="right"><p id="text">Username:</p></td>
+                        <td align="left">
+                            <input name="username" type="text" size="15" autofocus="autofocus" placeholder="username"/>
+                	    </td>
+                    </tr>
+                    <tr>
+                         <td align="right"><p id="text">Password:</p></td>
+                         <td align="left"><input name="password" type="password" size="15" placeholder="password"/></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><input type="submit" value="LOGIN" /></td>
+                        <td align="left"><input type="reset" value="Reset"></></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </body>
+</html>

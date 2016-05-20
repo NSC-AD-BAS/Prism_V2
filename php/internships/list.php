@@ -5,6 +5,13 @@
 
 include("common.php");
 include("query_db.php");
+include_once("../login/login_utils.php");
+
+# Session management
+session_start();
+if (!is_logged_in()) {
+    to_login();
+}
 
 # Prints main html for this list
 function print_list_main($data, $list_title) { ?>

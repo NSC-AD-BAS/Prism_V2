@@ -2,6 +2,13 @@
     require "query_db.php";
     require "student_presentation.php";
     require "../companies/page_builder.php";
+    include_once("../login/login_utils.php");
+
+	# Session management
+	session_start();
+	if (!is_logged_in()) {
+	    to_login();
+	}
 
     $students = get_all_students();
     $studentList = createStudentList($students);

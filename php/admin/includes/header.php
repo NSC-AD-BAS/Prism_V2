@@ -35,5 +35,5 @@
 		<a href="../companies/list.php">Companies</a>
 		<a href="../students/list.php">Students</a>
 		<a href="../admin/list.php">(Admin)</a>
-	</nav>
+        <a href="../login/logout.php">Logout</a>
 	<main>
