@@ -105,7 +105,6 @@ function renderCompanyDetail($data, $edit) {
                 if (isAdmin()) {
                     $out .= '
                         <a class="button" href="detail.php?id=' . $id . '&edit=true"><div>Edit</div></a>
-                        <a class="button" href="create.php"><div>Create Company</div></a>
                         <a class="button" href="delete.php?id=' . $id . '"><div>' . $delete_text . '</div></a>
                     ';
                 }
