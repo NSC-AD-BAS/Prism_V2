@@ -35,11 +35,14 @@ function updateUser(){
 		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 	}
 
-	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = 'a';}
+	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = '';}
+    if(isset($_POST['lastname'])){$lastName=$_POST['lastname'];}else{$lastName = '';}
+    if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
+    if(isset($_POST['usertype'])){$userType=$_POST['usertype'];}else{$userType = '';}
 
-	$sql = "UPDATE users set firstName='%s' WHERE UserId = " . $myID;
+	$sql = "UPDATE users set firstName='%s',lastName='%s',contact='%s',userType='%s' WHERE UserId = " . $myID;
 
-	$sql = sprintf($sql,$firstName);
+	$sql = sprintf($sql,$firstName,$lastName, $contact, $userType);
 	//var_dump($sql); //test sql query 
 
 	$result = mysqli_query($conn,$sql); 
