@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>PRISM - Edit Contact</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../style/site.css">
-
-    <?php
+<?php
     require 'update_db.php';
-
 
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,6 +31,9 @@
         $saveResult = updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
             $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL);
         if ($saveResult) {
+            //NOTE: I added this redirect to org detail to fix a bug Steve logged.  It also required that I move this logic block above
+            //Any output, since header redirects only work if no data has been sent yet.  Just a heads-up!
+            header("Location: ../companies/detail.php?id=$OrganizationId");
             $renderThis = 'saved';
         } else {
             $renderThis = 'savingerror';
@@ -69,7 +64,16 @@
             $renderThis = "unknown";
         }
     }
-    ?>
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PRISM - Edit Contact</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../style/site.css">
+
+
 </head>
 <body>
 <nav>
