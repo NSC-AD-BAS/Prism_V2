@@ -38,11 +38,11 @@ function updateUser(){
 	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = '';}
     if(isset($_POST['lastname'])){$lastName=$_POST['lastname'];}else{$lastName = '';}
     if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
-    if(isset($_POST['usertype'])){$userType=$_POST['usertype'];}else{$userType = '';}
+    if(isset($_POST['typeid'])){$typeid=$_POST['typeid'];}else{$typeid = '';}
 
-	$sql = "UPDATE users set firstName='%s',lastName='%s',contact='%s',userType='%s' WHERE UserId = " . $myID;
+	$sql = "UPDATE users set firstName='%s',lastName='%s',contact='%s',typeid=%d WHERE UserId = " . $myID;
 
-	$sql = sprintf($sql,$firstName,$lastName, $contact, $userType);
+	$sql = sprintf($sql,$firstName,$lastName, $contact, $typeid);
 	//var_dump($sql); //test sql query 
 
 	$result = mysqli_query($conn,$sql); 
@@ -71,11 +71,14 @@ function addUser(){
 	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
 		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 	}
-
+    
 	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = 'a';}
+    if(isset($_POST['lastname'])){$lastName=$_POST['lastname'];}else{$lastName = '';}
+    if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
+    //if(isset($_POST['typeid'])){$typeid=$_POST['typeid'];}else{$typeid = '';}
 
-	$sql = "INSERT INTO users(firstname,typeId) VALUES('%s',%d)";
-	$sql = sprintf($sql,$firstName,1);
+	$sql = "INSERT INTO users(firstname,lastname,contact,typeId) VALUES('%s','%s','%s',%d)";
+	$sql = sprintf($sql,$firstName,$lastname,$contact,1/*,$typeid*/);
 
 	var_dump($sql); //test sql query 
 	die();
