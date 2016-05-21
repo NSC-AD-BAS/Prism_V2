@@ -51,6 +51,7 @@
         <a href="../login/logout.php">Logout</a>
 	<main>
     -->
+    
     <nav>
             <ul>
                 <li class="left"><a href="../internships/list.php">Internships</a></li>
@@ -62,3 +63,4 @@
                 <li class="right"><a href="list.php">Profile</a></li>
             </ul>
         </nav>
+    <main>
