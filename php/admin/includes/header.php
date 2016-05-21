@@ -15,13 +15,25 @@
     //Below are page specific variables/settings.    
     switch(THIS_PAGE)
     {
-        case 'user_list.php':        
-            $title = "index";
+        case 'list.php':        
+            $title = "Faculty-list";
             $header = "Faculty-list";
             break;
+        case 'user_view.php':        
+            $title = "Faculty-view";
+            $header = "Faculty-view";
+            break;
+        case 'edit.php':        
+            $title = "Faculty-edit";
+            $header = "Faculty-edit";
+            break;
+        case 'add.php':        
+            $title = "Faculty-add";
+            $header = "Faculty-add";
+            break;
         default:
-            $title = "Default Title";
-            $header = "Default Header";
+            $title = "P R I S M - Default";
+            $header = "P R I S M - Default";
     }
 ?>
 	<title>
