@@ -33,7 +33,20 @@ function userList(){
 	$sql = "SELECT * FROM users";//set sql statement
 
 	$result = mysqli_query($conn, $sql);//grab tables
-
+    echo 
+    '
+    <ul class="outer">
+     <!--COLUMNS-->
+                <li class="tableHead">
+                    <ul class="inner">
+                        <li>Full Name</li>
+                        <li>Contact Info</li>
+                        <li>User Type</li>
+                    </ul>
+                </li>
+     <!--ROWS-->
+    
+    ';
 	while($row = mysqli_fetch_assoc($result)){//fetch data from associate array
 		$firstName = dbOut($row['FirstName']);//assign variables for readability
 		$lastName = dbOut($row['LastName']);
@@ -41,13 +54,28 @@ function userList(){
 		$type = dbOut($row['TypeId']);
 		$usrId = dbOut($row['UserId']);
 		//print out table structure with data
-		echo '<tr>';
+		/*
+        echo '<tr>';
 		echo '<td><a href="user_view.php?id='.$usrId .'">' . $firstName .  ' ' . $lastName . '</a></td>';
 		echo '<td>' . $contact . '</td>'; 
 		echo '<td>' . $type . '</td>';
 		echo '</tr>';
+        */
+        
+        echo '
+                    <a href="user_view.php?id='. $usrId . '">
+                        <ul class="inner">
+                            <li>' . $firstName .  ' ' . $lastName . '</li>
+                            <li>' . $contact . '</li>
+                            <li>' . $type .'</li>
+                            <li>' . $intLocation .'</li>
+                        </ul>
+                    </a>
+                </li>
+            
+            ';
 	}//end while
-
+    echo ' </ul>';
 	//release result
 
 	//close db connection
