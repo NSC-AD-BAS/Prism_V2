@@ -80,7 +80,7 @@ function userList(){
 	//release result
 
 	//close db connection
-	//mysqli_close($conn);
+	mysqli_close($result);
 } #end userList()
 
 
@@ -145,7 +145,7 @@ function userEdit(){
 	//Edit Page
 	echo "<form action='prism-input.php?id=".$myID."' method='post'>";
 	echo "First Name: <input type='text' name='firstname' value='".$firstName."'><br>";
-	echo "Last Name: <input type='text' name='lastName' value='".$lastName."'><br>";
+	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
 	echo "Contact: <input type='text' name='contact' value='".$contact."'><br>";
 	echo "User Type: <input type='text' name='type' value='".$type."'><br>";
 	echo "<input type='submit' value='update' >";
@@ -153,6 +153,7 @@ function userEdit(){
 	echo "</form>";
 
 	echo  "<a href=" . 'user_view.php?id=' . ($row['UserId']) . '> Back to details</a>';
+    
 } #end userEdit()
 
 
