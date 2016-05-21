@@ -30,10 +30,23 @@
 </head>
 <body>
 	<header><h1><?=$header;?></h1></header>
-	<nav>
+	<!-- commented until tested on server 
+    <nav>
 		<a href="../internships/list.php">Internships</a>
 		<a href="../companies/list.php">Companies</a>
 		<a href="../students/list.php">Students</a>
 		<a href="../admin/list.php">(Admin)</a>
         <a href="../login/logout.php">Logout</a>
 	<main>
+    -->
+    <nav>
+            <ul>
+                <li class="left"><a href="../internships/list.php">Internships</a></li>
+                <li class="left"><a href="../companies/list.php">Companies</a></li>
+                <li class="left"><a href="../students/list.php">Students</a></li>
+                <li class="left"><a href="../admin/list.php">Admin</a></li>
+
+                <li class="right"><a href="../login/logout.php">Logout</a></li>
+                <li class="right"><a href="list.php">Profile</a></li>
+            </ul>
+        </nav>
