@@ -25,7 +25,7 @@
         <tr>
             <th>First</th>
             <?php
-                echo '<td><input name="student[first]" type="text" value="' . $student['Student First Name'] . '"></td>';
+                echo '<td><input name="student[first]" type="text" value="' . $student['Student First Name'] . '" required></td>';
             ?>
         </tr>
         <tr>
@@ -37,7 +37,7 @@
         <tr>
             <th>Last</th>
             <?php
-                echo '<td><input name="student[last]" type="text" value="' . $student['Student Last Name'] . '"></td>';
+                echo '<td><input name="student[last]" type="text" value="' . $student['Student Last Name'] . '" required></td>';
             ?>
         </tr>
         <tr>
@@ -48,12 +48,12 @@
         <tr>
             <th>SSID</th>
             <?php
-                echo '<td><input name="student[ssid]" type="text" value="' . $student['SID'] . '"></td>';
+                echo '<td><input name="student[ssid]" type="text" value="' . $student['SID'] . '" required></td>';
             ?>
         </tr>
             <th>Cohort/Year</th>
             <?php
-                echo '<td><input name="student[cohort]" type="text" value="' . $student['Cohort'] . '"></td>';
+                echo '<td><input name="student[cohort]" type="text" value="' . $student['Cohort'] . '" required></td>';
             ?>
         </tr>
         <tr>

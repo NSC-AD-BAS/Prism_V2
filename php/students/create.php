@@ -22,7 +22,7 @@
         <table id="internship_detail">
             <tr>
                 <th>First</th>
-                <td><input name="student[first]" type="text"></td>
+                <td><input name="student[first]" type="text" required></td>
             </tr>
             <tr>
                 <th>Middle</th>
@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <th>Last</th>
-                <td><input name="student[last]" type="text"></td>
+                <td><input name="student[last]" type="text" required></td>
             </tr>
             <tr>
                 <th>Preferred Name</th>
@@ -38,11 +38,11 @@
             </tr>
             <tr>
                 <th>SSID</th>
-                <td><input name="student[ssid]" type="text"></td>
+                <td><input name="student[ssid]" type="text" required></td>
             </tr>
             <tr>
                 <th>Cohort/Year</th>
-                <td><input name="student[cohort]" type="text"></td>
+                <td><input name="student[cohort]" type="text" required></td>
             </tr>
             <tr>
                 <th>Program Status</th>
