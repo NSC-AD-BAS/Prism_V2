@@ -63,6 +63,7 @@ function userList(){
         */
         
         echo '
+                <li>
                     <a href="user_view.php?id='. $usrId . '">
                         <ul class="inner">
                             <li>' . $firstName .  ' ' . $lastName . '</li>

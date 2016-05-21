@@ -10,5 +10,5 @@
 		</tr>
 		<!--TABLE ROWS-->
 		<?php userList(); ?>
-	<!--</table>
+	<!--</table-->
 <?php include 'includes/footer.php'; ?>
