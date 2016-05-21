@@ -37,25 +37,29 @@ function createStudentList($students) {
 
 
 function detailFieldIsVisible($field) {
-	$invisibleFields = array("UserId", "Program Status Id", "Internship/Capstone Status Id", "Application Status Id");
+	$invisibleFields = array("UserId"
+		, "Program Status Id"
+		, "Internship/Capstone Status Id"
+		, "Application Status Id"
+		, "isDeleted");
 	return !in_array($field, $invisibleFields);
 }
 
-function createStudentDetailTable($student) {
+function createStudentDetailTableRows($student) {
 	$formattedTableRow = "
 	<tr>
-		<th>%s</th>
+		<td>%s</td>
 		<td>%s</td>
 	</tr>";
 	
-	$tableHtml = "";
+	$tableRowsHtml = "";
 	foreach($student as $field => $value) {
 		if (!detailFieldIsVisible($field))
 			continue; 
-		$tableHtml = $tableHtml . sprintf($formattedTableRow, $field, $value);
+		$tableRowsHtml = $tableRowsHtml . sprintf($formattedTableRow, $field, $value);
 	}                    
                     
-    return "<table id='internship_detail'>" . $tableHtml . "</table>";
+    return $tableRowsHtml;
 }
 
 function GetOptionSelectedStatus($optionIndex, $selectedIndex) {

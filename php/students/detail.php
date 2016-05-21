@@ -10,7 +10,7 @@
 	$prev = get_prev_student($studentId);
 
 	$studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
-	$detailTable = createStudentDetailTable($student);
+	$detailTable = createStudentDetailTableRows($student);
 	render_header("Students", true);
 	render_nav($studentFullName);
 ?>
@@ -18,13 +18,18 @@
 	<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
     <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
 
-    <?=$detailTable?> 
-
-    <a href="list.php" class="button"><div>Back to List</div></a>
-    <?php
-    	echo '<a href="edit.php?id=' . $studentId . '" class="button"><div>Edit</div></a>';
-    ?>
-    <a href="delete.php" class="button"><div>Delete</div></a>
-    
+    <div class="wrapper">
+        <div class="detail_table">
+		    <table>
+		    	<?=$detailTable?> 	
+		    </table>
+		    <hr>
+			<div class="lower_nav">
+				<a href="list.php" class="button"><div>Student List</div></a>
+			    <a href="edit.php?id=<?=$studentId?>" class="button"><div>Edit</div></a>
+			    <a href="delete.php" class="button"><div>Delete</div></a>
+			</div>
+		</div>
+	</div>
 </div>
 <?php render_footer(); ?>
