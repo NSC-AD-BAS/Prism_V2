@@ -18,133 +18,106 @@
 
     render_header("Students", false);
     render_nav($studentFullName);
-
 ?>
-<form action="submit_edit.php" method="post">
-    <table id="internship_detail">
-        <tr>
-            <th>First</th>
-            <?php
-                echo '<td><input name="student[first]" type="text" value="' . $student['Student First Name'] . '" required></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Middle</th>
-            <?php
-                echo '<td><input name="student[middle]" type="text" value="' . $student['Student Middle Name'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Last</th>
-            <?php
-                echo '<td><input name="student[last]" type="text" value="' . $student['Student Last Name'] . '" required></td>';
-            ?>
-        </tr>
-        <tr>
-        	<th>Preferred Name</th>
-        	<?php
-        		echo '<td><input name="student[preferred]" type="text" value="' . $student['Preferred Name'] . '"></td>';
-        	?>
-        <tr>
-            <th>SSID</th>
-            <?php
-                echo '<td><input name="student[ssid]" type="text" value="' . $student['SID'] . '" required></td>';
-            ?>
-        </tr>
-            <th>Cohort/Year</th>
-            <?php
-                echo '<td><input name="student[cohort]" type="text" value="' . $student['Cohort'] . '" required></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Program Status</th>
-            <td>
-                <select name="student[program_status_id]">
-                    <?=$programStatusesOptions?>
-                </select>
-            </td>
-        </tr>
-        <tr>
-        	<th>Internship/Capstone Status</th>
-        	<td>
-        		<select name="student[internship_capstone_status_id]">
-        			<?=$internCapstoneStatusesOptions?>
-        		</select>
-        	</td>
-        </tr>
-        <tr>
-            <th>Internship</th>
-            <?php
-                echo '<td><input name="student[internship]" type="text" value="' . $student['Internship'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-        	<th>Application Status</th>
-        	<td>
-        		<select name="student[application_status_id]">
-        			<?=$applicationStatusesOptions?>
-        		</select>
-        	</td>
-        </tr>
-        <tr>
-        	<th>Resume</th>
-        	<?php
-        		echo '<td><input name="student[resume_url]" value="' . $student['Resume'] . '"></td>';
-        	?>
-        </tr>
-        <tr>
-        	<th>LinkedIn Profile</th>
-        	<?php
-        		echo '<td><input name="student[linked_in_url]" value="' . $student['LinkedIn Profile'] . '"></td>';
-        	?>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <?php
-            	echo '<td><input name="student[email]" value="' . $student['Email'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Phone</th>
-            <?php
-                echo '<td><input name="student[phone]" value="' . $student['Phone'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Address Line 1</th>
-            <?php
-                echo '<td><input name="student[address1]" type="text" value="' . $student['Address 1'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Address Line 2</th>
-            <?php
-                echo '<td><input name="student[address2]" type="text" value="' . $student['Address 2'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>City</th>
-            <?php
-                echo '<td><input name="student[city]" type="text" value="' . $student['City'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>State</th>
-            <?php
-                echo '<td><input name="student[state]" type="text" value="' . $student['State'] . '"></td>';
-            ?>
-        </tr>
-        <tr>
-            <th>Zipcode</th>
-            <?php
-                echo '<td><input name="student[zipcode]" type="text" value="' . $student['Zipcode'] . '"></td>';
-            ?>
-        </tr>
-        <tr><td><input type="submit" value="Edit Student"></td></tr>
-        <?php
-        	echo '<input type="hidden" name="student[id]" value="' . $student['UserId'] . '">';
-        ?>
-    </table>
-</form>
-<a class="button" href="list.php"><div>Back to List</div></a>
+<div class="wrapper">
+    <div class="detail_table">
+        <form action="submit_edit.php" method="post">
+            <table>
+                <tr>
+                    <td>First</td>
+                    <td><input class="textbox" name="student[first]" type="text" value="<?=$student['Student First Name']?>" require></td>
+                </tr>
+                <tr>
+                    <td>Middle</td>
+                    <td><input class="textbox" name="student[middle]" type="text" value="<?=$student['Student Middle Name']?>"></td>
+                </tr>
+                <tr>
+                    <td>Last</td>
+                    <td><input class="textbox" name="student[last]" type="text" value="<?=$student['Student Last Name']?>" require></td>
+                </tr>
+                <tr>
+                	<td>Preferred Name</td>
+                	<td><input class="textbox" name="student[preferred]" type="text" value="<?=$student['Preferred Name']?>"></td>
+                </tr>
+                <tr>
+                    <td>SSID</td>
+                    <td><input class="textbox" name="student[ssid]" type="text" value="<?=$student['SID']?>" require></td>
+                </tr>
+                    <td>Cohort/Year</td>
+                    <td><input class="textbox" name="student[cohort]" type="text" value="<?=$student['Cohort']?>" require></td>
+                </tr>
+                <tr>
+                    <td>Program Status</td>
+                    <td>
+                        <select class="textbox" name="student[program_status_id]">
+                            <?=$programStatusesOptions?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                	<td>Internship/Capstone Status</td>
+                	<td>
+                		<select class="textbox" name="student[internship_capstone_status_id]">
+                			<?=$internCapstoneStatusesOptions?>
+                		</select>
+                	</td>
+                </tr>
+                <tr>
+                    <td>Internship</td>
+                    <td><input class="textbox" name="student[internship]" type="text" value="<?=$student['Internship']?>"></td>
+                </tr>
+                <tr>
+                	<td>Application Status</td>
+                	<td>
+                		<select class="textbox" name="student[application_status_id]">
+                			<?=$applicationStatusesOptions?>
+                		</select>
+                	</td>
+                </tr>
+                <tr>
+                	<td>Resume</td>
+                    <td><input class="textbox" name="student[resume_url]" value="<?=$student['Resume']?>"></td>
+                </tr>
+                <tr>
+                	<td>LinkedIn Profile</td>
+                	<td><input class="textbox" name="student[linked_in_url]" value="<?=$student['LinkedIn Profile']?>"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input class="textbox" name="student[email]" value="<?=$student['Email']?>"></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td><input class="textbox" name="student[phone]" value="<?=$student['Phone']?>"></td>
+                </tr>
+                <tr>
+                    <td>Address Line 1</td>
+                    <td><input class="textbox" name="student[address1]" type="text" value="<?=$student['Address 1']?>"></td>
+                </tr>
+                <tr>
+                    <td>Address Line 2</td>
+                    <td><input class="textbox" name="student[address2]" type="text" value="<?=$student['Address 2']?>"></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><input class="textbox" name="student[city]" type="text" value="<?=$student['City']?>"></td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td><input class="textbox" name="student[state]" type="text" value="<?=$student['State']?>"></td>
+                </tr>
+                <tr>
+                    <td>Zipcode</td>
+                    <td><input class="textbox" name="student[zipcode]" type="text" value="<?=$student['Zipcode']?>"></td>
+                </tr>  
+                <input type="hidden" name="student[id]" value="<?=$student['UserId']?>">
+            </table>
+            <hr>
+            <div>
+                <input type="submit" value="Save">
+                <a class="button" href="list.php"><div>Cancel</div></a>
+            </div>
+        </form>
+    </div>
+</div>
 <?php render_footer(); ?>
