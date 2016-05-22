@@ -32,7 +32,7 @@
 			<div class="lower_nav">
 				<a href="list.php" class="button"><div>Student List</div></a>
 			    <a href="edit.php?id=<?=$studentId?>" class="button"><div>Edit</div></a>
-			    <a href="delete.php" class="button"><div>Delete</div></a>
+			    <a href="delete_confirmation.php?id=<?=$studentId?>" class="button"><div>Delete</div></a>
 			</div>
 		</div>
 	</div>

@@ -149,4 +149,14 @@
 		$insertNoteQuery = build_insert_note_query($note);
 		execute_upcert($insertNoteQuery);
 	}
+
+	// This function is called on the delete.php page to construct the proper update sql statement
+	function build_delete_student_query($orgId, $delete) {
+    $query = "
+        UPDATE students SET
+        isDeleted=$delete
+        WHERE UserId=$orgId
+    ";
+    return $query;
+}
 ?>
