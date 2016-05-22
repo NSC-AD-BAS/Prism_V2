@@ -47,7 +47,7 @@
 		    </table>
 		    <hr>
 			<div class="lower_nav">
-			    <a href="create_note.php?id=<?=$userId?>" class="button"><div>Create Note</div></a>
+			    <a href="create_note.php?UserId=<?=$userId?>" class="button"><div>Create Note</div></a>
 			</div>
 		</div>
 	</div>

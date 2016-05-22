@@ -1,20 +1,30 @@
 <?php
-
-	function create_student($student) {
+	
+	function execute_upcert($query) {
 		require "../lib/db_connect.php";
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if(!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
+		if (!mysqli_query($conn, $query)) {
+		    echo "Error updating record: " . mysqli_error($conn);
+		    echo "<br>Query: " . $query;
+		    die();
+		}
+
+		$newId = mysqli_insert_id($conn);
+    	mysqli_close($conn);	
+
+    	return $newId;
+	}
+
+	function create_student($student) {
 		$insertUserQuery = build_insert_user_query($student);
-		mysqli_query($conn, $insertUserQuery);
-		$newUserId = mysqli_insert_id($conn);
+		$newUserId = execute_upcert($insertUserQuery);
 
 		$insertStudentQuery = build_insert_student_query($student, $newUserId);
-		mysqli_query($conn, $insertStudentQuery);
-		
-    	mysqli_close($conn);
+		execute_upcert($insertStudentQuery);
 	}
 
 	function build_insert_user_query($student) {
@@ -83,14 +93,6 @@
 	}
 
 	function edit_student($student) {
-		require "../lib/db_connect.php";
-		// Create connection
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		// Check connection
-		if (!$conn) {
-		    die("Connection failed: " . mysqli_connect_error());
-		}
-
 		$sql = "UPDATE students s
 					JOIN users u ON u.userId = s.userId
 				SET FirstName = '$student[first]',
@@ -114,12 +116,37 @@
 				Zipcode = '$student[zipcode]'
 				WHERE s.UserId = $student[id];";
 
-		if (mysqli_query($conn, $sql)) {
-		    echo "Record updated successfully";
-		} else {
-		    echo "Error updating record: " . mysqli_error($conn);
-		}
+		execute_upcert($sql);
+	}
 
-		mysqli_close($conn);
+	function build_update_note_query($note) {
+		$queryFormat = "update user_notes
+						set Note_Type = '%s', Note_Text = '%s'
+						where User_NoteId = %d;";
+
+			return sprintf($queryFormat,
+				$note['type'],
+				$note['text'],
+				$note['id']);
+	}
+
+	function edit_note($note) {
+		$updateNoteQuery = build_update_note_query($note);
+		execute_upcert($updateNoteQuery);
+	}
+
+	function build_insert_note_query($note) {
+		$queryFormat = "insert user_notes(Note_Type, Note_Text, UserId)
+						values ('%s', '%s', %d);";
+
+			return sprintf($queryFormat,
+				$note['type'],
+				$note['text'],
+				$note['UserId']);
+	}
+
+	function insert_note($note) {
+		$insertNoteQuery = build_insert_note_query($note);
+		execute_upcert($insertNoteQuery);
 	}
 ?>
