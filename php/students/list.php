@@ -10,12 +10,20 @@
 	    to_login();
 	}
 
-    $students = get_all_students();
+
+    $students = [];
+    if (isset($_GET['q'])) {
+        $searchQuery = $_GET['q'];
+        $students = search_students_for($searchQuery);
+    } else {
+        $students = get_all_students();
+    }
+        
     $studentList = createStudentList($students);
     
 
     render_header("Students", false);
-    render_nav("Student List");
+    render_nav("Student List", "list.php?q=");
 ?>
    
    <?=$studentList?>

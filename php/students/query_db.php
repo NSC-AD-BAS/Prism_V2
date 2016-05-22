@@ -1,11 +1,16 @@
 <?php
-	function get_many_rows($query) {
+	function create_connection() {
 		require "../lib/db_connect.php";
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 		if(!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
+		return $conn;
+	}
+
+	function get_many_rows($query) {
+		$conn = create_connection();
 
 		$rows = array();
 		if ($result = mysqli_query($conn, $query)) {
@@ -19,76 +24,31 @@
 		return $rows;
 	}
 
-	function get_all_students() {
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
+	function get_row($query) {
+		$conn = create_connection();
 
-		$query = "SELECT * FROM student_list;";
-		
-		$students = array();
 		if ($result = mysqli_query($conn, $query)) {
-		    while ($student = mysqli_fetch_assoc($result)) {
-		        array_push($students, $student);
-		    }
-		    mysqli_free_result($result);
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
 		}
     	mysqli_close($conn);
 
-		return $students;
+		return $row;
+	}
+
+	function get_all_students() {
+		$query = "SELECT * FROM student_list;";
+		return get_many_rows($query);
 	}
 
 	function get_single_student($id) {
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
 		$query = "SELECT * FROM student_detail WHERE UserId = " . $id . ";";
-		if ($result = mysqli_query($conn, $query)) {
-			$row = mysqli_fetch_assoc($result);
-			mysqli_free_result($result);
-		}
-    	mysqli_close($conn);
-
-		return $row;
-	}
-
-	function get_row($query) {
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
-		if ($result = mysqli_query($conn, $query)) {
-			$row = mysqli_fetch_assoc($result);
-			mysqli_free_result($result);
-		}
-    	mysqli_close($conn);
-
-		return $row;
+		return get_row($query);
 	}
 
 	function get_all_fields($id) {
-		
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
 		$query = "SELECT * FROM students WHERE UserId = " . $id . ";";
-		if ($result = mysqli_query($conn, $query)) {
-			$row = mysqli_fetch_assoc($result);
-			mysqli_free_result($result);
-		}
-    	mysqli_close($conn);
-
-		return $row;
+		return get_row($query);
 	}
 
 	function get_all_intern_capstone_statuses() {
@@ -112,36 +72,14 @@
 	}
 
 	function get_prev_student($id) {
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
 		$query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " ORDER BY UserId DESC LIMIT 1;";
-		if ($result = mysqli_query($conn, $query)) {
-			$row = mysqli_fetch_assoc($result);
-			mysqli_free_result($result);
-		}
-    	mysqli_close($conn);
-
+		$row = get_row($query);
 		return $row["UserId"];
 	}
 
 	function get_next_student($id) {
-		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if(!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
 		$query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " ORDER BY UserId LIMIT 1;";
-		if ($result = mysqli_query($conn, $query)) {
-			$row = mysqli_fetch_assoc($result);
-			mysqli_free_result($result);
-		}
-    	mysqli_close($conn);
-
+		$row = get_row($query);
 		return $row["UserId"];
 	}
 
@@ -172,5 +110,47 @@
         WHERE un.User_NoteId = " . $id;
 
         return get_row($query);
+	}
+
+	function get_searchable_student_data() {
+		$query = "SELECT * FROM student_detail;";
+		return get_many_rows($query);
+	}
+
+	function student_matches_search($student, $searchQuery) {
+		$lowercaseQuery = strtolower($searchQuery);
+		foreach($student as $field => $value) {
+			$lowerCaseValue = strtolower($value);
+			if (strpos($lowerCaseValue, $lowercaseQuery) !== false) {
+			    return true;
+			}
+		}
+		return false;
+	}
+
+	function build_search_result_query($userIds) {
+		$reduceFunc = function($inClause, $item)
+		{
+		    return $inClause . "," . $item;
+		};
+		
+		$inClause = array_reduce($userIds, $reduceFunc, -1);
+		$format = "SELECT * FROM student_list WHERE UserId in (%s);";
+		return sprintf($format, $inClause);
+	}
+
+	function search_students_for($searchQuery) {
+		$searchableStudents = get_searchable_student_data();
+
+		$userIds = [];
+		foreach ($searchableStudents as $searchableStudent) {
+			if (student_matches_search($searchableStudent, $searchQuery)) {
+				$id = $searchableStudent["UserId"];
+				array_push($userIds, $id);
+			}
+		}
+
+		$query = build_search_result_query($userIds);
+		return get_many_rows($query);
 	}
 ?>

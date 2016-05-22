@@ -20,7 +20,7 @@ function render_header($header, $isDetail) {
 }
 
 //Render the nav bar, the search box and the $page_name in an h1 element
-function render_nav($page_name) {
+function render_nav($page_name, $searchUrlBase = "") {
     //Pages may be added or re-ordered by adjusting this array
     $nav_pages = ["Internships", "Companies", "Students"];
     if (isAdmin()) {
@@ -35,7 +35,9 @@ function render_nav($page_name) {
     $out .= $user_details;
     $out .= '<li class="right"><a href="../login/logout.php">Logout</a></li></ul></nav>
         <main>
-        <input id="searchbox" type="text" placeholder=" Search" />
+        <form target="$searchUrlBase">
+            <input id="searchbox" type="text" name="q" placeholder=" Search" />
+        </form>
         <h1>' . $page_name . '</h1>
     ';
     echo $out;
