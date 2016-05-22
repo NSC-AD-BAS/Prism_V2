@@ -41,7 +41,6 @@
 	}
 
 	function get_single_student($id) {
-		
 		require "../lib/db_connect.php";
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if(!$conn) {
@@ -49,6 +48,22 @@
 		}
 
 		$query = "SELECT * FROM student_detail WHERE UserId = " . $id . ";";
+		if ($result = mysqli_query($conn, $query)) {
+			$row = mysqli_fetch_assoc($result);
+			mysqli_free_result($result);
+		}
+    	mysqli_close($conn);
+
+		return $row;
+	}
+
+	function get_row($query) {
+		require "../lib/db_connect.php";
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if(!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
 		if ($result = mysqli_query($conn, $query)) {
 			$row = mysqli_fetch_assoc($result);
 			mysqli_free_result($result);
@@ -128,5 +143,34 @@
     	mysqli_close($conn);
 
 		return $row["UserId"];
+	}
+
+	function get_student_notes($userId) {
+		$query = "SELECT 
+	        un.User_NoteId AS `NoteId`,
+	        un.Note_Type AS `Type`,
+	        un.Note_Text AS `Text`
+		FROM
+        	users u
+				JOIN
+        	user_notes un ON u.UserId = un.UserId
+        WHERE u.UserId = " . $userId;
+
+       return get_many_rows($query);	
+	}
+
+	function get_note($id) {
+		$query = "SELECT
+			u.UserId, 
+	        un.User_NoteId AS `NoteId`,
+	        un.Note_Type AS `Type`,
+	        un.Note_Text AS `Text`
+		FROM
+        	users u
+				JOIN
+        	user_notes un ON u.UserId = un.UserId
+        WHERE un.User_NoteId = " . $id;
+
+        return get_row($query);
 	}
 ?>

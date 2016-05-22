@@ -82,4 +82,20 @@ function CreateOptionsFrom($statuses, $selectedIndex) {
 	return $optionsHtml;
 }
 
+function createStudentNotesTableRows($notes) {
+	$formatter = '<tr><td>%s</td><td><a href="edit_note.php?id=%s">%s</a></td></tr>';
+	$html = "";
+
+	foreach($notes as $note) {
+		$index = $note["NoteId"];
+		$type = $note["Type"];
+		$text = $note["Text"];
+
+		$html = $html . sprintf($formatter, $type, $index, $text);		
+	}
+
+	return $html;
+
+}
+
 ?>
