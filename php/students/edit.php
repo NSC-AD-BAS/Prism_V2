@@ -114,7 +114,7 @@
             </table>
             <hr>
             <div>
-                <input type="submit" value="Save">
+                <input class="form_button" type="submit" value="Save">
                 <a class="button" href="list.php"><div>Cancel</div></a>
             </div>
         </form>
