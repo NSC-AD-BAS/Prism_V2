@@ -56,7 +56,7 @@ function userList(){
 		//print out table structure with data
 		/*
         echo '<tr>';
-		echo '<td><a href="user_view.php?id='.$usrId .'">' . $firstName .  ' ' . $lastName . '</a></td>';
+		echo '<td><a href="detail.php?id='.$usrId .'">' . $firstName .  ' ' . $lastName . '</a></td>';
 		echo '<td>' . $contact . '</td>'; 
 		echo '<td>' . $type . '</td>';
 		echo '</tr>';
@@ -64,7 +64,7 @@ function userList(){
         
         echo '
                 <li>
-                    <a href="user_view.php?id='. $usrId . '">
+                    <a href="detail.php?id='. $usrId . '">
                         <ul class="inner">
                             <li>' . $firstName .  ' ' . $lastName . '</li>
                             <li>' . $contact . '</li>
@@ -152,7 +152,7 @@ function userEdit(){
 	echo "<input type='hidden' name='act' value='update' />";
 	echo "</form>";
 
-	echo  "<a href=" . 'user_view.php?id=' . ($row['UserId']) . '> Back to details</a>';
+	echo  "<a href=" . 'detail.php?id=' . ($row['UserId']) . '> Back to details</a>';
     
 } #end userEdit()
 
@@ -204,10 +204,10 @@ function userDetails(){
 	echo "User Type : " . $row[TypeId] . "<br>" . "<br>";
 
 	if(mysqli_num_rows($result) >0){
-		echo  "<a href=" . 'user_view.php?id=' . ($row['UserId'] -1) . '> prev</a>';
+		echo  "<a href=" . 'detail.php?id=' . ($row['UserId'] -1) . '> prev</a>';
 	}
 	if(mysqli_num_rows($result) < $row['UserId']+1){
-		echo "&emsp;&emsp;&emsp;". "<a href=" . 'user_view.php?id=' . ($row['UserId'] + 1) . '> next</a>';
+		echo "&emsp;&emsp;&emsp;". "<a href=" . 'detail.php?id=' . ($row['UserId'] + 1) . '> next</a>';
 	}
 } #end userDetails()
 
@@ -236,7 +236,7 @@ function userDelete(){
 	//Delete SQL statement
 
 
-	echo "<form action='user_view.php?id='".$usrId."' method='post'>";
+	echo "<form action='detail.php?id='".$usrId."' method='post'>";
 	echo "<input type='submit' >";
 	echo "<input type='hidden' name='page' value='view' />";
 	echo "</form>";

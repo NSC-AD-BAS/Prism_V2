@@ -19,7 +19,7 @@
             $title = "PRISM - Users List";
             $header = "PRISM - Users List";
             break;
-        case 'user_view.php':        
+        case 'detail.php':        
             $title = "PRISM - Users View";
             $header = "PRISM - Users View";
             break;

@@ -49,7 +49,7 @@ function updateUser(){
 	$result = mysqli_query($conn,$sql); 
 	if ($result)
 	{//successful update!
-		$newURL = SITE_URL . 'user_view.php?id=' . $myID;
+		$newURL = SITE_URL . 'detail.php?id=' . $myID;
 	}else{
 		$newURL = SITE_URL . 'edit.php?id=' . $myID;
 	}
