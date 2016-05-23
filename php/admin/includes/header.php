@@ -41,17 +41,6 @@
 	</title>
 </head>
 <body>
-	<header><h1><?=$header;?></h1></header>
-	<!-- commented until tested on server 
-    <nav>
-		<a href="../internships/list.php">Internships</a>
-		<a href="../companies/list.php">Companies</a>
-		<a href="../students/list.php">Students</a>
-		<a href="../admin/list.php">(Admin)</a>
-        <a href="../login/logout.php">Logout</a>
-	<main>
-    -->
-    
     <nav>
             <ul>
                 <li class="left"><a href="../internships/list.php">Internships</a></li>
@@ -64,3 +53,7 @@
             </ul>
         </nav>
     <main>
+        <form target="">
+            <input id="searchbox" type="text" name="q" placeholder=" Search" />
+        </form>
+        <h1><?=$header;?></h1>
