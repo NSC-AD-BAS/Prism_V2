@@ -1,7 +1,7 @@
 <?php
 	// require statements
 	require 'query_db.php';
-    require "../companies/page_builder.php";
+    require "../render/page_builder.php";
 
     // get data from query to identify the proper record
     $studentId = $_GET["id"];

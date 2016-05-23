@@ -1,9 +1,9 @@
 <?php
 
 //Includes
-include "page_builder.php";
-include "update_db.php";
-include "query_builder.php";
+include "../render/page_builder.php";
+include "db/update_db.php";
+include "db/query_builder.php";
 
 //This validation is likely redundant.  Safety measure?
 if (isset($_POST["name"]) && isset($_POST["desc"])) {

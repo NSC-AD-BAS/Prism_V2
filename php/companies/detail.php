@@ -3,8 +3,8 @@
 //TODO: Get column headers and td names from column names in DB, not hard-coded.
 
 //Includes
-include "page_builder.php";
-include "query_db.php";
+include "../render/page_builder.php";
+include "db/query_db.php";
 
 //Check URL params to set globals
 //Company ID

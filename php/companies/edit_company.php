@@ -5,8 +5,8 @@
 */
 
 //Includes
-include "update_db.php";
-include "query_builder.php";
+include "db/update_db.php";
+include "db/query_builder.php";
 
 //Disallow direct access
 if (!isset($_POST["id"])) {
@@ -17,8 +17,7 @@ if (!isset($_POST["id"])) {
 $id = $_POST["id"];
 
 $query = build_update_query($id);
-//DEBUG: Uncomment to print the built query to the page for sanity checking, testing in Sequel
-//echo $query;
+
 update_company($query); //TODO: Verify success / fail and redirect accordingly
 header("Location: detail.php?id=$id");
 ?>

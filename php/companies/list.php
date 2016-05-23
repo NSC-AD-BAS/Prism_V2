@@ -1,8 +1,8 @@
 <?php
 
 //Includes
-include "page_builder.php";
-include "query_db.php";
+include "../render/page_builder.php";
+include "db/query_db.php";
 include_once("../login/login_utils.php");
 
 # Session management

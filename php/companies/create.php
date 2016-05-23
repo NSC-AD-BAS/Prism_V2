@@ -1,8 +1,8 @@
 <?php
 
 //Includes
-include "page_builder.php";
-include "query_db.php";
+include "../render/page_builder.php";
+include "db/query_db.php";
 
 render_header('', false);
 render_nav('Create New Company');

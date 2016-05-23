@@ -1,9 +1,9 @@
 <?php
 
 //Includes
-include "page_builder.php";
-include "query_builder.php";
-include "update_db.php";
+include "../render/page_builder.php";
+include "db/query_builder.php";
+include "db/update_db.php";
 
 if (isset($_GET['id']) && isset($_GET['delete'])) {
     $id = $_GET['id'];

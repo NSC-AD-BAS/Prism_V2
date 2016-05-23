@@ -1,7 +1,7 @@
 <?php
 
 	//Includes
-	require "../companies/page_builder.php";
+	require "../render/page_builder.php";
 	require "update_db.php";
 
 	// sets the flags for deletion

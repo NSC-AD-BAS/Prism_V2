@@ -1,7 +1,7 @@
 <?php
     require "query_db.php";
     require "student_presentation.php";
-    require "../companies/page_builder.php";
+    require "../render/page_builder.php";
     include_once("../login/login_utils.php");
 
 	# Session management

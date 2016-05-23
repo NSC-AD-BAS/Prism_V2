@@ -1,6 +1,6 @@
 <?php
     require 'query_db.php';
-    require "../companies/page_builder.php";
+    require "../render/page_builder.php";
     require "student_presentation.php";
 
     $studentId = $_GET['id'];

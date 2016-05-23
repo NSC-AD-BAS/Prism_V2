@@ -1,6 +1,6 @@
 <?php
     require "query_db.php";
-    require "../companies/page_builder.php";
+    require "../render/page_builder.php";
 
     $noteId = $_GET['id'];
     $note = get_note($noteId);
