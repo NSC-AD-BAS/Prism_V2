@@ -77,6 +77,8 @@ function userList(){
             ';
 	}//end while
     echo ' </ul>';
+    echo '<a class="button" href="add.php"><div>Create new User</div></a>'; 
+    
 	//release result
 
 	//close db connection
@@ -148,11 +150,11 @@ function userEdit(){
 	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
 	echo "Contact: <input type='text' name='contact' value='".$contact."'><br>";
 	echo "User Type: <input type='text' name='type' value='".$type."'><br>";
-	echo "<input type='submit' value='update' >";
+	echo "<input type='submit' value='Update' >";
 	echo "<input type='hidden' name='act' value='update' />";
 	echo "</form>";
-
-	echo  "<a href=" . 'detail.php?id=' . ($row['UserId']) . '> Back to details</a>';
+    
+    echo '<a class="button" href="detail.php?id=' . ($row['UserId']) . '><div>Cancel</div></a>';
     
 } #end userEdit()
 
@@ -185,10 +187,16 @@ function userDetails(){
 	$result = mysqli_query($conn, $sql);//grab tables
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
+        if(mysqli_num_rows($result) >0){
+		echo '<a class="button" href="detail.php?id=' . ($row['UserId']-1) . '><div>Previous</div></a>';
+        }
+        if(mysqli_num_rows($result) < $row['UserId']+1){
+            echo '&emsp;&emsp;&emsp; <a class="button" href="detail.php?id=' . ($row['UserId']+1) . '><div>Next</div></a>';
+        }
 	} else {
 		echo "0 results";
 	}
-
+    
 	$firstName = dbOut($row['FirstName']);//assign variables for readability
 	$lastName = dbOut($row['LastName']);
 	$contact = dbOut($row['ContactInfo']);
@@ -196,19 +204,16 @@ function userDetails(){
 	$usrId = dbOut($row['UserId']);
 
 	//Details Page
-	echo  "<a href=" . 'edit.php?id=' . ($row['UserId']) . '> Edit</a>' . "&emsp;&emsp;&emsp;";
-	echo  "<a href=" . 'add.php?id=' . ($row['UserId']) . '> Add</a>' . "&emsp;&emsp;&emsp;";        
-	echo  "<a href=" . 'delete.php?id=' . ($row['UserId']) . '> Delete</a>';
+	//echo  "<a href=" . 'edit.php?id=' . ($row['UserId']) . '> Edit</a>' . "&emsp;&emsp;&emsp;";
+	//echo  "<a href=" . 'add.php?id=' . ($row['UserId']) . '> Add</a>' . "&emsp;&emsp;&emsp;";        
+	//echo  "<a href=" . 'delete.php?id=' . ($row['UserId']) . '> Delete</a>';
 	echo "<br /><br />Full Name : " . $row[FirstName] . " " . $row[LastName] . "<br>";
 	echo "Contact Info : " . $row[ContactInfo] . "<br>";
 	echo "User Type : " . $row[TypeId] . "<br>" . "<br>";
 
-	if(mysqli_num_rows($result) >0){
-		echo  "<a href=" . 'detail.php?id=' . ($row['UserId'] -1) . '> prev</a>';
-	}
-	if(mysqli_num_rows($result) < $row['UserId']+1){
-		echo "&emsp;&emsp;&emsp;". "<a href=" . 'detail.php?id=' . ($row['UserId'] + 1) . '> next</a>';
-	}
+    echo '&emsp;&emsp;&emsp; <a class="button" href="edit.php?id=' . ($row['UserId']) . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href="delete.php"><div>Delete</div></a>';
+    
+	
 } #end userDetails()
 
 
