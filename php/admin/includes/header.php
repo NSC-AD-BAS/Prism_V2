@@ -16,24 +16,24 @@
     switch(THIS_PAGE)
     {
         case 'list.php':        
-            $title = "Faculty-list";
-            $header = "Faculty-list";
+            $title = "PRISM - Users List";
+            $header = "PRISM - Users List";
             break;
         case 'user_view.php':        
-            $title = "Faculty-view";
-            $header = "Faculty-view";
+            $title = "PRISM - Users View";
+            $header = "PRISM - Users View";
             break;
         case 'edit.php':        
-            $title = "Faculty-edit";
-            $header = "Faculty-edit";
+            $title = "PRISM - Users Edit";
+            $header = "PRISM - Users Edit";
             break;
         case 'add.php':        
-            $title = "Faculty-add";
-            $header = "Faculty-add";
+            $title = "PRISM - Users Add";
+            $header = "PRISM - Users Add";
             break;
         default:
-            $title = "P R I S M - Default";
-            $header = "P R I S M - Default";
+            $title = "P R I S M - ";
+            $header = "P R I S M - ";
     }
 ?>
 	<title>
