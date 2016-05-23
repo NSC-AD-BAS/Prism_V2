@@ -28,7 +28,7 @@
             </table>
             <hr>
             <div>
-                <input class="form_button type="submit" value="Save">
+                <input class="form_button" type="submit" value="Save">
                 <a class="button" href="detail.php?id=<?=$userId?>"><div>Cancel</div></a>
             </div>
         </form>
