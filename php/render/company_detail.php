@@ -2,27 +2,31 @@
 
 /* Company Detail Rendering Functions */
 //Company Data
-function renderCompanyDetail($data, $edit) {
-    //set nicer globals
-    foreach ($data as $d) {
-        $id = $d['OrganizationId'];
-        $name = $d['Company'];
-        $url = $d['URL'];
-        $street = $d['Address 1'];
-        $city = $d['City'];
-        $state = $d['State'];
-        $num_employees = $d['Number of Employees'];
-        $revenue = $d['Yearly Revenue'];
-        $desc = $d['Description'];
-        $deleted = $d['isDeleted'];
+function renderCompanyDetail($data, $edit, $create) {
+    //If we're not creating a new company, get the company data
+    if (!$create) {
+        //set nicer variable naes
+        foreach ($data as $d) {
+            $id = $d['OrganizationId'];
+            $name = $d['Company'];
+            $url = $d['URL'];
+            $street = $d['Address 1'];
+            $city = $d['City'];
+            $state = $d['State'];
+            $num_employees = $d['Number of Employees'];
+            $revenue = $d['Yearly Revenue'];
+            $desc = $d['Description'];
+            $deleted = $d['isDeleted'];
+        }
+        $delete_text = $deleted ? "Restore" : "Delete";
     }
-    $delete_text = $deleted ? "Restore" : "Delete";
+    $form_action = $create ? '<form action="add_company.php" method="post">' : '<form action="edit_company.php?id=$id" method="post">';
 
     //Company Detail Table
     $out = '
         <div class="wrapper">
         <div class="detail_table">
-        <form action="edit_company.php?id=" . $id . " method="post">
+        ' . $form_action . '
         <table>
             <!-- pass along the orgId -->
             <input type="hidden" name="id" value="' . $id . '">
@@ -42,7 +46,16 @@ function renderCompanyDetail($data, $edit) {
         ';
         //Buttons...
         $out .= '<div class="lower_nav">';
-            if ($edit) {
+            if ($create) {
+                $out .= '
+                <div class="lower_nav">
+                <div>
+                    <input type="submit" class="form_button" value="Save">
+                    <a class="button" href="list.php"><div>Cancel</div></a>
+                </div>
+                </div>
+                ';
+            } elseif ($edit) {
                 $out .= '
                 <div class="lower_nav">
                 <div>
@@ -150,7 +163,6 @@ function renderCompanyContacts($company_contacts, $id) {
 
             //Buttons...
             if (isAdmin()) {
-                //FIXME: contacts/create.php not yet implemented
                 $out .= '<a class="button" href="../contacts/edit.php?id=' . $contactId . '"><div>Edit Contact</div></a>';
             }
         }
@@ -170,7 +182,12 @@ function renderCompanyContacts($company_contacts, $id) {
 //Display a static value or a text box.  $post is the variable passed if we're working with a form.
 function displayValue($value, $post, $edit, $isURL) {
     $out = '';
-    $textbox = '<input class="textbox" type="text" placeholder="' . $value . '" name="' . $post . '" >';
+    //Ensure users fill out required fields
+    if ($post == "name" || $post == "desc") {
+        $textbox = '<input class="textbox" type="text" placeholder="' . $value . ' (Required) " name="' . $post . '" required>';
+    } else {
+        $textbox = '<input class="textbox" type="text" placeholder="' . $value . '" name="' . $post . '" >';
+    }
     if (!$isURL) {
         //Standard type (value => value)
         $out = $edit ? $textbox : $value;

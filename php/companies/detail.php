@@ -43,7 +43,7 @@ if (!$edit) {
 //Actually Build the page!
 render_header('Companies', true);
 render_nav($company_name);
-renderCompanyDetail($data, $edit);
+renderCompanyDetail($data, $edit, $create);
 
 //Only show Contacts and Internships if we're not in edit mode.
 if (!$edit) {

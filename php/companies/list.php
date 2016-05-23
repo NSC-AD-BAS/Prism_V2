@@ -44,7 +44,7 @@ function renderCompanyList($data, $archived) {
     if (isAdmin()) {
         $out .= '
             <hr>
-            <a class="button" href="create.php"><div>Create new Company</div></a>
+            <a class="button" href="detail.php?create=true"><div>Create new Company</div></a>
         ';
     }
 

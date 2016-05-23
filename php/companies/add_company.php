@@ -23,7 +23,7 @@ if (isset($_POST["name"]) && isset($_POST["desc"])) {
             header("Location: error.php?msg=$msg");
         } else {
             $msg .= urlencode(", Created Internship");
-            header("Location: detail.php?id=$orgId&edit=true");
+            header("Location: detail.php?id=$orgId");
         }
     } else {
         $msg = urlencode("Create Company Failed");
