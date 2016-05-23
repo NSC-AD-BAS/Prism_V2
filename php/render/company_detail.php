@@ -30,17 +30,17 @@ function renderCompanyDetail($data, $edit, $create) {
         <table>
             <!-- pass along the orgId -->
             <input type="hidden" name="id" value="' . $id . '">
-            <tr><td>Company Name</td><td><strong>' . displayValue($name, "name", $edit, false) . '</strong></td></tr>
-            <tr><td>Company URL </td><td>' . displayValue($url, "url", $edit, true)  . '</td></tr>
+            <tr><td>Company Name</td><td><strong>' . displayValue($name, "name", $edit, false, $create) . '</strong></td></tr>
+            <tr><td>Company URL </td><td>' . displayValue($url, "url", $edit, true, $create)  . '</td></tr>
             <tr><td>Company Address</td><td>
                 <table>
-                    <td><tr>' . displayValue($street, "street", $edit, false) . '&nbsp;</td></tr>
+                    <td><tr>' . displayValue($street, "street", $edit, false, $create) . '&nbsp;</td></tr>
                     <br>
-                    <td><tr>' . displayValue($city, "city", $edit, false) . ', ' . displayValue($state, "state", $edit, false) . '</td></tr>
+                    <td><tr>' . displayValue($city, "city", $edit, false, $create) . ', ' . displayValue($state, "state", $edit, false, $create) . '</td></tr>
                 </table></td></tr>
-            <tr><td>Number of Employees</td><td>' . displayValue(number_format($num_employees), "num_employees", $edit, false) . '</td></tr>
-            <tr><td>Annual Revenue</td><td>' . displayValue(money_format("%n", $revenue), "revenue", $edit, false) . '</td></tr>
-            <tr><td>Description</td><td>' . displayValue($desc, "desc", $edit, false) . '</td></tr>
+            <tr><td>Number of Employees</td><td>' . displayValue(number_format($num_employees), "num_employees", $edit, false, $create) . '</td></tr>
+            <tr><td>Annual Revenue</td><td>' . displayValue(money_format("%n", $revenue), "revenue", $edit, false, $create) . '</td></tr>
+            <tr><td>Description</td><td>' . displayValue($desc, "desc", $edit, false, $create) . '</td></tr>
         </table>
         <hr>
         ';
@@ -180,10 +180,10 @@ function renderCompanyContacts($company_contacts, $id) {
 }
 
 //Display a static value or a text box.  $post is the variable passed if we're working with a form.
-function displayValue($value, $post, $edit, $isURL) {
+function displayValue($value, $post, $edit, $isURL, $create) {
     $out = '';
     //Ensure users fill out required fields
-    if ($post == "name" || $post == "desc") {
+    if ($create && ($post == "name" || $post == "desc")) {
         $textbox = '<input class="textbox" type="text" placeholder="' . $value . ' (Required) " name="' . $post . '" required>';
     } else {
         $textbox = '<input class="textbox" type="text" placeholder="' . $value . '" name="' . $post . '" >';
