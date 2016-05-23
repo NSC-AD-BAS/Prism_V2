@@ -48,7 +48,7 @@ if (!is_logged_in()) {
     # DEBUG: print_r($user_info);
     
     #set the session variables (user_id, user_type, username, name)
-    print_r($user_info);
+//    print_r($user_info);
     $_SESSION["user_id"] = $user_info[0];
     $type_id = $user_info[1];
     $_SESSION["user_type"] = get_user_type($type_id);
@@ -78,8 +78,6 @@ function validate($username, $password) {
     $password_regex = "/^[a-z|0-9|A-Z]+$/";
     if (preg_match($name_regex, $username) != 1 || preg_match($password_regex, $password) != 1) {
         to_login();
-    } else {
-        echo "VALID LOGIN INFORMATION <br />";
     }
 }
 
