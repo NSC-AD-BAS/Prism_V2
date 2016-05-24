@@ -23,7 +23,7 @@ function print_top() { ?>
                 <li class="left"><a href="../internships/list.php">Internships</a></li>
                 <li class="left"><a href="../companies/list.php">Companies</a></li>
                 <li class="left"><a href="../students/list.php">Students</a></li>
-                <li class="left"><a href="../admin/list.php">Admin</a></li>
+                <li class="left"><a href="../admin/list.php">Users</a></li>
 
                 <?php
                 $user_details = get_user_details();

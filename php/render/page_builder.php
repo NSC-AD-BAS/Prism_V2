@@ -25,7 +25,8 @@ function render_nav($page_name, $searchUrlBase = "") {
     $nav_pages = ["Internships", "Companies", "Students"];
     if (isAdmin()) {
         //Only Admins should see link to Admin page.
-        array_push($nav_pages, "Admin");
+        array_push($nav_pages, "Users");
+        array_push($nav_pages, "ChangeLog");
     }
     $out = '<nav><ul>';
     foreach ($nav_pages as $page) {
