@@ -188,10 +188,10 @@ function userDetails(){
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
         if(mysqli_num_rows($result) >0){
-		echo '<a class="button" href="detail.php?id=' . ($row['UserId']-1) . '><div>Previous</div></a>';
+		echo '<a class="button" href=detail.php?id=' . (dbOut($row['UserId']-1)) . '><div>Previous</div></a>';
         }
         if(mysqli_num_rows($result) < $row['UserId']+1){
-            echo '&emsp;&emsp;&emsp; <a class="button" href="detail.php?id=' . ($row['UserId']+1) . '><div>Next</div></a>';
+            echo '&emsp;&emsp;&emsp; <a class="button" href=detail.php?id=' . (dbOut($row['UserId']+1)) . '><div>Next</div></a>';
         }
 	} else {
 		echo "0 results";
@@ -211,7 +211,7 @@ function userDetails(){
 	echo "Contact Info : " . $row[ContactInfo] . "<br>";
 	echo "User Type : " . $row[TypeId] . "<br>" . "<br>";
 
-    echo '&emsp;&emsp;&emsp; <a class="button" href="edit.php?id=' . ($row['UserId']) . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href="delete.php"><div>Delete</div></a>';
+    echo '&emsp;&emsp;&emsp; <a class="button" href=edit.php?id=' . ($row['UserId']) . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href=delete.php><div>Delete</div></a>';
     
 	
 } #end userDetails()

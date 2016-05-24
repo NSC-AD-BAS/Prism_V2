@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../style/site.css">
 <?php
 
-    //require("../lib/db_connect.php");
+	//require '../../../../../includes/creds.php';
     require '../lib/db_connect.php';
     require 'includes/functions_inc.php';
 
@@ -17,19 +17,19 @@
     {
         case 'list.php':        
             $title = "PRISM - Users List";
-            $header = "PRISM - Users List";
+            $header = "Users List";
             break;
         case 'detail.php':        
             $title = "PRISM - Users View";
-            $header = "PRISM - Users View";
+            $header = "Users View";
             break;
         case 'edit.php':        
             $title = "PRISM - Users Edit";
-            $header = "PRISM - Users Edit";
+            $header = "Users Edit";
             break;
         case 'add.php':        
             $title = "PRISM - Users Add";
-            $header = "PRISM - Users Add";
+            $header = "Users Add";
             break;
         default:
             $title = "P R I S M - ";
