@@ -26,7 +26,7 @@ function render_nav($page_name, $searchUrlBase = "") {
     if (isAdmin()) {
         //Only Admins should see link to Admin page.
         array_push($nav_pages, "Users");
-        array_push($nav_pages, "ChangeLog");
+        array_push($nav_pages, "Change Log");
     }
     $out = '<nav><ul>';
     foreach ($nav_pages as $page) {
