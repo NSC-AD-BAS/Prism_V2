@@ -6,7 +6,7 @@
 <?php
 
     //require("../lib/db_connect.php");
-    require '../../../../../includes/creds.php';
+    require '../../lib/db_connect.php';
     require 'includes/functions_inc.php';
 
     //Current page name, stripped of folder pathing
