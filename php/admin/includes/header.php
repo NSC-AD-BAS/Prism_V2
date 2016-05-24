@@ -47,6 +47,7 @@
                 <li class="left"><a href="../companies/list.php">Companies</a></li>
                 <li class="left"><a href="../students/list.php">Students</a></li>
                 <li class="left"><a href="../admin/list.php">Users</a></li>
+                <li class="left"><a href="#">Change Log</a></li>
 
                 <li class="right"><a href="../login/logout.php">Logout</a></li>
                 <li class="right"><a href="list.php">Profile</a></li>
