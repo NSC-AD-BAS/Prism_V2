@@ -229,7 +229,7 @@ function renderCompanyContacts($company_contacts, $id) {
 
 //Build the text boxes on the form for a nicer looking edit / create mode experience
 //Display a static value or a text box.  $post refers to the variable name passed in if we're working with a form.
-function displayValue($value, $post, $edit, $isURL, $create) {
+function displayValue($value, $post, $edit, $isURL, $create = false) {
     $out = '';
     //Ensure users fill out required fields
     if ($create && ($post == "name" || $post == "desc")) {

@@ -14,6 +14,7 @@ include "../db/query_db.php";
 //Company ID
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $create = false;
 } elseif (isset($_GET['create']) && $_GET['create'] == "true") {
     $create = true;
 } else {
