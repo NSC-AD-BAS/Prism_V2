@@ -1,5 +1,10 @@
 <?php
 
+/*
+    detail.php - Determine if we are viewing, editing or creating a company based on URL Query
+    Render the company detail screen accordingly.
+*/
+
 //Includes
 include "../render/page_builder.php";
 include "../render/render_company.php";

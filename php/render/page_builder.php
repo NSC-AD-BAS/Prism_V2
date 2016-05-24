@@ -1,9 +1,12 @@
 <?php
-include_once("../login/login_utils.php");
 
 /*
     Generic page building functions - header, nav and footer
 */
+
+//includes
+include_once("../login/login_utils.php");
+
 //Render the page header.  $header and $isDetail are used to title the window/tab
 function render_header($header, $isDetail) {
     $out = '

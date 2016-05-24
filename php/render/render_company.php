@@ -1,6 +1,8 @@
 <?php
 
-/* Company Detail Rendering Functions */
+/*
+    render_company.php - Build all of the company html strings based on passed-in arguments
+*/
 
 //Company List
 function renderCompanyList($data, $archived) {
@@ -26,6 +28,8 @@ function renderCompanyList($data, $archived) {
             ';
         }
     $out .= '</ul>';
+
+    //Admins can create new companies
     if (isAdmin()) {
         $out .= '
             <hr>
@@ -45,7 +49,7 @@ function renderCompanyList($data, $archived) {
 
 //Company Detail
 function renderCompanyDetail($data, $edit, $create) {
-    //If we're not creating a new company, get the company data
+    //If we're not creating a new company, hit the DB for the company data
     if (!$create) {
         //set nicer variable names
         foreach ($data as $d) {
@@ -64,7 +68,7 @@ function renderCompanyDetail($data, $edit, $create) {
     }
     $form_action = $create ? '<form action="add_company.php" method="post">' : '<form action="edit_company.php?id=$id" method="post">';
 
-    //Company Detail Table
+    //Company Detail Table / Edit / Create form
     $out = '
         <div class="wrapper">
         <div class="detail_table">
@@ -223,13 +227,13 @@ function renderCompanyContacts($company_contacts, $id) {
     echo $out;
 }
 
-//Build the text boxes for nicer looking edit mode
-//Display a static value or a text box.  $post is the variable passed if we're working with a form.
+//Build the text boxes on the form for a nicer looking edit / create mode experience
+//Display a static value or a text box.  $post refers to the variable name passed in if we're working with a form.
 function displayValue($value, $post, $edit, $isURL, $create) {
     $out = '';
     //Ensure users fill out required fields
     if ($create && ($post == "name" || $post == "desc")) {
-        $textbox = '<input class="textbox" type="text" placeholder="' . $value . ' (Required) " name="' . $post . '" required>';
+        $textbox = '<input class="textbox" type="text" placeholder="' . $value . '(Required)" name="' . $post . '" required>';
     } else {
         $textbox = '<input class="textbox" type="text" placeholder="' . $value . '" name="' . $post . '" >';
     }
@@ -237,9 +241,9 @@ function displayValue($value, $post, $edit, $isURL, $create) {
         //Standard type (value => value)
         $out = $edit ? $textbox : $value;
     } else {
-        //Otherwise, build a URL
+        //Not an email address
         if (strpos($value, "@") === false) {
-            //Not an email address
+            //If URL doesn't contain http, add it.  This ensures we don't try to link to a relative file.
             if (strpos($value, "http://") === false) {
                 $out = $edit ? $textbox : '<a href="http://' . $value . '">' . $value . '</a>';
             } else {

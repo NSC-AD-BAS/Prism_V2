@@ -1,5 +1,10 @@
 <?php
 
+/*
+    add_company.php - Company is added using same form as edit (renderCompanyDetail() via detail.php).
+    $_POST params are passed along to query_builder and the query sent back is run by update_db.
+*/
+
 //Includes
 include "db/update_db.php";
 include "db/query_builder.php";
