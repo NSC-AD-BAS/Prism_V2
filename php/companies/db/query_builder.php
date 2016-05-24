@@ -42,16 +42,24 @@ function build_update_query($orgId) {
 
 //Create the necessary query to add a new company.  Name and description are required, other values are guessed.  Returns a query string.
 function build_create_company_query($name, $desc) {
+    $url = !empty($_POST["url"]) ? $_POST["url"] : "";
+    $street = !empty($_POST["street"]) ? $_POST["street"] : "";
+    $city = !empty($_POST["city"]) ? $_POST["city"] : "Seattle";
+    $state = !empty($_POST["state"]) ? $_POST["state"] : "WA";
+    $num_employees = !empty($_POST["num_employees"]) ? $_POST["num_employees"] : 0;
+    $revenue = !empty($_POST["revenue"]) ? $_POST["revenue"] : 0;
+
     $query = "
         INSERT INTO organizations SET
         OrganizationName=\"$name\",
         Description=\"$desc\",
-        City=\"Seattle\",
-        State=\"WA\",
-        YearlyRevenue=0,
-        NumOfEmployees=0,
+        City=\"$city\",
+        State=\"$state\",
+        YearlyRevenue=$revenue,
+        NumOfEmployees=$num_employees,
         isDeleted=0
     ";
+    //TODO: fix log_query method.
     log_query("build_create_company_query", $query);
     return $query;
 }

@@ -5,7 +5,7 @@
 function renderCompanyDetail($data, $edit, $create) {
     //If we're not creating a new company, get the company data
     if (!$create) {
-        //set nicer variable naes
+        //set nicer variable names
         foreach ($data as $d) {
             $id = $d['OrganizationId'];
             $name = $d['Company'];

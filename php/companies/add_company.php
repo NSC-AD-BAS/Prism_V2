@@ -1,14 +1,14 @@
 <?php
 
 //Includes
-include "../render/page_builder.php";
 include "db/update_db.php";
 include "db/query_builder.php";
 
-//This validation is likely redundant.  Safety measure?
+//Disallow direct access
 if (isset($_POST["name"]) && isset($_POST["desc"])) {
     $name = $_POST["name"];
     $desc = $_POST["desc"];
+
     //Add the company to the DB and get the orgId returned
     $query = build_create_company_query($name, $desc);
     $orgId = create_company($query);
