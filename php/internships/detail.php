@@ -4,7 +4,8 @@
 # Author: Kellan Nealy
 
 include("common.php");
-include("query_db.php");
+include("../db/query_db.php");
+include("../render/page_builder.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -15,8 +16,6 @@ if (!is_logged_in()) {
 
 # Prints main html for this internship detail
 function print_detail_main($data) { ?>
-    <!-- Main view -->
-    <main>
         <?php
         if (count($data) > 0) {
             $data = $data[0];
@@ -76,14 +75,14 @@ function print_detail_main($data) { ?>
         <a class="button" href="create.php"><div>Create new Internship</div></a>
         <a class="button" href="edit.php?id=<?= $intId ?>"><div>Edit</div></a>
         <a class="button" href="delete.php?id=<?= $intId ?>"><div>Delete</div></a>
-    </main>
 <?php }
 
 # Build detail page
 $id = $_GET["id"];
 $data = get_internship_detail($id);
-print_top();
+render_header('Internships', true);
+render_nav();
 print_detail_main($data);
-print_bottom();
+render_footer();
 
 ?>

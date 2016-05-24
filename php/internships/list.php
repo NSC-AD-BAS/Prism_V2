@@ -4,7 +4,8 @@
 # Author: Kellan Nealy
 
 include("common.php");
-include("query_db.php");
+include("../db/query_db.php");
+include("../render/page_builder.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -13,12 +14,10 @@ if (!is_logged_in()) {
     to_login();
 }
 
+
 # Prints main html for this list
 function print_list_main($data, $list_title) { ?>
     <!-- Main view -->
-    <main>
-        <input id="searchbox" type="text" placeholder=" Search" />
-        <h1><?= $list_title ?></h1>
         <?php
         if (count($data) > 0) {
             # output table header ?>
@@ -57,13 +56,14 @@ function print_list_main($data, $list_title) { ?>
         <hr />
         <!-- Buttons -->
         <a class="button" href="create.php"><div>Create new Internship</div></a>
-    </main>
 <?php }
 
 # Build list page
 $list = get_internship_list();
-print_top();
+
+render_header('Internships', false);
+render_nav('Internships');
 print_list_main($list, "Internships");
-print_bottom();
+render_footer();
 
 ?>

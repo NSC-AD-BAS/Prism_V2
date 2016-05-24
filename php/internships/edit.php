@@ -4,7 +4,9 @@
 # Author: Kellan Nealy
 
 include("common.php");
-include("update_db.php");
+include("../db/update_db.php");
+include("../db/query_db.php");
+include("../render/page_builder.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -15,8 +17,6 @@ if (!is_logged_in()) {
 
 # Prints the main html for this internship edit
 function print_edit_main($data, $intId) { ?>
-    <!-- Main view -->
-    <main>
         <?php
 		# Make sure we have data
         if (count($data) > 0) {
@@ -32,7 +32,6 @@ function print_edit_main($data, $intId) { ?>
             $intExpiration = $data["Expiration Date"]; ?>
 
 			<!-- HTML content -->
-            <h1>Internship Edit</h1>
             <form action="confirm_edit.php" method="POST">
 				<input type="hidden" name="intId" value="<?php echo htmlspecialchars($intId) ?>" />
     	        <table id="internship_detail">
@@ -87,11 +86,11 @@ function print_edit_main($data, $intId) { ?>
         <!-- Buttons -->
         <a class="button" href="detail.php?id=<?= $intId ?>"><div>Back to Detail</div></a>
 
-    </main>
 <?php }
 
 # Build edit page
-print_top();
+render_header();
+render_nav('Edit Internship');
 
 # Make sure GET id parameter is set
 if (isset($_GET["id"])) {
@@ -102,6 +101,6 @@ if (isset($_GET["id"])) {
     print_error_main();
 }
 
-print_bottom();
+render_footer();
 
 ?>

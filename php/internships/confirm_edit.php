@@ -3,7 +3,8 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
-include("update_db.php");
+include("../db/update_db.php");
+include("../db/query_db.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -17,6 +18,9 @@ if (!is_logged_in()) {
 # Make sure POST parameters have been passed
 if (isset($_POST["intId"])) {
 
+    $now = date('Y-m-d');
+    $exp = date('Y-m-d', strtotime("+12 weeks"));
+
     # All the internship data
     $intId = $_POST["intId"];
     $positionTitle = $_POST["PositionTitle"];
@@ -24,21 +28,10 @@ if (isset($_POST["intId"])) {
 	$internshipUrl = "";
     $organizationId = $_POST["OrganizationId"];
     $datePosted = $_POST["DatePosted"];
-    $startDate = "";
-    $endDate = "";
-    $location = "";
+    $startDate = !empty($_POST["StartDate"]) ? $_POST["StartDate"] : $now;
+    $endDate = !empty($_POST["StartDate"]) ? $_POST["StartDate"] : $exp;
+    $location = !empty($_POST["Location"]) ? $_POST["Location"] : "Seattle, WA";
     $expirationDate = $_POST["ExpirationDate"];
-
-    # These variables are allowed to be blank
-    if (isset($_POST["StartDate"])) {
-        $startDate = $_POST["StartDate"];
-    }
-    if (isset($_POST["EndDate"])) {
-        $endDate = $_POST["EndDate"];
-    }
-    if (isset($_POST["Location"])) {
-        $location = $_POST["Location"];
-    }
 
     $internship_data = array(
         "PositionTitle" => $positionTitle,
