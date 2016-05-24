@@ -65,6 +65,18 @@ function renderCompanyDetail($data, $edit, $create) {
             $deleted = $d['isDeleted'];
         }
         $delete_text = $deleted ? "Restore" : "Delete";
+    } else {
+        //friendly defaults for placeholder text
+        $city = "Seattle";
+        $state = "WA";
+        $num_employees = 100;
+        $revenue = 0;
+        $deleted = 0;
+        //nulls
+        $name = "Company Name ";
+        $desc = "Description ";
+        $url = "Web Address";
+        $street = "Street Address";
     }
     $form_action = $create ? '<form action="add_company.php" method="post">' : '<form action="edit_company.php?id=$id" method="post">';
 
