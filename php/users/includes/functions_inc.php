@@ -30,7 +30,7 @@ function userList(){
 	if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 
 
-	$sql = "SELECT * FROM users";//set sql statement
+	$sql = "SELECT * FROM users WHERE TypeId > 1 AND TypeId < 4";//set sql statement
 
 	$result = mysqli_query($conn, $sql);//grab tables
     echo 
@@ -82,7 +82,7 @@ function userList(){
 	//release result
 
 	//close db connection
-	mysqli_close($result);
+	mysqli_close($conn);
 } #end userList()
 
 
@@ -187,10 +187,10 @@ function userDetails(){
 	$result = mysqli_query($conn, $sql);//grab tables
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
-        if(mysqli_num_rows($result) >0){
+        if(dbOut($row['UserId']-1) > 0){
 		echo '<a class="button" href=detail.php?id=' . (dbOut($row['UserId']-1)) . '><div>Previous</div></a>';
         }
-        if(mysqli_num_rows($result) < $row['UserId']+1){
+        if(mysqli_num_rows($result) < dbOut($row['UserId']+1)){
             echo '&emsp;&emsp;&emsp; <a class="button" href=detail.php?id=' . (dbOut($row['UserId']+1)) . '><div>Next</div></a>';
         }
 	} else {
