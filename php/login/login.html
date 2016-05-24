@@ -24,42 +24,46 @@
                 <h2 id="logintext">The best way to find internships at NSC.</h2>
                 <br>
                 <p>Access to this site is controlled.  Please contact <a href="mailto:Steven.Balo@seattlecolleges.edu">Steven Balo</a> to request an account.</p>
+                <br>
+                <hr>
+                <br>
 
 
+                <!--
+                STUDENTS:
+                    username: jerdu
+                    pass: jerdu
 
-            <!--
-            STUDENTS:     
-                username: jerdu
-                pass: jerdu
-            
-            FACULTY:
-                username: facul
-                pass: facul
-            
-            ADMIN:
-                username: steba
-                pass: steba
-            -->
-            <form id="loginform" action="login_system.php" method="post">
-                <table>
-                    <tr>
-                        <td align="right">Username:</td>
-                        <td align="left">
-                            <input name="username" type="text" size="15" autofocus="autofocus" placeholder="username"/>
-                	    </td>
-                    </tr>
-                    <tr>
-                         <td align="right">Password:</td>
-                         <td align="left"><input name="password" type="password" size="15" placeholder="password"/></td>
-                    </tr>
-                    <tr>
-                        <td align="right"><input type="submit" value="Login" /></td>
-                        <td align="left"><input type="reset" value="Reset" /></td>
-                    </tr>
-                </table>
-            </form>
+                FACULTY:
+                    username: facul
+                    pass: facul
+
+                ADMIN:
+                    username: steba
+                    pass: steba
+                -->
+                <form id="loginform" action="login_system.php" method="post">
+                    <table id="logintable">
+                        <tr>
+                            <td align="right">Username:</td>
+                            <td align="left">
+                                <input name="username" type="text" size="15" autofocus="autofocus" placeholder="username"/>
+                            </td>
+                        </tr>
+                        <tr>
+                             <td align="right">Password:</td>
+                             <td align="left"><input name="password" type="password" size="15" placeholder="password"/></td>
+                        </tr>
+                        <tr><!-- This space intentionally left blank --></tr>
+                        <tr>
+                            <td><input type="submit" class="form_button" value="Login" /></td>
+                            <td><input type="reset" class="form_button" value="Reset" /></td>
+                        </tr>
+                    </table>
+                    <br>
+                </form>
+            </div>
         </div>
-    </div>
     </main>
     </body>
 </html>

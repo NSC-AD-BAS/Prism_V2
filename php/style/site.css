@@ -212,6 +212,7 @@ a {
 
 /* Since the input form buttons weren't inheriting the div button styles */
 .form_button {
+    font-family: inherit;
     text-decoration: none;
     border: none;
     outline: none;
@@ -222,6 +223,20 @@ a {
     background-color: #cccccc;
     color: black;
     transition-duration: .4s;
+}
+
+input[type=submit], input[type=reset] {
+    font-family: inherit;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 3px 3px 3px 3px; /* top right bottom left */
+    padding: 8px;
+    border: 0;
+    border-radius: 3px;
+    background-color: gray;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .button div {
@@ -241,17 +256,6 @@ a {
     transition-duration: .4s;
 }
 
-/*TODO: styling is weird.  needs halp*/
-input[type=submit], input[type=reset] {
-    text-decoration: none;
-    font-size: 1em;
-    margin: 3px 3px 3px 3px; /* top right bottom left */
-    padding: 8px;
-    border-radius: 3px;
-    background-color: gray;
-    color: #111;
-    font-weight: bold;
-}
 
 /* EDIT Mode textboxes */
 
@@ -271,4 +275,14 @@ input[type=submit], input[type=reset] {
     border-radius: 5px;
     margin-top: 10px;
     padding: 5px;
+}
+
+/* Login styling */
+#logintext {
+    color: darkgray;
+}
+
+#logintable {
+    margin-left: auto;
+    margin-right: auto;
 }
