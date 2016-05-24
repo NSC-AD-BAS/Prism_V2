@@ -5,8 +5,8 @@
 */
 
 //Includes
-include "db/update_db.php";
-include "db/query_builder.php";
+include "../db/update_db.php";
+include "../db/query_builder.php";
 
 //Disallow direct access
 if (!isset($_POST["id"])) {

@@ -6,8 +6,8 @@
 
 //Includes
 include "../render/page_builder.php";
-include "db/query_builder.php";
-include "db/update_db.php";
+include "../db/query_builder.php";
+include "../db/update_db.php";
 
 //Disallow direct access
 if (isset($_GET['id']) && isset($_GET['delete'])) {

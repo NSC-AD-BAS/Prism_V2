@@ -8,7 +8,7 @@
 //Includes
 include "../render/page_builder.php";
 include "../render/render_company.php";
-include "db/query_db.php";
+include "../db/query_db.php";
 
 //Check URL params to set globals
 //Company ID

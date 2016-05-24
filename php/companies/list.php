@@ -3,7 +3,7 @@
 //Includes
 include "../render/page_builder.php";
 include "../render/render_company.php";
-include "db/query_db.php";
+include "../db/query_db.php";
 include_once("../login/login_utils.php");
 
 # Session management

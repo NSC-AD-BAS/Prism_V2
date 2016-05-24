@@ -6,7 +6,7 @@
 
 //Includes
 include "../render/page_builder.php";
-include "db/query_db.php";
+include "../db/query_db.php";
 
 //Company ID
 if (isset($_GET['id'])) {
