@@ -8,12 +8,12 @@
 include_once("../login/login_utils.php");
 
 //Render the page header.  $header and $isDetail are used to title the window/tab
-function render_header($header, $isDetail) {
+function render_header($header = "", $isDetail = false) {
     $out = '
         <!DOCTYPE html>
         <html lang="en">
         <head>
-        <title>PRISM - ' . $header . ($isDetail == "true" ? " Detail" : " List") . '</title>
+        <title>PRISM - ' . $header . ($isDetail == "true" ? " Detail" : "") . '</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style/site.css">
         </head>
