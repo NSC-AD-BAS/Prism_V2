@@ -52,11 +52,13 @@ function build_create_company_query($name, $desc) {
     $query = "
         INSERT INTO organizations SET
         OrganizationName=\"$name\",
-        Description=\"$desc\",
+        URL=\"$url\",
+        StreetAddressLineOne=\"$street\",
         City=\"$city\",
         State=\"$state\",
-        YearlyRevenue=$revenue,
         NumOfEmployees=$num_employees,
+        YearlyRevenue=$revenue,
+        Description=\"$desc\",
         isDeleted=0
     ";
     //TODO: fix log_query method.

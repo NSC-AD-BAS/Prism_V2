@@ -45,7 +45,6 @@ function update_company($query) {
 */
 
 // TODO: do not show internships that are past their expiration date
-
 // Creates an internship given the data
 function add_internship($internship_data) {
 	$conn = db_connect();
@@ -138,11 +137,13 @@ function undelete_internship($intId) {
 	$delete = 0; // 0 = not deleted
 	delete_undelete_internship($intId, $delete);
 }
-//endTODO
 
 // Helper function for deleting and undeleting an internship
 // Deletes or undeletes an internship given the id and delete value
 function delete_undelete_internship($intId, $delete_undelete) {
+    //NOTE: I have no idea why this include is required here but I couldn't get delete to work without it.
+    //TODO: We should figure out what gives and remove this.  Maybe the nested call from delete/undelete?
+    include("../db/query_db.php");
 	$conn = db_connect();
 
 	$sql = "UPDATE internships
