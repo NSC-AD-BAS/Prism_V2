@@ -1,10 +1,8 @@
 <?php
 
-//TODO: Get column headers and td names from column names in DB, not hard-coded.
-
 //Includes
 include "../render/page_builder.php";
-include "../render/company_detail.php";
+include "../render/render_company.php";
 include "db/query_db.php";
 
 //Check URL params to set globals
@@ -40,7 +38,7 @@ if (!$edit) {
     $company_contacts = get_contacts_by_company($id);
 }
 
-//Actually Build the page!
+//Render the page
 render_header('Companies', true);
 render_nav($company_name);
 renderCompanyDetail($data, $edit, $create);

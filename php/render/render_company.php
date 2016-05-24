@@ -1,7 +1,49 @@
 <?php
 
 /* Company Detail Rendering Functions */
-//Company Data
+
+//Company List
+function renderCompanyList($data, $archived) {
+    $out = '
+        <ul class="outer">
+            <li class="tableHead">
+            <ul class="inner">
+                <li>Company Name</li>
+                <li>Location</li>
+                <li>Internships Available</li>
+            </ul>
+        ';
+        foreach ($data as $d) {
+            $available = $archived ? 0 : $d['Available Internships'];
+            $out .= '
+            <li><a href="detail.php?id=' . $d['OrganizationId'] . '">
+                <ul class="inner">
+                    <li>' . $d['Organization Name'] . '</li>
+                    <li>' . $d['Location'] . '</li>
+                    <li>' . $available . '</li>
+                </ul>
+            </a></li>
+            ';
+        }
+    $out .= '</ul>';
+    if (isAdmin()) {
+        $out .= '
+            <hr>
+            <a class="button" href="detail.php?create=true"><div>Create new Company</div></a>
+        ';
+    }
+
+    //Toggle archive display text
+    if (!$archived) {
+        $out .= '<a class="aside" href="list.php?archived=true">Show Deleted</a>';
+    } else {
+        $out .= '<a class="aside" href="list.php">Hide Deleted</a>';
+    }
+
+    echo $out;
+}
+
+//Company Detail
 function renderCompanyDetail($data, $edit, $create) {
     //If we're not creating a new company, get the company data
     if (!$create) {
@@ -84,6 +126,7 @@ function renderCompanyDetail($data, $edit, $create) {
     echo $out;
 }
 
+//Internship List
 function renderCompanyInternships($positions) {
     $out = '
         <div class="wrapper">
@@ -123,6 +166,7 @@ function renderCompanyInternships($positions) {
     echo $out;
 }
 
+//Contact List
 function renderCompanyContacts($company_contacts, $id) {
     //TODO: check for empty before iterating through null set (CodeCleanup)
     $out = '
@@ -179,6 +223,7 @@ function renderCompanyContacts($company_contacts, $id) {
     echo $out;
 }
 
+//Build the text boxes for nicer looking edit mode
 //Display a static value or a text box.  $post is the variable passed if we're working with a form.
 function displayValue($value, $post, $edit, $isURL, $create) {
     $out = '';
@@ -206,4 +251,5 @@ function displayValue($value, $post, $edit, $isURL, $create) {
     }
     return $out;
 }
+
 ?>
