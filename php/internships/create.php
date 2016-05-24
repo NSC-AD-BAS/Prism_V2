@@ -4,7 +4,9 @@
 # Author: Kellan Nealy
 
 include("common.php");
-include("update_db.php");
+include("../db/update_db.php");
+include("../db/query_db.php");
+include("../render/page_builder.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -97,8 +99,8 @@ function print_create_main() { ?>
 try_post_process();
 
 # Build the page (only done if post parameters aren't set)
-print_top();
+render_header("Create Company");
 print_create_main();
-print_bottom();
+render_footer();
 
 ?>

@@ -3,7 +3,7 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
-include("update_db.php");
+include "../db/update_db.php";
 include_once("../login/login_utils.php");
 
 # Session management

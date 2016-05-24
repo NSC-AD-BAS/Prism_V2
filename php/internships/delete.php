@@ -4,7 +4,8 @@
 # Author: Kellan Nealy
 
 include("common.php");
-include("query_db.php");
+include("../db/query_db.php");
+include("../render/page_builder.php");
 include_once("../login/login_utils.php");
 
 # Session management
@@ -15,8 +16,6 @@ if (!is_logged_in()) {
 
 # Prints main html for this internship delete
 function print_delete_main($data, $intId) { ?>
-    <!-- Main view -->
-    <main>
         <?php
         # Make sure we have data
         if (count($data) > 0) {
@@ -49,7 +48,7 @@ function print_delete_main($data, $intId) { ?>
 <?php }
 
 # Build delete page
-print_top();
+render_header("Delete Internship");
 
 # Make sure GET id parameter is set
 if (isset($_GET["id"])) {
@@ -60,6 +59,6 @@ if (isset($_GET["id"])) {
     print_error_main();
 }
 
-print_bottom();
+render_footer();
 
 ?>
