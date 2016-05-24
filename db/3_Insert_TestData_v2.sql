@@ -105,6 +105,7 @@ INSERT INTO users(
 (15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com", "facul", "facul", 3)
 ;
 
+-- Move these to 1_Create...
 INSERT INTO intern_capstone_status(Id, Description)
 VALUES
 (0, "(None Selected)"),
