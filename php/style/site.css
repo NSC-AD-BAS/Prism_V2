@@ -242,7 +242,7 @@ a {
 }
 
 /*TODO: styling is weird.  needs halp*/
-input[type=submit] {
+input[type=submit], input[type=reset] {
     text-decoration: none;
     font-size: 1em;
     margin: 3px 3px 3px 3px; /* top right bottom left */

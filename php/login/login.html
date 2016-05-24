@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>PRISM login</title>
-        <link href="../style/login_style.css" type="text/css" rel="stylesheet" />
+        <link href="../style/site.css" type="text/css" rel="stylesheet" />
         <!--
         DO FAVICON LATER!  16X16PX ECPECTED
         <link href="prismfavicon.png" type="image/ico" rel="shortcut icon" />
@@ -11,13 +11,21 @@
     </head>
 
     <body>
+    <nav>
+        <ul>
+            <li class="left"><!--buffer space--></li>
+            <li class="right"><a href="https://northseattle.edu/" target="_blank">NSC Homepage</a></li>
+        </ul>
+    </nav>
+    <main>
         <h1> P R I S M </h1>
-        <div id="box">
-            <h2 id="logintext">
-                The best way to find internships at NSC.
-                <br />
-                You cannot create an account.
-            </h2>
+        <div class="wrapper">
+            <div class="detail_table">
+                <h2 id="logintext">The best way to find internships at NSC.</h2>
+                <br>
+                <p>Access to this site is controlled.  Please contact <a href="mailto:Steven.Balo@seattlecolleges.edu">Steven Balo</a> to request an account.</p>
+
+
 
             <!--
             STUDENTS:     
@@ -35,22 +43,23 @@
             <form id="loginform" action="login_system.php" method="post">
                 <table>
                     <tr>
-                        <td align="right"><p id="text">Username:</p></td>
+                        <td align="right">Username:</td>
                         <td align="left">
                             <input name="username" type="text" size="15" autofocus="autofocus" placeholder="username"/>
                 	    </td>
                     </tr>
                     <tr>
-                         <td align="right"><p id="text">Password:</p></td>
+                         <td align="right">Password:</td>
                          <td align="left"><input name="password" type="password" size="15" placeholder="password"/></td>
                     </tr>
                     <tr>
-                        <td align="right"><input type="submit" value="LOGIN" /></td>
+                        <td align="right"><input type="submit" value="Login" /></td>
                         <td align="left"><input type="reset" value="Reset" /></td>
                     </tr>
                 </table>
             </form>
         </div>
-
+    </div>
+    </main>
     </body>
 </html>
