@@ -7,31 +7,47 @@
 //Company List
 function renderCompanyList($data, $archived) {
     //TODO: Probably tighten this up a bit.
+    //Initialize search ordering to ascending
     $comp_order = "ASC";
     $loc_order = "ASC";
     $avail_order = "ASC";
+
+    //Initialize column names
+    $comp_header = "Company Name";
+    $loc_header = "Location";
+    $avail_header = "Internships Available";
+
     if ($_GET['sort'] == "comp") {
         if ($_GET['order'] == "ASC") {
             $comp_order = "DESC";
+            $comp_header .= " &#9660;";
+        } else {
+            $comp_header .= " &#9650;";
         }
     }
     if ($_GET['sort'] == "loc") {
         if ($_GET['order'] == "ASC") {
             $loc_order = "DESC";
+            $loc_header .= " &#9660;";
+        } else {
+            $loc_header .= " &#9650;";
         }
     }
     if ($_GET['sort'] == "avail") {
         if ($_GET['order'] == "ASC") {
             $avail_order = "DESC";
+            $avail_header .= " &#9660;";
+        } else {
+            $avail_header .= " &#9650;";
         }
     }
     $out = '
         <ul class="outer">
             <li class="tableHead">
             <ul class="inner">
-                <li><a href="?sort=comp&order=' . $comp_order . '">Company Name</a></li>
-                <li><a href="?sort=loc&order=' . $loc_order . '">Location</a></li>
-                <li><a href="?sort=avail&order=' . $avail_order . '">Internships Available</a></li>
+                <li><a href="?sort=comp&order=' . $comp_order . '">' . $comp_header . '</a></li>
+                <li><a href="?sort=loc&order=' . $loc_order . '">' . $loc_header . '</a></li>
+                <li><a href="?sort=avail&order=' . $avail_order . '">' . $avail_header . '</a></li>
             </ul>
         ';
         foreach ($data as $d) {
