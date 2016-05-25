@@ -6,8 +6,8 @@
 <?php
     
     #require '../includes/config.php; //site configuration
-	require '../../../../../includes/creds.php';//remove when config is live
-    #require '../lib/db_connect.php';//remove when config is live
+	#require '../../../../../includes/creds.php';//remove when config is live
+    require '../lib/db_connect.php';//remove when config is live
     require 'includes/functions_inc.php';//remove when config is live
     
     //Current page name, stripped of folder pathing
