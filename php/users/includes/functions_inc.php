@@ -25,22 +25,31 @@
 function userList(){
 	//create connection
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    
 	//$conn = mysqli_connect($servername, $username, $password, $dbname);
 	// Check connection
 	if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 
 
-	$sql = "SELECT * FROM users WHERE TypeId > 1 AND TypeId < 4";//set sql statement
+	//$sql = "SELECT * FROM users WHERE TypeId > 1 AND TypeId < 4";//set sql statement
+	$sql = "SELECT * FROM user_list";//set sql statement
 
+    //var_dump($sql);
+    //die();
 	$result = mysqli_query($conn, $sql);//grab tables
+    
+    
+    
     echo 
     '
+    
     <ul class="outer">
      <!--COLUMNS-->
                 <li class="tableHead">
                     <ul class="inner">
                         <li>Full Name</li>
-                        <li>Contact Info</li>
+                        <li>Phone</li>
+                        <li>Email</li>
                         <li>User Type</li>
                     </ul>
                 </li>
@@ -48,11 +57,12 @@ function userList(){
     
     ';
 	while($row = mysqli_fetch_assoc($result)){//fetch data from associate array
-		$firstName = dbOut($row['FirstName']);//assign variables for readability
-		$lastName = dbOut($row['LastName']);
-		$contact = dbOut($row['ContactInfo']);
-		$type = dbOut($row['TypeId']);
-		$usrId = dbOut($row['UserId']);
+		$userName = dbOut($row['Name']);//assign variables for readability
+		$userPhone = dbOut($row['PhoneNumber']);
+		$userEmail = dbOut($row['Email Address']);
+		$userType = dbOut($row['User Type']);
+        $usrId = dbOut($row['User ID']);
+        
 		//print out table structure with data
 		/*
         echo '<tr>';
@@ -66,18 +76,19 @@ function userList(){
                 <li>
                     <a href="detail.php?id='. $usrId . '">
                         <ul class="inner">
-                            <li>' . $firstName .  ' ' . $lastName . '</li>
-                            <li>' . $contact . '</li>
-                            <li>' . $type .'</li>
-                            <li>' . $intLocation .'</li>
+                            <li>' . $userName . '</li>
+                            <li>' . $userPhone . '</li>
+                            <li>' . $userEmail . '</li>
+                            <li>' . $userType . '</li>
                         </ul>
                     </a>
                 </li>
             
             ';
 	}//end while
-    echo ' </ul>';
-    echo '<a class="button" href="add.php"><div>Create new User</div></a>'; 
+    echo '
+    </ul>    
+    <a class="button" href="add.php"><div>Create new User</div></a>';
     
 	//release result
 
@@ -108,56 +119,6 @@ function userAdd(){
 	echo "</form>";
 } #end userAdd()
 
-/**
-  * Description
-  *
-  * <code>
-  * 
-  * </code>
-  *
-  * @param	
-  */
-function userEdit(){
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	// Check connection
-	if (!$conn) {
-		die("Connection failed: " . mysqli_connect_error());
-	}
-
-	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
-		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-	}
-	$sql = "SELECT * FROM users where UserId=".$myID; //set sql statement
-
-	$result = mysqli_query($conn, $sql);//grab tables
-	if (mysqli_num_rows($result) > 0) {
-		$row = mysqli_fetch_assoc($result);
-	} else {
-		echo "0 results";
-	}
-
-	$firstName = dbOut($row['FirstName']);//assign variables for readability
-	$lastName = dbOut($row['LastName']);
-	$contact = dbOut($row['ContactInfo']);
-	$type = dbOut($row['TypeId']);
-	$usrId = dbOut($row['UserId']);
-
-	//Edit Page
-	echo "<form action='prism-input.php?id=".$myID."' method='post'>";
-	echo "First Name: <input type='text' name='firstname' value='".$firstName."'><br>";
-	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
-	echo "Contact: <input type='text' name='contact' value='".$contact."'><br>";
-	echo "User Type: <input type='text' name='type' value='".$type."'><br>";
-	echo "<input type='submit' value='Update' >";
-	echo "<input type='hidden' name='act' value='update' />";
-	echo "</form>";
-    
-    echo '<a class="button" href="detail.php?id=' . ($row['UserId']) . '><div>Cancel</div></a>';
-    
-} #end userEdit()
-
 
 
 /**
@@ -182,39 +143,87 @@ function userDetails(){
 	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
 	 	$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 	}
-	$sql = "SELECT * FROM users where UserId=".$myID; //set sql statement
+	$sql = "SELECT * FROM user_list"; //set sql statement
 
 	$result = mysqli_query($conn, $sql);//grab tables
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
-        if(dbOut($row['UserId']-1) > 0){
-		echo '<a class="button" href=detail.php?id=' . (dbOut($row['UserId']-1)) . '><div>Previous</div></a>';
-        }
-        if(mysqli_num_rows($result) < dbOut($row['UserId']+1)){
-            echo '&emsp;&emsp;&emsp; <a class="button" href=detail.php?id=' . (dbOut($row['UserId']+1)) . '><div>Next</div></a>';
-        }
 	} else {
 		echo "0 results";
 	}
     
-	$firstName = dbOut($row['FirstName']);//assign variables for readability
-	$lastName = dbOut($row['LastName']);
-	$contact = dbOut($row['ContactInfo']);
-	$type = dbOut($row['TypeId']);
-	$usrId = dbOut($row['UserId']);
+    $userName = dbOut($row['Name']);//assign variables for readability
+		$userPhone = dbOut($row['PhoneNumber']);
+		$userEmail = dbOut($row['Email Address']);
+		$userType = dbOut($row['User Type']);
+        $usrId = dbOut($row['User ID']);
+    
+	echo "<br /><br />Name : " . $userName . "<br>";
+	echo "Phone #: " . $userPhone . "<br>";
+	echo "E-mail : " . $userEmail . "<br>";
+	echo "Type : " . $userType . "<br>" . "<br>";
+    
 
-	//Details Page
-	//echo  "<a href=" . 'edit.php?id=' . ($row['UserId']) . '> Edit</a>' . "&emsp;&emsp;&emsp;";
-	//echo  "<a href=" . 'add.php?id=' . ($row['UserId']) . '> Add</a>' . "&emsp;&emsp;&emsp;";        
-	//echo  "<a href=" . 'delete.php?id=' . ($row['UserId']) . '> Delete</a>';
-	echo "<br /><br />Full Name : " . $row[FirstName] . " " . $row[LastName] . "<br>";
-	echo "Contact Info : " . $row[ContactInfo] . "<br>";
-	echo "User Type : " . $row[TypeId] . "<br>" . "<br>";
-
-    echo '&emsp;&emsp;&emsp; <a class="button" href=edit.php?id=' . ($row['UserId']) . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href=delete.php><div>Delete</div></a>';
+    echo '&emsp;&emsp;&emsp; <a class="button" href=edit.php?id=' . $usrId . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href=delete.php><div>Delete</div></a>';
     
 	
 } #end userDetails()
+
+
+/**
+  * Description
+  *
+  * <code>
+  * 
+  * </code>
+  *
+  * @param	
+  */
+function userEdit(){
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	//$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+	// Check connection
+	if (!$conn) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
+
+	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
+		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+	}
+	$sql = "SELECT FirstName, LastName, PhoneNumber, EmailAddress,TypeId ,UserId FROM users WHERE UserId='".$myID."'"; //set sql statement
+
+	$result = mysqli_query($conn, $sql);//grab tables
+	if (mysqli_num_rows($result) > 0) {
+		$row = mysqli_fetch_assoc($result);
+	} else {
+		echo "0 results";
+	}
+
+	$firstName = dbOut($row['FirstName']);//assign variables for readability
+    $lastName = dbOut($row['LastName']);
+    $userPhone = dbOut($row['PhoneNumber']);
+	$userEmail = dbOut($row['EmailAddress']);
+	$userType = dbOut($row['TypeId']);
+    $usrId = dbOut($row['UserId']);
+
+	//Edit Page
+	echo "<form action='prism-input.php?id=".$myID."' method='post'>";
+	echo "First Name: <input type='text' name='firstname' value='".$firstName."'><br>";
+	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
+	echo "User Email: <input type='text' name='userEmail' value='".$userEmail."'><br>";
+	echo "User Phone: <input type='text' name='userPhone' value='".$userPhone."'><br>";
+	echo "User Type: <input type='text' name='userType' value='".$userType."'><br>";
+	echo "<input type='submit' value='Update' >";
+	echo "<input type='hidden' name='act' value='update' />";
+	echo "</form>";
+    
+    echo '<a class="button" href="detail.php?id=' . $usrId . '><div>Cancel</div></a>';
+    
+} #end userEdit()
+
+
+
 
 
 /**
