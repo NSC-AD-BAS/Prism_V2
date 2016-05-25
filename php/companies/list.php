@@ -19,11 +19,35 @@ if (isset($_GET['archived']) && $_GET['archived'] == "true") {
     $archived = false;
 }
 
-//Render the page
+//Allow column sorting
+if (isset($_GET['sort'])) {
+    $sort = $_GET['sort'];
+} else {
+    $sort = "";
+}
+if (isset($_GET['order'])) {
+    $order = $_GET['order'];
+} else {
+    $order = "ASC";
+}
+
+//Get ugly view names from nicer url args
+if ($sort == "comp") {
+    $field = "`Organization Name`";
+} else if ($sort == "loc") {
+    $field = "Location";
+} else if ($sort == "avail") {
+    $field = "`Available Internships`";
+} else {
+    //someone passed in something they oughtn't have
+    $field = "";
+}
+
+//Render the default page
 render_header('Companies', false);
 render_nav('Company List');
 if (!$archived) {
-    renderCompanyList(get_companies_list(), false);
+    renderCompanyList(get_companies_list_sorted($field, $order), false);
 } else {
     renderCompanyList(get_deleted_companies(), true);
 }

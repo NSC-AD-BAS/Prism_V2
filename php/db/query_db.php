@@ -43,6 +43,25 @@ function get_view_data($view) {
     return $output;
 }
 
+//Get sorted results from an arbitrary view
+function get_view_data_sorted($view, $field = "", $asc = "ASC") {
+    if ($field === "") {
+        return get_view_data($view);
+    }
+    $conn = db_connect();
+    $sql = "SELECT * FROM $view ORDER BY $field $asc";
+    //DEBUG: Comment this out to see the query, run it manually and debug.
+    //echo $sql;
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
 /*
     Organization Specific DB Queries
 */
@@ -64,6 +83,11 @@ function get_view_data_where($view, $orgId) {
 //Return the list of all companies
 function get_companies_list() {
     return get_view_data('org_list');
+}
+
+//Return a sorted list of companies
+function get_companies_list_sorted($field = "", $asc = true) {
+    return get_view_data_sorted('org_list', $field, $asc);
 }
 
 //Get the org detail for an org
