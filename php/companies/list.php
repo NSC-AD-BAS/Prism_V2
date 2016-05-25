@@ -39,8 +39,8 @@ if ($sort == "comp") {
 } else if ($sort == "avail") {
     $field = "`Available Internships`";
 } else {
-    //someone passed in something they oughtn't have
-    $field = "";
+    //someone passed in something they oughtn't have, default to company alpha sort
+    $field = "`Organization Name`";
 }
 
 //Render the default page

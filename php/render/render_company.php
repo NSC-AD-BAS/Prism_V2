@@ -6,13 +6,32 @@
 
 //Company List
 function renderCompanyList($data, $archived) {
+    //TODO: Probably tighten this up a bit.
+    $comp_order = "ASC";
+    $loc_order = "ASC";
+    $avail_order = "ASC";
+    if ($_GET['sort'] == "comp") {
+        if ($_GET['order'] == "ASC") {
+            $comp_order = "DESC";
+        }
+    }
+    if ($_GET['sort'] == "loc") {
+        if ($_GET['order'] == "ASC") {
+            $loc_order = "DESC";
+        }
+    }
+    if ($_GET['sort'] == "avail") {
+        if ($_GET['order'] == "ASC") {
+            $avail_order = "DESC";
+        }
+    }
     $out = '
         <ul class="outer">
             <li class="tableHead">
             <ul class="inner">
-                <li>Company Name</li>
-                <li>Location</li>
-                <li>Internships Available</li>
+                <li><a href="?sort=comp&order=' . $comp_order . '">Company Name</a></li>
+                <li><a href="?sort=loc&order=' . $loc_order . '">Location</a></li>
+                <li><a href="?sort=avail&order=' . $avail_order . '">Internships Available</a></li>
             </ul>
         ';
         foreach ($data as $d) {
