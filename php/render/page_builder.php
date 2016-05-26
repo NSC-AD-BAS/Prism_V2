@@ -58,7 +58,7 @@ function render_footer() {
         </main>
         </br>
         <footer>
-        <p>North Seattle College - PRISM &copy; 2016</p>
+        <p>North Seattle College - PRISM &copy; ' . date('Y') . '</p>
         </footer>
         </body>
         </html>
