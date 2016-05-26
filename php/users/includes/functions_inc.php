@@ -58,7 +58,7 @@ function userList(){
     ';
 	while($row = mysqli_fetch_assoc($result)){//fetch data from associate array
 		$userName = dbOut($row['Name']);//assign variables for readability
-		$userPhone = dbOut($row['PhoneNumber']);
+		$userPhone = dbOut($row['Phone']);
 		$userEmail = dbOut($row['Email Address']);
 		$userType = dbOut($row['User Type']);
         $usrId = dbOut($row['User ID']);
@@ -153,7 +153,7 @@ function userDetails(){
 	}
     
     $userName = dbOut($row['Name']);//assign variables for readability
-		$userPhone = dbOut($row['PhoneNumber']);
+		$userPhone = dbOut($row['Phone']);
 		$userEmail = dbOut($row['Email Address']);
 		$userType = dbOut($row['User Type']);
         $usrId = dbOut($row['User ID']);
