@@ -28,8 +28,9 @@
         $OrganizationName = $_POST['orgname'];
 
         //Push Changes to database
-        $saveResult = updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
-            $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL);
+        $saveResult = updateContact($contactId, $OrganizationId, $ContactFirstName, $ContactLastName,
+            $Title, $OfficeNumber, $OfficeExtension, $CellNumber, $EmailAddress, $Referral,
+            $Hiring, $OnADAdvisoryCommittee, $LinkedInURL);
         if ($saveResult) {
             //NOTE: I added this redirect to org detail to fix a bug Steve logged.  It also required that I move this logic block above
             //Any output, since header redirects only work if no data has been sent yet.  Just a heads-up!

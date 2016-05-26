@@ -63,7 +63,7 @@
         <p><?php ECHO htmlspecialchars($saveResult) ?></p>
     <?php endif; ?>
     <?php if ($renderThis == "saved") : ?>
-        <h1>You've added a new contact! have been saved! </h1>
+        <h1>You've added a new contact! </h1>
         <!-- http://php.net/manual/en/function.http-build-query.php -->
         <h2><a href="<?php ECHO '../companies/detail.php?' . http_build_query(array('id' => $OrganizationId)) ?>">Click
                 here to go back to the Organizations's page....</a></h2>
