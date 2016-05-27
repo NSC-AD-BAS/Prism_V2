@@ -34,7 +34,6 @@ function updateContact($ContactId, $OrganizationId, $ContactFirstName, $ContactL
     }
 }
 
-
 function createContact($OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
                        $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL)
 {
