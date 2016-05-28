@@ -60,7 +60,7 @@ CREATE OR REPLACE VIEW org_list AS
         COUNT( i.InternshipId ) AS `Available Internships`
     FROM
         organizations o
-             JOIN
+             LEFT JOIN
         internships i ON i.organizationId = o.organizationId
     WHERE NOT o.isDeleted
     GROUP BY
