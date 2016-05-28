@@ -105,30 +105,6 @@ INSERT INTO users(
 (15, "Faculty", "", "Faculty", "111-111-1111", "faculty@faculty.com", "facul", "facul", 3)
 ;
 
--- Move these to 1_Create...
-INSERT INTO intern_capstone_status(Id, Description)
-VALUES
-(0, "(None Selected)"),
-(1, "Incomplete"),
-(2, "Completed"),
-(3, "In Progress");
-
-INSERT INTO program_status(Id, Description)
-VALUES
-(0, "(None Selected)"),
-(1, "Active"),
-(2, "Inactive"),
-(3, "Graduated");
-
-INSERT INTO application_status(Id, Description)
-VALUES
-(0, "(None Selected)"),
-(1, "Applied"),
-(2, "Provisionally Accepted"),
-(3, "Fully Accepted"),
-(4, "Wihtdrawn"),
-(5, "Denied");
-
 
 INSERT INTO students(
 	StudentId, 
