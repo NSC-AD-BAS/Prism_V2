@@ -43,6 +43,8 @@ function render_nav($page_name = "", $searchUrlBase = "") {
     }
     $user_details = get_user_details();
     $out .= $user_details;
+    // Profile button -- Added by Austin
+    $out .= '<li class="right"><a href="../profile/detail.php">Profile</a></li>';
     $out .= '<li class="right"><a href="../login/logout.php">Logout</a></li></ul></nav>
         <main>
             ' . $form . '
