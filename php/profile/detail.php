@@ -8,6 +8,12 @@
 	require "../render/page_builder.php";
 	include_once("../login/login_utils.php");
 
+	# Session management
+	session_start();
+	if (!is_logged_in()) {
+	    to_login();
+	}
+
 	$studentId = $_SESSION["user_id"];
 	$student = get_single_student($studentId);
 	$navTitle = "Profile";
