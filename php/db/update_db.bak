@@ -143,7 +143,7 @@ function undelete_internship($intId) {
 function delete_undelete_internship($intId, $delete_undelete) {
     //NOTE: I have no idea why this include is required here but I couldn't get delete to work without it.
     //TODO: We should figure out what gives and remove this.  Maybe the nested call from delete/undelete?
-    include("../db/query_db.php");
+    include("../includes/query_db.php");
 	$conn = db_connect();
 
 	$sql = "UPDATE internships

@@ -4,8 +4,7 @@
 # Author: Kellan Nealy
 
 require "../login/validate_session.php";
-include("../db/update_db.php");
-include("../db/query_db.php");
+require_once("../includes/config.php");
 
 # TODO: clean-up
 

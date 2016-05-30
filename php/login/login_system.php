@@ -1,5 +1,7 @@
 <?php
-include_once("../includes/login_utils.php");
+//include_once("../includes/login_utils.php");
+require_once("../includes/config.php");
+
 #Author: Kellan Nealy
 
 # accepts POST form data from "login.html", logs in the user, & redirects
@@ -116,9 +118,9 @@ function to_list_page() {
 #uses internally stored credentials to create and return DB connection
 #as a Mysqli PHP object.  For use on prism.tekbot.net unless you hard-code.
 function get_db_connection() {
-    include '../lib/db_connect.php';
+    //include '../lib/db_connect.php';
     //create and verify connection
-    $mysqli_obj = new mysqli($servername, $username, $password, $dbname);
+    $mysqli_obj = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
     if ($mysqli_obj->connect_error) {
         die('DB Connection Error: ' . $mysqli_obj->connect_errno . $mysqli_obj->connect_error);

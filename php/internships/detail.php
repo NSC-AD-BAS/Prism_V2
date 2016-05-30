@@ -4,9 +4,7 @@
 # Author: Kellan Nealy
 
 require "../login/validate_session.php";
-include("common.php");
-include("../db/query_db.php");
-include("../render/page_builder.php");
+require_once("../includes/config.php");
 
 # Prints main html for this internship detail
 function print_detail_main($data) { ?>

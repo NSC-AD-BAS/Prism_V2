@@ -2,11 +2,8 @@
 # list php file:
 # Author: Tim Davis
 # Author: Kellan Nealy
-
+require_once("../includes/config.php");
 require "../login/validate_session.php";
-include("common.php");
-include("../db/query_db.php");
-include("../render/page_builder.php");
 
 # Prints main html for this list
 function print_list_main($data, $list_title) { ?>

@@ -4,10 +4,7 @@
 # Author: Kellan Nealy
 
 require "../login/validate_session.php";
-include("common.php");
-include("../db/update_db.php");
-include("../db/query_db.php");
-include("../render/page_builder.php");
+require_once("../includes/config.php");
 
 # Prints the main html for this internship edit
 function print_edit_main($data, $intId) { ?>

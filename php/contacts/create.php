@@ -1,4 +1,6 @@
-<?php require "../login/validate_session.php"; ?>
+<?php require "../login/validate_session.php"; 
+require_once("../includes/config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../style/site.css">
 
     <?php
-    require 'update_db.php';
+    //require 'update_db.php';
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Mapped the passed back variables to something we can play with.

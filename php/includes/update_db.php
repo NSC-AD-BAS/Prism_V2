@@ -48,7 +48,7 @@
 
 //Create a company and return the orgId
 function create_company($query) {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     mysqli_query($conn, $query);
     $orgId = mysqli_insert_id($conn);
     return $orgId;
@@ -56,7 +56,7 @@ function create_company($query) {
 
 //Update the DB with the given query
 function update_db($query) {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $result = true;
     if (!mysqli_query($conn, $query)) {
         $result = get_last_error($conn);
@@ -82,7 +82,7 @@ function update_company($query) {
 // TODO: do not show internships that are past their expiration date
 // Creates an internship given the data
 function add_internship($internship_data) {
-	$conn = db_connect();
+	$conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
 
 	// get the max column value for InternshipID so we can correctly add to the table
 	$new_id = mysqli_insert_id($conn);
@@ -124,7 +124,7 @@ function add_internship($internship_data) {
 
 // Updates an internship given the id and replacement data
 function update_internship($internship_data, $intId) {
-	$conn = db_connect();
+	$conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
 
 	// generate last updated datetime
 	$lastUpdated = date('Y-m-d H:i:s');
@@ -177,8 +177,8 @@ function undelete_internship($intId) {
 function delete_undelete_internship($intId, $delete_undelete) {
     //NOTE: I have no idea why this include is required here but I couldn't get delete to work without it.
     //TODO: We should figure out what gives and remove this.  Maybe the nested call from delete/undelete?
-    include("../db/query_db.php");
-	$conn = db_connect();
+    
+	$conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
 
 	$sql = "UPDATE internships
 				SET isDeleted = " . $delete_undelete . "
@@ -198,14 +198,14 @@ function delete_undelete_internship($intId, $delete_undelete) {
 # update_db php file: db write-access layer
 # Author: Casey Riggin
 # Author: Chris Mendoza
-include "query_db.php";
+include "../includes/config.php";
 
 function updateContact($ContactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
                        $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL)
 {
     $Hiring = intval(boolval($Hiring));
     $OnADAdvisoryCommittee = intval(boolval($OnADAdvisoryCommittee));
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $stmt = $conn->prepare("UPDATE organization_contacts SET
       ContactFirstName = ?, ContactLastName = ? , Title = ? , OfficeNumber = ? , OfficeExtension = ? , CellNumber = ? ,
       EmailAddress = ? , Referral = ? , Hiring = ? , OnADAdvisoryCommittee = ? , LinkedInURL = ? WHERE ContactId = ? ");
@@ -235,7 +235,7 @@ function createContact($OrganizationId, $ContactFirstName, $ContactLastName, $Ti
 {
     $Hiring = intval(boolval($Hiring));
     $OnADAdvisoryCommittee = intval(boolval($OnADAdvisoryCommittee));
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $stmt = $conn->prepare("INSERT INTO organization_contacts  (OrganizationId, ContactFirstName, ContactLastName, Title, OfficeNumber,
        OfficeExtension, CellNumber, EmailAddress, Referral, Hiring, OnADAdvisoryCommittee, LinkedInURL)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
@@ -266,7 +266,7 @@ function createContact($OrganizationId, $ContactFirstName, $ContactLastName, $Ti
     
 	function execute_upcert($query) {
 		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 		if(!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}

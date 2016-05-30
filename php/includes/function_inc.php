@@ -14,9 +14,9 @@ userDelete()
 
 function changeLogList(){
     //create connection
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
 
-    //$conn = mysqli_connect($servername, $username, $password, $dbname);
+    //$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     // Check connection
     if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 
@@ -99,7 +99,7 @@ function userList(){
 	//create connection
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
+	//$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	// Check connection
 	if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 
@@ -206,7 +206,7 @@ function userAdd(){
 function userDetails(){
 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
+	//$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	// Check connection
 	if (!$conn) {
@@ -254,7 +254,7 @@ function userDetails(){
   */
 function userEdit(){
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
+	//$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	// Check connection
 	if (!$conn) {

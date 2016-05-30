@@ -1,6 +1,6 @@
 <?php
     require "../login/validate_session.php";
-    require 'update_db.php';
+    require_once("../includes/config.php");
 
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -168,7 +168,7 @@
                     <th><label for="hiring">Hiring</label></th>
                     <td><input id="hiring" name="hiring" type="checkbox" <?php if ($Hiring) {
                             echo " checked ";
-                        } ?>">
+                        } ?> >
                     </td>
                 </tr>
                 <tr>

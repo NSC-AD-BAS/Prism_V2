@@ -17,7 +17,7 @@ log_query($function_name, $query)
 */
 
 //Includes
-//include "query_db.php";
+//include "../includes/config.php";
 
 //Populate update query with any posted data, fall-back to existing data from DB.  Returns a query string.
 function build_update_query($orgId) {

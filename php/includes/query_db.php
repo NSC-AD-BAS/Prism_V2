@@ -44,7 +44,7 @@ functions:
 
 function get_contact_detail($id)
 {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $stmt = $conn->prepare("SELECT cts.*, orgs.OrganizationName from organization_contacts cts INNER JOIN organizations orgs ON cts.OrganizationId = orgs.OrganizationId where cts.OrganizationId = ? limit 1");
     $stmt->bind_param("i", $id);
     /* execute query */
@@ -66,10 +66,7 @@ function get_contact_detail($id)
     return $output;
 }
 
-?>
 
-
-<?php
 
 /*
     query_db.php - Stands up database connection and runs read-only queries against it.
@@ -84,9 +81,9 @@ function get_contact_detail($id)
 
 //Stand-up and return a connect object
 function db_connect() {
-    include '../lib/db_connect.php';
+    //include '../lib/db_connect.php';
     //create and verify connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     if (!$conn) {
         die("Connect Failed: " . mysqli_connect_error());
     }
@@ -102,7 +99,7 @@ function isAdmin() {
 
 //Get the result set from an arbitrary view name
 function get_view_data($view) {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $sql  = "SELECT * FROM $view";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
@@ -119,7 +116,7 @@ function get_view_data_sorted($view, $field = "", $asc = "ASC") {
     if ($field === "") {
         return get_view_data($view);
     }
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $sql = "SELECT * FROM $view ORDER BY $field $asc";
     //DEBUG: Comment this out to see the query, run it manually and debug.
     //echo $sql;
@@ -139,7 +136,7 @@ function get_view_data_sorted($view, $field = "", $asc = "ASC") {
 
 //Get the data from some view where OrgID = some ID.
 function get_view_data_where($view, $orgId) {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $sql  = "SELECT * FROM $view WHERE OrganizationId = $orgId";
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
@@ -192,7 +189,7 @@ function get_last_error($conn) {
 
 // Returns internship list result
 function get_internship_list() {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $sql = "SELECT DISTINCT *
             FROM internship_list;";
     $result = mysqli_query($conn, $sql);
@@ -208,7 +205,7 @@ function get_internship_list() {
 
 // Returns intership detail result
 function get_internship_detail($id) {
-    $conn = db_connect();
+    $conn =  mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);     if (!$conn) {         die("Connect Failed: " . mysqli_connect_error());     };
     $sql = "SELECT DISTINCT *
             FROM internship_detail
             WHERE InternshipId = $id
@@ -224,14 +221,10 @@ function get_internship_detail($id) {
     return $output;
 }
 
-?>
 
-
-
-<?php
 	function create_connection() {
 		require "../lib/db_connect.php";
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 		if(!$conn) {
 			die("Connection failed: " . mysqli_connect_error());

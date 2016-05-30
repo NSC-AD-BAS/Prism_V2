@@ -1,23 +1,19 @@
 <?php
 
 require "../login/validate_session.php";
-require "includes/functions_inc.php";
-
-//Includes
-include "../render/page_builder.php";
-include "../render/render_company.php";
-include "../db/query_db.php";
+require_once("../includes/config.php");
 
 
 //Render the page
-render_header('Changelog', false);
-render_nav('Changelog');
+//render_header('Changelog', false);
+include "../includes/header.php";
+//render_nav('Changelog');
     /**$out = '<h2 class="alert">Coming soon!</h2>';
     *echo $out;
     */
 
 changeLogList();
-
-render_footer();
+include "../includes/footer.php";
+//render_footer();
 
 ?>

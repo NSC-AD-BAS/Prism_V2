@@ -1,6 +1,6 @@
 <?php
 	require "../login/validate_session.php";
-    require "update_db.php";
+    require_once("../includes/config.php");
     $student = $_POST['student'];
     create_student($student);
 

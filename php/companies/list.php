@@ -2,9 +2,7 @@
 
 //Includes
 require "../login/validate_session.php";
-include "../render/page_builder.php";
-include "../render/render_company.php";
-include "../db/query_db.php";
+require_once("../includes/config.php");
 
 //Toggle showing deleted / archived companies
 if (isset($_GET['archived']) && $_GET['archived'] == "true") {

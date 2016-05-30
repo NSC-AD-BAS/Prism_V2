@@ -1,4 +1,4 @@
-<?php require '../includes/config.php'; ?>
+<?php require_once("../includes/config.php"); ?>
 <?php require INCLUDE_PATH . 'header.php'; ?>
 <br><br>        
 <?php userAdd(); ?>

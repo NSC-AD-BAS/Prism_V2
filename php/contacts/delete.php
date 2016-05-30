@@ -1,4 +1,5 @@
-<?php require "../login/validate_session.php"; ?>
+<?php require "../login/validate_session.php"; 
+require_once("../includes/config.php");?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../style/site.css">
 
     <?php
-    require 'update_db.php';
+    
 
 
     $renderThis = 'standard';

@@ -4,7 +4,7 @@
 # Author: Kellan Nealy
 
 require "../login/validate_session.php";
-include("update_db.php");
+require_once("../includes/config.php");
 
 # Make sure POST parameters have been passed
 if (isset($_POST["intId"])) {

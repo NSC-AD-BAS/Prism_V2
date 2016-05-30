@@ -1,6 +1,6 @@
 <?php 
 	require '../../../../../includes/creds.php';
-    define('SITE_URL', "http://joesarchive.com/sandbox/Prism_V2/php/users/");
+    
     #require '../lib/db_connect.php';
 	#define('SITE_URL', "http://prism.tekbot.net/users/");
     

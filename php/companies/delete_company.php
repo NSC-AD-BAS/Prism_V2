@@ -6,8 +6,7 @@
 
 //Includes
 require "../login/validate_session.php";
-include "../db/query_builder.php";
-include "../db/update_db.php";
+require_once("../includes/config.php");
 
 //Disallow direct access
 if (isset($_GET['id']) && isset($_GET['delete'])) {

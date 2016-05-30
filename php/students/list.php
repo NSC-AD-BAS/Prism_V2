@@ -1,8 +1,6 @@
 <?php
     require "../login/validate_session.php";
-    require "query_db.php";
-    require "student_presentation.php";
-    require "../render/page_builder.php";
+    require_once("../includes/config.php");
 
     function array_contains_value_like($array, $query) {
         $lowercaseQuery = strtolower($query);
@@ -54,6 +52,7 @@
         $result = $isStudentDeleted === $showDeleted;
         return $result;
     });
+
     $showDeletedLink = createShowDeletedLink($showDeleted);
 
     $students = get_students_matching_filters($filters);

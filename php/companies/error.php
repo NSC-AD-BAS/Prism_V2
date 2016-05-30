@@ -7,8 +7,7 @@
 
 //Includes
 require "../login/validate_session.php";
-include "../render/page_builder.php";
-include "../db/query_db.php";
+require_once("../includes/config.php");
 
 //TODO: Better Translation and/or method of passing of error codes.
 render_header('Error', false);

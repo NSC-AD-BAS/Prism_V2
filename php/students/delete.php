@@ -1,8 +1,7 @@
 <?php
 	//Includes
 	require "../login/validate_session.php";
-	require "../render/page_builder.php";
-	require "update_db.php";
+	require_once("../includes/config.php");
 
 	// sets the flags for deletion
 	if (isset($_GET['id']) && isset($_GET['delete'])) {
