@@ -3,17 +3,11 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
+require "../login/validate_session.php";
 include("common.php");
 include("../db/update_db.php");
 include("../db/query_db.php");
 include("../render/page_builder.php");
-include_once("../login/login_utils.php");
-
-# Session management
-session_start();
-if (!is_logged_in()) {
-    to_login();
-}
 
 # Prints the main html for this internship edit
 function print_edit_main($data, $intId) { ?>

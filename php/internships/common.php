@@ -3,8 +3,6 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
-include("../login/login_utils.php");
-
 //NOTE: The page building functions have been moved to page_builder
 //      get_companies_list() was moved to query_db.
 

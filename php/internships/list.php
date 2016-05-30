@@ -3,17 +3,10 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
+require "../login/validate_session.php";
 include("common.php");
 include("../db/query_db.php");
 include("../render/page_builder.php");
-include_once("../login/login_utils.php");
-
-# Session management
-session_start();
-if (!is_logged_in()) {
-    to_login();
-}
-
 
 # Prints main html for this list
 function print_list_main($data, $list_title) { ?>

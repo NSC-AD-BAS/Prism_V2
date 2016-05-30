@@ -3,14 +3,8 @@
 # Author: Tim Davis
 # Author: Kellan Nealy
 
+require "../login/validate_session.php";
 include "../db/update_db.php";
-include_once("../login/login_utils.php");
-
-# Session management
-session_start();
-if (!is_logged_in()) {
-    to_login();
-}
 
 # Make sure POST parameters have been passed
 if (isset($_POST["intId"])) {
