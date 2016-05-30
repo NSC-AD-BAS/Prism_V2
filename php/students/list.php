@@ -1,15 +1,8 @@
 <?php
+    require "../login/validate_session.php";
     require "query_db.php";
     require "student_presentation.php";
     require "../render/page_builder.php";
-    include_once("../login/login_utils.php");
-
-	# Session management
-	session_start();
-	if (!is_logged_in()) {
-	    to_login();
-	}
-
 
     $students = [];
     $navTitle = "Student List";

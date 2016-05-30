@@ -1,6 +1,6 @@
 <?php
-
 	//Includes
+	require "../login/validate_session.php";
 	require "../render/page_builder.php";
 	require "update_db.php";
 

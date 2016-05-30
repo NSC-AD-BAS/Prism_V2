@@ -22,14 +22,22 @@ function render_header($header = "", $isDetail = false) {
     echo $out;
 }
 
-//Render the nav bar, the search box and the $page_name in an h1 element
-function render_nav($page_name = "", $searchUrlBase = "") {
-    //Only show the search form if we've implemented search for the page and passed in the searchUrlBase.
-    $form = $searchUrlBase === "" ? "" : '
-        <form target="$searchUrlBase">
+function build_search_form($searchActionUrl) {
+    $searchFormFormat = '
+        <form method="GET" action="%s">
             <input id="searchbox" type="text" name="q" placeholder=" Search" />
-        </form>
-        ';
+        </form>';
+    
+    if ($searchActionUrl === "")
+        return "";
+    return sprintf($searchFormFormat, $searchActionUrl);
+}
+
+//Render the nav bar, the search box and the $page_name in an h1 element
+function render_nav($page_name = "", $searchActionUrl = "") {
+    //Only show the search form if we've implemented search for the page and passed in the searchUrlBase.
+    $form = build_search_form($searchActionUrl);
+
     //Pages may be added or re-ordered by adjusting this array
     $nav_pages = ["Internships", "Companies", "Students"];
     if (isAdmin()) {

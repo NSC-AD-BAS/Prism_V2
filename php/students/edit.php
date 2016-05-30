@@ -1,8 +1,9 @@
 <?php
+    require "../login/validate_session.php";
     require 'query_db.php';
     require "../render/page_builder.php";
     require "student_presentation.php";
-
+    
     $studentId = $_GET['id'];
     $student = get_single_student($studentId);
     $studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
