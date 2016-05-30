@@ -37,7 +37,7 @@
 	}
 
 	function get_all_students() {
-		$query = "SELECT * FROM student_list;";
+		$query = "SELECT * FROM student_detail;";
 		return get_many_rows($query);
 	}
 
@@ -117,15 +117,25 @@
 		return get_many_rows($query);
 	}
 
-	function student_matches_search($student, $searchQuery) {
+	function assoc_array_matches_search($array, $searchQuery) {
 		$lowercaseQuery = strtolower($searchQuery);
-		foreach($student as $field => $value) {
+		foreach($array as $field => $value) {
 			$lowerCaseValue = strtolower($value);
 			if (strpos($lowerCaseValue, $lowercaseQuery) !== false) {
 			    return true;
 			}
 		}
 		return false;
+	}
+
+	function search_assoc_arrays_for($assocArrays, $searchQuery) {
+		$assocArraysMatchingQuery = [];
+		foreach ($assocArrays as $assocArray) {
+			if (assoc_array_matches_search($assocArray, $searchQuery)) {				
+				array_push($assocArraysMatchingQuery, $assocArray);
+			}
+		}
+		return $assocArraysMatchingQuery;
 	}
 
 	function build_search_result_query($userIds) {
@@ -139,18 +149,34 @@
 		return sprintf($format, $inClause);
 	}
 
+	function get_id($student) {
+		return $student["UserId"];
+	}
+
 	function search_students_for($searchQuery) {
+		if ($searchQuery === "")
+			return get_all_students();
+
 		$searchableStudents = get_searchable_student_data();
-
-		$userIds = [];
-		foreach ($searchableStudents as $searchableStudent) {
-			if (student_matches_search($searchableStudent, $searchQuery)) {
-				$id = $searchableStudent["UserId"];
-				array_push($userIds, $id);
-			}
-		}
-
-		$query = build_search_result_query($userIds);
+		$matchingStudents = search_assoc_arrays_for($searchableStudents, $searchQuery);
+		
+		$ids = array_map("get_id", $matchingStudents);
+		
+		$query = build_search_result_query($ids);
 		return get_many_rows($query);
+	}
+	
+	function is_deleted($student) {
+		return (bool)$student["isDeleted"];
+	}
+
+	function is_not_deleted($student) {
+		return !(bool)$student["isDeleted"];
+	}
+
+	function filter_students_matching_showDeleted($students, $showDeleted) {
+		if ($showDeleted)
+			return array_filter($students, "is_deleted");
+		return array_filter($students, "is_not_deleted");
 	}
 ?>

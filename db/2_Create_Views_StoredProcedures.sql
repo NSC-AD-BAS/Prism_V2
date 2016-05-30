@@ -124,50 +124,6 @@ CREATE OR REPLACE VIEW org_detail AS
             JOIN
         internships i ON o.OrganizationId = i.OrganizationId);
 
-
--- Updated Bob M. 4/27/2016
-CREATE OR REPLACE VIEW student_list AS
-    (SELECT 
-        u.UserId,
-        CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
-        s.Cohort,
-        ps.Description AS `Program Status`,
-        ics.Description AS `Internship/Capstone Status`,
-        aps.Description AS `Application Status`
-    FROM
-        students s
-            JOIN
-        users u ON u.userId = s.userId
-			JOIN
-        program_status ps ON ps.Id = s.ProgramStatusId
-            JOIN
-        intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
-            JOIN
-        application_status aps ON aps.Id = s.ApplicationStatusId
-    WHERE NOT s.isDeleted
-);
-
-CREATE OR REPLACE VIEW student_list_deleted AS
-    (SELECT 
-        u.UserId,
-        CONCAT(u.LastName,", ", u.FirstName) AS `Student Name`,
-        s.Cohort,
-        ps.Description AS `Program Status`,
-        ics.Description AS `Internship/Capstone Status`,
-        aps.Description AS `Application Status`
-    FROM
-        students s
-            JOIN
-        users u ON u.userId = s.userId
-			JOIN
-        program_status ps ON ps.Id = s.ProgramStatusId
-            JOIN
-        intern_capstone_status ics ON ics.Id = s.InternCapstoneStatusId
-            JOIN
-        application_status aps ON aps.Id = s.ApplicationStatusId
-    WHERE s.isDeleted
-);
-
 CREATE OR REPLACE VIEW student_detail AS
     (SELECT 
         u.UserId,

@@ -9,28 +9,35 @@ function createStudentList($students) {
                         <li>Program Status</li>
                         <li>Internship / Capstone Status</li>
                         <li>Application Status</li>
-                    </ul>";
+                    </ul>
+                </li>\n";
 	
 	foreach ($students as $student) {
 
-		$studentRow = "<li>"
-			. "<a href='detail.php?id=" . $student["UserId"] . "'>" 
-			. "<ul class='inner5'>" 
-			. "<li>" . $student["Student Name"] . "</li>"
-			. "<li>" . $student["Cohort"] . "</li>"
-			. "<li>" . $student["Program Status"] . "</li>"
-			. "<li>" . $student["Internship/Capstone Status"] . "</li>"
-			. "<li>" . $student["Application Status"] . "</li>"
-			. "</ul>"
-			. "</a>"
-			. "</li>"
-			. "</li>"
-			. "</ul>";
+		$studentRowFormat = 
+		"<li>
+			<a href='detail.php?id=%d'>
+				<ul class='inner5'>
+					<li>%s</li>
+					<li>%s</li>
+					<li>%s</li>
+					<li>%s</li>
+					<li>%s</li>
+				</ul>
+			</a>
+		</li>\n";
 
-		$html = $html . $studentRow;
+		$fullName = $student["Student Last Name"] . ", " . $student["Student First Name"];
+		$html = $html . sprintf($studentRowFormat
+			, $student["UserId"]
+			, $fullName
+			, $student["Cohort"]
+			, $student["Program Status"]
+			, $student["Internship/Capstone Status"]
+			, $student["Application Status"] );
 	}
 
-	$html = $html . "</table>";
+	$html = $html . "</ul>";
 	return $html;
 }
 
@@ -96,6 +103,16 @@ function createStudentNotesTableRows($notes) {
 
 	return $html;
 
+}
+
+function createShowDeletedLink($showingDeleted) {
+	$linkFormat = '<a class="aside" href="list.php%s">%s</a>';
+
+	$parameter = $showingDeleted ? "" : "?showDeleted=1";
+	$linkText = $showingDeleted ? "Hide Deleted" : "Show Deleted";
+	$html = sprintf($linkFormat, $parameter, $linkText);
+
+	return $html;
 }
 
 ?>

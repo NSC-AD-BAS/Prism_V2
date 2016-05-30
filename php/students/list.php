@@ -4,24 +4,33 @@
     require "student_presentation.php";
     require "../render/page_builder.php";
 
-    $students = [];
     $navTitle = "Student List";
+    $showDeleted = false;
+    $searchQuery = "";
+
+
     if (isset($_GET['q'])) {
         $searchQuery = $_GET['q'];
-        $students = search_students_for($searchQuery);
         $navTitle = "Search results for: " . $searchQuery;
-    } else {
-        $students = get_all_students();
     }
-        
-    $studentList = createStudentList($students);
-    
+
+    if (isset($_GET['showDeleted']) && $_GET['showDeleted']) {
+        $showDeleted = true;
+    }
+
+    $students = search_students_for($searchQuery);
+    $filteredStudents = filter_students_matching_showDeleted($students, $showDeleted);     
+    $studentList = createStudentList($filteredStudents);
 
     render_header("Students", false);
     render_nav($navTitle, "list.php");
+
+    $showDeletedLink = createShowDeletedLink($showDeleted);
 ?>
    
-   <?=$studentList?>
+<?=$studentList?>
 
 <a href="create.php" class="button"><div>Create Student</div></a>
+<?=$showDeletedLink?>
+
 <?php render_footer(); ?>
