@@ -72,13 +72,13 @@
 	}
 
 	function get_prev_student($id) {
-		$query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " ORDER BY UserId DESC LIMIT 1;";
+		$query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " and isDeleted = 0 ORDER BY UserId DESC LIMIT 1;";
 		$row = get_row($query);
 		return $row["UserId"];
 	}
 
 	function get_next_student($id) {
-		$query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " ORDER BY UserId LIMIT 1;";
+		$query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " and isDeleted = 0 ORDER BY UserId LIMIT 1;";
 		$row = get_row($query);
 		return $row["UserId"];
 	}

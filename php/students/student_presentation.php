@@ -123,4 +123,9 @@ function createShowDeletedLink($showingDeleted) {
 	return $html;
 }
 
+function createDetailNavLink($id, $title) {
+	$link = "<a href='detail.php?id=$id' class='button'><div>$title</div></a>";
+	return $link;
+}
+
 ?>

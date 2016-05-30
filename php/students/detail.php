@@ -8,8 +8,8 @@
 	$student = get_single_student($studentId);
 	$userId = $student["UserId"];
 	
-	$next = get_next_student($studentId);
-	$prev = get_prev_student($studentId);
+	$nextStudentId = get_next_student($studentId);
+	$prevStudentId = get_prev_student($studentId);
 
 	$studentFullName = sprintf("%s %s", $student["Student First Name"], $student["Student Last Name"]);
 	$detailTable = createStudentDetailTableRows($student);
@@ -19,10 +19,13 @@
 
 	render_header("Students", true);
 	render_nav($studentFullName);
+
+	$previousStudentLink = $prevStudentId ? createDetailNavLink($prevStudentId, "Previous") : "";
+	$nextStudentLink = $nextStudentId ? createDetailNavLink($nextStudentId, "Next") : "";
 ?>
 
-	<a href="detail.php?id=<?=$prev?>" class="button"><div>Previous</div></a>
-    <a href="detail.php?id=<?=$next?>" class="button"><div>Next</div></a>
+	<?=$previousStudentLink?>
+	<?=$nextStudentLink?>
 
     <div class="wrapper">
         <div class="detail_table">
