@@ -178,7 +178,7 @@ function renderCompanyDetail($data, $edit, $create) {
 }
 
 //Internship List
-function renderCompanyInternships($positions) {
+function renderCompanyInternships($positions, $orgId) {
     $out = '
         <div class="wrapper">
         <div class="detail_table">
@@ -206,7 +206,7 @@ function renderCompanyInternships($positions) {
     ';
     if (isAdmin()) {
         $out .= '
-            <a class="button" href="../internships/create.php"><div>Create Internship</div></a>
+            <a class="button" href="../internships/create.php?orgId=' . $orgId . '"><div>Create Internship</div></a>
         ';
     }
     $out .= '

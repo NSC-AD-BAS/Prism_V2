@@ -52,7 +52,7 @@ renderCompanyDetail($data, $edit, $create);
 
 //Only show Contacts and Internships if we're not in edit mode.
 if (!$edit) {
-    renderCompanyInternships($positions);
+    renderCompanyInternships($positions, $id);
     renderCompanyContacts($company_contacts, $id);
 }
 
