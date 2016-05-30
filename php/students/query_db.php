@@ -153,4 +153,9 @@
 		$query = build_search_result_query($userIds);
 		return get_many_rows($query);
 	}
+
+	function get_user_data($userId) {
+		$query = "SELECT * FROM users WHERE UserId = " . $userId . ";";
+		return get_row($query);
+	}
 ?>

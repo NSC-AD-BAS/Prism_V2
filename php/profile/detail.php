@@ -14,8 +14,16 @@
 	    to_login();
 	}
 
-	$studentId = $_SESSION["user_id"];
-	$student = get_single_student($studentId);
+	$userId = $_SESSION["user_id"];
+	// Check if the user is a student or not
+	if($userId == 1) {
+		// change this to a function that returns only the fields to edit by the student
+		$userData = get_single_student($userId);
+	}
+	else {
+		$userData = get_user_data($userId);
+	}
+	$userData = get_single_student($studentId);
 	$navTitle = "Profile";
 
 	$detailTable = createStudentDetailTableRows($student);
