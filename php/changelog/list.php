@@ -1,18 +1,13 @@
 <?php
 
+require "../login/validate_session.php";
 require "includes/functions_inc.php";
 
 //Includes
 include "../render/page_builder.php";
 include "../render/render_company.php";
 include "../db/query_db.php";
-include_once("../login/login_utils.php");
 
-# Session management
-session_start();
-if (!is_logged_in()) {
-    to_login();
-}
 
 //Render the page
 render_header('Changelog', false);
