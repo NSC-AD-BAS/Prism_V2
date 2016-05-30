@@ -76,7 +76,7 @@ CREATE OR REPLACE VIEW org_list_archived AS
         COUNT( i.InternshipId ) AS `Available Internships`
     FROM
         organizations o
-             JOIN
+            LEFT JOIN
         internships i ON i.organizationId = o.organizationId
     WHERE o.isDeleted
     GROUP BY
@@ -121,7 +121,7 @@ CREATE OR REPLACE VIEW org_detail AS
         o.isDeleted
     FROM
         organizations o
-            JOIN
+           LEFT JOIN
         internships i ON o.OrganizationId = i.OrganizationId);
 
 CREATE OR REPLACE VIEW student_detail AS
