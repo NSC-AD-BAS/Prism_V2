@@ -79,7 +79,7 @@ require "../db/update_db.php";
         <h1>Create New Contact</h1>
         <form action="create.php" method="post">
             <input type="hidden" name="orgid" value="<?php ECHO htmlspecialchars($OrganizationId) ?>"/>
-            <table id="internship_detail">
+            <table id="detail_container">
                 <tr>
                     <th><label for="firstname">First Name**</label></th>
                     <td><input id="firstname" name="firstname" type="text" maxlength="50" required

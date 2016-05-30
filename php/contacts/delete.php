@@ -84,7 +84,7 @@
             <input type="hidden" name="orgid" value="<?php ECHO htmlspecialchars($OrganizationId) ?>"/>
             <input type="hidden" name="lastname" value="<?php ECHO htmlspecialchars($ContactLastName) ?>"/>
             <input type="hidden" name="firstname" value="<?php ECHO htmlspecialchars($ContactFirstName) ?>"/>
-            <table id="internship_detail">
+            <table id="detail_container">
                 <p>Are you sure you want to delete your Contact?
                     <br/>
                     Contact Name: "<?php ECHO htmlspecialchars($ContactFirstName . " " . $ContactLastName) ?></p>
