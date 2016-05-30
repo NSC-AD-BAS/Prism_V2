@@ -25,7 +25,7 @@ function print_detail_main($data) { ?>
             $intExpiration = $data["Expiration Date"]; ?>
 
             <h1 id="internship_title"><?= $intPosition ?></h1>
-            <div id="detail_container" style="width:70%;margin-left:auto;margin-right:auto;">
+            <div id="detail_container">
                 <table id="internship_detail">
                     <tr>
                         <th>Company:</th>
@@ -44,7 +44,7 @@ function print_detail_main($data) { ?>
                         <td><?= $intEndDate ?></td>
                     </tr>
                         <th>Location:</th>
-                        <td><?= $intLocation ?></td>
+                        <td id="loc"><?= $intLocation ?></td>
                     </tr>
                     </tr>
                         <th>Last Updated:</th>
@@ -55,8 +55,42 @@ function print_detail_main($data) { ?>
                         <td><?= $intExpiration ?></td>
                     </tr>
                 </table>
+
+                <div id="internship_map"></div>
+                <script>
+                    var map;
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById('internship_map'), {
+                            center: {lat: -34.397, lng: 150.644},
+                            zoom: 12
+                        });
+
+                        var geocoder = new google.maps.Geocoder();
+                        geocodeLocation(geocoder, map);
+                    }
+
+                    function geocodeLocation(geocoder, resultsMap) {
+
+                        var address = document.getElementById("loc").innerHTML;
+
+                        geocoder.geocode({'address': address}, function(results, status) {
+                            if (status === google.maps.GeocoderStatus.OK) {
+                                resultsMap.setCenter(results[0].geometry.location);
+                                var marker = new google.maps.Marker({
+                                    map: resultsMap,
+                                    position: results[0].geometry.location
+                                });
+                            } else {
+                                alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                        });
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPiap5yVRu-6r2NVBmzIvLX0DnFzz6F18&callback=initMap"
+                async defer></script>
             </div>
-            <h2>Description</h2>
+            <br />
+            <h2 style="clear:both;">Description</h2>
             <hr />
             <p id="internship_description"><?= $intDescription ?></p>
 
