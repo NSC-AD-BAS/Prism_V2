@@ -6,7 +6,7 @@ function createStudentList($students) {
                 	<ul class='inner5'>
                         <li>Name</li>
                         <li>Cohort</li>
-                        <li>Active Status</li>
+                        <li>Program Status</li>
                         <li>Internship / Capstone Status</li>
                         <li>Application Status</li>
                     </ul>";
