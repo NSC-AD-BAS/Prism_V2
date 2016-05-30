@@ -26,8 +26,8 @@
     $filters = [];
 
     if (isset($_GET['q'])) {
-        $navTitle = "Search results for: " . $searchQuery;
         $searchQuery = $_GET['q'];
+        $navTitle = "Search results for: " . $searchQuery;
         array_push($filters, createSearchFilter($searchQuery));
     }
 
