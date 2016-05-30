@@ -4,19 +4,31 @@ How to install the branch,
 (THIS FILE SHOULD NEVER CHANGE AGAIN, referenced in php/includes/config.php line 39 (May 30th 2016))
 	
 //Name of the Database
+
 define('DB_NAME','The_DB_Name_prism');//edit this with your DATABASE name (prism)
+
 //localhost, or remote host
+
 define('DB_HOST','YOUR_HOST');//edit this with your HOST name (prism)
+
 //credentials
+
 define('DB_USER','Your_User_Name');//edit this with your USER name (prism)
+
 define('DB_PASSWORD','Your_Pass');//edit this with your PASSWORD (prism)
+
 
 #2 -- Make sure your db_connect.php looks like below
 (THIS FILE SHOULD NEVER CHANGE AGAIN)
+
 $dbname = DB_NAME;
+
 $servername = DB_HOST;
+
 $username = DB_USER;
+
 $password = DB_PASSWORD;
+
 
 #3 -- Open php/includes/config.php
 
