@@ -1,5 +1,5 @@
 <?php
-include_once("../login/login_utils.php");
+include_once("../includes/login_utils.php");
 #Author: Kellan Nealy
 
 # accepts POST form data from "login.html", logs in the user, & redirects

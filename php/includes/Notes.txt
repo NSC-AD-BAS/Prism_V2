@@ -1,0 +1,473 @@
+Files to delte:
+
+
+folder/file
+
+
+
+
+Reference(include require etc..) changes
+
+folder/file/line# (-old) (+new)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+List of all functions:::
+//common
+    print_error_main()
+    print_company_options ($company_array, $company_name)
+//function_inc
+    changeLogList()
+    dbOut()
+    userList()
+    userAdd()
+    userDetails()
+    userEdit()
+    userDelete()
+//lgoin_utils
+    get_user_details()
+    is_logged_in()
+    to_login()
+//page_builder
+    render_header($header = "", $isDetail = false)
+    render_nav($page_name = "", $searchUrlBase = "")
+    render_footer()
+//query_builder
+    build_update_query($orgId)
+    build_create_company_query($name, $desc)
+    build_create_internship_for_company_query($orgId)
+    build_delete_company_query($orgId, $delete)
+    log_query($function_name, $query)
+//query_db
+    ***contacts folder***
+        db_connect()
+        get_contact_detail($id)
+
+        ***db folder***
+        db_connect()  !!!!!!!!DUPLICATE!!!!!!!!
+        isAdmin()
+        get_view_data($view)
+        get_view_data_sorted($view, $field = "", $asc = "ASC")
+        get_view_data_where($view, $orgId)
+        get_companies_list()
+        get_companies_list_sorted($field = "", $asc = true)
+        get_company_detail($id)
+        get_internships_by_company($id)
+        get_contacts_by_company($id)
+        get_deleted_companies()
+        get_last_error($conn)
+        get_internship_list()
+        get_internship_detail($id)
+
+
+        ***students folder***
+        create_connection() get_many_rows($query)get_row($query)get_all_students()
+        get_single_student($id)get_all_fields($id)
+        get_all_intern_capstone_statuses()
+        get_all_application_statuses() 
+        get_all_program_statuses()
+        isAdmin()
+        get_prev_student($id) 
+        get_next_student($id)
+        get_student_notes($userId)
+        get_note($id)
+        get_searchable_student_data()
+        student_matches_search($student, $searchQuery)
+        build_search_result_query($userIds)
+        search_students_for($searchQuery)
+
+
+
+
+
+
+
+
+
+
+
+List of all include references:::
+
+
+
+//file naming
+file_inc = in root_dir/domain/app_path/includes/file_inc.php (NONE VISIBLE PAGES)
+    db_file_inc
+    admin_
+file_0700 = in root_dir/includes/file_0700.php   //possible rename
+page-name-with-spaces.php
+PhpClass.php
+folder
+
+
+Directories
+root_dir/includes = credentials.php, db_sql_0700
+
+common contains:
+
+credentials contains:
+////////////////////////////
+Take all of these files and put them into a single file. Then put all of those files into a single includes for now. Then change all reference points to point to them, also make sure there are no functions that are duplicated.
+/**********************
+Working on 
+#query_builder.php
+    db/...
+
+************************
+
+Current Locations to consolidate:
+#update_db.php(DONE consolidating still need reference pointers changed)
+    db/...
+    contacts/...
+    students/...
+#query_builder.php(DONE consolidating still need reference pointers changed)
+    db/...
+#page_builder.php(DONE consolidating still need reference pointers changed)
+    render/...
+#query_db.php(DONE consolidating still need reference pointers changed)
+    db/...
+    students/...
+    contacts/...
+#render_company.php(DONE consolidating still need reference pointers changed)
+    render/...
+#update_db.php(duplicate??)
+    contacts/...
+    students/...
+#db_connect.php(credential file)
+    lib/...
+#login_utils.php(DONE consolidating still need reference pointers changed)
+    login/...
+#common.php(DONE consolidating still need reference pointers changed)
+    internships/...
+#student_presentation.php(DONE consolidating still need reference pointers changed)
+    students/...
+#header.php
+    admin/includes/...
+#footer.php
+    admin/includes/...
+#functions_inc.php
+    changelog/includes/...
+    admin/includes/...
+    
+////////////////////////
+
+//companies(folder names)
+        *include "../db/update_db.php";********
+        *include "../db/query_builder.php";********
+        *include "../render/page_builder.php";********
+        *include "../db/query_db.php";********
+        *include "../render/render_company.php";********
+
+//contacts
+        >require 'update_db.php';********
+        *include '../lib/db_connect.php';********
+
+//db
+        >include "query_db.php";********
+        
+//internships
+        *include("../login/login_utils.php");********
+        >include("common.php");********
+    
+    
+//students
+        >require "update_db.php";********
+        >require "query_db.php";********
+        >require "student_presentation.php";********
+        
+        
+//users
+    >include 'includes/header.php';********
+    >include 'includes/footer.php';********
+    >require '../../../../../includes/creds.php';********
+    
+    //include
+            >require 'includes/functions_inc.php';********
+
+
+///////////////////////
+
+
+
+///////
+Location of all unique includes/requires per folder
+example db folder may contain more than one query_db but
+it only contains 2 unique includes, query_db and db_connect
+//changelog
+    #list.php
+        require "includes/functions_inc.php";";********
+
+//companies(folder names)
+        *include "../db/update_db.php";********
+        *include "../db/query_builder.php";********
+        *include "../render/page_builder.php";********
+        *include "../db/query_db.php";********
+        *include "../render/render_company.php";********
+
+//contacts
+        >require 'update_db.php';********
+        *include '../lib/db_connect.php';********
+
+//db
+        >include "query_db.php";********
+        **include '../lib/db_connect.php';********
+        
+//internships
+        *include("../login/login_utils.php");********
+        **include "../db/update_db.php";xxx********
+        **include("../db/query_db.php");********
+        >include("common.php");********
+        **include("../render/page_builder.php");********
+    
+        
+//login
+        **include_once("../login/login_utils.php");********
+
+//render
+        **include_once("../login/login_utils.php");********
+    
+//students
+        >require "update_db.php";********
+        >require "query_db.php";********
+        **require "../render/page_builder.php";********
+        >require "student_presentation.php";********
+        **include_once("../login/login_utils.php");********
+        **require "../lib/db_connect.php";********
+        
+//users
+        >include 'includes/header.php';********
+        >include 'includes/footer.php';********
+        **require '../lib/db_connect.php';********
+        OR
+        >require '../../../../../includes/creds.php';********
+    //include
+            >require 'includes/functions_inc.php';********
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////
+ALL INCLUDE REFERENCE LOCATIONS (minus the possibility of any referenced in functions)
+**** = unique per folder
+//changelog
+    #list.php
+        require "includes/functions_inc.php";";********
+        include "../render/page_builder.php";
+        include "../render/render_company.php";
+        include "../db/query_db.php";
+        include_once("../login/login_utils.php");
+//companies(folder names)
+    #add_company(page names)
+        include "../db/update_db.php";********
+        include "../db/query_builder.php";********
+    #delete_company
+        include "../render/page_builder.php";********
+        include "../db/query_builder.php";
+        include "../db/update_db.php";xxx
+    #delete
+        include "../render/page_builder.php";
+        include "../db/query_db.php";********
+    #detail
+        include "../render/page_builder.php";
+        include "../render/render_company.php";********
+        include "../db/query_db.php";
+    #edit_company
+        include "../db/update_db.php";xxx
+        include "../db/query_builder.php";
+    #error
+        include "../render/page_builder.php";
+        include "../db/query_db.php";
+
+//contacts
+    #create
+        require 'update_db.php';********
+    #delete
+        require 'update_db.php';
+    #edit
+        require 'update_db.php';
+    #query_db
+        include '../lib/db_connect.php';********
+    #update_db
+        include "query_db.php";
+
+//db
+    #query_builder
+        include "query_db.php";********
+    #query_db
+        include '../lib/db_connect.php';********
+    #update_db
+        NONE
+        
+//internships
+    #common
+        include("../login/login_utils.php");********
+    #confirm_create
+        NONE
+    #confirm_delete
+        include "../db/update_db.php";xxx********
+        include_once("../login/login_utils.php");
+    #confirm_edit
+        include("../db/update_db.php");xxx
+        include("../db/query_db.php");********
+        include_once("../login/login_utils.php");
+    #confirm_undelete
+        include("update_db.php");xxx
+        include_once("../login/login_utils.php");
+    #create
+        include("common.php");********
+        include("../db/update_db.php");xxx
+        include("../db/query_db.php");
+        include("../render/page_builder.php");********
+        include_once("../login/login_utils.php");
+    #delete
+        include("common.php");
+        include("../db/query_db.php");
+        include("../render/page_builder.php");
+        include_once("../login/login_utils.php");
+    #detail
+        include("common.php");
+        include("../db/query_db.php");
+        include("../render/page_builder.php");
+        include_once("../login/login_utils.php");
+    #edit
+        include("common.php");
+        include("../db/update_db.php");xxx
+        include("../db/query_db.php");
+        include("../render/page_builder.php");
+        include_once("../login/login_utils.php");
+    #list
+        include("common.php");
+        include("../db/query_db.php");
+        include("../render/page_builder.php");
+        include_once("../login/login_utils.php");
+    #query_db
+        NONE
+    #update_db
+        NONE
+        
+//login
+    #login_system
+        include_once("../login/login_utils.php");********
+    #login_utils
+        NONE
+    #login
+        NONE
+    #logout
+        NONE
+        
+//render
+    #page_builder
+        include_once("../login/login_utils.php");********
+    #render_company
+        NONE
+        
+//students
+    #create_note_post
+        require "update_db.php";********
+    #create_note
+        require "query_db.php";********
+        require "../render/page_builder.php";********
+    #create_post
+        require "update_db.php";
+    #create
+        require "query_db.php";
+        require "student_presentation.php";********
+        require "../render/page_builder.php";
+    #delete_confirmation
+        require 'query_db.php';
+        require "../render/page_builder.php";
+    #delete
+        require "../render/page_builder.php";
+        require "update_db.php";
+    #detail
+        require "query_db.php";
+        require "student_presentation.php";
+        require "../render/page_builder.php";
+    #edit_note_post
+         require "update_db.php";
+    #edit_note
+        require "query_db.php";
+        require "../render/page_builder.php";
+    #edit
+        require 'query_db.php';
+        require "../render/page_builder.php";
+        require "student_presentation.php";
+    #list
+        require "query_db.php";
+        require "student_presentation.php";
+        require "../render/page_builder.php";
+        include_once("../login/login_utils.php");********
+    #query_db
+        require "../lib/db_connect.php";********
+    #student_presentation
+        NONE
+    #submit_create
+        require "update_db.php";
+    #submit_edit
+        require "update_db.php";
+    #update_db
+        require "../lib/db_connect.php";
+    
+//style
+    CSS
+    
+//users
+    #add
+        include 'includes/header.php';********
+        include 'includes/footer.php';********
+    #delete
+        include 'includes/header.php';
+        include 'includes/footer.php';
+    #detail
+        include 'includes/header.php';
+        include 'includes/footer.php';
+    #edit
+        include 'includes/header.php';
+        include 'includes/footer.php';
+    #list
+        include 'includes/header.php';
+        include 'includes/footer.php';
+    #prism-input
+        require '../lib/db_connect.php';********
+        OR
+        require '../../../../../includes/creds.php';********
+    #update_db
+    //include
+        #config
+            VOID-YOU ARE HERE
+        #footer
+            NONE
+        #functions_inc
+            NONE
+        #header
+            require 'includes/functions_inc.php';********
+            require '../lib/db_connect.php';
+        
+
+
+

@@ -1,4 +1,4 @@
-<?php require 'includes/header.php'; ?>
+<?php require '../includes/header.php'; ?>
 
 <!--
     <table>
@@ -11,4 +11,4 @@
 		<!--TABLE ROWS-->
 		<?php userList(); ?>
 	<!--</table-->
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

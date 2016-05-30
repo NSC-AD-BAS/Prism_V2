@@ -109,7 +109,7 @@ function userList(){
 function userAdd(){
 	//AddPage
 	//*
- 	echo "<form action='prism-input.php?id=".$myID."' method='post'>";
+ 	echo "<form action='prism-input.php' method='post'>";
 	echo "First Name: <input type='text' name='firstname' ><br>";
 	echo "Last Name: <input type='text' name='lastName' ><br>";
 	echo "Contact: <input type='text' name='contact' ><br>";

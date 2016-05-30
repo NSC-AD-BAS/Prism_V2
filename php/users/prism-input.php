@@ -1,8 +1,8 @@
 <?php 
-	#require '../../../../../includes/creds.php';
-    #define('SITE_URL', "http://joesarchive.com/sandbox/Prism_V2/php/users/");
-    require '../lib/db_connect.php';
-	define('SITE_URL', "http://prism.tekbot.net/users/");
+	require '../../../../../includes/creds.php';
+    define('SITE_URL', "http://joesarchive.com/sandbox/Prism_V2/php/users/");
+    #require '../lib/db_connect.php';
+	#define('SITE_URL', "http://prism.tekbot.net/users/");
     
 	# Read the value of 'action' whether it is passed via $_POST or $_GET with $_REQUEST
 	if(isset($_REQUEST['act'])){$myAction = (trim($_REQUEST['act']));}else{$myAction = "";}
@@ -46,8 +46,8 @@ function updateUser(){
 	$sql = "UPDATE users set firstName='%s',lastName='%s',contact='%s',typeid=%d WHERE UserId = " . $myID;
 
 	$sql = sprintf($sql,$firstName,$lastName, $contact, $typeid);
-	//var_dump($sql); //test sql query 
-    //die();
+	var_dump($sql); //test sql query 
+    die();
 	$result = mysqli_query($conn,$sql); 
 	if ($result)
 	{//successful update!
