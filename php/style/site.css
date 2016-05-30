@@ -295,6 +295,23 @@ input[type=submit], input[type=reset] {
     width: 275px;
 }
 
+.textarea {
+    border: 1px solid #999;
+    outline: 0;
+    height: 400px;
+    width: 100%;
+}
+
+.notetable {
+    border: none;
+    outline: 0;
+    width: 100%;
+}
+
+.notedefs {
+    width: 100px;
+}
+
 /* User details in nav */
 
 #userinfo {

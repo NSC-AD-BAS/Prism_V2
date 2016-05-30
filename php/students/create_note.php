@@ -12,14 +12,15 @@
 <div class="wrapper">
     <div class="detail_table">
         <form action="create_note_post.php" method="post">
-            <table>
+            <table class="notetable">
+                <col class="notedefs">
                 <tr>
                     <td>Note Type</td>
                     <td><input class="textbox" name="note[type]" type="text"></td>
                 </tr>
                 <tr>
                     <td>Text</td>
-                    <td><input class="textbox" name="note[text]" type="text"></td>
+                    <td><textarea class="textarea" name="note[text]"></textarea></td>
                 </tr>
                 <input type="hidden" name="note[UserId]" value="<?=$userId?>">
             </table>

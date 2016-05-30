@@ -15,14 +15,15 @@
 <div class="wrapper">
     <div class="detail_table">
         <form action="edit_note_post.php" method="post">
-            <table>
+            <table class="notetable">
+                <col class="notedefs">
                 <tr>
                     <td>Note Type</td>
                     <td><input class="textbox" name="note[type]" type="text" value="<?=$note["Type"]?>"></td>
                 </tr>
                 <tr>
                     <td>Text</td>
-                    <td><input class="textbox" name="note[text]" type="text" value="<?=$note["Text"]?>"></td>
+                    <td><textarea class="textarea" name="note[text]"><?=$note["Text"]?></textarea></td>
                 </tr>
                 <input type="hidden" name="note[id]" value="<?=$noteId?>">
                 <input type="hidden" name="note[UserId]" value="<?=$userId?>">
