@@ -56,31 +56,6 @@ include_once 'update_db.php'; //updates to the db
 
 
 
-/*
-$nav1['.php'] = "";
-$nav1['.php'] = "";
-$nav1['.php'] = "";
-$nav1['.php'] = "";
-
-
-
-//title must be unique.
-switch(THIS_PAGE)
-{
-	case 'template.php':
-	$title = "Template Page Title!";
-		$banner = "Template Banner!";
-	break;
-	case 'first_data1.php':
-	$title = "DATABASE PAGE!";
-		$banner = "DATABASE Banner!";
-	break;
-	default:
-		//$title = "Our Cool Website!";  titles must be unique.
-		$banner = "Our Cool Banner!";
-		
-}
-*/
 
 
 ?>
