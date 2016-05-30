@@ -5,6 +5,7 @@
 */
 
 //Includes
+require "../login/validate_session.php";
 include "../db/update_db.php";
 include "../db/query_builder.php";
 

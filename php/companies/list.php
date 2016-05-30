@@ -1,16 +1,10 @@
 <?php
 
 //Includes
+require "../login/validate_session.php";
 include "../render/page_builder.php";
 include "../render/render_company.php";
 include "../db/query_db.php";
-include_once("../login/login_utils.php");
-
-# Session management
-session_start();
-if (!is_logged_in()) {
-    to_login();
-}
 
 //Toggle showing deleted / archived companies
 if (isset($_GET['archived']) && $_GET['archived'] == "true") {
