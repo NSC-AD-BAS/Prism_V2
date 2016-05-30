@@ -21,9 +21,16 @@
         };
     }
 
+    function createProgramStatusOptions($selectedIndex) {
+        $programStatuses = get_all_program_statuses();
+        array_unshift($programStatuses, array("Id" => -1, "Description" => "All"));
+        return CreateOptionsFrom($programStatuses, $selectedIndex);
+    }
+
     $navTitle = "Student List";
     $showDeleted = false;
     $filters = [];
+    $programStatusId = -1;
 
     if (isset($_GET['q'])) {
         $searchQuery = $_GET['q'];
@@ -31,10 +38,10 @@
         array_push($filters, createSearchFilter($searchQuery));
     }
 
-    if (isset($_GET['programStatus']) && $_GET['programStatus'] !== "All") {
-        $programStatus = $_GET['programStatus'];
-        array_push($filters, function($student) use ($programStatus) {
-            return $student["Program Status"] === $programStatus;
+    if (isset($_GET['programStatusId']) && $_GET['programStatusId'] > -1) {
+        $programStatusId = $_GET['programStatusId'];
+        array_push($filters, function($student) use ($programStatusId) {
+            return $student["Program Status Id"] === $programStatusId;
         });
     }
 
@@ -50,7 +57,8 @@
     $showDeletedLink = createShowDeletedLink($showDeleted);
 
     $students = get_students_matching_filters($filters);
-    $studentList = createStudentList($students);
+    $programStatusOptions = createProgramStatusOptions($programStatusId);
+    $studentList = createStudentList($students, $programStatusOptions);
     
     render_header("Students", false);
     render_nav($navTitle, "list.php");

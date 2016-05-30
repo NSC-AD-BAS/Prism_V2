@@ -1,16 +1,24 @@
 <?php
 
-function createStudentList($students) {
-	$html = "<ul class='outer'>
+function createStudentList($students, $programStatusOptions) {
+	$headerFormat = "<ul class='outer'>
                 <li class='tableHead'>
                 	<ul class='inner5'>
                         <li>Name</li>
                         <li>Cohort</li>
-                        <li>Program Status</li>
+                        <li>
+                        	Program Status
+                        	<form method='GET' action='list.php'>
+                        		<select onchange='this.form.submit()' name='programStatusId'>
+                        			%s
+                        		</select>
+                        	</form>
+                        </li>
                         <li>Internship / Capstone Status</li>
                         <li>Application Status</li>
                     </ul>
                 </li>\n";
+    $html = sprintf($headerFormat, $programStatusOptions);
 	
 	foreach ($students as $student) {
 
