@@ -43,6 +43,8 @@ CREATE OR REPLACE VIEW internship_detail AS
         i.DatePosted AS `Date Posted`,
         i.StartDate AS `Start Date`,
         i.EndDate AS `End Date`,
+	o.StreetAddressLineOne AS `Address 1`, 
+	o.StreetAddressLineTwo AS `Address 2`,
         CONCAT(o.City, ", ",o.State) AS `Location`,
         i.description AS `Job Description`,
         i.InternshipUrl AS `Internship URL`,
