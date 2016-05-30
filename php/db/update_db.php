@@ -231,4 +231,18 @@ function createContact($OrganizationId, $ContactFirstName, $ContactLastName, $Ti
         return true;
     }
 }
+
+//Delete the given contact Id
+//Returns if it worked or not.
+function deleteContact($contactId)
+{
+    $conn = db_connect();
+    $stmt = $conn->prepare("DELETE FROM organization_contacts WHERE ContactId = ?");
+    $stmt->bind_param("i", $contactId);
+    if (!$stmt->execute()) {
+        return $stmt->error;
+    } else {
+        return true;
+    }
+}
 ?>
