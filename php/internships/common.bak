@@ -8,12 +8,10 @@
 
 # Prints common error message
 function print_error_main() { ?>
-    <main>
-        <h1>An id was not recieved, please try again with an id.</h1>
+    <h1>An id was not recieved, please try again with an id.</h1>
 
-        <!-- Buttons -->
-        <a class="button" href="list.php"><div>Back to List</div></a>
-    </main>
+    <!-- Buttons -->
+    <a class="button" href="list.php"><div>Back to List</div></a>
 <?php }
 
 # use output array from get_companies_list to print options

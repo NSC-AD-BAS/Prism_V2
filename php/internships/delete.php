@@ -42,7 +42,8 @@ function print_delete_main($data, $intId) { ?>
 <?php }
 
 # Build delete page
-render_header("Delete Internship");
+render_header();
+render_nav('Edit Internship');
 
 # Make sure GET id parameter is set
 if (isset($_GET["id"])) {

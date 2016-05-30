@@ -151,13 +151,13 @@ main .inner li {
 }
 
 /* DETAIL PAGE STYLING */
-#internship_detail th {
+#internship_detail th , #internship_create_edit th {
     font-weight: bold;
     background-color: gray;
     padding: 5px;
 }
 
-#internship_detail td {
+#internship_detail td, #internship_create_edit th{
     vertical-align: middle;
     text-align: right;
 }
@@ -174,11 +174,19 @@ a {
 }
 
 #internship_title {
-    float:left;
-    margin-left: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#detail_container {
+    width: 70%;
+    height: 110%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #internship_detail {
+    float: left;
     clear: both;
     margin-left: auto;
     margin-right: auto;
@@ -186,6 +194,21 @@ a {
     background-color: gray;
     padding: 5px;
     border-radius: 3px;
+}
+
+#internship_create_edit {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#internship_map {
+    float: right;
+    width: 300px;
+    height: 250px;
 }
 
 #internship_description {

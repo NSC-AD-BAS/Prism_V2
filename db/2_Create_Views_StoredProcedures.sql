@@ -7,6 +7,7 @@ USE prism;
 CREATE OR REPLACE VIEW internship_list AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         CONCAT(o.City, ", ", o.State) AS `Location`
@@ -21,6 +22,7 @@ CREATE OR REPLACE VIEW internship_list AS
 CREATE OR REPLACE VIEW internship_list_deleted AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         CONCAT(o.City, ", ", o.State) AS `Location`
@@ -35,11 +37,14 @@ CREATE OR REPLACE VIEW internship_list_deleted AS
 CREATE OR REPLACE VIEW internship_detail AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         i.DatePosted AS `Date Posted`,
         i.StartDate AS `Start Date`,
         i.EndDate AS `End Date`,
+	o.StreetAddressLineOne AS `Address 1`, 
+	o.StreetAddressLineTwo AS `Address 2`,
         CONCAT(o.City, ", ",o.State) AS `Location`,
         i.description AS `Job Description`,
         i.InternshipUrl AS `Internship URL`,
@@ -76,7 +81,7 @@ CREATE OR REPLACE VIEW org_list_archived AS
         COUNT( i.InternshipId ) AS `Available Internships`
     FROM
         organizations o
-             JOIN
+            LEFT JOIN
         internships i ON i.organizationId = o.organizationId
     WHERE o.isDeleted
     GROUP BY
@@ -121,7 +126,7 @@ CREATE OR REPLACE VIEW org_detail AS
         o.isDeleted
     FROM
         organizations o
-            JOIN
+           LEFT JOIN
         internships i ON o.OrganizationId = i.OrganizationId);
 
 CREATE OR REPLACE VIEW student_detail AS
