@@ -38,7 +38,7 @@ if (!$create) {
 }
 
 //Don't hit the DB if we're not rendering these bits
-if (!$edit && !$create) {
+if (!$edit) {
     $positions = get_internships_by_company($id);
     $company_contacts = get_contacts_by_company($id);
 }
