@@ -3,7 +3,7 @@ function db_connect()
 {
     include '../lib/db_connect.php';
     //create and verify connection
-    $conn = db_connect();
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
     if (!$conn) {
         die("Connect Failed: " . mysqli_connect_error());
     }
