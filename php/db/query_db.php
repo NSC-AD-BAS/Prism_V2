@@ -29,10 +29,11 @@ function isAdmin() {
     return true;
 }
 
-//Get the result set from an arbitrary view name
+//Get the result set from an arbitrary view (or table) name
 function get_view_data($view) {
     $conn = db_connect();
     $sql  = "SELECT * FROM $view";
+    $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -50,8 +51,7 @@ function get_view_data_sorted($view, $field = "", $asc = "ASC") {
     }
     $conn = db_connect();
     $sql = "SELECT * FROM $view ORDER BY $field $asc";
-    //DEBUG: Comment this out to see the query, run it manually and debug.
-    //echo $sql;
+    $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -70,6 +70,7 @@ function get_view_data_sorted($view, $field = "", $asc = "ASC") {
 function get_view_data_where($view, $orgId) {
     $conn = db_connect();
     $sql  = "SELECT * FROM $view WHERE OrganizationId = $orgId";
+    $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -124,6 +125,7 @@ function get_internship_list() {
     $conn = db_connect();
     $sql = "SELECT DISTINCT *
             FROM internship_list;";
+    $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;
@@ -188,6 +190,7 @@ function get_internship_detail($id) {
             FROM internship_detail
             WHERE InternshipId = $id
             LIMIT 1;";
+    $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
         $output[] = $row;

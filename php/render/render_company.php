@@ -13,33 +13,38 @@ function renderCompanyList($data, $archived) {
     $avail_order = "ASC";
 
     //Initialize column names
-    $comp_header = "Company Name";
-    $loc_header = "Location";
-    $avail_header = "Internships Available";
+    $comp_header = "Company Name ";
+    $loc_header = "Location ";
+    $avail_header = "Internships Available ";
 
-    if ($_GET['sort'] == "comp") {
-        if ($_GET['order'] == "ASC") {
-            $comp_order = "DESC";
-            $comp_header .= " &#9660;";
-        } else {
-            $comp_header .= " &#9650;";
+    if (isset($_GET['sort'])) {
+        if ($_GET['sort'] == "comp") {
+            if ($_GET['order'] == "ASC") {
+                $comp_order = "DESC";
+                $comp_header .= " &#9660;";
+            } else {
+                $comp_header .= " &#9650;";
+            }
         }
-    }
-    if ($_GET['sort'] == "loc") {
-        if ($_GET['order'] == "ASC") {
-            $loc_order = "DESC";
-            $loc_header .= " &#9660;";
-        } else {
-            $loc_header .= " &#9650;";
+        if ($_GET['sort'] == "loc") {
+            if ($_GET['order'] == "ASC") {
+                $loc_order = "DESC";
+                $loc_header .= " &#9660;";
+            } else {
+                $loc_header .= " &#9650;";
+            }
         }
-    }
-    if ($_GET['sort'] == "avail") {
-        if ($_GET['order'] == "ASC") {
-            $avail_order = "DESC";
-            $avail_header .= " &#9660;";
-        } else {
-            $avail_header .= " &#9650;";
+        if ($_GET['sort'] == "avail") {
+            if ($_GET['order'] == "ASC") {
+                $avail_order = "DESC";
+                $avail_header .= " &#9660;";
+            } else {
+                $avail_header .= " &#9650;";
+            }
         }
+    } else {
+        $comp_order = "DESC";
+        $comp_header .= " &#9660;";
     }
     $out = '
         <ul class="outer">
