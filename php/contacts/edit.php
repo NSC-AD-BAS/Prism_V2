@@ -1,6 +1,7 @@
 <?php
     require "../login/validate_session.php";
-    require 'update_db.php';
+    require "../db/query_db.php";
+    require "../db/update_db.php";
 
     $renderThis = 'standard';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +17,7 @@
         $EmailAddress = $_POST['email'];
         $Referral = $_POST['referral'];
         if (isset($_POST['hiring'])) {
-            $Hiring = $_POST['hiring'];
+            $Hiring = $_POST['hiring']; 
         } else {
             $Hiring = false;
         }

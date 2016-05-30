@@ -202,4 +202,30 @@ function get_internship_detail($id) {
     return $output;
 }
 
+//Returns an array for the contact detail
+function get_contact_detail($id)
+{
+    $conn = db_connect();
+    $stmt = $conn->prepare("SELECT cts.*, orgs.OrganizationName 
+      FROM organization_contacts cts 
+      INNER JOIN organizations orgs 
+        ON cts.OrganizationId = orgs.OrganizationId
+      WHERE cts.ContactId = ? limit 1");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($ContactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
+        $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL,
+        $OrganizationName);
+
+    $output = false;
+    while ($stmt->fetch()) {
+        $output[] = [$ContactId, $OrganizationId, $ContactFirstName, $ContactLastName, $Title, $OfficeNumber,
+            $OfficeExtension, $CellNumber, $EmailAddress, $Referral, $Hiring, $OnADAdvisoryCommittee, $LinkedInURL,
+            $OrganizationName];
+    }
+
+    //clean-up result set and connection
+    mysqli_close($conn);
+    return $output;
+}
 ?>
