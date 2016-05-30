@@ -112,71 +112,11 @@
         return get_row($query);
 	}
 
-	function get_searchable_student_data() {
-		$query = "SELECT * FROM student_detail;";
-		return get_many_rows($query);
-	}
-
-	function assoc_array_matches_search($array, $searchQuery) {
-		$lowercaseQuery = strtolower($searchQuery);
-		foreach($array as $field => $value) {
-			$lowerCaseValue = strtolower($value);
-			if (strpos($lowerCaseValue, $lowercaseQuery) !== false) {
-			    return true;
-			}
+	function get_students_matching_filters($filters) {
+		$students = get_all_students();
+		foreach ($filters as $filter) {		
+			$students = array_filter($students, $filter);
 		}
-		return false;
-	}
-
-	function search_assoc_arrays_for($assocArrays, $searchQuery) {
-		$assocArraysMatchingQuery = [];
-		foreach ($assocArrays as $assocArray) {
-			if (assoc_array_matches_search($assocArray, $searchQuery)) {				
-				array_push($assocArraysMatchingQuery, $assocArray);
-			}
-		}
-		return $assocArraysMatchingQuery;
-	}
-
-	function build_search_result_query($userIds) {
-		$reduceFunc = function($inClause, $item)
-		{
-		    return $inClause . "," . $item;
-		};
-		
-		$inClause = array_reduce($userIds, $reduceFunc, -1);
-		$format = "SELECT * FROM student_detail WHERE UserId in (%s);";
-		return sprintf($format, $inClause);
-	}
-
-	function get_id($student) {
-		return $student["UserId"];
-	}
-
-	function search_students_for($searchQuery) {
-		if ($searchQuery === "")
-			return get_all_students();
-
-		$searchableStudents = get_searchable_student_data();
-		$matchingStudents = search_assoc_arrays_for($searchableStudents, $searchQuery);
-		$ids = array_map("get_id", $matchingStudents);
-
-
-		$query = build_search_result_query($ids);
-		return get_many_rows($query);
-	}
-	
-	function is_deleted($student) {
-		return (bool)$student["isDeleted"];
-	}
-
-	function is_not_deleted($student) {
-		return !(bool)$student["isDeleted"];
-	}
-
-	function filter_students_matching_showDeleted($students, $showDeleted) {
-		if ($showDeleted)
-			return array_filter($students, "is_deleted");
-		return array_filter($students, "is_not_deleted");
+		return $students;
 	}
 ?>
