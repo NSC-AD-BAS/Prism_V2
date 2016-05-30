@@ -1,3 +1,4 @@
+<?php require "../login/validate_session.php"; ?>
 <!DOCTYPE html>
 <!-- author Joe McLaughlin -->
 <html lang="en">
