@@ -111,7 +111,6 @@
                         <td>Zipcode</td>
                         <td><input class="textbox" name="student[zipcode]" type="text"></td>
                     </tr>
-                    <hr>
                 </table>
                 <hr>
                 <div class="lower_nav">
