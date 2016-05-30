@@ -36,7 +36,7 @@ $title = THIS_PAGE; //fallback unique title - see title tag in header.php
 
 
 #required files must be included for site functionality
-require_once '../../../../../includes/creds.php';
+#require_once '../../../../../includes/creds.php';
 
 #include_once files should only be loaded once to avoid collisions such as defined constants
 
