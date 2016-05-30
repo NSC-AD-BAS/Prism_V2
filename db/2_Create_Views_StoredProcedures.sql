@@ -7,6 +7,7 @@ USE prism;
 CREATE OR REPLACE VIEW internship_list AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         CONCAT(o.City, ", ", o.State) AS `Location`
@@ -21,6 +22,7 @@ CREATE OR REPLACE VIEW internship_list AS
 CREATE OR REPLACE VIEW internship_list_deleted AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         CONCAT(o.City, ", ", o.State) AS `Location`
@@ -35,6 +37,7 @@ CREATE OR REPLACE VIEW internship_list_deleted AS
 CREATE OR REPLACE VIEW internship_detail AS
     (SELECT 
         i.InternshipId,
+	o.OrganizationId,
         i.PositionTitle AS `Position Title`,
         o.OrganizationName AS `Organization`,
         i.DatePosted AS `Date Posted`,
