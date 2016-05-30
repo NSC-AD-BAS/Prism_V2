@@ -145,7 +145,7 @@
 		};
 		
 		$inClause = array_reduce($userIds, $reduceFunc, -1);
-		$format = "SELECT * FROM student_list WHERE UserId in (%s);";
+		$format = "SELECT * FROM student_detail WHERE UserId in (%s);";
 		return sprintf($format, $inClause);
 	}
 
@@ -159,9 +159,9 @@
 
 		$searchableStudents = get_searchable_student_data();
 		$matchingStudents = search_assoc_arrays_for($searchableStudents, $searchQuery);
-		
 		$ids = array_map("get_id", $matchingStudents);
-		
+
+
 		$query = build_search_result_query($ids);
 		return get_many_rows($query);
 	}
