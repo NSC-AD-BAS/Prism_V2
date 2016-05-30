@@ -1,4 +1,5 @@
 <?php
+    require "../login/validate_session.php";
     require 'update_db.php';
 
     $renderThis = 'standard';
