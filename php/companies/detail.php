@@ -45,16 +45,21 @@ if (!$edit) {
     $company_contacts = get_contacts_by_company($id);
 }
 
-//Render the page
-render_header('Companies', true);
-render_nav($company_name);
-renderCompanyDetail($data, $edit, $create);
-
-//Only show Contacts and Internships if we're not in edit mode.
-if (!$edit) {
-    renderCompanyInternships($positions, $id);
-    renderCompanyContacts($company_contacts, $id);
+//If there are no errors, render the page
+if ($data) {
+    render_header('Companies', true);
+    render_nav($company_name);
+    renderCompanyDetail($data, $edit, $create);
+    //Only show Contacts and Internships if we're not in edit mode.
+    if (!$edit) {
+        renderCompanyInternships($positions, $id);
+        renderCompanyContacts($company_contacts, $id);
+    }
+} else {
+    $msg = urlencode("Something went wrong getting Company Details for CompanyId: $id ");
+    header("Location: error.php?$msg");
 }
+
 
 render_footer();
 ?>
