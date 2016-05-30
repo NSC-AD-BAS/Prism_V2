@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../style/site.css">
 <?php
     
-    require '../includes/config.php'; //site configuration
+    //require INCLUDE_PATH .'config.php'; //site configuration
 	#require '../../../../../includes/creds.php';//remove when config is live
     #require '../lib/db_connect.php';//remove when config is live
     #require 'includes/functions_inc.php';//remove when config is live

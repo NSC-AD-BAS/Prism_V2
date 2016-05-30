@@ -12,11 +12,11 @@
 define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); # Current page name, stripped of folder info - (saves resources)
 
 define('VIRTUAL_PATH', 'http://www.joesarchive.com/sandbox/Prism_V2/php/'); # Virtual (web) 'root' of application for images, JS & CSS files
-define('PHYSICAL_PATH', '/joesarchive.com/sandbox/Prism_V2/php/'); # Physical (PHP) 'root' of application for file & upload reference
+define('PHYSICAL_PATH', '/home/ghostbaka/joesarchive.com/sandbox/Prism_V2/php/'); # Physical (PHP) 'root' of application for file & upload reference
 
 #define('VIRTUAL_PATH', 'http://www.joesarchive.com/sandbox/Prism_V2/php/'); # Virtual (web) 'root' of application for images, JS & CSS files
 #define('PHYSICAL_PATH', '/joesarchive.com/sandbox/Prism_V2/php/'); # Physical (PHP) 'root' of application for file & upload reference
-define('INCLUDE_PATH', PHYSICAL_PATH . 'include/'); # Path to PHP include files - INSIDE APPLICATION ROOT
+define('INCLUDE_PATH', PHYSICAL_PATH . 'includes/'); # Path to PHP include files - INSIDE APPLICATION ROOT
 
 
 date_default_timezone_set('America/Los_Angeles'); #sets default date/timezone for this website

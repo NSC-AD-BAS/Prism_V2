@@ -1,5 +1,5 @@
-<?php require '../includes/header.php'; ?>
-
+<?php require '../includes/config.php'; ?>
+<?php require INCLUDE_PATH . 'header.php'; ?>
 <!--
     <table>
         <!--TABLE COLUMNS--
@@ -11,4 +11,4 @@
 		<!--TABLE ROWS-->
 		<?php userList(); ?>
 	<!--</table-->
-<?php include '../includes/footer.php'; ?>
+<?php include INCLUDE_PATH . 'footer.php'; ?>
