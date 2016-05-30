@@ -46,7 +46,7 @@ if (!$edit && !$create) {
 }
 
 //If there are no errors, render the page
-if ($data) {
+if ($data || $create) {
     render_header('Companies', true);
     render_nav($company_name);
     renderCompanyDetail($data, $edit, $create);
