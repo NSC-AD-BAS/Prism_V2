@@ -144,9 +144,8 @@ main .inner li {
 .inner5 li {
     width: 18%;
     height: 20px;
-    margin: 10px auto 0 auto; /* top right bottom left */
+    margin-top: 10px;
     padding-bottom: 10px;
-    padding-left: 10px;
     display: inline-block; /* inline list items */
     text-align: left;
 }
@@ -174,7 +173,13 @@ a {
     color: inherit;
 }
 
+#internship_title {
+    float:left;
+    margin-left: 25px;
+}
+
 #internship_detail {
+    clear: both;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;

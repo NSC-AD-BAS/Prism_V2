@@ -24,37 +24,38 @@ function print_detail_main($data) { ?>
             $intLastUpdated = $data["Last Update"];
             $intExpiration = $data["Expiration Date"]; ?>
 
-            <h1><?= $intPosition ?></h1>
-
-            <table id="internship_detail">
-                <tr>
-                    <th>Company:</th>
-                    <td><?= $intCompany ?></td>
-                </tr>
-                <tr>
-                    <th>Date Posted:</th>
-                    <td><?= $intDatePosted ?></td>
-                </tr>
-                <tr>
-                    <th>Start Date:</th>
-                    <td><?= $intStartDate ?></td>
-                </tr>
-                <tr>
-                    <th>End Date:</th>
-                    <td><?= $intEndDate ?></td>
-                </tr>
-                    <th>Location:</th>
-                    <td><?= $intLocation ?></td>
-                </tr>
-                </tr>
-                    <th>Last Updated:</th>
-                    <td><?= $intLastUpdated ?></td>
-                </tr>
-                </tr>
-                    <th>Expiration Date:</th>
-                    <td><?= $intExpiration ?></td>
-                </tr>
-            </table>
+            <h1 id="internship_title"><?= $intPosition ?></h1>
+            <div id="detail_container" style="width:70%;margin-left:auto;margin-right:auto;">
+                <table id="internship_detail">
+                    <tr>
+                        <th>Company:</th>
+                        <td><?= $intCompany ?></td>
+                    </tr>
+                    <tr>
+                        <th>Date Posted:</th>
+                        <td><?= $intDatePosted ?></td>
+                    </tr>
+                    <tr>
+                        <th>Start Date:</th>
+                        <td><?= $intStartDate ?></td>
+                    </tr>
+                    <tr>
+                        <th>End Date:</th>
+                        <td><?= $intEndDate ?></td>
+                    </tr>
+                        <th>Location:</th>
+                        <td><?= $intLocation ?></td>
+                    </tr>
+                    </tr>
+                        <th>Last Updated:</th>
+                        <td><?= $intLastUpdated ?></td>
+                    </tr>
+                    </tr>
+                        <th>Expiration Date:</th>
+                        <td><?= $intExpiration ?></td>
+                    </tr>
+                </table>
+            </div>
             <h2>Description</h2>
             <hr />
             <p id="internship_description"><?= $intDescription ?></p>
@@ -74,8 +75,9 @@ function print_detail_main($data) { ?>
 # Build detail page
 $id = $_GET["id"];
 $data = get_internship_detail($id);
+
 render_header('Internships', true);
-render_nav();
+render_nav("", "list.php");
 print_detail_main($data);
 render_footer();
 

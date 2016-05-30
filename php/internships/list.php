@@ -51,11 +51,21 @@ function print_list_main($data, $list_title) { ?>
         <a class="button" href="create.php"><div>Create new Internship</div></a>
 <?php }
 
-# Build list page
-$list = get_internship_list();
+render_header("Students", false);
 
-render_header('Internships', false);
-render_nav('Internships');
+# Build list page
+$list = [];
+$navTitle = "Internship List";
+
+if (isset($_GET['q'])) {
+    $searchQuery = $_GET['q'];
+    $list = search_internship_list($searchQuery);
+    $navTitle = "Search: " . $searchQuery;
+} else {
+    $list = get_internship_list();
+}
+
+render_nav($navTitle, "list.php");
 print_list_main($list, "Internships");
 render_footer();
 
