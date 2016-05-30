@@ -28,7 +28,7 @@ function print_edit_main($data, $intId) { ?>
 			<!-- HTML content -->
             <form action="confirm_edit.php" method="POST">
 				<input type="hidden" name="intId" value="<?php echo htmlspecialchars($intId) ?>" />
-    	        <table id="internship_detail">
+    	        <table id="internship_create_edit">
     	            <tr>
     	                <th>Position</th>
     	                <td><input name="PositionTitle" type="text" value="<?= $intPosition ?>" /></td>
@@ -77,6 +77,7 @@ function print_edit_main($data, $intId) { ?>
             <p>We're sorry, there was an error retrieving data from the database.</p>
         <?php } ?>
 
+        <hr />
         <!-- Buttons -->
         <a class="button" href="detail.php?id=<?= $intId ?>"><div>Back to Detail</div></a>
 

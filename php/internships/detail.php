@@ -13,8 +13,8 @@ function print_detail_main($data) { ?>
         <?php
         if (count($data) > 0) {
             $data = $data[0];
-            $orgId = $data["OrganizationId"];
             $intId = $data["InternshipId"];
+            $orgId = $data["OrganizationId"];
             $intPosition = $data["Position Title"];
             $intCompany = $data["Organization"];
             $intDatePosted = $data["Date Posted"];
@@ -30,7 +30,9 @@ function print_detail_main($data) { ?>
                 <table id="internship_detail">
                     <tr>
                         <th>Company:</th>
-                        <td><a href=../companies/detail.php?id=<?= $orgId ?> ><?= $intCompany ?></a></td>
+                        <td>
+                            <a href=../companies/detail.php?id=<?= $orgId ?> ><?= $intCompany ?></a>
+                        </td>
                     </tr>
                     <tr>
                         <th>Date Posted:</th>
