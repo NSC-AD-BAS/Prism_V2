@@ -30,7 +30,7 @@ function print_detail_main($data) { ?>
                 <table id="internship_detail">
                     <tr>
                         <th>Company:</th>
-                        <td><a href=/companies/detail.php?id=<?= $orgId ?> ><?= $intCompany ?></a></td>
+                        <td><a href=../companies/detail.php?id=<?= $orgId ?> ><?= $intCompany ?></a></td>
                     </tr>
                     <tr>
                         <th>Date Posted:</th>
