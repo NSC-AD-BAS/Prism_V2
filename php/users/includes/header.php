@@ -50,7 +50,7 @@
                 <li class="left"><a href="../students/list.php">Students</a></li>
                 <!--Add php if statement for user privys-->
                 <li class="left"><a href="../users/list.php">Users</a></li>
-                <li class="left"><a href="../changelog/list.php">Change Log</a></li>
+                <li class="left"><a href="../changelog/list.php">Changelog</a></li>
                 <!--End php if statement for user privys-->
                 
                 
