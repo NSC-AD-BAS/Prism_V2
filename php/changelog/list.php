@@ -16,8 +16,19 @@ render_nav('Changelog');
     *echo $out;
     */
 
-changeLogList();
-
-render_footer();
+$listContent = changeLogList();
 
 ?>
+
+<ul class="outer">
+    <li class="tableHead">
+        <ul class="inner">
+            <li>Name</li>
+            <li>Date/Time</li>
+            <li>Event</li>
+        </ul>
+    </li>
+    <?=$listContent?>
+</ul>
+
+<?php render_footer(); ?>

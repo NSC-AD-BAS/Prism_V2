@@ -191,7 +191,7 @@ CREATE OR REPLACE VIEW change_list AS
     (SELECT 
         c.Change_LogId,
         c.LogTime,
-        c.UserId,
+        CONCAT(u.FirstName, ' ', u.LastName) as `Name`,
   --      	u.FirstName AS `Student First Name`,
   --       u.MiddleName AS `Student Middle Name`,
 		-- u.LastName AS `Student Last Name`,
