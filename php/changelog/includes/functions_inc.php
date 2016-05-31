@@ -1,4 +1,5 @@
 <?php
+
 function changeLogList(){
     //create connection
     $conn = db_connect();
@@ -17,7 +18,12 @@ function changeLogList(){
     mysqli_close($conn);
 
     return array_reduce($changeLogs, function($html, $changeLog) {
-        $listItemFormat = 
+        return $html . buildListItemFromChangeLog($changeLog);
+    });
+} #end changeLogList()
+
+function buildListItemFromChangeLog($changeLog) {
+    $listItemFormat = 
             "<li>
                 <ul class='inner'>
                     <li>%s</li>
@@ -25,13 +31,11 @@ function changeLogList(){
                     <li>%s</li>
                 </ul>
             </li>";
-        return $html 
-            . sprintf($listItemFormat
+        return sprintf($listItemFormat
             , dbOut($changeLog['Name'])
             , dbOut($changeLog['LogTime'])
-            , dbOut($changeLog['Message']));
-    });
-} #end changeLogList()
+            , dbOut($changeLog['Message']));   
+}
 
 function dbOut($str){
     if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
