@@ -19,8 +19,8 @@ function build_update_query($orgId) {
         $street = !empty($_POST["street"]) ? $_POST["street"] : $d['Address 1'];
         $city = !empty($_POST["city"]) ? $_POST["city"] : $d['City'];
         $state = !empty($_POST["state"]) ? $_POST["state"] : $d['State'];
-        $num_employees = !empty($_POST["num_employees"]) ? $_POST["num_employees"] : $d['Number of Employees'];
-        $revenue = !empty($_POST["revenue"]) ? $_POST["revenue"] : $d['Yearly Revenue'];
+        $num_employees = !empty($_POST["num_employees"]) && is_numeric($_POST["num_employees"]) ? $_POST["num_employees"] : $d['Number of Employees'];
+        $revenue = !empty($_POST["revenue"]) && is_numeric($_POST["revenue"]) ? $_POST["revenue"] : $d['Yearly Revenue'];
         $desc = !empty($_POST["desc"]) ? $_POST["desc"] : $d['Description'];
     }
 

@@ -136,8 +136,8 @@ function renderCompanyDetail($data, $edit, $create) {
                     <br>
                     <td><tr>' . displayValue($city, "city", $edit, false, $create) . ', ' . displayValue($state, "state", $edit, false, $create) . '</td></tr>
                 </table></td></tr>
-            <tr><td>Number of Employees</td><td>' . displayValue(number_format($num_employees), "num_employees", $edit, false, $create) . '</td></tr>
-            <tr><td>Annual Revenue</td><td>' . displayValue(money_format("%n", $revenue), "revenue", $edit, false, $create) . '</td></tr>
+            <tr><td>Number of Employees</td><td>' . displayValue($num_employees, "num_employees", $edit, false, $create) . '</td></tr>
+            <tr><td>Annual Revenue</td><td>' . displayValue(sprintf("%01.2f", $revenue), "revenue", $edit, false, $create) . '</td></tr>
             <tr><td>Description</td><td>' . displayValue($desc, "desc", $edit, false, $create) . '</td></tr>
         </table>
         <hr>
