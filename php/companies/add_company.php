@@ -20,17 +20,9 @@ if (isset($_POST["name"]) && isset($_POST["desc"])) {
     $orgId = create_company($query);
 
     if ($orgId > 0) {
-        //Org Create succeeded, add internship
+        //Org Create succeeded
         $msg = urlencode("Created Company");
-        $query = build_create_internship_for_company_query($orgId);
-        $result = create_internship_for_company($query);
-        if (!$result) {
-            $msg .= urlencode(", Create Internship Failed");
-            header("Location: error.php?msg=$msg");
-        } else {
-            $msg .= urlencode(", Created Internship");
-            header("Location: detail.php?id=$orgId");
-        }
+        header("Location: detail.php?id=$orgId");
     } else {
         $msg = urlencode("Create Company Failed");
         header("Location: error.php?msg=$msg");
