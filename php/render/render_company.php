@@ -10,7 +10,7 @@ function renderCompanyList($data, $archived) {
     //Initialize search ordering to ascending
     $comp_order = "ASC";
     $loc_order = "ASC";
-    $avail_order = "ASC";
+    $avail_order = "DESC";
 
     //Initialize column names
     $comp_header = "Company Name ";
