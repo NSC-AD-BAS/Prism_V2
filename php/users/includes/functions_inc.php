@@ -23,11 +23,12 @@
   * @param	
   */
 
-  include "../../lib/db_connect.php";
+  include "../db/query_db.php";
 
 function userList(){
 	//create connection
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	//$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$conn = db_connect();
     
 	//$conn = mysqli_connect($servername, $username, $password, $dbname);
 	// Check connection
