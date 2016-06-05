@@ -161,14 +161,9 @@
 
 // The function get_user_profile is used on the profile page to get data for non-student users
 	function get_user_profile($userId) {
-		$query = "SELECT users.FirstName AS `First Name`, users.MiddleName AS `Middle Name`, users.LastName AS `Last Name`, users.PhoneNumber AS `Phone`, users.EmailAddress AS `Email`
+		$query = "SELECT users.UserId, users.FirstName AS `First Name`, users.MiddleName AS `Middle Name`, users.LastName AS `Last Name`, users.PhoneNumber AS `Phone`, users.EmailAddress AS `Email`
 			FROM users
 			WHERE users.UserId = " . $userId . ";";
 		return get_row($query);
-	}
-
-// The function get_student_profile is used on the profile page to show data unique to student users
-	function get_student_profile($userId) {
-
 	}
 ?>

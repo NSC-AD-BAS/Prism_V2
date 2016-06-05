@@ -12,7 +12,6 @@
 	    to_login();
 	}
 
-	error_log("Fix the problem");
 	$userType = $_SESSION["user_type"];
 	$userId = $_SESSION["user_id"];
 	// Check if the user is a student or not
@@ -22,6 +21,7 @@
 	}
 	else {
 		$userData = get_user_profile($userId);
+		$echoForm = edit_user_profile($userData);
 	}
 	//$userData = get_single_student($studentId);
 	$navTitle = "Profile";
