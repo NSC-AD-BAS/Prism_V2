@@ -158,5 +158,33 @@
         WHERE UserId=$orgId
     ";
     return $query;
-}
+	}
+
+    // Function to update the profile page for a student
+    // used in profile/submit_edit.php
+    function update_student_profile($userData) {
+    	$sql = "UPDATE students s
+					JOIN users u ON u.userId = s.userId
+				SET ResumeURL = '$userData[resume_url]',
+				LinkedInURL = '$userData[linked_in_url]',
+				EmailAddress = '$userData[email]',
+				PhoneNumber = '$userData[phone]',
+				StreetAddressLineOne = '$userData[address1]',
+				StreetAddressLineTwo = '$userData[address2]',
+				City = '$userData[city]',
+				State = '$userData[state]',
+				Zipcode = '$userData[zipcode]'
+				WHERE s.UserId = $userData[id];";
+		execute_upcert($sql);
+    }
+
+    // Function to update the profile page for a non-student user
+    // used in profile/submit_edit.php
+    function update_user_profile($userData) {
+    	$sql = "UPDATE users
+    			SET EmailAddress = '$userData[email]',
+    			PhoneNumber = '$userData[phone]'
+    			WHERE UserId = $userData[id];";
+    	execute_upcert($sql);
+    }
 ?>
