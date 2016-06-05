@@ -1,8 +1,8 @@
 <?php 
 	#require '../../../../../includes/creds.php';
-    #define('SITE_URL', "http://joesarchive.com/sandbox/Prism_V2/php/users/");
+    define('SITE_URL', "http://joesarchive.com/sandbox/Prism_V2/php/users/");
     require '../lib/db_connect.php';
-	define('SITE_URL', "http://prism.tekbot.net/users/");
+	//define('SITE_URL', "http://prism.tekbot.net/users/");
     
 	# Read the value of 'action' whether it is passed via $_POST or $_GET with $_REQUEST
 	if(isset($_REQUEST['act'])){$myAction = (trim($_REQUEST['act']));}else{$myAction = "";}
@@ -40,12 +40,13 @@ function updateUser(){
 
 	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = '';}
     if(isset($_POST['lastname'])){$lastName=$_POST['lastname'];}else{$lastName = '';}
-    if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
-    if(isset($_POST['typeid'])){$typeid=$_POST['typeid'];}else{$typeid = '2';}
+    if(isset($_POST['userPhone'])){$userPhone=$_POST['userPhone'];}else{$firstName = '';}
+    if(isset($_POST['userEmail'])){$userEmail=$_POST['userEmail'];}else{$lastName = '';}
+    if(isset($_POST['type'])){$type=$_POST['type'];}else{$type = '';}
 
-	$sql = "UPDATE users set firstName='%s',lastName='%s',contact='%s',typeid=%d WHERE UserId = " . $myID;
+	$sql = "UPDATE users set firstName='%s',lastName='%s','PhoneNumber'='%s','Email Address'='%s','TypeId'=%d WHERE UserId = " . $myID;
 
-	$sql = sprintf($sql,$firstName,$lastName, $contact, $typeid);
+	$sql = sprintf($sql,$firstName,$lastName, $userPhone,$userEmail, $type);
 	//var_dump($sql); //test sql query 
     //die();
 	$result = mysqli_query($conn,$sql); 
@@ -75,14 +76,16 @@ function addUser(){
 		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 	}
     
-	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = 'a';}
-    if(isset($_POST['lastname'])){$lastName=$_POST['lastname'];}else{$lastName = '';}
-    if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
-    //if(isset($_POST['typeid'])){$typeid=$_POST['typeid'];}else{$typeid = '';}
+	if(isset($_POST['firstname'])){$firstName=$_POST['firstname'];}else{$firstName = '';}
+    if(isset($_POST['lastName'])){$lastName=$_POST['lastName'];}else{$lastName = '';}
+    if(isset($_POST['userPhone'])){$userPhone=$_POST['userPhone'];}else{$firstName = '';}
+    if(isset($_POST['userEmail'])){$userEmail=$_POST['userEmail'];}else{$lastName = '';}
+    
+    //if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
+    if(isset($_POST['type'])){$type=$_POST['type'];}else{$type = '';}
 
-	$sql = "INSERT INTO users(firstname,lastname,contact,typeId) VALUES('%s','%s','%s',%d)";
-	$sql = sprintf($sql,$firstName,$lastName,$contact,1/*,$typeid*/);
-
+	$sql = "INSERT INTO users(firstname,lastName,PhoneNumber,'Email Address','TypeId') VALUES('%s','%s','%s','%s',%d)";
+	$sql = sprintf($sql,$firstName,$lastName,$userPhone,$userEmail,$type);
 	//var_dump($sql); //test sql query 
 	//die();
 
