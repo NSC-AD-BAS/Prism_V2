@@ -222,7 +222,7 @@ function userEdit(){
 	echo "<input type='hidden' name='act' value='update' />";
 	echo "</form>";
     
-    echo '<a class="button" href="detail.php?id=' . $usrId . '><div>Cancel</div></a>';
+    echo '<a class="button" href="detail.php?id=' . $usrId . '"><div>Cancel</div></a>';
     
 } #end userEdit()
 
