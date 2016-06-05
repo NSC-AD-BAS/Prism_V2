@@ -117,7 +117,12 @@ function userAdd(){
 	echo "First Name: <input type='text' name='firstname' ><br>";
 	echo "Last Name: <input type='text' name='lastName' ><br>";
 	echo "Contact: <input type='text' name='contact' ><br>";
-	echo "User Type: <input type='text' name='type' ><br>";
+	echo "
+    User Type: 
+    <input type='radio' name='type' value='1'>Admin
+    <input type='radio' name='type' value='2' checked>Student
+    <input type='radio' name='type' value='3'>Faculty<br>
+    ";
 	echo "<input type='submit' name='add'>";
 	echo "<input type='hidden' name='act' value='add' />";
 	echo "</form>";
@@ -161,6 +166,7 @@ function userDetails(){
 		$userEmail = dbOut($row['Email Address']);
 		$userType = dbOut($row['User Type']);
         $usrId = dbOut($row['User ID']);
+    
     
 	echo "<br /><br />Name : " . $userName . "<br>";
 	echo "Phone #: " . $userPhone . "<br>";
@@ -217,12 +223,31 @@ function userEdit(){
 	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
 	echo "User Email: <input type='text' name='userEmail' value='".$userEmail."'><br>";
 	echo "User Phone: <input type='text' name='userPhone' value='".$userPhone."'><br>";
-	echo "User Type: <input type='text' name='userType' value='".$userType."'><br>";
-	echo "<input type='submit' value='Update' >";
+    
+    switch($userType){
+        case 1:
+            
+            break;
+    }
+    echo "
+    User Type: 
+    <input type='radio' name='type' value='1'";
+    if($userType ==1){echo "checked";}
+    echo ">Admin";
+    
+    echo "<input type='radio' name='type' value='2'";
+    if($userType ==2){echo "checked";}
+    echo ">Student";
+    
+    echo "<input type='radio' name='type' value='3'";
+    if($userType ==3){echo "checked";}
+    echo ">Faculty<br>";
+    echo "<input type='submit' value='Update' >";
 	echo "<input type='hidden' name='act' value='update' />";
-	echo "</form>";
     
     echo '<a class="button" href="detail.php?id=' . $usrId . '"><div>Cancel</div></a>';
+	echo "</form>";
+    
     
 } #end userEdit()
 
