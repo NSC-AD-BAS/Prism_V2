@@ -223,12 +223,6 @@ function userEdit(){
 	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
 	echo "User Email: <input type='text' name='userEmail' value='".$userEmail."'><br>";
 	echo "User Phone: <input type='text' name='userPhone' value='".$userPhone."'><br>";
-    
-    switch($userType){
-        case 1:
-            
-            break;
-    }
     echo "
     User Type: 
     <input type='radio' name='type' value='1'";
