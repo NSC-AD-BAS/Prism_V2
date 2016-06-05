@@ -116,7 +116,10 @@ function userAdd(){
  	echo "<form action='prism-input.php?id=".$myID."' method='post'>";
 	echo "First Name: <input type='text' name='firstname' ><br>";
 	echo "Last Name: <input type='text' name='lastName' ><br>";
-	echo "Contact: <input type='text' name='contact' ><br>";
+	//echo "Contact: <input type='text' name='contact' ><br>";
+    echo "Phone #: <input type='text' name='userPhone' ><br>";
+	echo "E-mail : <input type='text' name='userEmail' ><br>";
+    
 	echo "
     User Type: 
     <input type='radio' name='type' value='1'>Admin
