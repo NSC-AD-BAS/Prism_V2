@@ -124,7 +124,7 @@ function userAdd(){
     User Type: 
     <input type='radio' name='type' value='1'>Admin
     <input type='radio' name='type' value='2' checked>Student
-    <input type='radio' name='type' value='3'>Faculty<br>
+    <input type='radio' name='type' value='3'>Faculty<br><br>
     ";
 	echo "<input type='submit' name='add'>";
 	echo "<input type='hidden' name='act' value='add' />";
@@ -226,14 +226,15 @@ function userEdit(){
 	echo "Last Name: <input type='text' name='lastname' value='".$lastName."'><br>";
 	echo "User Email: <input type='text' name='userEmail' value='".$userEmail."'><br>";
 	echo "User Phone: <input type='text' name='userPhone' value='".$userPhone."'><br>";
+    
     echo "
     User Type: 
-    <input type='radio' name='type' value='1'";
-    if($userType ==1){echo "checked";}
+    <input type='radio' name='type' value='2'";
+    if($userType ==2){echo "checked";}
     echo ">Admin";
     
-    echo "<input type='radio' name='type' value='2'";
-    if($userType ==2){echo "checked";}
+    echo "<input type='radio' name='type' value='1'";
+    if($userType ==1){echo "checked";}
     echo ">Student";
     
     echo "<input type='radio' name='type' value='3'";
