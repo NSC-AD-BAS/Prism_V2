@@ -122,8 +122,8 @@ function userAdd(){
     
 	echo "
     User Type: 
-    <input type='radio' name='type' value='1'>Admin
-    <input type='radio' name='type' value='2' checked>Student
+    <input type='radio' name='type' value='2'>Admin
+    <input type='radio' name='type' value='1' checked>Student
     <input type='radio' name='type' value='3'>Faculty<br><br>
     ";
 	echo "<input type='submit' name='add'>";
