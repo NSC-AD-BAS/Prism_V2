@@ -10,7 +10,8 @@
 	#require '../../../../../includes/creds.php';//remove when config is live
     require '../lib/db_connect.php';//remove when config is live
     require 'includes/functions_inc.php';//remove when config is live
-    
+    include_once("../login/login_utils.php");
+
     //Current page name, stripped of folder pathing
     define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); 
     //define('SITE_URL', "http://www.joesarchive.com/sandbox/prism/");
@@ -49,13 +50,17 @@
                 <li class="left"><a href="../companies/list.php">Companies</a></li>
                 <li class="left"><a href="../students/list.php">Students</a></li>
                 <!--Add php if statement for user privys-->
-                <li class="left"><a href="../users/list.php">Users</a></li>
-                <li class="left"><a href="../changelog/list.php">Changelog</a></li>
+                <?php 
+                    if(isAdmin()){
+                    echo '<li class="left"><a href="../users/list.php">Users</a></li>';
+                    echo '<li class="left"><a href="../changelog/list.php">Changelog</a></li>';
+                }
+                ?>
                 <!--End php if statement for user privys-->
                 
                 
                 <li class="right"><a href="../login/logout.php">Logout</a></li>
-                <li class="right"><a href="list.php">Profile</a></li>
+                <li class="right"><a href="../profile/detail.php">Profile</a></li>
             </ul>
         </nav>
     <main>
