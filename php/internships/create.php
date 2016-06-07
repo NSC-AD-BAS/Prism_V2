@@ -22,8 +22,15 @@ function print_create_main() { ?>
                 <th>Company</th>
                 <td><select name="OrganizationId">
                 	<?php
+                        # for dynamic pre-population of drop-down from company detail
+                        $company_name = "";
+
+                        if (isset($_GET["orgId"])) {
+                            $company_data = get_company_detail($_GET["orgId"]);
+                            $company_name = $company_data[0]['Company'];
+                        }
                 		$company_array = get_companies_list();
-                		print_company_options($company_array, "");
+                		print_company_options($company_array, $company_name);
                 	?>
                 </select>
                 </td>
