@@ -117,6 +117,27 @@ function get_last_error($conn) {
 }
 
 /*
+    Users specific DB Queries
+*/
+function get_user_list() {
+    return get_view_data('user_list');
+}
+
+function get_user_detail($userId) {
+    $conn = db_connect();
+    $sql  = "SELECT * FROM user_list WHERE `User ID` = $userId";
+    $output = false;
+    $result = mysqli_query($conn, $sql);
+    while ($row = $result->fetch_assoc()) {
+        $output[] = $row;
+    }
+    //clean-up result set and connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $output;
+}
+
+/*
     Internship Specific DB Queries
 */
 
