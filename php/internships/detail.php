@@ -21,6 +21,7 @@ function print_detail_main($data) { ?>
             $intStartDate = $data["Start Date"];
             $intEndDate = $data["End Date"];
             $intLocation = $data["Location"];
+            $intAddress = $data["Address 1"];
             $intDescription = $data["Job Description"];
             $intLastUpdated = $data["Last Update"];
             $intExpiration = $data["Expiration Date"]; ?>
@@ -50,6 +51,10 @@ function print_detail_main($data) { ?>
                         <td id="loc"><?= $intLocation ?></td>
                     </tr>
                     </tr>
+                        <th>Address:</th>
+                        <td id="addr"><?= $intAddress?></td>
+                    </tr>
+                    </tr>
                         <th>Last Updated:</th>
                         <td><?= $intLastUpdated ?></td>
                     </tr>
@@ -74,7 +79,7 @@ function print_detail_main($data) { ?>
 
                     function geocodeLocation(geocoder, resultsMap) {
 
-                        var address = document.getElementById("loc").innerHTML;
+                        var address = document.getElementById("addr").innerHTML;
 
                         geocoder.geocode({'address': address}, function(results, status) {
                             if (status === google.maps.GeocoderStatus.OK) {
