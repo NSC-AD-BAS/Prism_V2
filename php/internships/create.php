@@ -9,34 +9,10 @@ include("../db/update_db.php");
 include("../db/query_db.php");
 include("../render/page_builder.php");
 
-# TODO: clean-up like edit
-
-# this page calls itself with non-empty POST data
-# if the POST data contains everything the table in the database needs
-# the entry will be added to the database
-
-# process the POST params for create new internship
-function try_post_process() {
-	if (isset($_POST['PositionTitle']) && isset($_POST['OrganizationId'])
-		&& isset($_POST['DatePosted']) && isset($_POST['StartDate'])
-		&& isset($_POST['EndDate']) && isset($_POST['ExpirationDate'])
-		&& isset($_POST['Description'])) {
-
-		# need to follow up with DB people about how to setup link between org and internship
-		$internship_data = array("PositionTitle"=>$_POST['PositionTitle'], "OrganizationId"=>$_POST['OrganizationId'],
-			"DatePosted"=>$_POST['DatePosted'], "StartDate"=>$_POST['StartDate'], "EndDate"=>$_POST['EndDate'],
-			"ExpirationDate"=>$_POST['ExpirationDate'], "Description"=>$_POST['Description']);
-
-		add_internship($internship_data);
-		header("Location: list.php");
-	}
-}
-
 # Prints the main html for this internship createS
 function print_create_main() { ?>
-
     <h1>Internship Create</h1>
-    <form action="create.php" method="POST">
+    <form action="confirm_create.php" method="POST">
         <table id="internship_create_edit">
             <tr>
                 <th>Position</th>
@@ -82,9 +58,6 @@ function print_create_main() { ?>
     <!-- Buttons -->
     <a class="button" href="list.php"><div>Back to List</div></a>
 <?php }
-
-# See if we're being passed post parameters
-try_post_process();
 
 # Build the page (only done if post parameters aren't set)
 render_header("Create Company", true);

@@ -7,8 +7,6 @@ require "../login/validate_session.php";
 include("../db/update_db.php");
 include("../db/query_db.php");
 
-# TODO: clean-up
-
 # Make sure POST parameters have been passed
 if (isset($_POST["intId"])) {
 
