@@ -98,7 +98,10 @@ function CreateOptionsFrom($statuses, $selectedIndex) {
 }
 
 function createStudentNotesTableRows($notes) {
-	$formatter = '<tr><td>%s</td><td><a href="edit_note.php?id=%s">%s</a></td></tr>';
+	$formatter = '
+	<tr>
+		<td>%s</td>
+		<td><a href="edit_note.php?id=%s"><textarea readonly class="textarea-readonly">%s</textarea></a></td></tr>';
 	$html = "";
 
 	foreach($notes as $note) {

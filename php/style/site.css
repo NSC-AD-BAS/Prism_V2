@@ -300,6 +300,15 @@ input[type=submit], input[type=reset] {
     outline: 0;
     height: 400px;
     width: 100%;
+    resize: none;
+}
+
+.textarea-readonly {
+    border: 1px solid #999;
+    outline: 0;
+    width: 100%;
+    resize: none;
+    height: 200px;
 }
 
 .notetable {

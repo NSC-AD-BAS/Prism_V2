@@ -45,9 +45,11 @@
         <div class="detail_table">
         	<h3>Notes</h3>
         	<hr>
-		    <table>
-		    	<tr><td><strong>Note Type</strong></td><td><strong>Text</strong></td></tr></strong>
-		    	<?=$notesTableRows?> 	
+		    <table class="notetable">
+                <col class="notedefs">
+			    	<tr><td><strong>Type</strong></td><td><strong>Notes</strong></td></tr></strong>
+			    	<?=$notesTableRows?> 	
+			    </col>
 		    </table>
 		    <hr>
 			<div class="lower_nav">
