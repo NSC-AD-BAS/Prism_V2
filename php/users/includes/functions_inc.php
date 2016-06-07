@@ -26,31 +26,17 @@
   include "../db/query_db.php";
 
 function userList(){
-	//create connection
-	//$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	//create connection and fetch data
 	$conn = db_connect();
-    
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
-	// Check connection
-	if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
+	$data = get_user_list($conn);
 
-
-	//$sql = "SELECT * FROM users WHERE TypeId > 1 AND TypeId < 4";//set sql statement
-	$sql = "SELECT * FROM user_list";//set sql statement
-
-    //var_dump($sql);
-    //die();
-	$result = mysqli_query($conn, $sql);//grab tables
-    
-    
-    
     echo 
     '
     
     <ul class="outer">
      <!--COLUMNS-->
                 <li class="tableHead">
-                    <ul class="inner">
+                    <ul class="inner4">
                         <li>Full Name</li>
                         <li>Phone</li>
                         <li>Email</li>
@@ -60,12 +46,12 @@ function userList(){
      <!--ROWS-->
     
     ';
-	while($row = mysqli_fetch_assoc($result)){//fetch data from associate array
-		$userName = dbOut($row['Name']);//assign variables for readability
-		$userPhone = dbOut($row['Phone']);
-		$userEmail = dbOut($row['Email Address']);
-		$userType = dbOut($row['User Type']);
-        $usrId = dbOut($row['User ID']);
+    foreach ($data as $d) {
+		$userName = dbOut($d['Name']);//assign variables for readability
+		$userPhone = dbOut($d['Phone']);
+		$userEmail = dbOut($d['Email Address']);
+		$userType = dbOut($d['User Type']);
+        $usrId = dbOut($d['User ID']);
         
 		//print out table structure with data
 		/*
@@ -79,7 +65,7 @@ function userList(){
         echo '
                 <li>
                     <a href="detail.php?id='. $usrId . '">
-                        <ul class="inner">
+                        <ul class="inner4">
                             <li>' . $userName . '</li>
                             <li>' . $userPhone . '</li>
                             <li>' . $userEmail . '</li>
@@ -89,16 +75,11 @@ function userList(){
                 </li>
             
             ';
-	}//end while
+	}//end foreach
     echo '
     </ul>    
     <a class="button" href="add.php"><div>Create new User</div></a>';
-    
-	//release result
-
-	//close db connection
-	mysqli_close($conn);
-} #end userList()
+} //end userList()
 
 
 /**
@@ -129,7 +110,7 @@ function userAdd(){
 	echo "<input type='submit' name='add'>";
 	echo "<input type='hidden' name='act' value='add' />";
 	echo "</form>";
-} #end userAdd()
+} //end userAdd()
 
 
 
@@ -143,34 +124,25 @@ function userAdd(){
   * @param	
   */
 function userDetails(){
-
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-	// Check connection
-	if (!$conn) {
-		die("Connection failed: " . mysqli_connect_error());
+	if(isset($_GET['id']) && (int)$_GET['id'] > 0){ //proper data must be on querystring
+	 	$myID = (int)$_GET['id']; //Convert to integer, will equate to zero if fails
 	}
+	$data = get_user_detail($myID);
 
-	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
-	 	$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-	}
-	$sql = "SELECT * FROM user_list"; //set sql statement
+    if (empty($data)) {
+        echo "0 results";
+    }
 
-	$result = mysqli_query($conn, $sql);//grab tables
-	if (mysqli_num_rows($result) > 0) {
-		$row = mysqli_fetch_assoc($result);
-	} else {
-		echo "0 results";
-	}
+    //assign variables for readability
+    foreach ($data as $d) {
+        $userName = dbOut($d['Name']);
+        $userPhone = dbOut($d['Phone']);
+        $userEmail = dbOut($d['Email Address']);
+        $userType = dbOut($d['User Type']);
+        $usrId = dbOut($d['User ID']);
+    }
     
-    $userName = dbOut($row['Name']);//assign variables for readability
-		$userPhone = dbOut($row['Phone']);
-		$userEmail = dbOut($row['Email Address']);
-		$userType = dbOut($row['User Type']);
-        $usrId = dbOut($row['User ID']);
-    
-    
+    //TODO: Make this a proper detail table
 	echo "<br /><br />Name : " . $userName . "<br>";
 	echo "Phone #: " . $userPhone . "<br>";
 	echo "E-mail : " . $userEmail . "<br>";
@@ -180,7 +152,7 @@ function userDetails(){
     echo '&emsp;&emsp;&emsp; <a class="button" href=edit.php?id=' . $usrId . '><div>Edit</div></a>' . '&emsp;&emsp;&emsp;' . '<a class="button" href=delete.php><div>Delete</div></a>';
     
 	
-} #end userDetails()
+} //end userDetails()
 
 
 /**
@@ -201,8 +173,8 @@ function userEdit(){
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
-		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+	if(isset($_GET['id']) && (int)$_GET['id'] > 0){ //proper data must be on querystring
+		$myID = (int)$_GET['id']; //Convert to integer, will equate to zero if fails
 	}
 	$sql = "SELECT FirstName, LastName, PhoneNumber, EmailAddress,TypeId ,UserId FROM users WHERE UserId='".$myID."'"; //set sql statement
 
@@ -247,7 +219,7 @@ function userEdit(){
 	echo "</form>";
     
     
-} #end userEdit()
+} //end userEdit()
 
 
 
@@ -286,7 +258,7 @@ function userDelete(){
 	/******************************************************************/
 	////////////////////////////////////////////////////////////////////
 echo "are you sure";
-} #end userDelete()
+} //end userDelete()
 
 
 /**
@@ -301,5 +273,6 @@ echo "are you sure";
 function dbOut($str){
 if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
 	return $str;
-} #end dbOut()
+} //end dbOut()
+
 ?>
