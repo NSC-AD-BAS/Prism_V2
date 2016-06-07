@@ -24,7 +24,6 @@ if (isset($_POST["intId"])) {
     $datePosted = $_POST["DatePosted"];
     $startDate = !empty($_POST["StartDate"]) ? $_POST["StartDate"] : $now;
     $endDate = !empty($_POST["StartDate"]) ? $_POST["StartDate"] : $exp;
-    $location = !empty($_POST["Location"]) ? $_POST["Location"] : "Seattle, WA";
     $expirationDate = $_POST["ExpirationDate"];
 
     $internship_data = array(
@@ -35,7 +34,6 @@ if (isset($_POST["intId"])) {
         "DatePosted" => $datePosted,
         "StartDate" => $startDate,
         "EndDate" => $endDate,
-        "Location" => $location,
         "ExpirationDate" => $expirationDate);
 
     update_internship($internship_data, $intId);

@@ -20,7 +20,6 @@ function print_edit_main($data, $intId) { ?>
             $intDatePosted = $data["Date Posted"];
             $intStartDate = $data["Start Date"];
             $intEndDate = $data["End Date"];
-            $intLocation = $data["Location"];
             $intDescription = $data["Job Description"];
             $intLastUpdated = $data["Last Update"];
             $intExpiration = $data["Expiration Date"]; ?>
@@ -54,10 +53,6 @@ function print_edit_main($data, $intId) { ?>
     	            <tr>
     	                <th>End Date</th>
     	                <td><input name="EndDate" type="text" value="<?= $intEndDate ?>" /></td>
-    	            </tr>
-					<tr>
-    	                <th>Location</th>
-    	                <td><input name="Location" type="text" value="<?= $intLocation ?>" /></td>
     	            </tr>
     	            <tr>
     	                <th>Expiration Date</th>
