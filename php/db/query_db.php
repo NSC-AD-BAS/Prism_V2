@@ -121,10 +121,11 @@ function get_last_error($conn) {
 */
 
 // Returns internship list result
-function get_internship_list() {
+function get_internship_list($sort, $order) {
     $conn = db_connect();
     $sql = "SELECT DISTINCT *
-            FROM internship_list;";
+            FROM internship_list
+            ORDER BY $sort $order";
     $output = false;
     $result = mysqli_query($conn, $sql);
     while ($row = $result->fetch_assoc()) {
@@ -152,7 +153,7 @@ function search_internship_list($query) {
     */
 
     // execute query
-    $sql = "SELECT 
+    $sql = "SELECT
                 i.InternshipId,
                 i.PositionTitle AS `Position Title`,
                 o.OrganizationName AS `Organization`,
@@ -206,9 +207,9 @@ function get_internship_detail($id) {
 function get_contact_detail($id)
 {
     $conn = db_connect();
-    $stmt = $conn->prepare("SELECT cts.*, orgs.OrganizationName 
-      FROM organization_contacts cts 
-      INNER JOIN organizations orgs 
+    $stmt = $conn->prepare("SELECT cts.*, orgs.OrganizationName
+      FROM organization_contacts cts
+      INNER JOIN organizations orgs
         ON cts.OrganizationId = orgs.OrganizationId
       WHERE cts.ContactId = ? limit 1");
     $stmt->bind_param("i", $id);
