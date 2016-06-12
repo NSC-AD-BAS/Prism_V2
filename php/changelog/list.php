@@ -1,7 +1,6 @@
 <?php
 
 require "../login/validate_session.php";
-require "includes/functions_inc.php";
 
 //Includes
 include "../render/page_builder.php";

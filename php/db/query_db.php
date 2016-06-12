@@ -145,6 +145,44 @@ function dbOut($str){
 }
 
 /*
+    Changelog specific DB Queries
+*/
+function changeLogList(){
+    //create connection
+    $conn = db_connect();
+
+    $sql = "SELECT * FROM change_list;";//set sql statement
+    $result = mysqli_query($conn, $sql);//grab tables
+
+    $changeLogs = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($changeLogs, $row);
+    }
+
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    return array_reduce($changeLogs, function($html, $changeLog) {
+        return $html . buildListItemFromChangeLog($changeLog);
+    });
+}
+
+function buildListItemFromChangeLog($changeLog) {
+    $listItemFormat =
+            "<li>
+                <ul class='inner'>
+                    <li>%s</li>
+                    <li>%s</li>
+                    <li>%s</li>
+                </ul>
+            </li>";
+        return sprintf($listItemFormat
+            , dbOut($changeLog['Name'])
+            , dbOut($changeLog['LogTime'])
+            , dbOut($changeLog['Message']));
+}
+
+/*
     Internship Specific DB Queries
 */
 
