@@ -37,9 +37,4 @@ function buildListItemFromChangeLog($changeLog) {
             , dbOut($changeLog['Message']));   
 }
 
-function dbOut($str){
-    if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
-    return $str;
-} #end dbOut()
-
 ?>
