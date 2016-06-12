@@ -167,21 +167,6 @@ function changeLogList(){
     });
 }
 
-function buildListItemFromChangeLog($changeLog) {
-    $listItemFormat =
-            "<li>
-                <ul class='inner'>
-                    <li>%s</li>
-                    <li>%s</li>
-                    <li>%s</li>
-                </ul>
-            </li>";
-        return sprintf($listItemFormat
-            , dbOut($changeLog['Name'])
-            , dbOut($changeLog['LogTime'])
-            , dbOut($changeLog['Message']));
-}
-
 /*
     Internship Specific DB Queries
 */
