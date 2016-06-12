@@ -15,6 +15,13 @@ function print_edit_main($data, $intId) { ?>
 		# Make sure we have data
         if (count($data) > 0) {
             $data = $data[0];
+            // loop to get rid of any 0000-00-00 dates
+            foreach($data as $field => $value) {
+                if($value == "0000-00-00") {
+                    $data[$field] = "";
+                }
+                error_log($data[$field]);
+            }
             $intPosition = $data["Position Title"];
             $intCompany = $data["Organization"];
             $intDatePosted = $data["Date Posted"];

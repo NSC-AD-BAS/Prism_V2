@@ -13,6 +13,13 @@ function print_detail_main($data) { ?>
         <?php
         if (count($data) > 0) {
             $data = $data[0];
+            // loop to get rid of any 0000-00-00 dates
+        	foreach($data as $field => $value) {
+        		if($value == "0000-00-00") {
+        			$data[$field] = "";
+        		}
+        		error_log($data[$field]);
+        	}
             $intId = $data["InternshipId"];
             $orgId = $data["OrganizationId"];
             $intPosition = $data["Position Title"];
