@@ -137,6 +137,13 @@ function get_user_detail($userId) {
     return $output;
 }
 
+function dbOut($str){
+    if($str!="") {
+        $str = stripslashes(trim($str));
+    }//strip out slashes entered for SQL safety
+	return $str;
+}
+
 /*
     Internship Specific DB Queries
 */

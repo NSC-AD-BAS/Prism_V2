@@ -13,16 +13,16 @@
   */
 
   //Common include and functionality shared between user pages
-  include "../db/query_db.php";
+//  include "../db/query_db.php";
 
 /**
   * Removes slashes from given input in order to keep input SQL safe
   *
   * @param str given string to remove slashes from
   */
-function dbOut($str){
-if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
-	return $str;
-} //end dbOut()
+//function dbOut($str){
+//if($str!=""){$str = stripslashes(trim($str));}//strip out slashes entered for SQL safety
+//	return $str;
+//} //end dbOut()
 
 ?>

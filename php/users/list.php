@@ -15,7 +15,7 @@
 		</tr>
 		<!--TABLE ROWS-->
 		<?php 
-		include 'includes/functionsinc.php';
+//		include 'includes/functionsinc.php';
 		//create connection and fetch data
 		$conn = db_connect();
 		$data = get_user_list($conn);

@@ -13,7 +13,8 @@
     #require '../includes/config.php; //site configuration
 	#require '../../../../../includes/creds.php';//remove when config is live
     require '../lib/db_connect.php';//remove when config is live
-    require 'includes/functions_inc.php';//remove when config is live
+//    require 'includes/functionsinc.php';//dbOut was moved to ../db/query_db.php;
+    include '../db/query_db.php';
     include_once("../login/login_utils.php");
 
     //Current page name, stripped of folder pathing

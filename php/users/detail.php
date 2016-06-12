@@ -3,7 +3,7 @@ include 'includes/header.php';
 ?>
 <br><br>        
 <?php 
-include 'includes/functionsinc.php';
+//include 'includes/functionsinc.php';
 /**
   * Retrieves and displays details regarding a specified account.
   * Information includes: Name, phone number, email, and user type

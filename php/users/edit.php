@@ -1,7 +1,7 @@
 <?php include 'includes/header.php'; ?>
 <br><br>        
 <?php 
-include 'includes/functionsinc.php';
+//include 'includes/functionsinc.php';
 /**
   * Allows fields of a selected account to be changed
   * Fields include: Name, phone number, email, and user type
