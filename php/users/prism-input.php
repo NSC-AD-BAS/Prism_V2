@@ -23,13 +23,8 @@
 
 	/////////////////////////////////////////////////////////////////
 /**
-  * Description
-  *
-  * <code>
-  * 
-  * </code>
-  *
-  * @param	
+  * Updates a user's fields
+  * Fields updated include: first name, last name, phone number, email, and type
   */
 function updateUser(){
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -61,13 +56,8 @@ function updateUser(){
 }
 
 /**
-  * Description
-  *
-  * <code>
-  * 
-  * </code>
-  *
-  * @param	
+  * Adds a new user to the database along with given fields
+  * User fields include: first name, last name, phone number, and email
 */
 function addUser(){
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);

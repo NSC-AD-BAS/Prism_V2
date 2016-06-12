@@ -1,6 +1,10 @@
 <?php require "../login/validate_session.php"; ?>
 <!DOCTYPE html>
-<!-- author Joe McLaughlin -->
+<!-- 
+	author Joe McLaughlin
+	Contains the header and common html and php shared
+	between user pages
+ -->
 <html lang="en">
 <head>
 	<link rel="stylesheet" type="text/css" href="../style/site.css">
