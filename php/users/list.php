@@ -53,5 +53,5 @@
         <a class="button" href="add.php"><div>Create new User</div></a>
     ';
 
-    include 'includes/footer.php'; 
+    render_footer();
 ?>
