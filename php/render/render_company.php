@@ -75,15 +75,13 @@ function renderCompanyList($data, $archived) {
             <hr>
             <a class="button" href="detail.php?create=true"><div>Create new Company</div></a>
         ';
+        //Toggle archive display text
+        if (!$archived) {
+            $out .= '<a class="aside" href="list.php?archived=true">Show Deleted</a>';
+        } else {
+            $out .= '<a class="aside" href="list.php">Hide Deleted</a>';
+        }
     }
-
-    //Toggle archive display text
-    if (!$archived) {
-        $out .= '<a class="aside" href="list.php?archived=true">Show Deleted</a>';
-    } else {
-        $out .= '<a class="aside" href="list.php">Hide Deleted</a>';
-    }
-
     echo $out;
 }
 

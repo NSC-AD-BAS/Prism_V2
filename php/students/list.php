@@ -69,7 +69,8 @@
 
 <?php if (isAdmin()) : ?>
 <a href="create.php" class="button"><div>Create Student</div></a>
-<?php endif ?>
 <?=$showDeletedLink?>
+<?php endif ?>
+
 
 <?php render_footer(); ?>
