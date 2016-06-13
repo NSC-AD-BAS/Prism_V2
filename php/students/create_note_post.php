@@ -1,6 +1,6 @@
 <?php
 	require "../login/validate_session.php";
-    require "update_db.php";
+    require "../db/update_db.php";
 
     $note = $_POST['note'];
     insert_note($note);
