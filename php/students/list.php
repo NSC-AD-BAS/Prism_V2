@@ -1,6 +1,6 @@
 <?php
     require "../login/validate_session.php";
-    require "query_db.php";
+    require "../db/query_db.php";
     require "student_presentation.php";
     require "../render/page_builder.php";
 
@@ -67,7 +67,9 @@
    
 <?=$studentList?>
 
+<?php if (isAdmin()) : ?>
 <a href="create.php" class="button"><div>Create Student</div></a>
+<?php endif ?>
 <?=$showDeletedLink?>
 
 <?php render_footer(); ?>

@@ -22,7 +22,7 @@ function db_connect() {
     return $conn;
 }
 
-//Determine if logged-in user is an admin.  See the fixer, needs improvement
+//Determine if logged-in user is an admin.
 function isAdmin() {
     return $_SESSION["user_type"] == "Admin" || $_SESSION["user_type"] == "Faculty";
 }
@@ -167,6 +167,133 @@ function changeLogList(){
     return array_reduce($changeLogs, function($html, $changeLog) {
         return $html . buildListItemFromChangeLog($changeLog);
     });
+}
+
+/*
+    Students Specific DB Queries
+*/
+//Make this a stub so we don't need to update all the Student Queries just yet.
+function create_connection() {
+    return db_connect();
+}
+
+function get_many_rows($query) {
+    $conn = create_connection();
+
+    $rows = array();
+    if ($result = mysqli_query($conn, $query)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($rows, $row);
+        }
+        mysqli_free_result($result);
+    }
+    mysqli_close($conn);
+
+    return $rows;
+}
+
+function get_row($query) {
+    $conn = create_connection();
+
+    if ($result = mysqli_query($conn, $query)) {
+        $row = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+    }
+    mysqli_close($conn);
+
+    return $row;
+}
+
+function get_all_students() {
+    $query = "SELECT * FROM student_detail;";
+    return get_many_rows($query);
+}
+
+function get_single_student($id) {
+    $query = "SELECT * FROM student_detail WHERE UserId = " . $id . ";";
+    return get_row($query);
+}
+
+function get_all_fields($id) {
+    $query = "SELECT * FROM students WHERE UserId = " . $id . ";";
+    return get_row($query);
+}
+
+function get_all_intern_capstone_statuses() {
+    $query = "SELECT * FROM intern_capstone_status;";
+    return get_many_rows($query);
+}
+
+function get_all_application_statuses() {
+    $query = "SELECT * FROM application_status;";
+    return get_many_rows($query);
+}
+
+function get_all_program_statuses() {
+    $query = "SELECT * FROM program_status;";
+    return get_many_rows($query);
+}
+
+function get_prev_student($id) {
+    $query = "SELECT UserId FROM student_detail WHERE UserId < " . $id . " and isDeleted = 0 ORDER BY UserId DESC LIMIT 1;";
+    $row = get_row($query);
+    return $row["UserId"];
+}
+
+function get_next_student($id) {
+    $query = "SELECT UserId FROM student_detail WHERE UserId > " . $id . " and isDeleted = 0 ORDER BY UserId LIMIT 1;";
+    $row = get_row($query);
+    return $row["UserId"];
+}
+
+function get_student_notes($userId) {
+    $query = "SELECT
+        un.User_NoteId AS `NoteId`,
+        un.Note_Type AS `Type`,
+        un.Note_Text AS `Text`
+    FROM
+        users u
+            JOIN
+        user_notes un ON u.UserId = un.UserId
+    WHERE u.UserId = " . $userId;
+
+   return get_many_rows($query);
+}
+
+function get_note($id) {
+    $query = "SELECT
+        u.UserId,
+        un.User_NoteId AS `NoteId`,
+        un.Note_Type AS `Type`,
+        un.Note_Text AS `Text`
+    FROM
+        users u
+            JOIN
+        user_notes un ON u.UserId = un.UserId
+    WHERE un.User_NoteId = " . $id;
+
+    return get_row($query);
+}
+
+function get_students_matching_filters($filters) {
+    $students = get_all_students();
+    foreach ($filters as $filter) {
+        $students = array_filter($students, $filter);
+    }
+    return $students;
+}
+
+function get_user_data($userId) {
+    $query = "SELECT * FROM users WHERE UserId = " . $userId . ";";
+    return get_row($query);
+}
+
+// The function get_user_profile is used on the profile page to get data for non-student users
+function get_user_profile($userId) {
+    $query = "SELECT users.UserId, users.FirstName AS `First Name`, users.MiddleName AS `Middle Name`, users.LastName AS `Last Name`, users.PhoneNumber AS `Phone`, users.EmailAddress AS `Email`
+        FROM users
+        WHERE users.UserId = " . $userId . ";";
+    return get_row($query);
 }
 
 /*
