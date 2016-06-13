@@ -91,6 +91,5 @@
         </form>
     ";
 ?>
-<br><br>
-<a href=list.php> Back to list</a>
+
 <?php render_footer(); ?>
