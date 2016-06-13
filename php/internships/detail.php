@@ -116,9 +116,11 @@ function print_detail_main($data) { ?>
         <hr />
         <!-- Buttons -->
         <a class="button" href="list.php"><div>Back to List</div></a>
-        <a class="button" href="create.php"><div>Create new Internship</div></a>
-        <a class="button" href="edit.php?id=<?= $intId ?>"><div>Edit</div></a>
-        <a class="button" href="delete.php?id=<?= $intId ?>"><div>Delete</div></a>
+        <?php if (isAdmin()) : ?>
+            <a class="button" href="create.php"><div>Create new Internship</div></a>
+            <a class="button" href="edit.php?id=<?= $intId ?>"><div>Edit</div></a>
+            <a class="button" href="delete.php?id=<?= $intId ?>"><div>Delete</div></a>
+        <?php endif ?>
 <?php }
 
 # Build detail page

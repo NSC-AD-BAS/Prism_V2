@@ -92,9 +92,11 @@ function print_list_main($data, $list_title) {
             <p>0 results.</p>
         <?php } ?>
 
-        <hr />
         <!-- Buttons -->
+        <?php if (isAdmin()) : ?>
+        <hr />
         <a class="button" href="create.php"><div>Create new Internship</div></a>
+        <?php endif ?>
 <?php }
 
 # Build list page
