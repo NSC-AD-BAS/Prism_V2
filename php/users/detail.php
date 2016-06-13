@@ -25,7 +25,7 @@
         $usrId = dbOut($d['User ID']);
     }
 
-    #TODO:Add missing table fields(middle name etc...)
+    #TODO:Add missing table fields(middle name)
     echo 
     "
     <div class='wrapper'>

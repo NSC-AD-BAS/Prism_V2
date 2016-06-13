@@ -23,7 +23,7 @@
 /**
   * Updates a user's fields
   * Fields updated include: first name, last name, phone number, email, and type
-  * TODO:Add missing table fields(middle name etc...)
+  * TODO:Add missing table fields(middle name)
   */
 
 function updateUser(){
@@ -57,7 +57,7 @@ function updateUser(){
 /**
   * Adds a new user to the database along with given fields
   * User fields include: first name, last name, phone number, and email
-  * TODO:Add missing table fields(middle name etc...)
+  * TODO:Add missing table fields(middle name)
   */
 function addUser(){
 	$conn = db_connect();
