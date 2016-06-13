@@ -67,7 +67,6 @@ function render_footer() {
     //Close the main opened in render_nav()
     $out = '
         </main>
-        </br>
         <footer>
         <p>North Seattle College - PRISM &copy; ' . date('Y') . '</p>
         </footer>
