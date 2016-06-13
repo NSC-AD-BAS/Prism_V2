@@ -1,13 +1,9 @@
-<?php include 'includes/header.php'; ?>
-<br><br>        
-<?php 
-//include 'includes/functionsinc.php';
+<?php include 'includes/header.php'; 
 /**
   * Allows fields of a selected account to be changed
   * Fields include: Name, phone number, email, and user type
   */
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	//$conn = mysqli_connect($servername, $username, $password, $dbname);
+	$conn = db_connect();
 
 	// Check connection
 	if (!$conn) {
