@@ -1,16 +1,17 @@
-<?php include 'includes/header.php';
+<?php 
 /**
   * Retrieves and displays details regarding a specified account.
   * Information includes: Name, phone number, email, and user type
   */
-
+    include 'includes/header.php';
+   
     #pulls users ID
-	if(isset($_GET['id']) && (int)$_GET['id'] > 0){ #proper data must be on querystring
-	 	$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-	}
-	$data = get_user_detail($myID);
+    if(isset($_GET['id']) && (int)$_GET['id'] > 0){ #proper data must be on querystring
+        $myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+    }
+    $data = get_user_detail($myID);
 
-	#Case: no results
+    #Case: no results
     if (empty($data)) {
         echo "0 results";
     }
@@ -24,13 +25,15 @@
         $usrId = dbOut($d['User ID']);
     }
 
-    #TODO: Make this a proper detail table
-	echo "
-    <br /><br />Name : " . $userName . "<br>
-	Phone #: " . $userPhone . "<br>
-	E-mail : " . $userEmail . "<br>
-	Type : " . $userType . "<br><br>
-    &emsp;&emsp;&emsp; <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>";
+    #TODO:Add missing table fields(middle name etc...), fix style
+    echo 
+    "
+        <br /><br />Name : " . $userName . "<br>
+        Phone #: " . $userPhone . "<br>
+        E-mail : " . $userEmail . "<br>
+        Type : " . $userType . "<br><br>
+        &emsp;&emsp;&emsp; <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>
+    ";
 ?>
 <br><br>
 <a href=list.php> Back to list</a>
