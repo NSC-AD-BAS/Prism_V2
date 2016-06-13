@@ -90,6 +90,5 @@
             <input type='hidden' name='act' value='update' >
         </form>
     ";
+    render_footer(); 
 ?>
-
-<?php render_footer(); ?>
