@@ -1,6 +1,4 @@
-<?php include 'includes/header.php';?>
-<br><br>        
-<?php
+<?php include 'includes/header.php';
 /**
   * Retrieves and displays details regarding a specified account.
   * Information includes: Name, phone number, email, and user type

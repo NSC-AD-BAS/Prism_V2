@@ -1,6 +1,4 @@
-<?php include 'includes/header.php'; ?>
-<br><br>        
-<?php 
+<?php include 'includes/header.php';
 /**
   * Displays form to create a new user
   */
