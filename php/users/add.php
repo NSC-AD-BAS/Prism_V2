@@ -43,6 +43,7 @@
                 <hr>
                 <div class='lower_nav'>
                     <div>
+                        <a class='button' href=list.php><div>User List</div></a>
                         <input class='button' type='submit' name='add' value='Add User'>
                     </div>
                 </div> <!--end lower_nav -->
