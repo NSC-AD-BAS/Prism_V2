@@ -28,11 +28,36 @@
     #TODO:Add missing table fields(middle name etc...), fix style
     echo 
     "
-        <br /><br />Name : " . $userName . "<br>
-        Phone #: " . $userPhone . "<br>
-        E-mail : " . $userEmail . "<br>
-        Type : " . $userType . "<br><br>
-        &emsp;&emsp;&emsp; <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>
+    <div class='wrapper'>
+        <div class='detail_table'>
+            <table>
+                
+                    <tr>
+                        <td>User Name :</td>
+                        <td> " . $userName . "</td>
+                    </tr>
+                    <tr>
+                        <td>User Phone #:</td>
+                        <td> " . $userPhone . "</td>
+                    </tr>
+                    <tr>
+                        <td>User E-mail :</td>
+                        <td> " . $userEmail . "</td>
+                    </tr>
+                    <tr>
+                        <td>User Type :</td>
+                        <td> " . $userType . "</td>
+                    </tr>
+                
+            </table>
+            <hr>
+            <div class='lower_nav'>
+                <div>
+                &emsp;&emsp;&emsp; <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>
+                </div>
+            </div> <!--end lower_nav -->
+        </div> <!--detail_table-->
+    </div> <!--wrapper-->
     ";
 ?>
 <br><br>
