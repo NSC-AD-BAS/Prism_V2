@@ -53,5 +53,5 @@
         
         </form>
     ";
+    render_footer(); 
 ?>
-<?php render_footer(); ?>
