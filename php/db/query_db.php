@@ -27,6 +27,10 @@ function isAdmin() {
     return $_SESSION["user_type"] == "Admin";
 }
 
+function isFaculty() {
+    return $_SESSION["user_type"] == "Faculty";
+}
+
 //Get the result set from an arbitrary view (or table) name
 function get_view_data($view) {
     $conn = db_connect();
