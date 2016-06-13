@@ -74,13 +74,16 @@ function addUser(){
     
     //if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
     if(isset($_POST['type'])){$type=$_POST['type'];}else{$type = '';}
-
-	$sql = "INSERT INTO users(firstname,lastName,PhoneNumber,'Email Address','TypeId') VALUES('%s','%s','%s','%s',%d)";
-	$sql = sprintf($sql,$firstName,$lastName,$userPhone,$userEmail,$type);
+    
+    
+	$sql = "INSERT INTO users(FirstName,LastName,PhoneNumber,EmailAddress,TypeId,UserName,UserPassword) VALUES('%s','%s','%s','%s',%d,'%s','%s')";
+	$sql = sprintf($sql,$firstName,$lastName,$userPhone,$userEmail,$type,$userName,$userPW);
 	//var_dump($sql); //test sql query 
 	//die();
 
 	$result = mysqli_query($conn,$sql); 
+    //var_dump($result);
+    //die();
 	if ($result)
 	{//successful update!
 		$newURL = 'list.php';
