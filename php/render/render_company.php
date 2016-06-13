@@ -258,12 +258,16 @@ function renderCompanyContacts($company_contacts, $id) {
                 <tr><td>On AD Advisory Committee</td><td>' . $advise . '</td></tr>
                 <tr><td>LinkedIn</td><td>' . displayValue($linkedIn, "linkedIn", false, true) . '</td></tr>
                 </table>
-                <hr>
+
             ';
 
             //Buttons...
             if (isAdmin()) {
-                $out .= '<a class="button" href="../contacts/edit.php?id=' . $contactId . '"><div>Edit Contact</div></a>';
+                $out .= '
+                    <br>
+                    <a class="button" href="../contacts/edit.php?id=' . $contactId . '"><div>Edit Contact</div></a>
+                    <a class="button" href="../contacts/delete.php?id=' . $contactId . '"><div>Delete Contact</div></a><hr>
+                ';
             }
         }
     } else {
@@ -273,7 +277,7 @@ function renderCompanyContacts($company_contacts, $id) {
     }
     //Show Add Contact button even if no contacts are defined
     if (isAdmin()) {
-        $out .= '<a class="button" href="../contacts/create.php?orgId=' . $id . '"><div>Add Contact</div></a>';
+        $out .= '<a class="button" href="../contacts/create.php?orgId=' . $id . '"><div>Add New Contact</div></a>';
     }
     $out .= '</div></div>';
     echo $out;
