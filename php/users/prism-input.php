@@ -61,7 +61,7 @@ function updateUser(){
   * User fields include: first name, last name, phone number, and email
 */
 function addUser(){
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$conn = db_connect();
 
 	if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
 		$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
