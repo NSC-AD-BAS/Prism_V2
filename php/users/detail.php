@@ -61,5 +61,5 @@
         </div> <!--detail_table-->
     </div> <!--wrapper-->
     ";
+    render_footer(); 
 ?>
-<?php render_footer(); ?>
