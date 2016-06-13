@@ -53,7 +53,8 @@
             <hr>
             <div class='lower_nav'>
                 <div>
-                &emsp;&emsp;&emsp; <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>
+                    <a class='button' href=list.php><div>List</div></a>
+                    <a class='button' href=edit.php?id=" . $usrId . "><div>Edit</div></a>
                 </div>
             </div> <!--end lower_nav -->
         </div> <!--detail_table-->
