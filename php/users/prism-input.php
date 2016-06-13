@@ -75,8 +75,17 @@ function addUser(){
     //if(isset($_POST['contact'])){$contact=$_POST['contact'];}else{$contact = '';}
     if(isset($_POST['type'])){$type=$_POST['type'];}else{$type = '';}
     
+    
     $firstLen = strlen($firstName);
-    if($firstLen >=3){ $userName = substr($firstName,0,3) . substr($lastName,0,2);}else{$userName = $firstName . $lastName;}
+    $lastShort = substr($lastName,0,2);
+    
+    if($firstLen >=3)
+    { 
+        $userName = substr($firstName,0,3) . $lastShort;
+    }else{
+        $userName = $firstName . $lastShort;
+    }
+    $userName = strtolower($userName);
     $userPW = $userName;
     
 	$sql = "INSERT INTO users(FirstName,LastName,PhoneNumber,EmailAddress,TypeId,UserName,UserPassword) VALUES('%s','%s','%s','%s',%d,'%s','%s')";
