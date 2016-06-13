@@ -27,7 +27,7 @@
     $userType = dbOut($row['TypeId']);
     $usrId = dbOut($row['UserId']);
 
-    #TODO:Add missing table fields(middle name etc...), fix style
+    #TODO:Add missing table fields(middle name etc...)
     echo 
     "
         <form action='prism-input.php?id=".$myID."' method='post'>
