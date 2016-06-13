@@ -8,16 +8,40 @@
  	echo 
     "
         <form action='prism-input.php?id=".$myID."' method='post'>
-            First Name: <input type='text' name='firstname' ><br>
-            Last Name: <input type='text' name='lastName' ><br>
-            Phone #: <input type='text' name='userPhone' ><br>
-            E-mail : <input type='text' name='userEmail' ><br>
-            User Type: 
-            <input type='radio' name='type' value='2'>Admin
-            <input type='radio' name='type' value='1' checked>Student
-            <input type='radio' name='type' value='3'>Faculty<br><br>
+        <div class='wrapper'>
+        <div class='detail_table'>
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td> <input type='text' name='firstname' ></td>
+                </tr>
+                
+            <tr>
+                <td>Last Name: </td>
+                <td><input type='text' name='lastName' ></td>
+
+            </tr>
+            <tr>
+                <td>Phone #: </td>
+                <td><input type='text' name='userPhone' ></td>
+            
+            </tr>
+            <tr>
+                <td>E-mail :</td> 
+                <td><input type='text' name='userEmail' ></td>
+            
+            </tr>
+            <tr>
+                <td>User Type: </td>
+                <td>
+                    <input type='radio' name='type' value='2'>Admin
+                    <input type='radio' name='type' value='1' checked>Student
+                    <input type='radio' name='type' value='3'>Faculty
+                </td>
+            </tr>
             <input type='submit' name='add'>
             <input type='hidden' name='act' value='add' />
+        <table>
         </form>
     ";
 ?>
