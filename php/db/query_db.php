@@ -24,9 +24,7 @@ function db_connect() {
 
 //Determine if logged-in user is an admin.  See the fixer, needs improvement
 function isAdmin() {
-    //FIXME: This needs to (eventually) evaluate that the user is both logged in *and* has admin credentials.
-    //Change to false to see nav and detail buttons auto-magically disappear.
-    return true;
+    return $_SESSION["user_type"] == "Admin";
 }
 
 //Get the result set from an arbitrary view (or table) name
