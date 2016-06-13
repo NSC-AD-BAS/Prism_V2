@@ -25,7 +25,7 @@
 	$userType = dbOut($row['TypeId']);
     $usrId = dbOut($row['UserId']);
 
-	//Edit Page
+
 	echo "<form action='prism-input.php?id=".$myID."' method='post'>
 	First Name: <input type='text' name='firstname' value='".$firstName."'><br>
 	Last Name: <input type='text' name='lastname' value='".$lastName."'><br>
