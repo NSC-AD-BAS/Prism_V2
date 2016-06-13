@@ -31,41 +31,63 @@
     echo 
     "
         <form action='prism-input.php?id=".$myID."' method='post'>
-            First Name: <input type='text' name='firstname' value='".$firstName."'><br>
-            Last Name: <input type='text' name='lastname' value='".$lastName."'><br>
-            User Email: <input type='text' name='userEmail' value='".$userEmail."'><br>
-            User Phone: <input type='text' name='userPhone' value='".$userPhone."'><br>
-    ";
+            <div class='wrapper'>
+                <div class='detail_table'>
+                    <table>
+                        <tr>
+                            <td>First Name: </td>
+                            <td><input type='text' name='firstname' value='".$firstName."'></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name: </td>
+                            <td><input type='text' name='lastname' value='".$lastName."'></td>
+                        </tr>
+                        <tr>
+                            <td>User Email: </td>
+                            <td><input type='text' name='userEmail' value='".$userEmail."'></td>
+                        </tr>
+                        <tr>
+                            <td>User Phone: </td>
+                            <td><input type='text' name='userPhone' value='".$userPhone."'></td>
+                        <tr>
+                            <td>User Type: </td>
+                            <td>
+                                <input type='radio' name='type' value='2'
+        ";
 
-    echo 
-    "
-            User Type: 
-            <input type='radio' name='type' value='2'
-    ";
+        if($userType ==2){echo "checked";}#check if user is admin, if true, checkbox
+        echo 
+        "
+                                >Admin
+                                <input type='radio' name='type' value='1'
+        ";
 
-    if($userType ==2){echo "checked";}#check if user is admin, if true, checkbox
-    echo 
-    "
-            >Admin
-            <input type='radio' name='type' value='1'
-    ";
+        if($userType ==1){echo "checked";}#check if user is student, if true, checkbox
+        echo 
+        "
+                                >Student
+                                <input type='radio' name='type' value='3'
+        ";
 
-    if($userType ==1){echo "checked";}#check if user is student, if true, checkbox
-    echo 
-    "
-            >Student
-            <input type='radio' name='type' value='3'
-    ";
-
-    if($userType ==3){echo "checked";}#check if user is faculty, if true, checkbox
-    echo 
-    "
-            >Faculty<br>
-
-            <input type='submit' value='Update' >
-            <input type='hidden' name='act' value='update' />
-
-            <a class='button' href='detail.php?id=" . $usrId . "><div>Cancel</div></a>
+        if($userType ==3){echo "checked";}#check if user is faculty, if true, checkbox
+        echo 
+        "
+                                >Faculty
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <div class='lower_nav'>
+                        <div>
+                            <a class='button' href=list.php><div>User List</div></a>
+                            <input class='button' type='submit' name='update' value='Update User'>
+                            <a class='button' href='detail.php?id=" . $usrId . "'><div>Cancel</div></a>
+                            
+                        </div>
+                    </div> <!--end lower_nav -->
+                </div> <!--detail_table-->
+            </div> <!--wrapper-->
+            <input type='hidden' name='act' value='update' >
         </form>
     ";
 ?>
