@@ -24,7 +24,7 @@ function db_connect() {
 
 //Determine if logged-in user is an admin.  See the fixer, needs improvement
 function isAdmin() {
-    return $_SESSION["user_type"] == "Admin";
+    return $_SESSION["user_type"] == "Admin" || $_SESSION["user_type"] == "Faculty";
 }
 
 function isFaculty() {
