@@ -35,12 +35,15 @@
 		    <hr>
 			<div class="lower_nav">
 				<a href="list.php" class="button"><div>Student List</div></a>
-			    <a href="edit.php?id=<?=$studentId?>" class="button"><div>Edit</div></a>
-			    <a href="delete_confirmation.php?id=<?=$studentId?>" class="button"><div>Delete</div></a>
+				<?php if (isAdmin()) : ?>
+                    <a href="edit.php?id=<?=$studentId?>" class="button"><div>Edit</div></a>
+                    <a href="delete_confirmation.php?id=<?=$studentId?>" class="button"><div>Delete</div></a>
+                <?php endif ?>
 			</div>
 		</div>
 	</div>
 
+    <?php if (isAdmin()) : ?>
 	<div class="wrapper">
         <div class="detail_table">
         	<h3>Notes</h3>
@@ -57,4 +60,5 @@
 			</div>
 		</div>
 	</div>
+	<?php endif ?>
 <?php render_footer(); ?>
