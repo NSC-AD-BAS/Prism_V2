@@ -13,14 +13,12 @@
     #require '../includes/config.php; //site configuration
 	#require '../../../../../includes/creds.php';//remove when config is live
     require '../lib/db_connect.php';//remove when config is live
-//    require 'includes/functionsinc.php';//dbOut was moved to ../db/query_db.php;
     include '../db/query_db.php';
     include_once("../login/login_utils.php");
 
     //Current page name, stripped of folder pathing
     define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); 
-    //define('SITE_URL', "http://www.joesarchive.com/sandbox/prism/");
-    //Below are page specific variables/settings.    
+    //Below are page specific variables/settings.
     switch(THIS_PAGE)
     {
         case 'list.php':        

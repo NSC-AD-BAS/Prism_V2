@@ -38,6 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+if ($renderThis == "deleted") {
+    header("Location: ../companies/detail.php?" . http_build_query(array('id' => $OrganizationId)));
+}
+
 render_header("Contact", true);
 render_nav("Delete Existing Contact");
 ?>
@@ -48,13 +52,7 @@ render_nav("Delete Existing Contact");
 <?php if ($renderThis == "unknown") : ?>
     <h1>Sorry! We can't find the id you are looking for. :( </h1>
 <?php endif; ?>
-<?php if ($renderThis == "deleted") : ?>
-    <h1>You contact has been deleted! </h1>
-    <!-- http://php.net/manual/en/function.http-build-query.php -->
-    <h2><a href="<?php ECHO '../companies/detail.php?' . http_build_query(array('id' => $OrganizationId)) ?>">Click
-            here to go back
-            to <?php ECHO htmlspecialchars($OrganizationName) ?> page....</a></h2>
-<?php endif; ?>
+
 <?php if ($renderThis == "standard" || $renderThis == "saved") : ?>
     <form action="delete.php" method="post">
         <input type="hidden" name="id" value="<?php ECHO htmlspecialchars($contactId) ?>"/>
