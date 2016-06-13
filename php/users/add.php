@@ -43,7 +43,7 @@
                 <hr>
                 <div class='lower_nav'>
                     <div>
-                        <input class='button' type='submit' name='add' value='Update User'>
+                        <input class='button' type='submit' name='add' value='Add User'>
                     </div>
                 </div> <!--end lower_nav -->
             </div> <!--detail_table-->
