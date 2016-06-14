@@ -3,7 +3,7 @@
 	Profile page for displaying data that a student can edit
 */
 	// Import statements. I'm using the ones I used previously for students
-	require "../students/query_db.php";
+	require "../db/query_db.php";
 	require "../students/student_presentation.php";
 	require "../render/page_builder.php";
 	include_once("../login/login_utils.php");

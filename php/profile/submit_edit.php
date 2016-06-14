@@ -1,5 +1,5 @@
 <?php
-	require "../students/update_db.php";
+	require "../db/update_db.php";
 	require_once("../login/login_utils.php");
 
 	# Session management

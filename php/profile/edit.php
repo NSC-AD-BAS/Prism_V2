@@ -1,6 +1,6 @@
 <?php
 	// Page for editing personal data
-	require "../students/query_db.php";
+	require "../db/query_db.php";
 	require "../students/student_presentation.php";
 	require "../render/page_builder.php";
 	require "functions.php";
