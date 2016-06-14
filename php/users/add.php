@@ -35,8 +35,7 @@
                             <td>User Type: </td>
                             <td>
                                 <input type='radio' name='type' value='2'>Admin
-                                <input type='radio' name='type' value='1' checked>Student
-                                <input type='radio' name='type' value='3'>Faculty
+                                <input type='radio' name='type' value='3'checked>Faculty
                             </td>
                         </tr>
                     </table>

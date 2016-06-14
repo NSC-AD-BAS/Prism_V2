@@ -59,13 +59,7 @@
         echo 
         "
                                 >Admin
-                                <input type='radio' name='type' value='1'
-        ";
-
-        if($userType ==1){echo "checked";}#check if user is student, if true, checkbox
-        echo 
-        "
-                                >Student
+                                
                                 <input type='radio' name='type' value='3'
         ";
 
